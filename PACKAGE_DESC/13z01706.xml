@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="packagedesc.xsd">
+	<name>13z01706</name>
+	<description>MDIS5 driver package for MEN 16Z034 GPIO controller, 16Z127 32bit GPIO controller and 16Z037 GPIO controller with serial interface</description>
+	<date>2014-11-28</date>
+	<revision>Release-1.25</revision>
+	<docroot>DRIVERS/MDIS_LL/Z017/DOC/html/index.html</docroot>
+	<!-- Global settings -->
+	<settinglist>
+		<setting>
+			<name>RESET_OFF</name>
+			<description>disable the Z17 driver GPIO reset function on exit (m_close)</description>
+			<type>U_INT32</type>
+			<defaultvalue>0</defaultvalue>
+			<choises>
+				<choise><value>0</value><description>reset enabled</description></choise>
+				<choise><value>1</value><description>reset disabled</description></choise>
+			</choises>
+		</setting>
+	</settinglist>
+	<!-- Models -->
+	<modellist>
+		<model>
+			<!-- standard model -->
+			<hwname>16Z034_GPIO</hwname>
+			<description>GPIO controller in Chameleon FPGA</description>
+			<devnameprefix>GPIO</devnameprefix>
+			<devtype>MDIS</devtype>
+			<autoid>
+				<chamunitid>0x19</chamunitid>
+				<chamv2id>34</chamv2id>
+			</autoid>
+			<bbslot>
+				<bbismodel>CHAMELEON</bbismodel>
+			</bbslot>
+			<bbslot>
+				<bbismodel>CHAMELEON_PCITBL</bbismodel>
+			</bbslot>
+			<swmodulelist>
+				<swmodule>
+					<name>z17</name>
+					<description>GPIO Driver</description>
+					<type>Low Level Driver</type>
+					<makefilepath>Z017/DRIVER/COM/driver.mak</makefilepath>
+				</swmodule>
+			</swmodulelist>
+		</model>
+		<model>
+			<!-- standard model -->
+			<hwname>16Z034_GPIO</hwname>
+			<modelname>16Z034_GPIO_IO</modelname>
+			<description>GPIO controller in Chameleon FPGA (io mapped)</description>
+			<devnameprefix>GPIO</devnameprefix>
+			<devtype>MDIS</devtype>
+			<autoid>
+				<chamunitid>0x19</chamunitid>
+				<chamv2id>34</chamv2id>
+			</autoid>
+			<bbslot>
+				<bbismodel>CHAMELEON</bbismodel>
+			</bbslot>
+			<bbslot>
+				<bbismodel>CHAMELEON_PCITBL</bbismodel>
+			</bbslot>
+			<swmodulelist>
+				<swmodule>
+					<name>z17_io</name>
+					<description>GPIO Driver</description>
+					<type>Low Level Driver</type>
+					<makefilepath>Z017/DRIVER/COM/driver_io.mak</makefilepath>
+				</swmodule>
+			</swmodulelist>
+		</model>
+		<model>
+			<!-- extended model -->
+			<hwname>16Z037_GPIO</hwname>
+			<description>GPIO controller with serial interface in Chameleon FPGA</description>
+			<devnameprefix>GPIO</devnameprefix>
+			<devtype>MDIS</devtype>
+			<autoid>
+				<chamv2id>37</chamv2id>
+			</autoid>
+			<bbslot>
+				<bbismodel>CHAMELEON</bbismodel>
+			</bbslot>
+			<bbslot>
+				<bbismodel>CHAMELEON_PCITBL</bbismodel>
+			</bbslot>
+			<swmodulelist>
+				<swmodule>
+					<name>z17</name>
+					<description>GPIO Driver</description>
+					<type>Low Level Driver</type>
+					<makefilepath>Z017/DRIVER/COM/driver.mak</makefilepath>
+				</swmodule>
+			</swmodulelist>
+		</model>
+		<model>
+			<!-- extended model -->
+			<hwname>16Z127_GPIO</hwname>
+			<description>32bit GPIO controller in Chameleon FPGA</description>
+			<devnameprefix>GPIO</devnameprefix>
+			<devtype>MDIS</devtype>
+			<autoid>
+				<chamv2id>127</chamv2id>
+			</autoid>
+			<bbslot>
+				<bbismodel>CHAMELEON</bbismodel>
+			</bbslot>
+			<bbslot>
+				<bbismodel>CHAMELEON_PCITBL</bbismodel>
+			</bbslot>
+			<swmodulelist>
+				<swmodule>
+					<name>z17_z127</name>
+					<description>GPIO Driver for Z127_GPIO</description>
+					<type>Low Level Driver</type>
+					<makefilepath>Z017/DRIVER/COM/driver_z127.mak</makefilepath>
+				</swmodule>
+			</swmodulelist>
+		</model>
+		<model>
+			<!-- extended model -->
+			<hwname>16Z127_GPIO</hwname>
+			<modelname>16Z127_GPIO_NOIRQ</modelname>
+			<description>32bit GPIO controller in Chameleon FPGA (without IRQs)</description>
+			<devnameprefix>GPIO</devnameprefix>
+			<devtype>MDIS</devtype>
+			<autoid>
+				<chamv2id>127</chamv2id>
+			</autoid>
+			<bbslot>
+				<bbismodel>CHAMELEON</bbismodel>
+			</bbslot>
+			<bbslot>
+				<bbismodel>CHAMELEON_PCITBL</bbismodel>
+			</bbslot>
+			<swmodulelist>
+				<swmodule>
+					<name>z17_z127_noirq</name>
+					<description>GPIO Driver for Z127_GPIO_NOIRQ without IRQs</description>
+					<type>Low Level Driver</type>
+					<makefilepath>Z017/DRIVER/COM/driver_z127_noirq.mak</makefilepath>
+				</swmodule>
+			</swmodulelist>
+		</model>
+	</modellist>
+	<!-- Global software modules -->
+	<swmodulelist>
+		<swmodule>
+			<name>z17_simp</name>
+			<description>Example program for Z17 GPIO driver</description>
+			<type>Driver Specific Tool</type>
+			<makefilepath>Z017/EXAMPLE/Z17_SIMP/COM/program.mak</makefilepath>
+		</swmodule>
+		<swmodule>
+			<name>z17_io</name>
+			<description>Tool to access the 16Z034/16Z037 (8-bit) I/Os</description>
+			<type>Driver Specific Tool</type>
+			<makefilepath>Z017/TOOLS/Z17_IO/COM/program.mak</makefilepath>
+		</swmodule>
+		<swmodule>
+			<name>z127_io</name>
+			<description>Tool to access the 16Z127 (32-bit) I/Os</description>
+			<type>Driver Specific Tool</type>
+			<makefilepath>Z017/TOOLS/Z127_IO/COM/program.mak</makefilepath>
+		</swmodule>
+		<swmodule internal="true">
+			<name>g215_test</name>
+			<description>Tool to test the G215</description>
+			<type>Driver Specific Tool</type>
+			<makefilepath>Z017/TOOLS/G215_TEST/COM/program.mak</makefilepath>
+		</swmodule>
+		<swmodule internal="true">
+			<name>g215_190029_et</name>
+			<description>G215 test tool for 190029 environment test</description>
+			<type>Driver Specific Tool</type>
+			<makefilepath>Z017/TOOLS/G215_190029_ET/COM/program.mak</makefilepath>
+		</swmodule>
+		<swmodule internal="true">
+			<name>z127_irqlat</name>
+			<description>Tool to test IRQ latency with 16Z127 (32-bit) I/Os</description>
+			<type>Driver Specific Tool</type>
+			<makefilepath>Z017/TOOLS/Z127_IRQLAT/COM/program.mak</makefilepath>
+		</swmodule>
+	</swmodulelist>
+</package>
