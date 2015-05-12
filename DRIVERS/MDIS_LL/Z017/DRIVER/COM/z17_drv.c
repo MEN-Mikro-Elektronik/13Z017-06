@@ -189,7 +189,7 @@ static int32 Z17_Info(int32 infoType, ...);
 static char* Ident(void);
 static int32 Cleanup(LL_HANDLE *llHdl, int32 retCode);
 static void  arwenReset(LL_HANDLE *llHdl);
-static void  arwenToggle(LL_HANDLE *llHdl);
+
 static void  AlarmHandler(void *arg);
 
 /****************************** Z17_GetEntry ********************************/
