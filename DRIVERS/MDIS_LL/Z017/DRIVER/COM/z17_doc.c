@@ -127,7 +127,11 @@
 	- Bit=0: debouncing off
 	- Bit=1: debouncing on
 
-
+	The 16Z127-01 IP core supports a configurable debounce time for each
+	input port. The debounce time can be set/get with the block SetStat/
+	GetStat Z17_BLK_DEBOUNCE_TIME.
+	
+	
 	\n \subsection default Default values
 	M_open() and M_close() set all ports to default values: 
 
@@ -224,6 +228,10 @@ Tool to access the 16Z034/16Z037 (8-bit) I/Os
 
 /** \example z127_io.c
 Tool to access the 16Z127 (32-bit) I/Os
+*/
+
+/** \example z127_in.c
+Tool to control the 16Z127 (32-bit) inputs
 */
 
 /*! \page dummy

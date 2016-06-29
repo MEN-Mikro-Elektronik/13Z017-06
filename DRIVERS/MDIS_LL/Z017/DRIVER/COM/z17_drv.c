@@ -2,7 +2,7 @@
 /*!
  *        \file  z17_drv.c
  *
- *      \author  ulrich.bogensperger@men.de
+ *      \author  ulrich.bogensperger@men.de 
  *        $Date: 2014/11/28 14:17:37 $
  *    $Revision: 1.11 $
  *
@@ -92,10 +92,15 @@
 #include <MEN/mdis_err.h>    /* MDIS error codes               */
 #include <MEN/ll_defs.h>     /* low-level driver definitions   */
 #include <MEN/arwen.h>       /* definitions for Arwen GPIO     */
+#include <MEN/chameleon.h>   /* chameleon header               */
 
 /*-----------------------------------------+
 |  DEFINES                                 |
 +-----------------------------------------*/
+#if (defined(Z17_MODEL_Z127) && defined(MDIS_MA_BB_INFO_PTR))
+	#define Z127_INFO_PTR 1
+#endif
+
 /* general defines */
 #define CH_NUMBER          1          /**< number of device channels      */
 #ifdef Z127_NOIRQ
@@ -103,8 +108,15 @@
 #else
   #define USE_IRQ            TRUE       /**< interrupt required             */
 #endif  /* Z127_NOIRQ */
-#define ADDRSPACE_COUNT    1          /**< nbr of required address spaces */
-#define ADDRSPACE_SIZE     32         /**< size of address space          */
+
+#ifdef Z127_INFO_PTR
+	#define ADDRSPACE_COUNT    2          /**< nbr of required address spaces */
+#else
+	#define ADDRSPACE_COUNT    1          /**< nbr of required address spaces */
+#endif
+
+#define ADDRSPACE_SIZE     0x100         /**< size of address space (32 byte used for variant 0
+                                              but 0x100 required for variant 1) */
 
 /* debug defines */
 #define DBG_MYLEVEL        llHdl->dbgLevel    /**< debug level  */
@@ -132,6 +144,10 @@ typedef struct {
 	OSS_IRQ_HANDLE          *irqHdl;        /**< irq handle        */
 	DESC_HANDLE             *descHdl;       /**< desc handle       */
 	MACCESS                 ma;             /**< hw access handle  */
+#ifdef Z127_INFO_PTR
+	CHAMELEONV2_UNIT        *chamu;         /**< chamv2 unit struct */
+	u_int32                 vdt;            /**< 1=variable debounce time support */
+#endif
 	MDIS_IDENT_FUNCT_TBL    idFuncTbl;      /**< id function table */
 	/* debug */
 	u_int32                 dbgLevel;       /**< debug level  */
@@ -287,6 +303,10 @@ static int32 Z17_Init(
 	llHdl->togCount    = 0;
 	llHdl->togHigh     = 0;
 
+#ifdef Z127_INFO_PTR
+	llHdl->chamu       = (CHAMELEONV2_UNIT*)ma[1];
+#endif 
+
 	/*------------------------------+
 	|  init id function table       |
 	+------------------------------*/
@@ -326,6 +346,16 @@ static int32 Z17_Init(
 		return (Cleanup(llHdl, error));
 
 	DBGWRT_1((DBH, "LL - Z17_Init: base address = %08p\n", (void*)llHdl->ma));
+
+#ifdef Z127_INFO_PTR
+	/* print chameleon info */
+	DBGWRT_1(( DBH, "	device ID:\t0x%02x \n",llHdl->chamu->devId));
+	DBGWRT_1(( DBH, "	variant:  \t0x%02x \n",llHdl->chamu->variant));
+	DBGWRT_1(( DBH, "	revision: \t0x%02x \n\n",llHdl->chamu->revision));
+	
+	if( llHdl->chamu->variant > 0 )
+		llHdl->vdt = 1;
+#endif
 
 	/* RESET_OFF */
 	if ((error = DESC_GetUInt32(llHdl->descHdl, RESET_DEFAULT,
@@ -554,6 +584,30 @@ static int32 Z17_SetStat(
 		case Z17_DEBOUNCE:
 			MWRITE_D32(ma, ARWEN_02_DBER, value);
 			break;
+			
+#ifdef Z127_INFO_PTR			
+		case Z17_BLK_DEBOUNCE_TIME:
+		{
+			int8 port;
+			Z17_BLK_DEBTIME *dbt = (Z17_BLK_DEBTIME*)blk->data;			
+		
+			/* prevent access to not implemented DBCR registers */		
+			if( llHdl->vdt == 0 ){
+				DBGWRT_ERR((DBH, "*** LL - Z17_SetStat(Z17_BLK_DEBOUNCE_TIME): "
+					" requires at least 16Z127 variant 1 IP core\n"));
+				return ERR_LL_ILL_FUNC;
+			}
+					
+			for( port=0; port<32; port++ ){
+				if( (dbt->portMask & (1<<port)) ){
+					MWRITE_D32(ma, ARWEN_Z127V01_DBCR(port), dbt->timeUs/50);
+				}
+			}		
+
+			break;
+		}
+#endif
+					
 #ifndef Z127_NOIRQ
 		/*--------------------------+
 		|  register signal          |
@@ -824,6 +878,44 @@ static int32 Z17_GetStat(
 		case Z17_DEBOUNCE:
 			*valueP = MREAD_D32(ma, ARWEN_02_DBER);
 			break;
+
+#ifdef Z127_INFO_PTR			
+		case Z17_BLK_DEBOUNCE_TIME:
+		{
+			int8 	port, first=0;
+			u_int32 timeUs=0;
+			Z17_BLK_DEBTIME *dbt = (Z17_BLK_DEBTIME*)blk->data;			
+			
+			/* prevent access to not implemented DBCR registers */		
+			if( llHdl->vdt == 0 ){
+				DBGWRT_ERR((DBH, "*** LL - Z17_GetStat(Z17_BLK_DEBOUNCE_TIME): "
+					" requires at least 16Z127 variant 1 IP core\n"));
+				return ERR_LL_ILL_FUNC;
+			}
+
+			if( dbt->portMask == 0 ){
+				DBGWRT_ERR((DBH, "*** LL - Z17_GetStat(Z17_BLK_DEBOUNCE_TIME): "
+					"no port specified\n"));
+				return ERR_LL_ILL_PARAM;
+			}
+		
+			for( port=0; port<32; port++ ){
+				if( (dbt->portMask & (1<<port)) ){
+					if( first>0 ){
+						DBGWRT_ERR((DBH, "*** LL - Z17_GetStat(Z17_BLK_DEBOUNCE_TIME): "
+							"more than one port specified\n"));
+		                return ERR_LL_ILL_PARAM;
+					}
+					timeUs = 50 * MREAD_D32(ma, ARWEN_Z127V01_DBCR(port));
+					first++;
+				}
+			}
+			
+			dbt->timeUs = timeUs;		
+			break;
+		}
+#endif					
+			
 #ifndef Z127_NOIRQ
 		/*--------------------------+
 		|  last IRQ request         |
@@ -1096,13 +1188,23 @@ static int32 Z17_Info(
 			u_int32 *dataModeP = va_arg(argptr, u_int32*);
 			u_int32 *addrSizeP = va_arg(argptr, u_int32*);
 		
-			if (addrSpaceIndex >= ADDRSPACE_COUNT) {
-				error = ERR_LL_ILL_PARAM;
-			} else {
-				*addrModeP = MDIS_MA08;
-				*dataModeP = MDIS_MD16;
-				*addrSizeP = ADDRSPACE_SIZE;
-			}
+            switch( addrSpaceIndex ){
+                case 0:
+					*addrModeP = MDIS_MA08;
+					*dataModeP = MDIS_MD16;
+					*addrSizeP = ADDRSPACE_SIZE;
+                    break;
+#ifdef Z127_INFO_PTR
+                case 1:
+                    *addrModeP = MDIS_MA_BB_INFO_PTR;
+                    *dataModeP = MDIS_MD_CHAM_0;
+                    *addrSizeP = sizeof(CHAMELEONV2_UNIT);
+                    break;
+#endif
+
+                default:
+                    error = ERR_LL_ILL_PARAM;
+            }
 			break;
 		}
 		/*-------------------------------+
