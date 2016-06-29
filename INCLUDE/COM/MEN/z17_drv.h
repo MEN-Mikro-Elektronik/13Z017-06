@@ -68,6 +68,14 @@ typedef struct {
 	u_int32 irqsRcved;  /* received IRQs */
 } Z17_BLK_IRQLAT;
 
+/* structure for the Z17_BLK_DEBOUNCE_TIME setstat/getstat */
+typedef struct {
+	/* in */
+	u_int32 portMask;   /* port mask (0x0..0xffffffff) */
+	/* in/out */
+	u_int32 timeUs;   	/* time in us (in 50us steps) */
+} Z17_BLK_DEBTIME;
+
 /*-----------------------------------------+
 |  DEFINES                                 |
 +-----------------------------------------*/
@@ -90,9 +98,11 @@ typedef struct {
 #define Z17_TOG_LOW             M_DEV_OF+0x0c    /**<   S: Toggle phase low - default 1000ms */
 
 /* Z17 specific Getstat/Setstat block codes (for test purposes) */
-#define Z17_BLK_IRQLAT_START    M_DEV_BLK_OF+0x00    /*   S: Initialize IRQ latency test */
-#define Z17_BLK_IRQLAT_RESULT   M_DEV_BLK_OF+0x01    /* G  : Get result of IRQ latency test */
-
+#define Z17_BLK_IRQLAT_START    M_DEV_BLK_OF+0x00	/*   S: Initialize IRQ latency test */
+#define Z17_BLK_IRQLAT_RESULT   M_DEV_BLK_OF+0x01	/* G  : Get result of IRQ latency test */
+#define Z17_BLK_DEBOUNCE_TIME   M_DEV_BLK_OF+0x02	/* G,S: Get/set debounce time (us) for specified port(s) */
+													/*      Get: specify only one port */
+													/*      Set: specify one ore more ports */			
 /**@}*/
 
 #ifndef  Z17_VARIANT

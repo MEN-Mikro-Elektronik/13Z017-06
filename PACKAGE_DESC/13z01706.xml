@@ -165,6 +165,12 @@
 			<type>Driver Specific Tool</type>
 			<makefilepath>Z017/TOOLS/Z127_IO/COM/program.mak</makefilepath>
 		</swmodule>
+		<swmodule>
+			<name>z127_in</name>
+			<description>Tool to control the 16Z127 (32-bit) inputs</description>
+			<type>Driver Specific Tool</type>
+			<makefilepath>Z017/TOOLS/Z127_IN/COM/program.mak</makefilepath>
+		</swmodule>
 		<swmodule internal="true">
 			<name>g215_test</name>
 			<description>Tool to test the G215</description>
