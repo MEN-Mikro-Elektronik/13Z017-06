@@ -115,8 +115,9 @@
 	#define ADDRSPACE_COUNT    1          /**< nbr of required address spaces */
 #endif
 
-#define ADDRSPACE_SIZE     0x100         /**< size of address space (32 byte used for variant 0
-                                              but 0x100 required for variant 1) */
+#define ADDRSPACE_SIZE     		0x20         /**< size of address space (32 byte used for all GPIOs except Z127 variant 1, needs 0x100) */
+#define ADDRSPACE_SIZE_Z127_VAR1	0x100        /**< size of address space Z127 variant 1 */
+
 
 /* debug defines */
 #define DBG_MYLEVEL        llHdl->dbgLevel    /**< debug level  */
