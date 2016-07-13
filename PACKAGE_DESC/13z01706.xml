@@ -3,7 +3,7 @@
 	<name>13z01706</name>
 	<description>MDIS5 driver package for MEN 16Z034 GPIO controller, 16Z127 32bit GPIO controller and 16Z037 GPIO controller with serial interface</description>
 	<date>2016-07-13</date>
-	<revision>Release-1.27</revision>
+	<revision>Release-1.26</revision>
 	<docroot>DRIVERS/MDIS_LL/Z017/DOC/html/index.html</docroot>
 	<!-- Global settings -->
 	<settinglist>

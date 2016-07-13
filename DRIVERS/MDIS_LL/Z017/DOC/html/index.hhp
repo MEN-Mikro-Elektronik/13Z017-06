@@ -9,43 +9,29 @@ Language=0x409 English (United States)
 Title=Z17 MDIS Driver
 
 [WINDOWS]
-main="Z17 MDIS Driver","index.hhc","index.hhk","index.html","index.html",,,,,0x23520,,0x10387e,,,,,,,,0
+main="Z17 MDIS Driver","index.hhc","index.hhk","index.html","index.html",,,,,0x23520,,0x387e,,,,,,,,0
 
 [FILES]
-z127_in_8c-example.html
-z127_io_8c-example.html
-z17_io_8c-example.html
-z17_simp_8c-example.html
-z17__doc_8c_source.html
-z17__drv_8c_source.html
+index.html
+files.html
+z127__io_8c-example.html
+z17__io_8c-example.html
+z17__simp_8c-example.html
+z17__doc_8c-source.html
+z17__drv_8c-source.html
+z17__drv_8h-source.html
 z17__doc_8c.html
 z17__drv_8c.html
-dummy.html
-structLL__HANDLE.html
-dir_fc57246abfc2d8edbaadf5a864898396.html
-dir_d11da837a64e6496f0eed80d199914a3.html
-index.html
-pages.html
+z17__drv_8h.html
 annotated.html
-classes.html
 functions.html
 functions_vars.html
-files.html
+structLL__HANDLE.html
+structZ17__BLK__IRQLAT.html
+dummy.html
+examples.html
 globals.html
 globals_func.html
+globals_type.html
 globals_defs.html
-examples.html
-tab_a.png
-tab_b.png
-tab_h.png
-tab_s.png
-nav_h.png
-nav_f.png
-bc_s.png
-doxygen.png
-closed.png
-open.png
-bdwn.png
-sync_on.png
-sync_off.png
-menlogo.gif
+pages.html
