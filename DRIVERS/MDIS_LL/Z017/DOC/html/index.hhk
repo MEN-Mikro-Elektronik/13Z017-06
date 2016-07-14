@@ -4,423 +4,121 @@
 <param name="FrameName" value="right">
 </OBJECT>
 <UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="__Z17_GetEntry"><param name="Name" value="__Z17_GetEntry"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a29"><param name="Name" value="z17_drv.c"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a18"><param name="Name" value="z17_drv.h"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="_NO_LL_HANDLE"><param name="Name" value="_NO_LL_HANDLE"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a0"><param name="Name" value="z17_drv.c"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="_Z17_GLOBNAME"><param name="Name" value="_Z17_GLOBNAME"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a16"><param name="Name" value="z17_drv.h"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="ADDRSPACE_COUNT"><param name="Name" value="ADDRSPACE_COUNT"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a3"><param name="Name" value="z17_drv.c"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="ADDRSPACE_SIZE"><param name="Name" value="ADDRSPACE_SIZE"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a4"><param name="Name" value="z17_drv.c"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="ADDRSPACE_SIZE_Z127_VAR1"><param name="Name" value="ADDRSPACE_SIZE_Z127_VAR1"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a5"><param name="Name" value="z17_drv.c"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="AlarmHandler"><param name="Name" value="AlarmHandler"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a28"><param name="Name" value="z17_drv.c"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="alarmHdl"><param name="Name" value="alarmHdl"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o17"><param name="Name" value="LL_HANDLE"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="arwenReset"><param name="Name" value="arwenReset"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a27"><param name="Name" value="z17_drv.c"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="arwenResetOff"><param name="Name" value="arwenResetOff"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o24"><param name="Name" value="LL_HANDLE"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="CH_NUMBER"><param name="Name" value="CH_NUMBER"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a1"><param name="Name" value="z17_drv.c"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="Cleanup"><param name="Name" value="Cleanup"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a26"><param name="Name" value="z17_drv.c"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="DBG_MYLEVEL"><param name="Name" value="DBG_MYLEVEL"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a6"><param name="Name" value="z17_drv.c"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="dbgHdl"><param name="Name" value="dbgHdl"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o7"><param name="Name" value="LL_HANDLE"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="dbgLevel"><param name="Name" value="dbgLevel"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o6"><param name="Name" value="LL_HANDLE"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="DBH"><param name="Name" value="DBH"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a7"><param name="Name" value="z17_drv.c"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="descHdl"><param name="Name" value="descHdl"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o3"><param name="Name" value="LL_HANDLE"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="devSemHdl"><param name="Name" value="devSemHdl"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o18"><param name="Name" value="LL_HANDLE"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="Ident"><param name="Name" value="Ident"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a25"><param name="Name" value="z17_drv.c"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="idFuncTbl"><param name="Name" value="idFuncTbl"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o5"><param name="Name" value="LL_HANDLE"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="inPort"><param name="Name" value="inPort"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structZ17__BLK__IRQLAT.html#o1"><param name="Name" value="Z17_BLK_IRQLAT"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="INT32_OR_64"><param name="Name" value="INT32_OR_64"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a19"><param name="Name" value="z17_drv.h"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="irqCount"><param name="Name" value="irqCount"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o9"><param name="Name" value="LL_HANDLE"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="irqHdl"><param name="Name" value="irqHdl"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o2"><param name="Name" value="LL_HANDLE"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="irqs2fire"><param name="Name" value="irqs2fire"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o14"><param name="Name" value="LL_HANDLE"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structZ17__BLK__IRQLAT.html#o2"><param name="Name" value="Z17_BLK_IRQLAT"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="irqsRcved"><param name="Name" value="irqsRcved"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structZ17__BLK__IRQLAT.html#o6"><param name="Name" value="Z17_BLK_IRQLAT"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="irqTest"><param name="Name" value="irqTest"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o11"><param name="Name" value="LL_HANDLE"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="lastReq"><param name="Name" value="lastReq"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o10"><param name="Name" value="LL_HANDLE"></OBJECT>
-  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#aea64fa98e94897d71418835d8ee05054"><param name="Name" value="__Z17_GetEntry"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a7ed5e038d7cded6c7eca1ca9e38710be"><param name="Name" value="_NO_LL_HANDLE"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a9a59fa83d3160499460a6788485ac8ec"><param name="Name" value="ADDRSPACE_COUNT"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a4f07921d496dd6047ca73837f7b97905"><param name="Name" value="ADDRSPACE_SIZE"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#aabeac115dd99e4fdfa754e1d863058dc"><param name="Name" value="AlarmHandler"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#ac1b7c71df67d06741fce4423a4cf6ae2"><param name="Name" value="alarmHdl"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#aa9959369b1e08d4007e6157a1bf97df2"><param name="Name" value="arwenReset"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#a19e0281a2e4c80b08cc33213512d721e"><param name="Name" value="arwenResetOff"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a8a005ca68f582be09b6df19202d193f4"><param name="Name" value="CH_NUMBER"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#acdf5f419c6b0a18c5de79e4a9c8bf3ad"><param name="Name" value="Cleanup"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a8697e24328845380f3e287a9987cbd96"><param name="Name" value="DBG_MYLEVEL"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#a308eab31e057c8002afa3cc63e296f2a"><param name="Name" value="dbgHdl"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#a413af872055c08749a2b451d3c0ceda9"><param name="Name" value="dbgLevel"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#afb81e493b2996d3018cffb7a6946b78c"><param name="Name" value="DBH"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#a355f08452b33262cc1195fa301416da5"><param name="Name" value="descHdl"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#aedf84a8c0c2797bc6004dfe484ec8ba0"><param name="Name" value="devSemHdl"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="dummy.html"><param name="Name" value="dummy"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#ae89983c538f30479c0b65ba4a22a32e0"><param name="Name" value="Ident"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#a47d151b3bf404c03d0bfc080b2184042"><param name="Name" value="idFuncTbl"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#ace8d8e9be894922209b95a7ca8d7bde7"><param name="Name" value="irqCount"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#a1022262bf149bd2c2b8e94416435033c"><param name="Name" value="irqHdl"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#a2992fa0ff6e0c6629062d3731c6ee09b"><param name="Name" value="irqs2fire"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#af3c8e36d239554b2c9ba528f8992cded"><param name="Name" value="irqTest"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#a7b296a6ad5dd0a1e60554db6d88642e8"><param name="Name" value="lastReq"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html"><param name="Name" value="LL_HANDLE"></OBJECT>
   <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o17"><param name="Name" value="alarmHdl"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o24"><param name="Name" value="arwenResetOff"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o7"><param name="Name" value="dbgHdl"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o6"><param name="Name" value="dbgLevel"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o3"><param name="Name" value="descHdl"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o18"><param name="Name" value="devSemHdl"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o5"><param name="Name" value="idFuncTbl"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o9"><param name="Name" value="irqCount"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o2"><param name="Name" value="irqHdl"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o14"><param name="Name" value="irqs2fire"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o11"><param name="Name" value="irqTest"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o10"><param name="Name" value="lastReq"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o4"><param name="Name" value="ma"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o0"><param name="Name" value="memAlloc"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o1"><param name="Name" value="osHdl"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o12"><param name="Name" value="outBit"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o13"><param name="Name" value="outLast"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o8"><param name="Name" value="portChangeSig"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o15"><param name="Name" value="startTick"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o16"><param name="Name" value="stopTick"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o22"><param name="Name" value="togBitMask"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o23"><param name="Name" value="togCount"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o19"><param name="Name" value="togHigh"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o20"><param name="Name" value="togtimeHigh"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o21"><param name="Name" value="togtimeLow"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#ac1b7c71df67d06741fce4423a4cf6ae2"><param name="Name" value="alarmHdl"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#a19e0281a2e4c80b08cc33213512d721e"><param name="Name" value="arwenResetOff"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#a308eab31e057c8002afa3cc63e296f2a"><param name="Name" value="dbgHdl"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#a413af872055c08749a2b451d3c0ceda9"><param name="Name" value="dbgLevel"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#a355f08452b33262cc1195fa301416da5"><param name="Name" value="descHdl"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#aedf84a8c0c2797bc6004dfe484ec8ba0"><param name="Name" value="devSemHdl"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#a47d151b3bf404c03d0bfc080b2184042"><param name="Name" value="idFuncTbl"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#ace8d8e9be894922209b95a7ca8d7bde7"><param name="Name" value="irqCount"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#a1022262bf149bd2c2b8e94416435033c"><param name="Name" value="irqHdl"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#a2992fa0ff6e0c6629062d3731c6ee09b"><param name="Name" value="irqs2fire"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#af3c8e36d239554b2c9ba528f8992cded"><param name="Name" value="irqTest"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#a7b296a6ad5dd0a1e60554db6d88642e8"><param name="Name" value="lastReq"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#afdf907a01b53fdb8b192543288102c06"><param name="Name" value="ma"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#a3f1aa2b73cb056cf8b16943fe4a036c1"><param name="Name" value="memAlloc"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#acea42045f1b7df8b9a384bd4d383877d"><param name="Name" value="osHdl"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#a8ceaf810973f26b07e830bd788ec3a5a"><param name="Name" value="outBit"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#a6e14a3b7874a659afa83c090a83a9e03"><param name="Name" value="outLast"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#ad5cf5f470c378bc85384da16e02893a1"><param name="Name" value="portChangeSig"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#a3481572a5c4740e1f8059b972686a1e3"><param name="Name" value="startTick"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#a2d8bddecf259174b86e21212021df3dc"><param name="Name" value="stopTick"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#a203dabc123b91689f603c5888f1cd1e6"><param name="Name" value="togBitMask"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#acc51beaa2e4ec7d165908514971f47cf"><param name="Name" value="togCount"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#a6486996fb889acbeb2e4350910dc1217"><param name="Name" value="togHigh"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#a0585f630a3f100f34d8fc3f7fa1d51a0"><param name="Name" value="togtimeHigh"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#af0a4841e98dd83b7e2ea1d1b0ce5ec28"><param name="Name" value="togtimeLow"></OBJECT>
   </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="ma"><param name="Name" value="ma"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o4"><param name="Name" value="LL_HANDLE"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="MDIS_PATH"><param name="Name" value="MDIS_PATH"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a21"><param name="Name" value="z17_drv.h"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="memAlloc"><param name="Name" value="memAlloc"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o0"><param name="Name" value="LL_HANDLE"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="OSH"><param name="Name" value="OSH"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a8"><param name="Name" value="z17_drv.c"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="osHdl"><param name="Name" value="osHdl"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o1"><param name="Name" value="LL_HANDLE"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="outBit"><param name="Name" value="outBit"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o12"><param name="Name" value="LL_HANDLE"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="outLast"><param name="Name" value="outLast"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o13"><param name="Name" value="LL_HANDLE"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="outPort"><param name="Name" value="outPort"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structZ17__BLK__IRQLAT.html#o0"><param name="Name" value="Z17_BLK_IRQLAT"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="portChangeSig"><param name="Name" value="portChangeSig"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o8"><param name="Name" value="LL_HANDLE"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="RESET_DEFAULT"><param name="Name" value="RESET_DEFAULT"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a13"><param name="Name" value="z17_drv.c"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="RESET_OFF"><param name="Name" value="RESET_OFF"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a14"><param name="Name" value="z17_drv.c"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="startTick"><param name="Name" value="startTick"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o15"><param name="Name" value="LL_HANDLE"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structZ17__BLK__IRQLAT.html#o4"><param name="Name" value="Z17_BLK_IRQLAT"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="stopTick"><param name="Name" value="stopTick"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o16"><param name="Name" value="LL_HANDLE"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structZ17__BLK__IRQLAT.html#o5"><param name="Name" value="Z17_BLK_IRQLAT"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="tickRate"><param name="Name" value="tickRate"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structZ17__BLK__IRQLAT.html#o3"><param name="Name" value="Z17_BLK_IRQLAT"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="TOG_CYCLIC"><param name="Name" value="TOG_CYCLIC"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a12"><param name="Name" value="z17_drv.c"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="TOG_TIME_DEFAULT"><param name="Name" value="TOG_TIME_DEFAULT"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a9"><param name="Name" value="z17_drv.c"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="TOG_TIME_MAX"><param name="Name" value="TOG_TIME_MAX"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a11"><param name="Name" value="z17_drv.c"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="TOG_TIME_MIN"><param name="Name" value="TOG_TIME_MIN"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a10"><param name="Name" value="z17_drv.c"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="togBitMask"><param name="Name" value="togBitMask"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o22"><param name="Name" value="LL_HANDLE"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="togCount"><param name="Name" value="togCount"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o23"><param name="Name" value="LL_HANDLE"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="togHigh"><param name="Name" value="togHigh"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o19"><param name="Name" value="LL_HANDLE"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="togtimeHigh"><param name="Name" value="togtimeHigh"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o20"><param name="Name" value="LL_HANDLE"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="togtimeLow"><param name="Name" value="togtimeLow"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#o21"><param name="Name" value="LL_HANDLE"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="U_INT32_OR_64"><param name="Name" value="U_INT32_OR_64"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a20"><param name="Name" value="z17_drv.h"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="USE_IRQ"><param name="Name" value="USE_IRQ"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a2"><param name="Name" value="z17_drv.c"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="Local" value="structZ17__BLK__IRQLAT.html"><param name="Name" value="Z17_BLK_IRQLAT"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structZ17__BLK__IRQLAT.html#o1"><param name="Name" value="inPort"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structZ17__BLK__IRQLAT.html#o2"><param name="Name" value="irqs2fire"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structZ17__BLK__IRQLAT.html#o6"><param name="Name" value="irqsRcved"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structZ17__BLK__IRQLAT.html#o0"><param name="Name" value="outPort"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structZ17__BLK__IRQLAT.html#o4"><param name="Name" value="startTick"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structZ17__BLK__IRQLAT.html#o5"><param name="Name" value="stopTick"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="structZ17__BLK__IRQLAT.html#o3"><param name="Name" value="tickRate"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="Z17_BLK_IRQLAT_RESULT"><param name="Name" value="Z17_BLK_IRQLAT_RESULT"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a14"><param name="Name" value="z17_drv.h"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="Z17_BLK_IRQLAT_START"><param name="Name" value="Z17_BLK_IRQLAT_START"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a13"><param name="Name" value="z17_drv.h"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="Z17_BlockRead"><param name="Name" value="Z17_BlockRead"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a21"><param name="Name" value="z17_drv.c"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="Z17_BlockWrite"><param name="Name" value="Z17_BlockWrite"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a22"><param name="Name" value="z17_drv.c"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="Z17_CLR_PORTS"><param name="Name" value="Z17_CLR_PORTS"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a1"><param name="Name" value="z17_drv.h"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="Z17_CLR_SIGNAL"><param name="Name" value="Z17_CLR_SIGNAL"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a7"><param name="Name" value="z17_drv.h"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="Z17_DEBOUNCE"><param name="Name" value="Z17_DEBOUNCE"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a5"><param name="Name" value="z17_drv.h"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="Z17_DIRECTION"><param name="Name" value="Z17_DIRECTION"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a2"><param name="Name" value="z17_drv.h"></OBJECT>
-  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#afdf907a01b53fdb8b192543288102c06"><param name="Name" value="ma"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#a3f1aa2b73cb056cf8b16943fe4a036c1"><param name="Name" value="memAlloc"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a2b0f11014eb4a12ccb73b0828d297bbf"><param name="Name" value="OSH"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#acea42045f1b7df8b9a384bd4d383877d"><param name="Name" value="osHdl"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#a8ceaf810973f26b07e830bd788ec3a5a"><param name="Name" value="outBit"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#a6e14a3b7874a659afa83c090a83a9e03"><param name="Name" value="outLast"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#ad5cf5f470c378bc85384da16e02893a1"><param name="Name" value="portChangeSig"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a849d9305357c3f914020fa65b0522b3c"><param name="Name" value="RESET_DEFAULT"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#afa9ce51b015785118fcd59f631a3a5ef"><param name="Name" value="RESET_OFF"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#a3481572a5c4740e1f8059b972686a1e3"><param name="Name" value="startTick"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#a2d8bddecf259174b86e21212021df3dc"><param name="Name" value="stopTick"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a6c8af06ca7062e281c57c7b233a767e0"><param name="Name" value="TOG_CYCLIC"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a36919f0934b05601e0337f2ded12f61e"><param name="Name" value="TOG_TIME_DEFAULT"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a66bb64eb668dc7c4779bfdf685ceca1a"><param name="Name" value="TOG_TIME_MAX"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a27c72d55dfe9fa12c589f1105b1cfd17"><param name="Name" value="TOG_TIME_MIN"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#a203dabc123b91689f603c5888f1cd1e6"><param name="Name" value="togBitMask"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#acc51beaa2e4ec7d165908514971f47cf"><param name="Name" value="togCount"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#a6486996fb889acbeb2e4350910dc1217"><param name="Name" value="togHigh"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#a0585f630a3f100f34d8fc3f7fa1d51a0"><param name="Name" value="togtimeHigh"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="structLL__HANDLE.html#af0a4841e98dd83b7e2ea1d1b0ce5ec28"><param name="Name" value="togtimeLow"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a27c634d2ee9b16476067697106830240"><param name="Name" value="USE_IRQ"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a3c909ebf901146afeff99b2ef8c72838"><param name="Name" value="Z17_BlockRead"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a729589ea6f0de88c944b72f9e8a073eb"><param name="Name" value="Z17_BlockWrite"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html"><param name="Name" value="z17_drv.c"></OBJECT>
   <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a29"><param name="Name" value="__Z17_GetEntry"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a0"><param name="Name" value="_NO_LL_HANDLE"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a3"><param name="Name" value="ADDRSPACE_COUNT"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a4"><param name="Name" value="ADDRSPACE_SIZE"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a5"><param name="Name" value="ADDRSPACE_SIZE_Z127_VAR1"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a28"><param name="Name" value="AlarmHandler"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a27"><param name="Name" value="arwenReset"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a1"><param name="Name" value="CH_NUMBER"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a26"><param name="Name" value="Cleanup"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a6"><param name="Name" value="DBG_MYLEVEL"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a7"><param name="Name" value="DBH"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a25"><param name="Name" value="Ident"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a8"><param name="Name" value="OSH"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a13"><param name="Name" value="RESET_DEFAULT"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a14"><param name="Name" value="RESET_OFF"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a12"><param name="Name" value="TOG_CYCLIC"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a9"><param name="Name" value="TOG_TIME_DEFAULT"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a11"><param name="Name" value="TOG_TIME_MAX"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a10"><param name="Name" value="TOG_TIME_MIN"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a2"><param name="Name" value="USE_IRQ"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a21"><param name="Name" value="Z17_BlockRead"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a22"><param name="Name" value="Z17_BlockWrite"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a16"><param name="Name" value="Z17_Exit"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a20"><param name="Name" value="Z17_GetStat"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a24"><param name="Name" value="Z17_Info"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a15"><param name="Name" value="Z17_Init"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a23"><param name="Name" value="Z17_Irq"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a17"><param name="Name" value="Z17_Read"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a19"><param name="Name" value="Z17_SetStat"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a18"><param name="Name" value="Z17_Write"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#aea64fa98e94897d71418835d8ee05054"><param name="Name" value="__Z17_GetEntry"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a7ed5e038d7cded6c7eca1ca9e38710be"><param name="Name" value="_NO_LL_HANDLE"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a9a59fa83d3160499460a6788485ac8ec"><param name="Name" value="ADDRSPACE_COUNT"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a4f07921d496dd6047ca73837f7b97905"><param name="Name" value="ADDRSPACE_SIZE"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#aabeac115dd99e4fdfa754e1d863058dc"><param name="Name" value="AlarmHandler"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#aa9959369b1e08d4007e6157a1bf97df2"><param name="Name" value="arwenReset"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a8a005ca68f582be09b6df19202d193f4"><param name="Name" value="CH_NUMBER"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#acdf5f419c6b0a18c5de79e4a9c8bf3ad"><param name="Name" value="Cleanup"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a8697e24328845380f3e287a9987cbd96"><param name="Name" value="DBG_MYLEVEL"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#afb81e493b2996d3018cffb7a6946b78c"><param name="Name" value="DBH"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#ae89983c538f30479c0b65ba4a22a32e0"><param name="Name" value="Ident"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a2b0f11014eb4a12ccb73b0828d297bbf"><param name="Name" value="OSH"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a849d9305357c3f914020fa65b0522b3c"><param name="Name" value="RESET_DEFAULT"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#afa9ce51b015785118fcd59f631a3a5ef"><param name="Name" value="RESET_OFF"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a6c8af06ca7062e281c57c7b233a767e0"><param name="Name" value="TOG_CYCLIC"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a36919f0934b05601e0337f2ded12f61e"><param name="Name" value="TOG_TIME_DEFAULT"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a66bb64eb668dc7c4779bfdf685ceca1a"><param name="Name" value="TOG_TIME_MAX"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a27c72d55dfe9fa12c589f1105b1cfd17"><param name="Name" value="TOG_TIME_MIN"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a27c634d2ee9b16476067697106830240"><param name="Name" value="USE_IRQ"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a3c909ebf901146afeff99b2ef8c72838"><param name="Name" value="Z17_BlockRead"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a729589ea6f0de88c944b72f9e8a073eb"><param name="Name" value="Z17_BlockWrite"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a6fd3b67f2690a64ebdb55cde827c88e3"><param name="Name" value="Z17_Exit"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a3eb627d23bf92b080243c988a58a8c94"><param name="Name" value="Z17_GetStat"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#acfedafe4726bbf92c1a325c6ece7a158"><param name="Name" value="Z17_Info"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#aa47456858f4feff1ce123f08245497dc"><param name="Name" value="Z17_Init"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a8cf8b46e2555297d360a663f6be137fa"><param name="Name" value="Z17_Irq"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#accffa2bf35599ca8d55beb84927036f0"><param name="Name" value="Z17_Read"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a4d2755e2b05c996a9d03ec0dbefd654a"><param name="Name" value="Z17_SetStat"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a4df445d09d7e7b04b03fa38a5ef9a358"><param name="Name" value="Z17_Write"></OBJECT>
   </UL>
-  <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html"><param name="Name" value="z17_drv.h"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a18"><param name="Name" value="__Z17_GetEntry"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a16"><param name="Name" value="_Z17_GLOBNAME"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a19"><param name="Name" value="INT32_OR_64"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a21"><param name="Name" value="MDIS_PATH"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a20"><param name="Name" value="U_INT32_OR_64"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a14"><param name="Name" value="Z17_BLK_IRQLAT_RESULT"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a13"><param name="Name" value="Z17_BLK_IRQLAT_START"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a1"><param name="Name" value="Z17_CLR_PORTS"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a7"><param name="Name" value="Z17_CLR_SIGNAL"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a5"><param name="Name" value="Z17_DEBOUNCE"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a2"><param name="Name" value="Z17_DIRECTION"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a17"><param name="Name" value="Z17_GLOBNAME"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a8"><param name="Name" value="Z17_IRQ_LAST_REQUEST"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a3"><param name="Name" value="Z17_IRQ_SENSE"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a9"><param name="Name" value="Z17_IRQ_SENSE_16TO31"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a4"><param name="Name" value="Z17_OPEN_DRAIN"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a0"><param name="Name" value="Z17_SET_PORTS"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a6"><param name="Name" value="Z17_SET_SIGNAL"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a11"><param name="Name" value="Z17_TOG_HIGH"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a12"><param name="Name" value="Z17_TOG_LOW"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a10"><param name="Name" value="Z17_TOG_PORTS"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a15"><param name="Name" value="Z17_VARIANT"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="Z17_Exit"><param name="Name" value="Z17_Exit"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a16"><param name="Name" value="z17_drv.c"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="Z17_GetStat"><param name="Name" value="Z17_GetStat"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a20"><param name="Name" value="z17_drv.c"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="Z17_GLOBNAME"><param name="Name" value="Z17_GLOBNAME"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a17"><param name="Name" value="z17_drv.h"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="Z17_Info"><param name="Name" value="Z17_Info"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a24"><param name="Name" value="z17_drv.c"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="Z17_Init"><param name="Name" value="Z17_Init"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a15"><param name="Name" value="z17_drv.c"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="Z17_Irq"><param name="Name" value="Z17_Irq"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a23"><param name="Name" value="z17_drv.c"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="Z17_IRQ_LAST_REQUEST"><param name="Name" value="Z17_IRQ_LAST_REQUEST"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a8"><param name="Name" value="z17_drv.h"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="Z17_IRQ_SENSE"><param name="Name" value="Z17_IRQ_SENSE"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a3"><param name="Name" value="z17_drv.h"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="Z17_IRQ_SENSE_16TO31"><param name="Name" value="Z17_IRQ_SENSE_16TO31"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a9"><param name="Name" value="z17_drv.h"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="Z17_OPEN_DRAIN"><param name="Name" value="Z17_OPEN_DRAIN"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a4"><param name="Name" value="z17_drv.h"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="Z17_Read"><param name="Name" value="Z17_Read"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a17"><param name="Name" value="z17_drv.c"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="Z17_SET_PORTS"><param name="Name" value="Z17_SET_PORTS"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a0"><param name="Name" value="z17_drv.h"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="Z17_SET_SIGNAL"><param name="Name" value="Z17_SET_SIGNAL"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a6"><param name="Name" value="z17_drv.h"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="Z17_SetStat"><param name="Name" value="Z17_SetStat"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a19"><param name="Name" value="z17_drv.c"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="Z17_TOG_HIGH"><param name="Name" value="Z17_TOG_HIGH"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a11"><param name="Name" value="z17_drv.h"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="Z17_TOG_LOW"><param name="Name" value="Z17_TOG_LOW"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a12"><param name="Name" value="z17_drv.h"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="Z17_TOG_PORTS"><param name="Name" value="Z17_TOG_PORTS"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a10"><param name="Name" value="z17_drv.h"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="Z17_VARIANT"><param name="Name" value="Z17_VARIANT"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8h.html#a15"><param name="Name" value="z17_drv.h"></OBJECT>
-  </UL>
-  <LI><OBJECT type="text/sitemap"><param name="See Also" value="Z17_Write"><param name="Name" value="Z17_Write"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a18"><param name="Name" value="z17_drv.c"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a6fd3b67f2690a64ebdb55cde827c88e3"><param name="Name" value="Z17_Exit"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a3eb627d23bf92b080243c988a58a8c94"><param name="Name" value="Z17_GetStat"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#acfedafe4726bbf92c1a325c6ece7a158"><param name="Name" value="Z17_Info"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#aa47456858f4feff1ce123f08245497dc"><param name="Name" value="Z17_Init"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a8cf8b46e2555297d360a663f6be137fa"><param name="Name" value="Z17_Irq"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#accffa2bf35599ca8d55beb84927036f0"><param name="Name" value="Z17_Read"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a4d2755e2b05c996a9d03ec0dbefd654a"><param name="Name" value="Z17_SetStat"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="z17__drv_8c.html#a4df445d09d7e7b04b03fa38a5ef9a358"><param name="Name" value="Z17_Write"></OBJECT>
 </UL>
+</BODY>
+</HTML>
