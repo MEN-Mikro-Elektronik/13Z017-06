@@ -101,7 +101,7 @@
 /*-----------------------------------------+
 |  DEFINES                                 |
 +-----------------------------------------*/
-#if (defined(Z17_MODEL_Z127) && defined(MDIS_MA_BB_INFO_PTR))
+#if (defined(Z127V01) && defined(MDIS_MA_BB_INFO_PTR))
 	#define Z127_INFO_PTR 1
 #endif
 
@@ -115,13 +115,11 @@
 
 #ifdef Z127_INFO_PTR
 	#define ADDRSPACE_COUNT    2          /**< nbr of required address spaces */
+	#define ADDRSPACE_SIZE     0x100      /**< size of address space for 16Z127-01 */
 #else
 	#define ADDRSPACE_COUNT    1          /**< nbr of required address spaces */
+	#define ADDRSPACE_SIZE     0x20       /**< size of address space for all other GPIOs */
 #endif
-
-#define ADDRSPACE_SIZE     		0x20         /**< size of address space (32 byte used for all GPIOs except Z127 variant 1, needs 0x100) */
-#define ADDRSPACE_SIZE_Z127_VAR1	0x100        /**< size of address space Z127 variant 1 */
-
 
 /* debug defines */
 #define DBG_MYLEVEL        llHdl->dbgLevel    /**< debug level  */

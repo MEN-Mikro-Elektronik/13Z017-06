@@ -54,8 +54,12 @@
 
 	\n
 	\section Variants Variants
-	Z17_MODEL_Z127, Z127_NOIRQ
-
+	- z17 (defualt)  : for 8-bit 16Z034/16Z037 GPIO controller
+	- z17_io         : for 8-bit 16Z034/16Z037 GPIO controller with io mapped address space
+	- z17_z127       : for 32-bit 16Z127-00 GPIO controller
+	- z17_z127_noirq : for 32-bit 16Z127-00 GPIO controller without interrupt support
+	- z17_z127v01    : for 32-bit 16Z127-01 GPIO controller with configurable debounce time 
+	
 	\n \section FuncDesc Functional Description
 
 	\n \subsection General General
@@ -127,7 +131,12 @@
 	- Bit=0: debouncing off
 	- Bit=1: debouncing on
 
-
+	The 16Z127-01 IP core supports a configurable debounce time for each
+	input port. The debounce time can be set/get with the block SetStat/
+	GetStat Z17_BLK_DEBOUNCE_TIME.\n
+	Note: This requires the z17_z127v01 driver variant!
+	
+	
 	\n \subsection default Default values
 	M_open() and M_close() set all ports to default values: 
 
@@ -225,6 +234,9 @@ Tool to access the 16Z034/16Z037 (8-bit) I/Os
 /** \example z127_io.c
 Tool to access the 16Z127 (32-bit) I/Os
 */
+
+/** \example z127_in.c
+Tool to control the 16Z127 (32-bit) inputs
 
 /*! \page dummy
   \menimages

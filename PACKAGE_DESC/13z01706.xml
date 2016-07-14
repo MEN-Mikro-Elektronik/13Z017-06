@@ -138,9 +138,34 @@
 			<swmodulelist>
 				<swmodule>
 					<name>z17_z127_noirq</name>
-					<description>GPIO Driver for Z127_GPIO_NOIRQ without IRQs</description>
+					<description>GPIO Driver for Z127_GPIO without IRQs</description>
 					<type>Low Level Driver</type>
 					<makefilepath>Z017/DRIVER/COM/driver_z127_noirq.mak</makefilepath>
+				</swmodule>
+			</swmodulelist>
+		</model>
+		<model>
+			<!-- extended model -->
+			<hwname>16Z127_GPIO</hwname>
+			<modelname>16Z127V01_GPIO</modelname>
+			<description>32bit GPIO controller (16Z127-01) in Chameleon FPGA (with Variable Debounce Time)</description>
+			<devnameprefix>GPIO</devnameprefix>
+			<devtype>MDIS</devtype>
+			<autoid>
+				<chamv2id>127</chamv2id>
+			</autoid>
+			<bbslot>
+				<bbismodel>CHAMELEON</bbismodel>
+			</bbslot>
+			<bbslot>
+				<bbismodel>CHAMELEON_PCITBL</bbismodel>
+			</bbslot>
+			<swmodulelist>
+				<swmodule>
+					<name>z17_z127v01</name>
+					<description>GPIO Driver for Z127V01_GPIO with Variable Debounce Time </description>
+					<type>Low Level Driver</type>
+					<makefilepath>Z017/DRIVER/COM/driver_z127v01.mak</makefilepath>
 				</swmodule>
 			</swmodulelist>
 		</model>
