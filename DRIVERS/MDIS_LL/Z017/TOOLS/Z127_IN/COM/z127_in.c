@@ -351,6 +351,8 @@ int main(int argc, char *argv[])
 					case 1: sensStr = "rising"; break;
 					case 2: sensStr = "falling"; break;
 					case 3: sensStr = "both"; break;
+					default:
+						sensStr = "illegal";
 				}
 				
 				/* DEBOUNCE TIME */
