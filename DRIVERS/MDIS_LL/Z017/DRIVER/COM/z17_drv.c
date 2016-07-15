@@ -20,7 +20,8 @@
  * $Log: z17_drv.c,v $
  * Revision 1.12  2016/07/13 10:09:33  ts
  * R: m_open failed on EM10A00 GPIOs with 0x20 address space size.
- * M: previous default ADDRSPACE_SIZE of 0x100 failed to match, corrected back to 0x20
+ * M: previous default ADDRSPACE_SIZE of 0x100 failed to match, corrected back to 0x20.
+ *    (corrected in next commit)    
  *
  * Revision 1.11  2014/11/28 14:17:37  MRoth
  * R: 1.) no toggle function for GPIOs
@@ -1386,3 +1387,4 @@ static void AlarmHandler(
 		llHdl->togHigh = 1;
 	}
 }
+ 
