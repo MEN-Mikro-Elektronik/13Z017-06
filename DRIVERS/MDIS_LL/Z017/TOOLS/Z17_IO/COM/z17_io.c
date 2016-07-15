@@ -295,4 +295,4 @@ int main(int argc, char *argv[])
 static void PrintError(char *info)
 {
 	printf("*** can't %s: %s\n", info, M_errstring(UOS_ErrnoGet()));
-}
+} 
