@@ -28,10 +28,7 @@
 <span class="comment"> ****************************************************************************/</span>
  <span class="comment">/*-------------------------------[ History ]--------------------------------</span>
 <span class="comment"> *</span>
-<span class="comment"> * $Log: z17__simp_8c-example.html,v $
-<span class="comment"> * Revision 1.28  2016/07/13 10:18:00  ts
-<span class="comment"> * (AUTOCI) Checkin due to new revision Release-1.26 of fileset ART/13Z017-06/13Z017-06
-<span class="comment"> *</span>
+<span class="comment"> * $Log: z17_simp.c,v $</span>
 <span class="comment"> * Revision 1.6  2014/11/28 14:17:45  MRoth</span>
 <span class="comment"> * R: cosmetics</span>
 <span class="comment"> * M: revised code completely</span>
@@ -58,7 +55,7 @@
 <span class="comment"> *---------------------------------------------------------------------------</span>
 <span class="comment"> * (c) Copyright 2003 by MEN mikro elektronik GmbH, Nuernberg, Germany</span>
 <span class="comment"> ****************************************************************************/</span>
-<span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> RCSid[]=<span class="stringliteral">"$Id: z17__simp_8c-example.html,v 1.28 2016/07/13 10:18:00 ts Exp $"</span>;
+<span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> RCSid[]=<span class="stringliteral">"$Id: z17_simp.c,v 1.6 2014/11/28 14:17:45 MRoth Exp $"</span>;
 
 <span class="comment">/*--------------------------------------+</span>
 <span class="comment">|  INCLUDES                             |</span>
@@ -107,7 +104,7 @@
     int32     lastRequest;
     int32     irqCount;
     u_int32   out;
-    <a class="code" href="z17__drv_8h.html#a21">MDIS_PATH</a> path;
+    <a class="code" href="z17__drv_8h.html#a22">MDIS_PATH</a> path;
 
     <span class="keywordflow">if</span> (argc &lt; 2 || strcmp(argv[1], <span class="stringliteral">"-?"</span>) == 0) {
         usage();
@@ -288,6 +285,7 @@
 
     <span class="keywordflow">return</span> (s);
 }
+ 
 </pre></div> 
 	</div>
 </div>
@@ -296,7 +294,7 @@
 <!-- Footer -->
 	<p class="footer">
 	Generated for Z17 MDIS Driver using <a href="http://www.doxygen.org">doxygen</a>.<br>
-	Copyright &copy; 2015 <a href="http://www.men.de">MEN Mikro Elektronik GmbH</a>. All Rights Reserved.
+	Copyright &copy; 2016 <a href="http://www.men.de">MEN Mikro Elektronik GmbH</a>. All Rights Reserved.
 	</p>
 </div>
 

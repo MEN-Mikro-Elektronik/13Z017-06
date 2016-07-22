@@ -29,28 +29,30 @@
 <a href="z17__drv_8h-source.html">Go to the source code of this file.</a><table border=0 cellpadding=0 cellspacing=0>
 <tr><td></td></tr>
 <tr><td colspan=2><br><h2>Data Structures</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align=right valign=top>struct &nbsp;</td><td class="memItemRight" valign=bottom><a class="el" href="structZ17__BLK__DEBTIME.html">Z17_BLK_DEBTIME</a></td></tr>
+
 <tr><td class="memItemLeft" nowrap align=right valign=top>struct &nbsp;</td><td class="memItemRight" valign=bottom><a class="el" href="structZ17__BLK__IRQLAT.html">Z17_BLK_IRQLAT</a></td></tr>
 
 <tr><td colspan=2><br><h2>Z17 specific Getstat/Setstat standard codes</h2></td></tr>
 <tr><td colspan=2><a name="getstat_setstat_codes"/></a> <br><br></td></tr>
 <tr><td class="memItemLeft" nowrap align=right valign=top>#define&nbsp;</td><td class="memItemRight" valign=bottom><a class="el" href="z17__drv_8h.html#a0">Z17_SET_PORTS</a>&nbsp;&nbsp;&nbsp;M_DEV_OF+0x00</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">S: Set IO ports without affecting others - 8 bit mask - bit 0 for gpio[0]. </em> <a href="#a0"></a><em><br><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">S: Set IO ports without affecting others - bit 0 for gpio[0]. </em> <a href="#a0"></a><em><br><br></td></tr>
 <tr><td class="memItemLeft" nowrap align=right valign=top>#define&nbsp;</td><td class="memItemRight" valign=bottom><a class="el" href="z17__drv_8h.html#a1">Z17_CLR_PORTS</a>&nbsp;&nbsp;&nbsp;M_DEV_OF+0x01</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">S: Clear IO ports without affecting others - 8 bit mask - bit 0 for gpio[0]. </em> <a href="#a1"></a><em><br><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">S: Clear IO ports without affecting others - bit 0 for gpio[0]. </em> <a href="#a1"></a><em><br><br></td></tr>
 <tr><td class="memItemLeft" nowrap align=right valign=top>#define&nbsp;</td><td class="memItemRight" valign=bottom><a class="el" href="z17__drv_8h.html#a2">Z17_DIRECTION</a>&nbsp;&nbsp;&nbsp;M_DEV_OF+0x02</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">G,S: Get/Set direction of all ports - 8bit - bit 0 for gpio[0] - value 0 is in - 1 is out. </em> <a href="#a2"></a><em><br><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">G,S: Get/Set direction of all ports - bit 0 for gpio[0] - value 0 is in - 1 is out. </em> <a href="#a2"></a><em><br><br></td></tr>
 <tr><td class="memItemLeft" nowrap align=right valign=top>#define&nbsp;</td><td class="memItemRight" valign=bottom><a class="el" href="z17__drv_8h.html#a3">Z17_IRQ_SENSE</a>&nbsp;&nbsp;&nbsp;M_DEV_OF+0x03</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">G,S: Get/set IRQ sense mode for models Z34/Z37 - 16 bit - and for model Z127 - 32 bit - bit 0 and 1 for gpio[0] - 0 no, 1 rising, 2 falling, 3 both edges. </em> <a href="#a3"></a><em><br><br></td></tr>
 <tr><td class="memItemLeft" nowrap align=right valign=top>#define&nbsp;</td><td class="memItemRight" valign=bottom><a class="el" href="z17__drv_8h.html#a4">Z17_OPEN_DRAIN</a>&nbsp;&nbsp;&nbsp;M_DEV_OF+0x04</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">G,S: Get/set open drain mode - 8bit - bit 0 for gpio[0] - value 0 is dis - 1 is enable. </em> <a href="#a4"></a><em><br><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">G,S: Get/set open drain mode - bit 0 for gpio[0] - value 0 is dis - 1 is enable. </em> <a href="#a4"></a><em><br><br></td></tr>
 <tr><td class="memItemLeft" nowrap align=right valign=top>#define&nbsp;</td><td class="memItemRight" valign=bottom><a class="el" href="z17__drv_8h.html#a5">Z17_DEBOUNCE</a>&nbsp;&nbsp;&nbsp;M_DEV_OF+0x05</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">G,S: Get/set debouncing of all ports - 8bit - bit 0 for gpio[0] - value 0 is dis - 1 is enable. </em> <a href="#a5"></a><em><br><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">G,S: Get/set debouncing of all ports - bit 0 for gpio[0] - value 0 is dis - 1 is enable. </em> <a href="#a5"></a><em><br><br></td></tr>
 <tr><td class="memItemLeft" nowrap align=right valign=top>#define&nbsp;</td><td class="memItemRight" valign=bottom><a class="el" href="z17__drv_8h.html#a6">Z17_SET_SIGNAL</a>&nbsp;&nbsp;&nbsp;M_DEV_OF+0x06</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">S: Set signal sent on IRQ. </em> <a href="#a6"></a><em><br><br></td></tr>
@@ -59,13 +61,13 @@
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">S: Uninstall signal. </em> <a href="#a7"></a><em><br><br></td></tr>
 <tr><td class="memItemLeft" nowrap align=right valign=top>#define&nbsp;</td><td class="memItemRight" valign=bottom><a class="el" href="z17__drv_8h.html#a8">Z17_IRQ_LAST_REQUEST</a>&nbsp;&nbsp;&nbsp;M_DEV_OF+0x08</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">G : Get last IRQ request - 8bit - bit 0 for gpio[0] - value 1 is requested - clears the last request. </em> <a href="#a8"></a><em><br><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">G : Get last IRQ request - bit 0 for gpio[0] - value 1 is requested - clears the last request. </em> <a href="#a8"></a><em><br><br></td></tr>
 <tr><td class="memItemLeft" nowrap align=right valign=top>#define&nbsp;</td><td class="memItemRight" valign=bottom><a class="el" href="z17__drv_8h.html#a9">Z17_IRQ_SENSE_16TO31</a>&nbsp;&nbsp;&nbsp;M_DEV_OF+0x09</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">G,S: Get/set IRQ sense mode only for model Z127 - 32 bit - bit 0 and 1 for gpio[16] - 0 no, 1 rising, 2 falling, 3 both edges. </em> <a href="#a9"></a><em><br><br></td></tr>
 <tr><td class="memItemLeft" nowrap align=right valign=top>#define&nbsp;</td><td class="memItemRight" valign=bottom><a class="el" href="z17__drv_8h.html#a10">Z17_TOG_PORTS</a>&nbsp;&nbsp;&nbsp;M_DEV_OF+0x0a</td></tr>
 
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">S: Toggle IO ports without affecting others - 8/32 bit mask - bit 0 for gpio[0]. </em> <a href="#a10"></a><em><br><br></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">S: Toggle IO ports without affecting others - bit 0 for gpio[0]. </em> <a href="#a10"></a><em><br><br></td></tr>
 <tr><td class="memItemLeft" nowrap align=right valign=top>#define&nbsp;</td><td class="memItemRight" valign=bottom><a class="el" href="z17__drv_8h.html#a11">Z17_TOG_HIGH</a>&nbsp;&nbsp;&nbsp;M_DEV_OF+0x0b</td></tr>
 
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">S: Toggle phase high - default 1000ms. </em> <a href="#a11"></a><em><br><br></td></tr>
@@ -76,21 +78,23 @@
 
 <tr><td class="memItemLeft" nowrap align=right valign=top>#define&nbsp;</td><td class="memItemRight" valign=bottom><a class="el" href="z17__drv_8h.html#a14">Z17_BLK_IRQLAT_RESULT</a>&nbsp;&nbsp;&nbsp;M_DEV_BLK_OF+0x01</td></tr>
 
+<tr><td class="memItemLeft" nowrap align=right valign=top>#define&nbsp;</td><td class="memItemRight" valign=bottom><a class="el" href="z17__drv_8h.html#a15">Z17_BLK_DEBOUNCE_TIME</a>&nbsp;&nbsp;&nbsp;M_DEV_BLK_OF+0x02</td></tr>
+
 <tr><td colspan=2><br><h2>Defines</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align=right valign=top>#define&nbsp;</td><td class="memItemRight" valign=bottom><a class="el" href="z17__drv_8h.html#a15">Z17_VARIANT</a>&nbsp;&nbsp;&nbsp;Z17</td></tr>
+<tr><td class="memItemLeft" nowrap align=right valign=top>#define&nbsp;</td><td class="memItemRight" valign=bottom><a class="el" href="z17__drv_8h.html#a16">Z17_VARIANT</a>&nbsp;&nbsp;&nbsp;Z17</td></tr>
 
-<tr><td class="memItemLeft" nowrap align=right valign=top>#define&nbsp;</td><td class="memItemRight" valign=bottom><a class="el" href="z17__drv_8h.html#a16">_Z17_GLOBNAME</a>(var, name)&nbsp;&nbsp;&nbsp;var##_##name</td></tr>
+<tr><td class="memItemLeft" nowrap align=right valign=top>#define&nbsp;</td><td class="memItemRight" valign=bottom><a class="el" href="z17__drv_8h.html#a17">_Z17_GLOBNAME</a>(var, name)&nbsp;&nbsp;&nbsp;var##_##name</td></tr>
 
-<tr><td class="memItemLeft" nowrap align=right valign=top>#define&nbsp;</td><td class="memItemRight" valign=bottom><a class="el" href="z17__drv_8h.html#a17">Z17_GLOBNAME</a>(var, name)&nbsp;&nbsp;&nbsp;_Z17_GLOBNAME(var,name)</td></tr>
+<tr><td class="memItemLeft" nowrap align=right valign=top>#define&nbsp;</td><td class="memItemRight" valign=bottom><a class="el" href="z17__drv_8h.html#a18">Z17_GLOBNAME</a>(var, name)&nbsp;&nbsp;&nbsp;_Z17_GLOBNAME(var,name)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align=right valign=top>#define&nbsp;</td><td class="memItemRight" valign=bottom><a class="el" href="z17__drv_8h.html#a18">__Z17_GetEntry</a>&nbsp;&nbsp;&nbsp;Z17_GLOBNAME(Z17_VARIANT, GetEntry)</td></tr>
+<tr><td class="memItemLeft" nowrap align=right valign=top>#define&nbsp;</td><td class="memItemRight" valign=bottom><a class="el" href="z17__drv_8h.html#a19">__Z17_GetEntry</a>&nbsp;&nbsp;&nbsp;Z17_GLOBNAME(Z17_VARIANT, GetEntry)</td></tr>
 
-<tr><td class="memItemLeft" nowrap align=right valign=top>#define&nbsp;</td><td class="memItemRight" valign=bottom><a class="el" href="z17__drv_8h.html#a19">INT32_OR_64</a>&nbsp;&nbsp;&nbsp;int32</td></tr>
+<tr><td class="memItemLeft" nowrap align=right valign=top>#define&nbsp;</td><td class="memItemRight" valign=bottom><a class="el" href="z17__drv_8h.html#a20">INT32_OR_64</a>&nbsp;&nbsp;&nbsp;int32</td></tr>
 
-<tr><td class="memItemLeft" nowrap align=right valign=top>#define&nbsp;</td><td class="memItemRight" valign=bottom><a class="el" href="z17__drv_8h.html#a20">U_INT32_OR_64</a>&nbsp;&nbsp;&nbsp;u_int32</td></tr>
+<tr><td class="memItemLeft" nowrap align=right valign=top>#define&nbsp;</td><td class="memItemRight" valign=bottom><a class="el" href="z17__drv_8h.html#a21">U_INT32_OR_64</a>&nbsp;&nbsp;&nbsp;u_int32</td></tr>
 
 <tr><td colspan=2><br><h2>Typedefs</h2></td></tr>
-<tr><td class="memItemLeft" nowrap align=right valign=top>typedef INT32_OR_64&nbsp;</td><td class="memItemRight" valign=bottom><a class="el" href="z17__drv_8h.html#a21">MDIS_PATH</a></td></tr>
+<tr><td class="memItemLeft" nowrap align=right valign=top>typedef INT32_OR_64&nbsp;</td><td class="memItemRight" valign=bottom><a class="el" href="z17__drv_8h.html#a22">MDIS_PATH</a></td></tr>
 
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
@@ -104,7 +108,7 @@ Header file for Z17 driver containing Z17 specific status codes and Z17 function
 
 <p>
 Definition in file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.<hr><h2>Define Documentation</h2>
-<a name="a18" doxytag="z17_drv.h::__Z17_GetEntry"></a><p>
+<a name="a19" doxytag="z17_drv.h::__Z17_GetEntry"></a><p>
 <table class="mdTable" width="100%" cellpadding="2" cellspacing="0">
   <tr>
     <td class="mdRow">
@@ -125,10 +129,10 @@ Definition in file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.<h
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8h-source.html#l00110">110</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.    </td>
+Definition at line <a class="el" href="z17__drv_8h-source.html#l00120">120</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.    </td>
   </tr>
 </table>
-<a name="a16" doxytag="z17_drv.h::_Z17_GLOBNAME"></a><p>
+<a name="a17" doxytag="z17_drv.h::_Z17_GLOBNAME"></a><p>
 <table class="mdTable" width="100%" cellpadding="2" cellspacing="0">
   <tr>
     <td class="mdRow">
@@ -157,10 +161,10 @@ Definition at line <a class="el" href="z17__drv_8h-source.html#l00110">110</a> o
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8h-source.html#l00102">102</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.    </td>
+Definition at line <a class="el" href="z17__drv_8h-source.html#l00112">112</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.    </td>
   </tr>
 </table>
-<a name="a19" doxytag="z17_drv.h::INT32_OR_64"></a><p>
+<a name="a20" doxytag="z17_drv.h::INT32_OR_64"></a><p>
 <table class="mdTable" width="100%" cellpadding="2" cellspacing="0">
   <tr>
     <td class="mdRow">
@@ -181,12 +185,12 @@ Definition at line <a class="el" href="z17__drv_8h-source.html#l00102">102</a> o
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8h-source.html#l00127">127</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.
+Definition at line <a class="el" href="z17__drv_8h-source.html#l00137">137</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00771">Z17_GetStat()</a>, and <a class="el" href="z17__drv_8c-source.html#l00482">Z17_SetStat()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00770">Z17_GetStat()</a>, and <a class="el" href="z17__drv_8c-source.html#l00481">Z17_SetStat()</a>.    </td>
   </tr>
 </table>
-<a name="a20" doxytag="z17_drv.h::U_INT32_OR_64"></a><p>
+<a name="a21" doxytag="z17_drv.h::U_INT32_OR_64"></a><p>
 <table class="mdTable" width="100%" cellpadding="2" cellspacing="0">
   <tr>
     <td class="mdRow">
@@ -207,7 +211,33 @@ Referenced by <a class="el" href="z17__drv_8c-source.html#l00771">Z17_GetStat()<
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8h-source.html#l00128">128</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.    </td>
+Definition at line <a class="el" href="z17__drv_8h-source.html#l00138">138</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.    </td>
+  </tr>
+</table>
+<a name="a15" doxytag="z17_drv.h::Z17_BLK_DEBOUNCE_TIME"></a><p>
+<table class="mdTable" width="100%" cellpadding="2" cellspacing="0">
+  <tr>
+    <td class="mdRow">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td class="md" nowrap valign="top"> #define Z17_BLK_DEBOUNCE_TIME&nbsp;&nbsp;&nbsp;M_DEV_BLK_OF+0x02
+      </table>
+    </td>
+  </tr>
+</table>
+<table cellspacing=5 cellpadding=0 border=0>
+  <tr>
+    <td>
+      &nbsp;
+    </td>
+    <td>
+
+<p>
+
+<p>
+Definition at line <a class="el" href="z17__drv_8h-source.html#l00103">103</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.
+<p>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00770">Z17_GetStat()</a>, and <a class="el" href="z17__drv_8c-source.html#l00481">Z17_SetStat()</a>.    </td>
   </tr>
 </table>
 <a name="a14" doxytag="z17_drv.h::Z17_BLK_IRQLAT_RESULT"></a><p>
@@ -231,9 +261,9 @@ Definition at line <a class="el" href="z17__drv_8h-source.html#l00128">128</a> o
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8h-source.html#l00094">94</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.
+Definition at line <a class="el" href="z17__drv_8h-source.html#l00102">102</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00771">Z17_GetStat()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00770">Z17_GetStat()</a>.    </td>
   </tr>
 </table>
 <a name="a13" doxytag="z17_drv.h::Z17_BLK_IRQLAT_START"></a><p>
@@ -257,9 +287,9 @@ Referenced by <a class="el" href="z17__drv_8c-source.html#l00771">Z17_GetStat()<
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8h-source.html#l00093">93</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.
+Definition at line <a class="el" href="z17__drv_8h-source.html#l00101">101</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00482">Z17_SetStat()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00481">Z17_SetStat()</a>.    </td>
   </tr>
 </table>
 <a name="a1" doxytag="z17_drv.h::Z17_CLR_PORTS"></a><p>
@@ -281,13 +311,13 @@ Referenced by <a class="el" href="z17__drv_8c-source.html#l00482">Z17_SetStat()<
     <td>
 
 <p>
-S: Clear IO ports without affecting others - 8 bit mask - bit 0 for gpio[0]. 
+S: Clear IO ports without affecting others - bit 0 for gpio[0]. 
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8h-source.html#l00079">79</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.
+Definition at line <a class="el" href="z17__drv_8h-source.html#l00087">87</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00482">Z17_SetStat()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00481">Z17_SetStat()</a>.    </td>
   </tr>
 </table>
 <a name="a7" doxytag="z17_drv.h::Z17_CLR_SIGNAL"></a><p>
@@ -313,9 +343,9 @@ S: Uninstall signal.
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8h-source.html#l00085">85</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.
+Definition at line <a class="el" href="z17__drv_8h-source.html#l00093">93</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00482">Z17_SetStat()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00481">Z17_SetStat()</a>.    </td>
   </tr>
 </table>
 <a name="a5" doxytag="z17_drv.h::Z17_DEBOUNCE"></a><p>
@@ -337,13 +367,13 @@ Referenced by <a class="el" href="z17__drv_8c-source.html#l00482">Z17_SetStat()<
     <td>
 
 <p>
-G,S: Get/set debouncing of all ports - 8bit - bit 0 for gpio[0] - value 0 is dis - 1 is enable. 
+G,S: Get/set debouncing of all ports - bit 0 for gpio[0] - value 0 is dis - 1 is enable. 
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8h-source.html#l00083">83</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.
+Definition at line <a class="el" href="z17__drv_8h-source.html#l00091">91</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00771">Z17_GetStat()</a>, and <a class="el" href="z17__drv_8c-source.html#l00482">Z17_SetStat()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00770">Z17_GetStat()</a>, and <a class="el" href="z17__drv_8c-source.html#l00481">Z17_SetStat()</a>.    </td>
   </tr>
 </table>
 <a name="a2" doxytag="z17_drv.h::Z17_DIRECTION"></a><p>
@@ -365,16 +395,16 @@ Referenced by <a class="el" href="z17__drv_8c-source.html#l00771">Z17_GetStat()<
     <td>
 
 <p>
-G,S: Get/Set direction of all ports - 8bit - bit 0 for gpio[0] - value 0 is in - 1 is out. 
+G,S: Get/Set direction of all ports - bit 0 for gpio[0] - value 0 is in - 1 is out. 
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8h-source.html#l00080">80</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.
+Definition at line <a class="el" href="z17__drv_8h-source.html#l00088">88</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00771">Z17_GetStat()</a>, and <a class="el" href="z17__drv_8c-source.html#l00482">Z17_SetStat()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00770">Z17_GetStat()</a>, and <a class="el" href="z17__drv_8c-source.html#l00481">Z17_SetStat()</a>.    </td>
   </tr>
 </table>
-<a name="a17" doxytag="z17_drv.h::Z17_GLOBNAME"></a><p>
+<a name="a18" doxytag="z17_drv.h::Z17_GLOBNAME"></a><p>
 <table class="mdTable" width="100%" cellpadding="2" cellspacing="0">
   <tr>
     <td class="mdRow">
@@ -403,7 +433,7 @@ Referenced by <a class="el" href="z17__drv_8c-source.html#l00771">Z17_GetStat()<
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8h-source.html#l00105">105</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.    </td>
+Definition at line <a class="el" href="z17__drv_8h-source.html#l00115">115</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.    </td>
   </tr>
 </table>
 <a name="a8" doxytag="z17_drv.h::Z17_IRQ_LAST_REQUEST"></a><p>
@@ -425,13 +455,13 @@ Definition at line <a class="el" href="z17__drv_8h-source.html#l00105">105</a> o
     <td>
 
 <p>
-G : Get last IRQ request - 8bit - bit 0 for gpio[0] - value 1 is requested - clears the last request. 
+G : Get last IRQ request - bit 0 for gpio[0] - value 1 is requested - clears the last request. 
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8h-source.html#l00086">86</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.
+Definition at line <a class="el" href="z17__drv_8h-source.html#l00094">94</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00771">Z17_GetStat()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00770">Z17_GetStat()</a>.    </td>
   </tr>
 </table>
 <a name="a3" doxytag="z17_drv.h::Z17_IRQ_SENSE"></a><p>
@@ -457,9 +487,9 @@ G,S: Get/set IRQ sense mode for models Z34/Z37 - 16 bit - and for model Z127 - 3
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8h-source.html#l00081">81</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.
+Definition at line <a class="el" href="z17__drv_8h-source.html#l00089">89</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00771">Z17_GetStat()</a>, and <a class="el" href="z17__drv_8c-source.html#l00482">Z17_SetStat()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00770">Z17_GetStat()</a>, and <a class="el" href="z17__drv_8c-source.html#l00481">Z17_SetStat()</a>.    </td>
   </tr>
 </table>
 <a name="a9" doxytag="z17_drv.h::Z17_IRQ_SENSE_16TO31"></a><p>
@@ -485,9 +515,9 @@ G,S: Get/set IRQ sense mode only for model Z127 - 32 bit - bit 0 and 1 for gpio[
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8h-source.html#l00087">87</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.
+Definition at line <a class="el" href="z17__drv_8h-source.html#l00095">95</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00771">Z17_GetStat()</a>, and <a class="el" href="z17__drv_8c-source.html#l00482">Z17_SetStat()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00770">Z17_GetStat()</a>, and <a class="el" href="z17__drv_8c-source.html#l00481">Z17_SetStat()</a>.    </td>
   </tr>
 </table>
 <a name="a4" doxytag="z17_drv.h::Z17_OPEN_DRAIN"></a><p>
@@ -509,13 +539,13 @@ Referenced by <a class="el" href="z17__drv_8c-source.html#l00771">Z17_GetStat()<
     <td>
 
 <p>
-G,S: Get/set open drain mode - 8bit - bit 0 for gpio[0] - value 0 is dis - 1 is enable. 
+G,S: Get/set open drain mode - bit 0 for gpio[0] - value 0 is dis - 1 is enable. 
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8h-source.html#l00082">82</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.
+Definition at line <a class="el" href="z17__drv_8h-source.html#l00090">90</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00771">Z17_GetStat()</a>, and <a class="el" href="z17__drv_8c-source.html#l00482">Z17_SetStat()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00770">Z17_GetStat()</a>, and <a class="el" href="z17__drv_8c-source.html#l00481">Z17_SetStat()</a>.    </td>
   </tr>
 </table>
 <a name="a0" doxytag="z17_drv.h::Z17_SET_PORTS"></a><p>
@@ -537,13 +567,13 @@ Referenced by <a class="el" href="z17__drv_8c-source.html#l00771">Z17_GetStat()<
     <td>
 
 <p>
-S: Set IO ports without affecting others - 8 bit mask - bit 0 for gpio[0]. 
+S: Set IO ports without affecting others - bit 0 for gpio[0]. 
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8h-source.html#l00078">78</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.
+Definition at line <a class="el" href="z17__drv_8h-source.html#l00086">86</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00482">Z17_SetStat()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00481">Z17_SetStat()</a>.    </td>
   </tr>
 </table>
 <a name="a6" doxytag="z17_drv.h::Z17_SET_SIGNAL"></a><p>
@@ -569,9 +599,9 @@ S: Set signal sent on IRQ.
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8h-source.html#l00084">84</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.
+Definition at line <a class="el" href="z17__drv_8h-source.html#l00092">92</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00482">Z17_SetStat()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00481">Z17_SetStat()</a>.    </td>
   </tr>
 </table>
 <a name="a11" doxytag="z17_drv.h::Z17_TOG_HIGH"></a><p>
@@ -597,9 +627,9 @@ S: Toggle phase high - default 1000ms.
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8h-source.html#l00089">89</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.
+Definition at line <a class="el" href="z17__drv_8h-source.html#l00097">97</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00482">Z17_SetStat()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00481">Z17_SetStat()</a>.    </td>
   </tr>
 </table>
 <a name="a12" doxytag="z17_drv.h::Z17_TOG_LOW"></a><p>
@@ -625,9 +655,9 @@ S: Toggle phase low - default 1000ms.
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8h-source.html#l00090">90</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.
+Definition at line <a class="el" href="z17__drv_8h-source.html#l00098">98</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00482">Z17_SetStat()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00481">Z17_SetStat()</a>.    </td>
   </tr>
 </table>
 <a name="a10" doxytag="z17_drv.h::Z17_TOG_PORTS"></a><p>
@@ -649,16 +679,16 @@ Referenced by <a class="el" href="z17__drv_8c-source.html#l00482">Z17_SetStat()<
     <td>
 
 <p>
-S: Toggle IO ports without affecting others - 8/32 bit mask - bit 0 for gpio[0]. 
+S: Toggle IO ports without affecting others - bit 0 for gpio[0]. 
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8h-source.html#l00088">88</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.
+Definition at line <a class="el" href="z17__drv_8h-source.html#l00096">96</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00482">Z17_SetStat()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00481">Z17_SetStat()</a>.    </td>
   </tr>
 </table>
-<a name="a15" doxytag="z17_drv.h::Z17_VARIANT"></a><p>
+<a name="a16" doxytag="z17_drv.h::Z17_VARIANT"></a><p>
 <table class="mdTable" width="100%" cellpadding="2" cellspacing="0">
   <tr>
     <td class="mdRow">
@@ -679,17 +709,17 @@ Referenced by <a class="el" href="z17__drv_8c-source.html#l00482">Z17_SetStat()<
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8h-source.html#l00099">99</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.    </td>
+Definition at line <a class="el" href="z17__drv_8h-source.html#l00109">109</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.    </td>
   </tr>
 </table>
 <hr><h2>Typedef Documentation</h2>
-<a name="a21" doxytag="z17_drv.h::MDIS_PATH"></a><p>
+<a name="a22" doxytag="z17_drv.h::MDIS_PATH"></a><p>
 <table class="mdTable" width="100%" cellpadding="2" cellspacing="0">
   <tr>
     <td class="mdRow">
       <table cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td class="md" nowrap valign="top"> typedef INT32_OR_64 <a class="el" href="z17__drv_8h.html#a21">MDIS_PATH</a>
+          <td class="md" nowrap valign="top"> typedef INT32_OR_64 <a class="el" href="z17__drv_8h.html#a22">MDIS_PATH</a>
       </table>
     </td>
   </tr>
@@ -704,7 +734,7 @@ Definition at line <a class="el" href="z17__drv_8h-source.html#l00099">99</a> of
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8h-source.html#l00129">129</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.    </td>
+Definition at line <a class="el" href="z17__drv_8h-source.html#l00139">139</a> of file <a class="el" href="z17__drv_8h-source.html">z17_drv.h</a>.    </td>
   </tr>
 </table>
 
@@ -715,7 +745,7 @@ Definition at line <a class="el" href="z17__drv_8h-source.html#l00129">129</a> o
 <!-- Footer -->
 	<p class="footer">
 	Generated for Z17 MDIS Driver using <a href="http://www.doxygen.org">doxygen</a>.<br>
-	Copyright &copy; 2015 <a href="http://www.men.de">MEN Mikro Elektronik GmbH</a>. All Rights Reserved.
+	Copyright &copy; 2016 <a href="http://www.men.de">MEN Mikro Elektronik GmbH</a>. All Rights Reserved.
 	</p>
 </div>
 

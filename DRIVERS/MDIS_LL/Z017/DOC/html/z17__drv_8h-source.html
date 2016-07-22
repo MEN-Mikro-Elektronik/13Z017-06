@@ -24,10 +24,7 @@
 <h1>z17_drv.h</h1><a href="z17__drv_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre>00001 <span class="comment">/***********************  I n c l u d e  -  F i l e  ************************/</span>
 00016  <span class="comment">/*-------------------------------[ History ]--------------------------------</span>
 00017 <span class="comment"> *</span>
-00018 <span class="comment"> * $Log: z17__drv_8h-source.html,v $
-00018 <span class="comment"> * Revision 1.29  2016/07/13 10:18:02  ts
-00018 <span class="comment"> * (AUTOCI) Checkin due to new revision Release-1.26 of fileset ART/13Z017-06/13Z017-06
-00018 <span class="comment"> *</span>
+00018 <span class="comment"> * $Log: z17_drv.h,v $</span>
 00019 <span class="comment"> * Revision 2.6  2014/11/28 14:17:53  MRoth</span>
 00020 <span class="comment"> * R: cosmetics</span>
 00021 <span class="comment"> * M: revised code completely</span>
@@ -80,65 +77,76 @@
 <a name="l00068"></a><a class="code" href="structZ17__BLK__IRQLAT.html#o6">00068</a>     u_int32 irqsRcved;  <span class="comment">/* received IRQs */</span>
 00069 } <a class="code" href="structZ17__BLK__IRQLAT.html">Z17_BLK_IRQLAT</a>;
 00070 
-00071 <span class="comment">/*-----------------------------------------+</span>
-00072 <span class="comment">|  DEFINES                                 |</span>
-00073 <span class="comment">+-----------------------------------------*/</span>
-<a name="l00078"></a><a class="code" href="z17__drv_8h.html#a0">00078</a> <span class="preprocessor">#define Z17_SET_PORTS           M_DEV_OF+0x00    </span>
-<a name="l00079"></a><a class="code" href="z17__drv_8h.html#a1">00079</a> <span class="preprocessor">#define Z17_CLR_PORTS           M_DEV_OF+0x01    </span>
-<a name="l00080"></a><a class="code" href="z17__drv_8h.html#a2">00080</a> <span class="preprocessor">#define Z17_DIRECTION           M_DEV_OF+0x02    </span>
-<a name="l00081"></a><a class="code" href="z17__drv_8h.html#a3">00081</a> <span class="preprocessor">#define Z17_IRQ_SENSE           M_DEV_OF+0x03    </span>
-<a name="l00082"></a><a class="code" href="z17__drv_8h.html#a4">00082</a> <span class="preprocessor">#define Z17_OPEN_DRAIN          M_DEV_OF+0x04    </span>
-<a name="l00083"></a><a class="code" href="z17__drv_8h.html#a5">00083</a> <span class="preprocessor">#define Z17_DEBOUNCE            M_DEV_OF+0x05    </span>
-<a name="l00084"></a><a class="code" href="z17__drv_8h.html#a6">00084</a> <span class="preprocessor">#define Z17_SET_SIGNAL          M_DEV_OF+0x06    </span>
-<a name="l00085"></a><a class="code" href="z17__drv_8h.html#a7">00085</a> <span class="preprocessor">#define Z17_CLR_SIGNAL          M_DEV_OF+0x07    </span>
-<a name="l00086"></a><a class="code" href="z17__drv_8h.html#a8">00086</a> <span class="preprocessor">#define Z17_IRQ_LAST_REQUEST    M_DEV_OF+0x08    </span>
-<a name="l00087"></a><a class="code" href="z17__drv_8h.html#a9">00087</a> <span class="preprocessor">#define Z17_IRQ_SENSE_16TO31    M_DEV_OF+0x09    </span>
-<a name="l00088"></a><a class="code" href="z17__drv_8h.html#a10">00088</a> <span class="preprocessor">#define Z17_TOG_PORTS           M_DEV_OF+0x0a    </span>
-<a name="l00089"></a><a class="code" href="z17__drv_8h.html#a11">00089</a> <span class="preprocessor">#define Z17_TOG_HIGH            M_DEV_OF+0x0b    </span>
-<a name="l00090"></a><a class="code" href="z17__drv_8h.html#a12">00090</a> <span class="preprocessor">#define Z17_TOG_LOW             M_DEV_OF+0x0c    </span>
-00092 <span class="preprocessor"></span><span class="comment">/* Z17 specific Getstat/Setstat block codes (for test purposes) */</span>
-<a name="l00093"></a><a class="code" href="z17__drv_8h.html#a13">00093</a> <span class="preprocessor">#define Z17_BLK_IRQLAT_START    M_DEV_BLK_OF+0x00    </span><span class="comment">/*   S: Initialize IRQ latency test */</span>
-<a name="l00094"></a><a class="code" href="z17__drv_8h.html#a14">00094</a> <span class="preprocessor">#define Z17_BLK_IRQLAT_RESULT   M_DEV_BLK_OF+0x01    </span><span class="comment">/* G  : Get result of IRQ latency test */</span>
-00095 
-00098 <span class="preprocessor">#ifndef  Z17_VARIANT</span>
-<a name="l00099"></a><a class="code" href="z17__drv_8h.html#a15">00099</a> <span class="preprocessor"></span><span class="preprocessor">  #define Z17_VARIANT    Z17</span>
-00100 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-00101 <span class="preprocessor"></span>
-<a name="l00102"></a><a class="code" href="z17__drv_8h.html#a16">00102</a> <span class="preprocessor">#define _Z17_GLOBNAME(var,name) var##_##name</span>
-00103 <span class="preprocessor"></span>
-00104 <span class="preprocessor">#ifndef _ONE_NAMESPACE_PER_DRIVER_</span>
-<a name="l00105"></a><a class="code" href="z17__drv_8h.html#a17">00105</a> <span class="preprocessor"></span><span class="preprocessor">  #define Z17_GLOBNAME(var,name)    _Z17_GLOBNAME(var,name)</span>
-00106 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-00107 <span class="preprocessor"></span><span class="preprocessor">  #define Z17_GLOBNAME(var,name)    _Z17_GLOBNAME(Z17,name)</span>
-00108 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-00109 <span class="preprocessor"></span>
-<a name="l00110"></a><a class="code" href="z17__drv_8h.html#a18">00110</a> <span class="preprocessor">#define __Z17_GetEntry    Z17_GLOBNAME(Z17_VARIANT, GetEntry)</span>
+00071 <span class="comment">/* structure for the Z17_BLK_DEBOUNCE_TIME setstat/getstat */</span>
+<a name="l00072"></a><a class="code" href="structZ17__BLK__DEBTIME.html">00072</a> <span class="keyword">typedef</span> <span class="keyword">struct </span>{
+00073     <span class="comment">/* in */</span>
+<a name="l00074"></a><a class="code" href="structZ17__BLK__DEBTIME.html#o0">00074</a>     u_int32 portMask;   <span class="comment">/* port mask (0x0..0xffffffff) */</span>
+00075     <span class="comment">/* in/out */</span>
+<a name="l00076"></a><a class="code" href="structZ17__BLK__DEBTIME.html#o1">00076</a>     u_int32 timeUs;     <span class="comment">/* time in us (in 50us steps) */</span>
+00077 } <a class="code" href="structZ17__BLK__DEBTIME.html">Z17_BLK_DEBTIME</a>;
+00078 
+00079 <span class="comment">/*-----------------------------------------+</span>
+00080 <span class="comment">|  DEFINES                                 |</span>
+00081 <span class="comment">+-----------------------------------------*/</span>
+<a name="l00086"></a><a class="code" href="z17__drv_8h.html#a0">00086</a> <span class="preprocessor">#define Z17_SET_PORTS           M_DEV_OF+0x00    </span>
+<a name="l00087"></a><a class="code" href="z17__drv_8h.html#a1">00087</a> <span class="preprocessor">#define Z17_CLR_PORTS           M_DEV_OF+0x01    </span>
+<a name="l00088"></a><a class="code" href="z17__drv_8h.html#a2">00088</a> <span class="preprocessor">#define Z17_DIRECTION           M_DEV_OF+0x02    </span>
+<a name="l00089"></a><a class="code" href="z17__drv_8h.html#a3">00089</a> <span class="preprocessor">#define Z17_IRQ_SENSE           M_DEV_OF+0x03    </span>
+<a name="l00090"></a><a class="code" href="z17__drv_8h.html#a4">00090</a> <span class="preprocessor">#define Z17_OPEN_DRAIN          M_DEV_OF+0x04    </span>
+<a name="l00091"></a><a class="code" href="z17__drv_8h.html#a5">00091</a> <span class="preprocessor">#define Z17_DEBOUNCE            M_DEV_OF+0x05    </span>
+<a name="l00092"></a><a class="code" href="z17__drv_8h.html#a6">00092</a> <span class="preprocessor">#define Z17_SET_SIGNAL          M_DEV_OF+0x06    </span>
+<a name="l00093"></a><a class="code" href="z17__drv_8h.html#a7">00093</a> <span class="preprocessor">#define Z17_CLR_SIGNAL          M_DEV_OF+0x07    </span>
+<a name="l00094"></a><a class="code" href="z17__drv_8h.html#a8">00094</a> <span class="preprocessor">#define Z17_IRQ_LAST_REQUEST    M_DEV_OF+0x08    </span>
+<a name="l00095"></a><a class="code" href="z17__drv_8h.html#a9">00095</a> <span class="preprocessor">#define Z17_IRQ_SENSE_16TO31    M_DEV_OF+0x09    </span>
+<a name="l00096"></a><a class="code" href="z17__drv_8h.html#a10">00096</a> <span class="preprocessor">#define Z17_TOG_PORTS           M_DEV_OF+0x0a    </span>
+<a name="l00097"></a><a class="code" href="z17__drv_8h.html#a11">00097</a> <span class="preprocessor">#define Z17_TOG_HIGH            M_DEV_OF+0x0b    </span>
+<a name="l00098"></a><a class="code" href="z17__drv_8h.html#a12">00098</a> <span class="preprocessor">#define Z17_TOG_LOW             M_DEV_OF+0x0c    </span>
+00100 <span class="preprocessor"></span><span class="comment">/* Z17 specific Getstat/Setstat block codes */</span>
+<a name="l00101"></a><a class="code" href="z17__drv_8h.html#a13">00101</a> <span class="preprocessor">#define Z17_BLK_IRQLAT_START    M_DEV_BLK_OF+0x00   </span><span class="comment">/*   S: Initialize IRQ latency test */</span>
+<a name="l00102"></a><a class="code" href="z17__drv_8h.html#a14">00102</a> <span class="preprocessor">#define Z17_BLK_IRQLAT_RESULT   M_DEV_BLK_OF+0x01   </span><span class="comment">/* G  : Get result of IRQ latency test */</span>
+<a name="l00103"></a><a class="code" href="z17__drv_8h.html#a15">00103</a> <span class="preprocessor">#define Z17_BLK_DEBOUNCE_TIME   M_DEV_BLK_OF+0x02   </span><span class="comment">/* G,S: Get/set debounce time (us) for specified port(s) */</span>
+00104                                                     <span class="comment">/*      Get: specify only one port */</span>
+00105                                                     <span class="comment">/*      Set: specify one ore more ports */</span>          
+00108 <span class="preprocessor">#ifndef  Z17_VARIANT</span>
+<a name="l00109"></a><a class="code" href="z17__drv_8h.html#a16">00109</a> <span class="preprocessor"></span><span class="preprocessor">  #define Z17_VARIANT    Z17</span>
+00110 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
 00111 <span class="preprocessor"></span>
-00112 <span class="comment">/*-----------------------------------------+</span>
-00113 <span class="comment">|  PROTOTYPES                              |</span>
-00114 <span class="comment">+-----------------------------------------*/</span>
-00115 <span class="preprocessor">#ifdef _LL_DRV_</span>
-00116 <span class="preprocessor"></span><span class="preprocessor">#ifndef _ONE_NAMESPACE_PER_DRIVER_</span>
-00117 <span class="preprocessor"></span>    <span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="z17__drv_8h.html#a18">__Z17_GetEntry</a>(LL_ENTRY* drvP);
-00118 <span class="preprocessor">#endif</span>
-00119 <span class="preprocessor"></span><span class="preprocessor">#endif </span><span class="comment">/* _LL_DRV_ */</span>
-00120 
-00121 <span class="comment">/*-----------------------------------------+</span>
-00122 <span class="comment">|  BACKWARD COMPATIBILITY TO MDIS4         |</span>
-00123 <span class="comment">+-----------------------------------------*/</span>
-00124 <span class="preprocessor">#ifndef U_INT32_OR_64</span>
-00125 <span class="preprocessor"></span>  <span class="comment">/* we have an MDIS4 men_types.h and mdis_api.h included */</span>
-00126   <span class="comment">/* only 32bit compatibility needed!                     */</span>
-<a name="l00127"></a><a class="code" href="z17__drv_8h.html#a19">00127</a> <span class="preprocessor">  #define INT32_OR_64    int32</span>
-<a name="l00128"></a><a class="code" href="z17__drv_8h.html#a20">00128</a> <span class="preprocessor"></span><span class="preprocessor">  #define U_INT32_OR_64  u_int32</span>
-<a name="l00129"></a><a class="code" href="z17__drv_8h.html#a21">00129</a> <span class="preprocessor"></span>  <span class="keyword">typedef</span> <a class="code" href="z17__drv_8h.html#a19">INT32_OR_64</a>    <a class="code" href="z17__drv_8h.html#a21">MDIS_PATH</a>;
-00130 <span class="preprocessor">#endif </span><span class="comment">/* U_INT32_OR_64 */</span>
-00131 
-00132 <span class="preprocessor">#ifdef __cplusplus</span>
-00133 <span class="preprocessor"></span>    }
-00134 <span class="preprocessor">#endif</span>
-00135 <span class="preprocessor"></span>
-00136 <span class="preprocessor">#endif </span><span class="comment">/* _Z17_DRV_H */</span>
+<a name="l00112"></a><a class="code" href="z17__drv_8h.html#a17">00112</a> <span class="preprocessor">#define _Z17_GLOBNAME(var,name) var##_##name</span>
+00113 <span class="preprocessor"></span>
+00114 <span class="preprocessor">#ifndef _ONE_NAMESPACE_PER_DRIVER_</span>
+<a name="l00115"></a><a class="code" href="z17__drv_8h.html#a18">00115</a> <span class="preprocessor"></span><span class="preprocessor">  #define Z17_GLOBNAME(var,name)    _Z17_GLOBNAME(var,name)</span>
+00116 <span class="preprocessor"></span><span class="preprocessor">#else</span>
+00117 <span class="preprocessor"></span><span class="preprocessor">  #define Z17_GLOBNAME(var,name)    _Z17_GLOBNAME(Z17,name)</span>
+00118 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+00119 <span class="preprocessor"></span>
+<a name="l00120"></a><a class="code" href="z17__drv_8h.html#a19">00120</a> <span class="preprocessor">#define __Z17_GetEntry    Z17_GLOBNAME(Z17_VARIANT, GetEntry)</span>
+00121 <span class="preprocessor"></span>
+00122 <span class="comment">/*-----------------------------------------+</span>
+00123 <span class="comment">|  PROTOTYPES                              |</span>
+00124 <span class="comment">+-----------------------------------------*/</span>
+00125 <span class="preprocessor">#ifdef _LL_DRV_</span>
+00126 <span class="preprocessor"></span><span class="preprocessor">#ifndef _ONE_NAMESPACE_PER_DRIVER_</span>
+00127 <span class="preprocessor"></span>    <span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="z17__drv_8h.html#a19">__Z17_GetEntry</a>(LL_ENTRY* drvP);
+00128 <span class="preprocessor">#endif</span>
+00129 <span class="preprocessor"></span><span class="preprocessor">#endif </span><span class="comment">/* _LL_DRV_ */</span>
+00130 
+00131 <span class="comment">/*-----------------------------------------+</span>
+00132 <span class="comment">|  BACKWARD COMPATIBILITY TO MDIS4         |</span>
+00133 <span class="comment">+-----------------------------------------*/</span>
+00134 <span class="preprocessor">#ifndef U_INT32_OR_64</span>
+00135 <span class="preprocessor"></span>  <span class="comment">/* we have an MDIS4 men_types.h and mdis_api.h included */</span>
+00136   <span class="comment">/* only 32bit compatibility needed!                     */</span>
+<a name="l00137"></a><a class="code" href="z17__drv_8h.html#a20">00137</a> <span class="preprocessor">  #define INT32_OR_64    int32</span>
+<a name="l00138"></a><a class="code" href="z17__drv_8h.html#a21">00138</a> <span class="preprocessor"></span><span class="preprocessor">  #define U_INT32_OR_64  u_int32</span>
+<a name="l00139"></a><a class="code" href="z17__drv_8h.html#a22">00139</a> <span class="preprocessor"></span>  <span class="keyword">typedef</span> <a class="code" href="z17__drv_8h.html#a20">INT32_OR_64</a>    <a class="code" href="z17__drv_8h.html#a22">MDIS_PATH</a>;
+00140 <span class="preprocessor">#endif </span><span class="comment">/* U_INT32_OR_64 */</span>
+00141 
+00142 <span class="preprocessor">#ifdef __cplusplus</span>
+00143 <span class="preprocessor"></span>    }
+00144 <span class="preprocessor">#endif</span>
+00145 <span class="preprocessor"></span>
+00146 <span class="preprocessor">#endif </span><span class="comment">/* _Z17_DRV_H */</span>
+00147  
 </pre></div>
 	</div>
 </div>
@@ -147,7 +155,7 @@
 <!-- Footer -->
 	<p class="footer">
 	Generated for Z17 MDIS Driver using <a href="http://www.doxygen.org">doxygen</a>.<br>
-	Copyright &copy; 2015 <a href="http://www.men.de">MEN Mikro Elektronik GmbH</a>. All Rights Reserved.
+	Copyright &copy; 2016 <a href="http://www.men.de">MEN Mikro Elektronik GmbH</a>. All Rights Reserved.
 	</p>
 </div>
 

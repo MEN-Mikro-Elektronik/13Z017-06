@@ -214,6 +214,12 @@
 	\subsection z127_io  Tool to access the 16Z127 I/Os
 	z127_io.c (see example section)
 
+	\subsection z127_in  Tool to control the 16Z127 (32-bit) inputs
+	z127_in.c (see example section)
+
+	\subsection z127_out  Tool to control the 16Z127 (32-bit) outputs
+	z127_out.c (see example section)
+
 	\subsection z17_min   Minimum descriptor
 	z17_min.dsc
 	demonstrates the minimum set of options necessary for using the drver.
@@ -237,11 +243,12 @@ Tool to access the 16Z127 (32-bit) I/Os
 
 /** \example z127_in.c
 Tool to control the 16Z127 (32-bit) inputs
+*/
 
 /** \example z127_out.c
 Tool to control the 16Z127 (32-bit) outputs
+*/
 
 /*! \page dummy
   \menimages
 */
- 

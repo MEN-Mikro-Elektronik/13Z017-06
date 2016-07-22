@@ -28,10 +28,7 @@
 <span class="comment"> ****************************************************************************/</span>
  <span class="comment">/*-------------------------------[ History ]--------------------------------</span>
 <span class="comment"> *</span>
-<span class="comment"> * $Log: z17__io_8c-example.html,v $
-<span class="comment"> * Revision 1.23  2016/07/13 10:17:58  ts
-<span class="comment"> * (AUTOCI) Checkin due to new revision Release-1.26 of fileset ART/13Z017-06/13Z017-06
-<span class="comment"> *</span>
+<span class="comment"> * $Log: z17_io.c,v $</span>
 <span class="comment"> * Revision 1.9  2014/11/28 15:20:05  MRoth</span>
 <span class="comment"> * R: modifications of revision 1.7 were lost during merge</span>
 <span class="comment"> * M: re-added modifications of revision 1.7</span>
@@ -71,7 +68,7 @@
 <span class="comment"> *---------------------------------------------------------------------------</span>
 <span class="comment"> * (c) Copyright 2006 by MEN mikro elektronik GmbH, Nuernberg, Germany</span>
 <span class="comment"> ****************************************************************************/</span>
-<span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> RCSid[]=<span class="stringliteral">"$Id: z17__io_8c-example.html,v 1.23 2016/07/13 10:17:58 ts Exp $"</span>;
+<span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> RCSid[]=<span class="stringliteral">"$Id: z17_io.c,v 1.9 2014/11/28 15:20:05 MRoth Exp $"</span>;
 
 <span class="comment">/*--------------------------------------+</span>
 <span class="comment">|  INCLUDES                             |</span>
@@ -118,7 +115,7 @@
     int32     port, get, set, toggleRot, getLoop, toggleMode, hold;
     int32     timeHigh, timeLow;
     int32     portBit, dir, val, n;
-    <a class="code" href="z17__drv_8h.html#a21">MDIS_PATH</a> path;
+    <a class="code" href="z17__drv_8h.html#a22">MDIS_PATH</a> path;
 
     <span class="comment">/*----------------------+</span>
 <span class="comment">    |  check arguments      |</span>
@@ -297,7 +294,7 @@
 <span class="keyword">static</span> <span class="keywordtype">void</span> PrintError(<span class="keywordtype">char</span> *info)
 {
     printf(<span class="stringliteral">"*** can't %s: %s\n"</span>, info, M_errstring(UOS_ErrnoGet()));
-}
+} 
 </pre></div> 
 	</div>
 </div>
@@ -306,7 +303,7 @@
 <!-- Footer -->
 	<p class="footer">
 	Generated for Z17 MDIS Driver using <a href="http://www.doxygen.org">doxygen</a>.<br>
-	Copyright &copy; 2015 <a href="http://www.men.de">MEN Mikro Elektronik GmbH</a>. All Rights Reserved.
+	Copyright &copy; 2016 <a href="http://www.men.de">MEN Mikro Elektronik GmbH</a>. All Rights Reserved.
 	</p>
 </div>
 
