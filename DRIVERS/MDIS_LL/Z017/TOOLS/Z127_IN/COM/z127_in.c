@@ -62,23 +62,23 @@ static void __MAPILIB SignalHandler( u_int32 sig );
  */
 static void usage(void)
 {
-	printf("Usage:    z127_in <device> <opts> [<opts>]                          \n");
-	printf("Function: Control the 16Z127 Inputs (32-bit)                        \n");
-	printf("Options:                                                [default]   \n");
-	printf("    device     device name (e.g. gpio_1)                            \n");
-	printf("    -p=<mask>  32-bit input port mask...................[0xffffffff]\n");
-	printf("    -m=0..3    input mode:..............................[0]         \n");
-	printf("               0: read inputs (poll mode)                           \n");
-	printf("               1: compute interrupt rate                            \n");
-	printf("               2: show interrupt signal                             \n");
-	printf("               3: read inputs after interrupt signal                \n");
-	printf("    -s=0..3    configure interrupt sense:...............[0]         \n");
-	printf("               0=no, 1=rising, 2=falling, 3=both edges              \n");
-	printf("    -d         enable debouncer                                     \n");
-	printf("    -t=<us>    set debounce time in us (*1)                         \n");
-	printf("    -g         get port settings (*1)                               \n");
-	printf("    -l=<ms>    loop all ms until keypress                           \n");
-	printf("    -a=<n>     abort loop after n reads/signals (requires -l=<ms>)  \n");
+	printf("Usage:    z127_in <device> <opts> [<opts>]                            \n");
+	printf("Function: Control the 16Z127 Inputs (32-bit)                          \n");
+	printf("Options:                                                  [default]   \n");
+	printf("    device     device name (e.g. gpio_1)                              \n");
+	printf("    -p=<mask>  32-bit input port mask.....................[0xffffffff]\n");
+	printf("    -g         get only input relevant settings and exit              \n");
+	printf("    -m=0..3    input mode:................................[0]         \n");
+	printf("               0: read inputs (poll mode)                             \n");
+	printf("               1: compute interrupt rate                              \n");
+	printf("               2: show interrupt signal                               \n");
+	printf("               3: read inputs after interrupt signal                  \n");
+	printf("    -s=0..3    configure interrupt sense (for -m=1..3):...[0]         \n");
+	printf("               0=no, 1=rising, 2=falling, 3=both edges                \n");
+	printf("    -d         enable debouncer                                       \n");
+	printf("    -t=<us>    set debounce time in us (*1)                           \n");
+	printf("    -l=<ms>    loop all ms until keypress                             \n");
+	printf("    -a=<n>     abort loop after n reads/signals (requires -l=<ms>)    \n");
 	printf("\n");
 	printf("(*1) requires 16Z127-01 (or compatible) IP core\n");
 	printf("\n");
@@ -97,7 +97,7 @@ int main(int argc, char *argv[])
 {
 	char	*device, *str, *errstr, buf[40], *sensStr;
 	u_int32	p, mask, n;
-	int32	isens, deb, debts, debtg, loopt, abort, old, sens, sens1, sens2;
+	int32	isens, deb, debts, get, loopt, abort, old, sens, sens1, sens2;
 	int32	dir, loop, loopcnt;
 	int		ret;
 	u_int32	timeLast=0, timeCurrent, timeDiff;
@@ -143,7 +143,7 @@ int main(int argc, char *argv[])
 	isens	= ((str = UTL_TSTOPT("s=")) ? atoi(str) : 0);
 	deb		= (UTL_TSTOPT("d") ? 1 : 0);
 	debts	= ((str = UTL_TSTOPT("t=")) ? atoi(str) : -1);
-	debtg	= (UTL_TSTOPT("g") ? 1 : 0);
+	get	    = (UTL_TSTOPT("g") ? 1 : 0);
 	loopt	= ((str = UTL_TSTOPT("l=")) ? atoi(str) : -1);
 	abort	= ((str = UTL_TSTOPT("a=")) ? atoi(str) : -1);
 	
@@ -153,12 +153,12 @@ int main(int argc, char *argv[])
 		return ERR_PARAM;
 	}
 	if (isens > 3) {
-		usage();
+		printf("*** error: -s=%d is an illegal parameter\n", isens);
 		return ERR_PARAM;
 	}
 
 	if ((abort != -1) && (loopt == -1)) {
-		usage();
+		printf("*** error: -a= only possible with -l= parameter\n");
 		return ERR_PARAM;
 	}
 	
@@ -170,18 +170,95 @@ int main(int argc, char *argv[])
 	}
 
 	/*----------------------+
+	|  get settings         |
+	+----------------------*/
+	if (get) {
+		printf("_____Port Settings_____\n");
+
+		/* DIRECTION */
+		if ((M_getstat(G_path, Z17_DIRECTION, &dir)) < 0) {
+			ret = PrintError("getstat Z17_DIRECTION");
+			goto ABORT;
+		}
+
+		/* SENSE */
+		/* port 0..15 */
+		if (G_portm & 0x0000ffff) {
+
+			if ((M_getstat(G_path, Z17_IRQ_SENSE, &sens1)) < 0) {
+				ret = PrintError("getstat Z17_IRQ_SENSE");
+				goto ABORT;
+			}
+		}
+
+		/* port 16..31 */
+		if (G_portm & 0xffff0000) {
+
+			if ((M_getstat(G_path, Z17_IRQ_SENSE_16TO31, &sens2)) < 0) {
+				ret = PrintError("getstat Z17_IRQ_SENSE_16TO31");
+				goto ABORT;
+			}
+		}
+
+		/* DEBOUNCE ON/OFF */
+		if ((M_getstat(G_path, Z17_DEBOUNCE, &old)) < 0) {
+			ret = PrintError("getstat Z17_DEBOUNCE");
+			goto ABORT;
+		}
+
+		mask = 0;
+		for (p = 0; p<32; p++) {
+			if (G_portm & (1 << p)) {
+
+				/* SENSE */
+				if (p<15)
+					sens = 0x03 & (sens1 >> (2 * p));
+				else
+					sens = 0x03 & (sens2 >> (2 * p));
+
+				switch (sens) {
+				case 0: sensStr = "no"; break;
+				case 1: sensStr = "rising"; break;
+				case 2: sensStr = "falling"; break;
+				case 3: sensStr = "both"; break;
+				default:
+					sensStr = "illegal";
+				}
+
+				/* DEBOUNCE TIME */
+				dbt.portMask = 1 << p;
+				dbt.timeUs = 0;
+
+				ret = M_getstat(G_path, Z17_BLK_DEBOUNCE_TIME, (int32*)&blk);
+
+				printf("Port %02d: dir=%s, irq-sens=%s, debounce=%s, debounce-time",
+					p,
+					(dir & (1 << p)) ? "out" : "in",
+					sensStr,
+					(old & (1 << p)) ? "on" : "off");
+
+				if (ret < 0)
+					printf(" unsupported\n");
+				else
+					printf("=%uus\n", dbt.timeUs);
+			}
+		}
+		goto CLEANUP;
+	}
+
+	/*----------------------+
 	|  set port direction   |
 	+----------------------*/
-	if ((M_getstat (G_path, Z17_DIRECTION, &dir)) < 0) {
+	if ((M_getstat(G_path, Z17_DIRECTION, &dir)) < 0) {
 		ret = PrintError("getstat Z17_DIRECTION");
-		goto abort;
+		goto ABORT;
 	}
 
 	dir &= ~G_portm;
 
 	if ((M_setstat(G_path, Z17_DIRECTION, dir)) < 0) {
 		ret = PrintError("setstat Z17_DIRECTION");
-		goto abort;
+		goto ABORT;
 	}
 
 	/*----------------------+
@@ -195,7 +272,7 @@ int main(int argc, char *argv[])
 			/* reset irq count */
 			if ((M_setstat(G_path, M_LL_IRQ_COUNT, 0)) < 0) {
 				ret = PrintError("setstat M_LL_IRQ_COUNT");
-				goto abort;
+				goto ABORT;
 			}	
 		break;		
 					
@@ -204,24 +281,22 @@ int main(int argc, char *argv[])
 		/* read inputs after interrupt signal */
 		case 3:
 			/* install signal handler */
-			if (G_mode>1){
-				UOS_SigInit( SignalHandler );
-				UOS_SigInstall( UOS_SIG_USR1 );
+			UOS_SigInit( SignalHandler );
+			UOS_SigInstall( UOS_SIG_USR1 );
 			
-				if ((M_setstat(G_path, Z17_SET_SIGNAL, UOS_SIG_USR1)) < 0) {
-					ret = PrintError("setstat Z17_SET_SIGNAL");
-					goto abort;
-				}	
-			}
+			if ((M_setstat(G_path, Z17_SET_SIGNAL, UOS_SIG_USR1)) < 0) {
+				ret = PrintError("setstat Z17_SET_SIGNAL");
+				goto ABORT;
+			}	
 		break;
 		}
 			
 		/* port 0..15 */
 		if (G_portm & 0x0000ffff){
 			
-			if ((M_getstat (G_path, Z17_IRQ_SENSE, &old)) < 0) {
+			if ((M_getstat(G_path, Z17_IRQ_SENSE, &old)) < 0) {
 				ret = PrintError("getstat Z17_IRQ_SENSE");
-				goto abort;
+				goto ABORT;
 			}		
 			
 			mask = 0;
@@ -234,16 +309,16 @@ int main(int argc, char *argv[])
 		
 			if ((M_setstat(G_path, Z17_IRQ_SENSE, mask)) < 0) {
 				ret = PrintError("setstat Z17_IRQ_SENSE");
-				goto abort;
+				goto ABORT;
 			}
 		}
 
 		/* port 16..31 */
 		if( G_portm & 0xffff0000 ){		
 
-			if ((M_getstat (G_path, Z17_IRQ_SENSE_16TO31, &old)) < 0) {
+			if ((M_getstat(G_path, Z17_IRQ_SENSE_16TO31, &old)) < 0) {
 				ret = PrintError("getstat Z17_IRQ_SENSE_16TO31");
-				goto abort;
+				goto ABORT;
 			}		
 
 			mask = 0;
@@ -256,36 +331,31 @@ int main(int argc, char *argv[])
 		
 			if ((M_setstat(G_path, Z17_IRQ_SENSE_16TO31, mask)) < 0) {
 				ret = PrintError("setstat Z17_IRQ_SENSE_16TO31");
-				goto abort;
+				goto ABORT;
 			}
 		}
 
 		/* enable interrupt */
 		if ((M_setstat(G_path, M_MK_IRQ_ENABLE, TRUE)) < 0) {
 			ret = PrintError("setstat M_MK_IRQ_ENABLE");
-			goto abort;
+			goto ABORT;
 		}
 	}
 
 	/*----------------------+
 	|  configure debouncer  |
 	+----------------------*/
-	if ((M_getstat (G_path, Z17_DEBOUNCE, &old)) < 0) {
+	if ((M_getstat(G_path, Z17_DEBOUNCE, &old)) < 0) {
 		ret = PrintError("getstat Z17_DEBOUNCE");
-		goto abort;
+		goto ABORT;
 	}		
-	
-	mask = 0;
-	for (p=0; p<32; p++){
-		if (G_portm & (1<<p))
-			mask |= deb << p;
-		else
-			mask |= old & (1<<p);
-	} 
+
+	mask  = deb ? G_portm : 0;
+	mask |= (~G_portm) & old;
 
 	if ((M_setstat(G_path, Z17_DEBOUNCE, mask)) < 0) {
 		ret = PrintError("setstat Z17_DEBOUNCE");
-		goto abort;
+		goto ABORT;
 	}
 
 	/* set debounce time */
@@ -295,82 +365,8 @@ int main(int argc, char *argv[])
 		
 		if ((M_setstat(G_path, Z17_BLK_DEBOUNCE_TIME, (INT32_OR_64)&blk)) < 0) {
 			ret = PrintError("setstat Z17_BLK_DEBOUNCE_TIME");
-			goto abort;
+			goto ABORT;
 		}		
-	}
-
-	/*----------------------+
-	|  get settings         |
-	+----------------------*/
-	if (debtg){
-		printf("_____Port Settings_____\n");
-		
-		/* DIRECTION */
-		if ((M_getstat (G_path, Z17_DIRECTION, &dir)) < 0) {
-			ret = PrintError("getstat Z17_DIRECTION");
-			goto abort;
-		}				
-		
-		/* SENSE */
-		/* port 0..15 */
-		if (G_portm & 0x0000ffff){
-			
-			if ((M_getstat (G_path, Z17_IRQ_SENSE, &sens1)) < 0) {
-				ret = PrintError("getstat Z17_IRQ_SENSE");
-				goto abort;
-			}				
-		}
-
-		/* port 16..31 */
-		if( G_portm & 0xffff0000 ){		
-
-			if ((M_getstat (G_path, Z17_IRQ_SENSE_16TO31, &sens2)) < 0) {
-				ret = PrintError("getstat Z17_IRQ_SENSE_16TO31");
-				goto abort;
-			}		
-		}
-				
-		/* DEBOUNCE ON/OFF */
-		if ((M_getstat (G_path, Z17_DEBOUNCE, &old)) < 0) {
-			ret = PrintError("getstat Z17_DEBOUNCE");
-			goto abort;
-		}
-		
-		mask = 0;
-		for (p=0; p<32; p++){
-			if (G_portm & (1<<p)){
-				
-				/* SENSE */
-				if( p<15 )
-					sens = 0x03 & (sens1 >> (2*p));
-				else
-					sens = 0x03 & (sens2 >> (2*p));
-	
-				switch( sens ){
-					case 0: sensStr = "no"; break;
-					case 1: sensStr = "rising"; break;
-					case 2: sensStr = "falling"; break;
-					case 3: sensStr = "both"; break;
-					default:
-						sensStr = "illegal";
-				}
-				
-				/* DEBOUNCE TIME */
-				dbt.portMask = 1<<p;
-				dbt.timeUs = 0;
-
-				if ((M_getstat (G_path, Z17_BLK_DEBOUNCE_TIME, (int32*)&blk)) < 0) {
-					ret = PrintError("getstat Z17_BLK_DEBOUNCE_TIME");
-					goto abort;
-				}		
-
-				printf("Port %02d: dir=%s, irq-sens=%s, debounce=%s, debounce-time=%uus\n", p,
-					   (dir & (1<<p)) ? "out" : "in",
-					   sensStr,
-					   (old & (1<<p)) ? "on" : "off", 
-					   dbt.timeUs);
-			}
-		} 
 	}
 
 	/*----------------------+
@@ -386,16 +382,16 @@ int main(int argc, char *argv[])
 			printf("_____Poll Mode_____\n");
 			ret = ReadInputs();
 			if( ret )
-				goto abort;
+				goto ABORT;
 		break;
 
 		/* compute interrupt rate */
 		case 1:
 			timeCurrent = UOS_MsecTimerGet();
 
-			if ((M_getstat (G_path, M_LL_IRQ_COUNT, (int32*)&icntCurrent)) < 0) {
+			if ((M_getstat(G_path, M_LL_IRQ_COUNT, (int32*)&icntCurrent)) < 0) {
 				ret = PrintError("getstat M_LL_IRQ_COUNT");
-				goto abort;
+				goto ABORT;
 			}		
 
 			/* not the first run */
@@ -451,9 +447,20 @@ int main(int argc, char *argv[])
 	/*----------------------+
 	|  cleanup              |
 	+----------------------*/
+CLEANUP:
+	if (G_mode>1) {
+		if ((M_setstat(G_path, Z17_CLR_SIGNAL, UOS_SIG_USR1)) < 0) {
+			ret = PrintError("setstat Z17_SET_SIGNAL");
+			goto ABORT;
+		}
+
+		UOS_SigRemove(UOS_SIG_USR1);
+		UOS_SigExit();
+	}
+
 	ret=ERR_OK;
 	
-abort:
+ABORT:
 	if (M_close(G_path) < 0)
 		ret = PrintError("close");
 
@@ -462,7 +469,7 @@ abort:
 
 /***************************************************************************/
 /** Print MDIS error message
- *G_portm
+ *
  *  \param info       \IN  info string
  */
 static int PrintError(char *info)
@@ -490,15 +497,15 @@ static int ReadInputs( void )
 		printf("%c%d ", 
 			(G_portm & (1<<p) ? ' ' : '*'),
 			(val >> p) & 1);
-	printf("\n\n");
-
+	printf("\n");
+	printf("       === READ === (*=un-configured port)\n");
 	printf("Port : 15 14 13 12 11 10 09 08 07 06 05 04 03 02 01 00\n");
 	printf("State: ");
 	for (p=15; p>=0; p--)
 		printf("%c%d ", 
 			(G_portm & (1<<p) ? ' ' : '*'),
 			(val >> p) & 1);
-	printf("\n\n");
+	printf("\n");
 
 	printf("Note : * indicates an un-configured port\n\n");
 	
