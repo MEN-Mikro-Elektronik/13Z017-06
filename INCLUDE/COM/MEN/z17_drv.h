@@ -83,21 +83,21 @@ typedef struct {
  *  \anchor getstat_setstat_codes
  */
 /**@{*/
-#define Z17_SET_PORTS           M_DEV_OF+0x00    /**<   S: Set IO ports without affecting others - 8 bit mask - bit 0 for gpio[0] */
-#define Z17_CLR_PORTS           M_DEV_OF+0x01    /**<   S: Clear IO ports without affecting others - 8 bit mask - bit 0 for gpio[0] */
-#define Z17_DIRECTION           M_DEV_OF+0x02    /**< G,S: Get/Set direction of all ports - 8bit - bit 0 for gpio[0] - value 0 is in - 1 is out  */
+#define Z17_SET_PORTS           M_DEV_OF+0x00    /**<   S: Set IO ports without affecting others - bit 0 for gpio[0] */
+#define Z17_CLR_PORTS           M_DEV_OF+0x01    /**<   S: Clear IO ports without affecting others - bit 0 for gpio[0] */
+#define Z17_DIRECTION           M_DEV_OF+0x02    /**< G,S: Get/Set direction of all ports - bit 0 for gpio[0] - value 0 is in - 1 is out  */
 #define Z17_IRQ_SENSE           M_DEV_OF+0x03    /**< G,S: Get/set IRQ sense mode for models Z34/Z37 - 16 bit - and for model Z127 - 32 bit - bit 0 and 1 for gpio[0] - 0 no, 1 rising, 2 falling, 3 both edges */
-#define Z17_OPEN_DRAIN          M_DEV_OF+0x04    /**< G,S: Get/set open drain mode - 8bit - bit 0 for gpio[0] - value 0 is dis - 1 is enable */
-#define Z17_DEBOUNCE            M_DEV_OF+0x05    /**< G,S: Get/set debouncing of all ports - 8bit - bit 0 for gpio[0] - value 0 is dis - 1 is enable */
+#define Z17_OPEN_DRAIN          M_DEV_OF+0x04    /**< G,S: Get/set open drain mode - bit 0 for gpio[0] - value 0 is dis - 1 is enable */
+#define Z17_DEBOUNCE            M_DEV_OF+0x05    /**< G,S: Get/set debouncing of all ports - bit 0 for gpio[0] - value 0 is dis - 1 is enable */
 #define Z17_SET_SIGNAL          M_DEV_OF+0x06    /**<   S: Set signal sent on IRQ  */
 #define Z17_CLR_SIGNAL          M_DEV_OF+0x07    /**<   S: Uninstall signal        */
-#define Z17_IRQ_LAST_REQUEST    M_DEV_OF+0x08    /**< G  : Get last IRQ request - 8bit - bit 0 for gpio[0] - value 1 is requested - clears the last request  */
+#define Z17_IRQ_LAST_REQUEST    M_DEV_OF+0x08    /**< G  : Get last IRQ request - bit 0 for gpio[0] - value 1 is requested - clears the last request  */
 #define Z17_IRQ_SENSE_16TO31    M_DEV_OF+0x09    /**< G,S: Get/set IRQ sense mode only for model Z127 - 32 bit - bit 0 and 1 for gpio[16] - 0 no, 1 rising, 2 falling, 3 both edges */
-#define Z17_TOG_PORTS           M_DEV_OF+0x0a    /**<   S: Toggle IO ports without affecting others - 8/32 bit mask - bit 0 for gpio[0] */
+#define Z17_TOG_PORTS           M_DEV_OF+0x0a    /**<   S: Toggle IO ports without affecting others - bit 0 for gpio[0] */
 #define Z17_TOG_HIGH            M_DEV_OF+0x0b    /**<   S: Toggle phase high - default 1000ms */
 #define Z17_TOG_LOW             M_DEV_OF+0x0c    /**<   S: Toggle phase low - default 1000ms */
 
-/* Z17 specific Getstat/Setstat block codes (for test purposes) */
+/* Z17 specific Getstat/Setstat block codes */
 #define Z17_BLK_IRQLAT_START    M_DEV_BLK_OF+0x00	/*   S: Initialize IRQ latency test */
 #define Z17_BLK_IRQLAT_RESULT   M_DEV_BLK_OF+0x01	/* G  : Get result of IRQ latency test */
 #define Z17_BLK_DEBOUNCE_TIME   M_DEV_BLK_OF+0x02	/* G,S: Get/set debounce time (us) for specified port(s) */
