@@ -238,6 +238,9 @@ Tool to access the 16Z127 (32-bit) I/Os
 /** \example z127_in.c
 Tool to control the 16Z127 (32-bit) inputs
 
+/** \example z127_out.c
+Tool to control the 16Z127 (32-bit) outputs
+
 /*! \page dummy
   \menimages
 */

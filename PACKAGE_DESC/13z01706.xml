@@ -196,6 +196,12 @@
 			<type>Driver Specific Tool</type>
 			<makefilepath>Z017/TOOLS/Z127_IN/COM/program.mak</makefilepath>
 		</swmodule>
+		<swmodule>
+			<name>z127_out</name>
+			<description>Tool to control the 16Z127 (32-bit) outputs</description>
+			<type>Driver Specific Tool</type>
+			<makefilepath>Z017/TOOLS/Z127_OUT/COM/program.mak</makefilepath>
+		</swmodule>
 		<swmodule internal="true">
 			<name>g215_test</name>
 			<description>Tool to test the G215</description>

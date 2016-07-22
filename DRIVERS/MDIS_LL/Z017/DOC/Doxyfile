@@ -9,7 +9,8 @@ EXAMPLE_RECURSIVE      = YES
 EXAMPLE_PATH           = ../EXAMPLE/Z17_SIMP/COM \
                          ../TOOLS/Z17_IO/COM     \
                          ../TOOLS/Z127_IO/COM    \
-                         ../TOOLS/Z127_IN/COM
+                         ../TOOLS/Z127_IN/COM    \
+                         ../TOOLS/Z127_OUT/COM
 
 OUTPUT_DIRECTORY       = .
 EXTRACT_ALL            = YES
