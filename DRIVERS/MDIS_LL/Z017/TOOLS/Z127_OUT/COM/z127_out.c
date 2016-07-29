@@ -69,7 +69,7 @@ static void usage(void)
 	printf("    -o          open drain mode                                        \n");
 	printf("    -r          read outputs back                                      \n");
 	printf("    -s=0/1      set outputs 0=low 1=high                               \n");
-	printf("    -t=<ms>     toggle outputs in turn for <ms>                        \n");
+	printf("    -t=<ms>     toggle outputs in turn, <ms> each                      \n");
 	printf("    -T [<opt>]  toggle outputs together                                \n");
 	printf("       -H=<ms>    toggle high time [ms]....................[1000]      \n");
 	printf("       -L=<ms>    toggle low time [ms].....................[1000]      \n");
@@ -90,10 +90,10 @@ static void usage(void)
  */
 int main(int argc, char *argv[])
 {
-	char	*device, *str, *errstr, buf[40], *sensStr;
-	u_int32	p, old, mask, n;
+	char	*device, *str, *errstr, buf[40];
+	u_int32	p, mask, n;
 	int32	openDrain, get, readBack, set, togTurn, togAll, togAllH, togAllL, loop;
-	int32	dir, loopcnt, outMask, run, state=0;
+	int32	dir, loopcnt, outMask, run, old;
 	int		ret;
 
 	/*----------------------+
@@ -288,22 +288,18 @@ int main(int argc, char *argv[])
 		else
 			run = 0;
 
-		/* repeat until keypress */
-		if (UOS_KeyPressed() != -1)
-			run = 0;
-
 		/* abort after n turns */
 		loopcnt++;
 		if (loop && (loopcnt == loop))
 			run = 0;
 					
 	} while (run);
-	printf("\n");
 
 	/*----------------------+
 	|  cleanup              |
 	+----------------------*/
 CLEANUP:
+	printf("\n");
 	ret=ERR_OK;
 	
 ABORT:
@@ -317,6 +313,8 @@ ABORT:
 /** Print MDIS error message
  *
  *  \param info       \IN  info string
+ *
+ *  \return           ERR_FUNC
  */
 static int PrintError(char *info)
 {
@@ -327,8 +325,7 @@ static int PrintError(char *info)
 /***************************************************************************/
 /** Write output values
  *
- *  \param set        \IN  0=clear, 1=set
- *  \param mask       \IN  output mask
+ *  \param outMask    \IN  output mask
  *
  *  \return           success (0) or error code
  */

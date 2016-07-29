@@ -450,7 +450,7 @@ int main(int argc, char *argv[])
 CLEANUP:
 	if (G_mode>1) {
 		if ((M_setstat(G_path, Z17_CLR_SIGNAL, UOS_SIG_USR1)) < 0) {
-			ret = PrintError("setstat Z17_SET_SIGNAL");
+			ret = PrintError("setstat Z17_CLR_SIGNAL");
 			goto ABORT;
 		}
 
@@ -471,6 +471,8 @@ ABORT:
 /** Print MDIS error message
  *
  *  \param info       \IN  info string
+ *
+ *  \return           ERR_FUNC
  */
 static int PrintError(char *info)
 {
