@@ -138,7 +138,7 @@ int main(int argc, char *argv[])
 		return ERR_PARAM;
 	}
 
-	G_portm	= ((str = UTL_TSTOPT("p=")) ? (u_int32)strtol(str, NULL, 16) : 0xffffffff);
+	G_portm	= ((str = UTL_TSTOPT("p=")) ? strtoul(str, NULL, 16) : 0xffffffff);
 	G_mode	= ((str = UTL_TSTOPT("m=")) ? atoi(str) : 0);
 	isens	= ((str = UTL_TSTOPT("s=")) ? atoi(str) : 0);
 	deb		= (UTL_TSTOPT("d") ? 1 : 0);
@@ -493,24 +493,24 @@ static int ReadInputs( void )
 		return PrintError("read");
 	}
 
-	printf("Port : 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16\n");
-	printf("State: ");
-	for (p=31; p>=16; p--)
-		printf("%c%d ", 
-			(G_portm & (1<<p) ? ' ' : '*'),
-			(val >> p) & 1);
-	printf("\n");
-	printf("       === READ === (*=un-configured port)\n");
-	printf("Port : 15 14 13 12 11 10 09 08 07 06 05 04 03 02 01 00\n");
-	printf("State: ");
-	for (p=15; p>=0; p--)
-		printf("%c%d ", 
-			(G_portm & (1<<p) ? ' ' : '*'),
+	printf("Port 15...0: 15 14 13 12 11 10 09 08 07 06 05 04 03 02 01 00\n");
+	printf("State      : ");
+	for (p = 15; p >= 0; p--)
+		printf("%c%d ",
+		(G_portm & (1 << p) ? ' ' : '*'),
 			(val >> p) & 1);
 	printf("\n");
 
-	printf("Note : * indicates an un-configured port\n\n");
-	
+	printf("       === READ PORT === (*=un-configured port)\n");
+
+	printf("Port 31..16: 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16\n");
+	printf("State      : ");
+	for (p = 31; p >= 16; p--)
+		printf("%c%d ",
+		(G_portm & (1 << p) ? ' ' : '*'),
+			(val >> p) & 1);
+	printf("\n");
+
 	return ERR_OK;
 }
 

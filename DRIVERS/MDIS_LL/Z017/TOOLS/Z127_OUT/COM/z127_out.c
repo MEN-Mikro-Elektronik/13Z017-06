@@ -126,7 +126,7 @@ int main(int argc, char *argv[])
 		return ERR_PARAM;
 	}
 
-	G_portm	  = ((str = UTL_TSTOPT("p=")) ? (u_int32)strtol(str, NULL, 16) : 0xffffffff);
+	G_portm	  = ((str = UTL_TSTOPT("p=")) ? strtoul(str, NULL, 16) : 0xffffffff);
 	openDrain = (UTL_TSTOPT("o") ? 1 : 0);
 	get       = (UTL_TSTOPT("g") ? 1 : 0);
 	readBack  = (UTL_TSTOPT("r") ? 1 : 0);
@@ -241,8 +241,11 @@ int main(int argc, char *argv[])
 			if(loopcnt == 0)
 				printf("toggle ports 0x%08x in turn (each for %dms)\n",
 					G_portm, togTurn);
-			printf(".");
-			fflush(stdout);
+	
+			if(!G_verbose){
+				printf(".");
+				fflush(stdout);
+			}
 
 			for (p = 0; p<32; p++) {
 
@@ -268,8 +271,11 @@ int main(int argc, char *argv[])
 			if (loopcnt == 0)
 				printf("toggle ports 0x%08x together 1/0 (high=%dms, low=%dms)\n",
 					G_portm, togAllH, togAllL);
-			printf(".");
-			fflush(stdout);
+
+			if(!G_verbose){
+				printf(".");
+				fflush(stdout);
+			}
 
 			if ((ret = WriteOutputs(G_portm)))
 				goto ABORT;
@@ -345,17 +351,19 @@ static int WriteOutputs( int outMask )
 	}
 
 	if(G_verbose){
-		printf("Port : 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16\n");
-		printf("State: ");
-		for (p = 31; p >= 16; p--)
+		printf("Port 15...0: 15 14 13 12 11 10 09 08 07 06 05 04 03 02 01 00\n");
+		printf("State      : ");
+		for (p = 15; p >= 0; p--)
 			printf("%c%d ",
 			(G_portm & (1 << p) ? ' ' : '*'),
 				(mask >> p) & 1);
 		printf("\n");
+
 		printf("       === SET PORT === (*=un-configured port)\n");
-		printf("Port : 15 14 13 12 11 10 09 08 07 06 05 04 03 02 01 00\n");
-		printf("State: ");
-		for (p = 15; p >= 0; p--)
+
+		printf("Port 31..16: 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16\n");
+		printf("State      : ");
+		for (p = 31; p >= 16; p--)
 			printf("%c%d ",
 			(G_portm & (1 << p) ? ' ' : '*'),
 				(mask >> p) & 1);
@@ -378,22 +386,23 @@ static int ReadOutputs(void)
 		return PrintError("read");
 	}
 
-	printf("Port : 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16\n");
-	printf("State: ");
-	for (p = 31; p >= 16; p--)
-		printf("%c%d ",
-		(G_portm & (1 << p) ? ' ' : '*'),
-			(val >> p) & 1);
-	printf("\n");
-	printf("       === READ BACK === (*=un-configured port)\n");
-	printf("Port : 15 14 13 12 11 10 09 08 07 06 05 04 03 02 01 00\n");
-	printf("State: ");
+	printf("Port 15...0: 15 14 13 12 11 10 09 08 07 06 05 04 03 02 01 00\n");
+	printf("State      : ");
 	for (p = 15; p >= 0; p--)
 		printf("%c%d ",
 		(G_portm & (1 << p) ? ' ' : '*'),
 			(val >> p) & 1);
-	printf("\n\n");
+	printf("\n");
 
+	printf("       === READ PORT BACK === (*=un-configured port)\n");
+
+	printf("Port 31..16: 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16\n");
+	printf("State      : ");
+	for (p = 31; p >= 16; p--)
+		printf("%c%d ",
+		(G_portm & (1 << p) ? ' ' : '*'),
+			(val >> p) & 1);
+	printf("\n\n");
 
 	return ERR_OK;
 }
