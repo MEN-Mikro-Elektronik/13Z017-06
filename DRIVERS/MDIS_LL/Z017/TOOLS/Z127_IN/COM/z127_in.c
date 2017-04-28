@@ -43,6 +43,7 @@
 /*--------------------------------------+
 |   GLOBALS                             |
 +--------------------------------------*/
+static u_int8 G_sigInstall = FALSE;
 static u_int32 G_sigCount = 0;
 static int32 G_mode;
 
@@ -54,6 +55,7 @@ static MDIS_PATH G_path;
 +--------------------------------------*/
 static void usage(void);
 static int PrintError(char *info);
+static int PrintUosError(char *info);
 static int ReadInputs( void );
 static void __MAPILIB SignalHandler( u_int32 sig );
 
@@ -281,8 +283,17 @@ int main(int argc, char *argv[])
 		/* read inputs after interrupt signal */
 		case 3:
 			/* install signal handler */
-			UOS_SigInit( SignalHandler );
-			UOS_SigInstall( UOS_SIG_USR1 );
+			G_sigInstall = TRUE;
+
+			if ((UOS_SigInit(SignalHandler)) != 0) {
+				ret = PrintUosError("UOS_SigInit");
+				goto ABORT;
+			}
+
+			if ((UOS_SigInstall(UOS_SIG_USR1)) != 0) {
+				ret = PrintUosError("UOS_SigInstall");
+				goto ABORT;
+			}
 			
 			if ((M_setstat(G_path, Z17_SET_SIGNAL, UOS_SIG_USR1)) < 0) {
 				ret = PrintError("setstat Z17_SET_SIGNAL");
@@ -448,21 +459,22 @@ int main(int argc, char *argv[])
 	|  cleanup              |
 	+----------------------*/
 CLEANUP:
-	if (G_mode>1) {
-		if ((M_setstat(G_path, Z17_CLR_SIGNAL, UOS_SIG_USR1)) < 0) {
-			ret = PrintError("setstat Z17_CLR_SIGNAL");
-			goto ABORT;
-		}
-
-		UOS_SigRemove(UOS_SIG_USR1);
-		UOS_SigExit();
-	}
-
 	ret=ERR_OK;
 	
 ABORT:
+	if (G_sigInstall) {
+		if ((M_setstat(G_path, Z17_CLR_SIGNAL, UOS_SIG_USR1)) < 0)
+			PrintError("setstat Z17_CLR_SIGNAL");
+
+		if ((UOS_SigRemove(UOS_SIG_USR1)) != 0)
+			PrintUosError("UOS_SigRemove");
+
+		if ((UOS_SigExit()) != 0)
+			ret = PrintUosError("UOS_SigExit");
+	}
+
 	if (M_close(G_path) < 0)
-		ret = PrintError("close");
+		PrintError("close");
 
 	return ret;
 }
@@ -476,7 +488,20 @@ ABORT:
  */
 static int PrintError(char *info)
 {
-	printf("*** can't %s: %s\n", info, M_errstring (UOS_ErrnoGet()));
+	printf("*** can't %s: %s\n", info, M_errstring(UOS_ErrnoGet()));
+	return ERR_FUNC;
+}
+
+/********************************* PrintUosError ***************************/
+/** Print User OSS error message
+*
+*  \param info       \IN  info string
+*
+*  \return           ERR_FUNC
+*/
+static int PrintUosError(char *info)
+{
+	printf("*** can't %s: %s\n", info, UOS_ErrString(UOS_ErrnoGet()));
 	return ERR_FUNC;
 }
 
