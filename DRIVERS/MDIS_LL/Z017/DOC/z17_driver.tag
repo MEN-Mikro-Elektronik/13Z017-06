@@ -4,15 +4,35 @@
     <filename>index</filename>
     <title></title>
     <name>index</name>
+    <docanchor>codes</docanchor>
+    <docanchor>debounce</docanchor>
+    <docanchor>sa15</docanchor>
+    <docanchor>Variants</docanchor>
+    <docanchor>z17_simp</docanchor>
+    <docanchor>Documents</docanchor>
+    <docanchor>readwrite</docanchor>
+    <docanchor>z17_io</docanchor>
+    <docanchor>z17_min</docanchor>
+    <docanchor>interrupts</docanchor>
+    <docanchor>z127_out</docanchor>
+    <docanchor>opendrain</docanchor>
+    <docanchor>General</docanchor>
+    <docanchor>z17_max</docanchor>
+    <docanchor>z127_in</docanchor>
+    <docanchor>api_functions</docanchor>
+    <docanchor>FuncDesc</docanchor>
+    <docanchor>z127_io</docanchor>
+    <docanchor>default</docanchor>
+    <docanchor>descriptor_entries</docanchor>
   </compound>
   <compound kind="file">
     <name>z17_doc.c</name>
-    <path>/root/WORK/13z017-06/DRIVERS/MDIS_LL/Z017/DRIVER/COM/</path>
+    <path>d:/work/LINUX/DRIVERS/MDIS_LL/Z017/DRIVER/COM/</path>
     <filename>z17__doc_8c</filename>
   </compound>
   <compound kind="file">
     <name>z17_drv.c</name>
-    <path>/root/WORK/13z017-06/DRIVERS/MDIS_LL/Z017/DRIVER/COM/</path>
+    <path>d:/work/LINUX/DRIVERS/MDIS_LL/Z017/DRIVER/COM/</path>
     <filename>z17__drv_8c</filename>
     <class kind="struct">LL_HANDLE</class>
     <member kind="define">
@@ -192,7 +212,7 @@
   </compound>
   <compound kind="file">
     <name>z17_drv.h</name>
-    <path>/opt/menlinux/INCLUDE/COM/MEN/</path>
+    <path>d:/work/LINUX/INCLUDE/COM/MEN/</path>
     <filename>z17__drv_8h</filename>
     <class kind="struct">Z17_BLK_DEBTIME</class>
     <class kind="struct">Z17_BLK_IRQLAT</class>
@@ -341,151 +361,151 @@
     <member kind="variable">
       <type>int32</type>
       <name>memAlloc</name>
-      <anchor>o0</anchor>
+      <anchor>m0</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>OSS_HANDLE *</type>
       <name>osHdl</name>
-      <anchor>o1</anchor>
+      <anchor>m1</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>OSS_IRQ_HANDLE *</type>
       <name>irqHdl</name>
-      <anchor>o2</anchor>
+      <anchor>m2</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>DESC_HANDLE *</type>
       <name>descHdl</name>
-      <anchor>o3</anchor>
+      <anchor>m3</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>MACCESS</type>
       <name>ma</name>
-      <anchor>o4</anchor>
+      <anchor>m4</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>MDIS_IDENT_FUNCT_TBL</type>
       <name>idFuncTbl</name>
-      <anchor>o5</anchor>
+      <anchor>m5</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>u_int32</type>
       <name>dbgLevel</name>
-      <anchor>o6</anchor>
+      <anchor>m6</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>DBG_HANDLE *</type>
       <name>dbgHdl</name>
-      <anchor>o7</anchor>
+      <anchor>m7</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>OSS_SIG_HANDLE *</type>
       <name>portChangeSig</name>
-      <anchor>o8</anchor>
+      <anchor>m8</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>u_int32</type>
       <name>irqCount</name>
-      <anchor>o9</anchor>
+      <anchor>m9</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>u_int32</type>
       <name>lastReq</name>
-      <anchor>o10</anchor>
+      <anchor>m10</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>u_int32</type>
       <name>irqTest</name>
-      <anchor>o11</anchor>
+      <anchor>m11</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>int32</type>
       <name>outBit</name>
-      <anchor>o12</anchor>
+      <anchor>m12</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>u_int32</type>
       <name>outLast</name>
-      <anchor>o13</anchor>
+      <anchor>m13</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>u_int32</type>
       <name>irqs2fire</name>
-      <anchor>o14</anchor>
+      <anchor>m14</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>u_int32</type>
       <name>startTick</name>
-      <anchor>o15</anchor>
+      <anchor>m15</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>u_int32</type>
       <name>stopTick</name>
-      <anchor>o16</anchor>
+      <anchor>m16</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>OSS_ALARM_HANDLE *</type>
       <name>alarmHdl</name>
-      <anchor>o17</anchor>
+      <anchor>m17</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>OSS_SEM_HANDLE *</type>
       <name>devSemHdl</name>
-      <anchor>o18</anchor>
+      <anchor>m18</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>u_int32</type>
       <name>togHigh</name>
-      <anchor>o19</anchor>
+      <anchor>m19</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>u_int32</type>
       <name>togtimeHigh</name>
-      <anchor>o20</anchor>
+      <anchor>m20</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>u_int32</type>
       <name>togtimeLow</name>
-      <anchor>o21</anchor>
+      <anchor>m21</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>u_int32</type>
       <name>togBitMask</name>
-      <anchor>o22</anchor>
+      <anchor>m22</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>u_int32</type>
       <name>togCount</name>
-      <anchor>o23</anchor>
+      <anchor>m23</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>u_int32</type>
       <name>arwenResetOff</name>
-      <anchor>o24</anchor>
+      <anchor>m24</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -495,13 +515,13 @@
     <member kind="variable">
       <type>u_int32</type>
       <name>portMask</name>
-      <anchor>o0</anchor>
+      <anchor>m0</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>u_int32</type>
       <name>timeUs</name>
-      <anchor>o1</anchor>
+      <anchor>m1</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -511,43 +531,43 @@
     <member kind="variable">
       <type>u_int32</type>
       <name>outPort</name>
-      <anchor>o0</anchor>
+      <anchor>m0</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>u_int32</type>
       <name>inPort</name>
-      <anchor>o1</anchor>
+      <anchor>m1</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>u_int32</type>
       <name>irqs2fire</name>
-      <anchor>o2</anchor>
+      <anchor>m2</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>u_int32</type>
       <name>tickRate</name>
-      <anchor>o3</anchor>
+      <anchor>m3</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>u_int32</type>
       <name>startTick</name>
-      <anchor>o4</anchor>
+      <anchor>m4</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>u_int32</type>
       <name>stopTick</name>
-      <anchor>o5</anchor>
+      <anchor>m5</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>u_int32</type>
       <name>irqsRcved</name>
-      <anchor>o6</anchor>
+      <anchor>m6</anchor>
       <arglist></arglist>
     </member>
   </compound>
