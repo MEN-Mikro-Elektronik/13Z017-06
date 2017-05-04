@@ -1,14 +1,17 @@
 #***************************  M a k e f i l e  *******************************
 #
 #         Author: dieter.pfeuffer@men.de
-#          $Date: $
-#      $Revision: $
+#          $Date: 2017/05/03 16:53:51 $
+#      $Revision: 1.1 $
 #
 #    Description: Makefile definitions for the Z127_IN tool
 #
 #---------------------------------[ History ]---------------------------------
 #
 #   $Log: program.mak,v $
+#   Revision 1.1  2017/05/03 16:53:51  DPfeuffer
+#   Initial Revision
+#
 #-----------------------------------------------------------------------------
 #   (c) Copyright 2016 by MEN mikro elektronik GmbH, Nuernberg, Germany
 #*****************************************************************************

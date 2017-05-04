@@ -6,8 +6,8 @@
 /*!
  *        \file  z17_simp.c
  *      \author  ulrich.bogensperger@men.de
- *        $Date: 2014/11/28 14:17:45 $
- *    $Revision: 1.6 $
+ *        $Date: 2017/05/03 16:53:41 $
+ *    $Revision: 1.9 $
  *
  *      \brief   Simple example program for the Z17 driver
  *
@@ -23,6 +23,9 @@
  /*-------------------------------[ History ]--------------------------------
  *
  * $Log: z17_simp.c,v $
+ * Revision 1.9  2017/05/03 16:53:41  DPfeuffer
+ * new checkin
+ *
  * Revision 1.6  2014/11/28 14:17:45  MRoth
  * R: cosmetics
  * M: revised code completely
@@ -49,7 +52,7 @@
  *---------------------------------------------------------------------------
  * (c) Copyright 2003 by MEN mikro elektronik GmbH, Nuernberg, Germany
  ****************************************************************************/
-static const char RCSid[]="$Id: z17_simp.c,v 1.6 2014/11/28 14:17:45 MRoth Exp $";
+static const char RCSid[]="$Id: z17_simp.c,v 1.9 2017/05/03 16:53:41 DPfeuffer Exp $";
 
 /*--------------------------------------+
 |  INCLUDES                             |

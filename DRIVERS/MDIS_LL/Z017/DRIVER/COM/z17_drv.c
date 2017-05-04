@@ -3,8 +3,8 @@
  *        \file  z17_drv.c
  *
  *      \author  ulrich.bogensperger@men.de 
- *        $Date: 2016/07/13 10:09:33 $
- *    $Revision: 1.12 $
+ *        $Date: 2017/05/03 16:52:05 $
+ *    $Revision: 1.15 $
  *
  *       \brief  Low-level driver for the 16Z034, 16Z037 and 16Z127
  *               GPIO controller
@@ -18,6 +18,9 @@
  /*-------------------------------[ History ]--------------------------------
  *
  * $Log: z17_drv.c,v $
+ * Revision 1.15  2017/05/03 16:52:05  DPfeuffer
+ * new checkin
+ *
  * Revision 1.12  2016/07/13 10:09:33  ts
  * R: m_open failed on EM10A00 GPIOs with 0x20 address space size.
  * M: previous default ADDRSPACE_SIZE of 0x100 failed to match, corrected back to 0x20.
@@ -1249,7 +1252,7 @@ static int32 Z17_Info(
  */
 static char* Ident(void)
 {
-	return ("Z17 - Z17 low level driver: $Id: z17_drv.c,v 1.12 2016/07/13 10:09:33 ts Exp $"
+	return ("Z17 - Z17 low level driver: $Id: z17_drv.c,v 1.15 2017/05/03 16:52:05 DPfeuffer Exp $"
 			#ifdef Z17_MODEL_Z127
 				" Z127 model"
 			#else

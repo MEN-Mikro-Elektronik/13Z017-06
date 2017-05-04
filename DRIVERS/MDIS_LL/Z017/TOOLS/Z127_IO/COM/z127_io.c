@@ -6,8 +6,8 @@
 /*!
  *        \file  z127_io.c
  *      \author  michael.roth@men.de
- *        $Date: 2014/11/28 15:20:07 $
- *    $Revision: 1.6 $
+ *        $Date: 2017/05/03 16:53:47 $
+ *    $Revision: 1.9 $
  *
  *       \brief  Tool to access the 16Z127 (32-bit) I/Os
  *
@@ -17,6 +17,9 @@
  /*-------------------------------[ History ]--------------------------------
  *
  * $Log: z127_io.c,v $
+ * Revision 1.9  2017/05/03 16:53:47  DPfeuffer
+ * new checkin
+ *
  * Revision 1.6  2014/11/28 15:20:07  MRoth
  * R: modifications of revision 1.4 were lost during merge
  * M: re-added modifications of revision 1.4
@@ -45,7 +48,7 @@
  *---------------------------------------------------------------------------
  * (c) Copyright 2010 by MEN Mikro Elektronik GmbH, Nuremberg, Germany
  ****************************************************************************/
-static const char RCSid[]="$Id: z127_io.c,v 1.6 2014/11/28 15:20:07 MRoth Exp $";
+static const char RCSid[]="$Id: z127_io.c,v 1.9 2017/05/03 16:53:47 DPfeuffer Exp $";
 
 /*--------------------------------------+
 |  INCLUDES                             |

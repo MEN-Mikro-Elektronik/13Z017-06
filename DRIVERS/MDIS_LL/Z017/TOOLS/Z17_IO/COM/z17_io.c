@@ -6,8 +6,8 @@
 /*!
  *        \file  z17_io.c
  *      \author  dieter.pfeuffer@men.de
- *        $Date: 2014/11/28 15:20:05 $
- *    $Revision: 1.9 $
+ *        $Date: 2017/05/03 16:53:45 $
+ *    $Revision: 1.12 $
  *
  *       \brief  Tool to access the 16Z034/16Z037 (8-bit) I/Os
  *
@@ -17,6 +17,9 @@
  /*-------------------------------[ History ]--------------------------------
  *
  * $Log: z17_io.c,v $
+ * Revision 1.12  2017/05/03 16:53:45  DPfeuffer
+ * new checkin
+ *
  * Revision 1.9  2014/11/28 15:20:05  MRoth
  * R: modifications of revision 1.7 were lost during merge
  * M: re-added modifications of revision 1.7
@@ -56,7 +59,7 @@
  *---------------------------------------------------------------------------
  * (c) Copyright 2006 by MEN mikro elektronik GmbH, Nuernberg, Germany
  ****************************************************************************/
-static const char RCSid[]="$Id: z17_io.c,v 1.9 2014/11/28 15:20:05 MRoth Exp $";
+static const char RCSid[]="$Id: z17_io.c,v 1.12 2017/05/03 16:53:45 DPfeuffer Exp $";
 
 /*--------------------------------------+
 |  INCLUDES                             |

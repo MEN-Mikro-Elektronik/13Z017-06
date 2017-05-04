@@ -6,8 +6,8 @@
 /*!
  *         \file z17ec0400.c
  *       \author klaus.popp@men.de
- *        $Date: 2009/07/10 13:38:54 $
- *    $Revision: 1.2 $
+ *        $Date: 2017/05/03 16:53:43 $
+ *    $Revision: 1.5 $
  *
  *       \brief  Simple demo for buttons on EC04-00
  *
@@ -17,6 +17,9 @@
  /*-------------------------------[ History ]--------------------------------
  *
  * $Log: z17_ec0400.c,v $
+ * Revision 1.5  2017/05/03 16:53:43  DPfeuffer
+ * new checkin
+ *
  * Revision 1.2  2009/07/10 13:38:54  CRuff
  * R: Porting to MDIS5
  * M: 1. changed type of M_open Path to MDIS_PATH
@@ -29,7 +32,7 @@
  * (c) Copyright 2005 by MEN mikro elektronik GmbH, Nuernberg, Germany
  ****************************************************************************/
 
-static const char RCSid[]="$Id: z17_ec0400.c,v 1.2 2009/07/10 13:38:54 CRuff Exp $";
+static const char RCSid[]="$Id: z17_ec0400.c,v 1.5 2017/05/03 16:53:43 DPfeuffer Exp $";
 
 #include <stdio.h>
 #include <string.h>

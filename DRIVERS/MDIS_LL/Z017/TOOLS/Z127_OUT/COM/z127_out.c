@@ -6,8 +6,8 @@
 /*!
  *        \file  z127_out.c
  *      \author  dieter.pfeuffer@men.de
- *        $Date: $
- *    $Revision: $
+ *        $Date: 2017/05/03 16:53:52 $
+ *    $Revision: 1.1 $
  *
  *       \brief  Tool to control the 16Z127 (32-bit) outputs
  *
@@ -17,6 +17,9 @@
  /*-------------------------------[ History ]--------------------------------
  *
  * $Log: z127_out.c,v $
+ * Revision 1.1  2017/05/03 16:53:52  DPfeuffer
+ * Initial Revision
+ *
  *---------------------------------------------------------------------------
  * (c) Copyright 2016 by MEN Mikro Elektronik GmbH, Nuremberg, Germany
  ****************************************************************************/
@@ -91,10 +94,10 @@ static void usage(void)
 int main(int argc, char *argv[])
 {
 	char	*device, *str, *errstr, buf[40];
-	u_int32	p, mask, n;
+	u_int32	p, mask;
 	int32	openDrain, get, readBack, set, togTurn, togAll, togAllH, togAllL, loop;
 	int32	dir, loopcnt, outMask, run, old;
-	int		ret;
+	int		ret, n;
 
 	/*----------------------+
 	|  check arguments      |

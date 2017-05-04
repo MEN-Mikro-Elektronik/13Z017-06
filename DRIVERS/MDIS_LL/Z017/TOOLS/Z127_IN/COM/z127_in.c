@@ -6,8 +6,8 @@
 /*!
  *        \file  z127_in.c
  *      \author  dieter.pfeuffer@men.de
- *        $Date: $
- *    $Revision: $
+ *        $Date: 2017/05/03 16:53:50 $
+ *    $Revision: 1.1 $
  *
  *       \brief  Tool to control the 16Z127 (32-bit) inputs
  *
@@ -17,6 +17,9 @@
  /*-------------------------------[ History ]--------------------------------
  *
  * $Log: z127_in.c,v $
+ * Revision 1.1  2017/05/03 16:53:50  DPfeuffer
+ * Initial Revision
+ *
  *---------------------------------------------------------------------------
  * (c) Copyright 2016 by MEN Mikro Elektronik GmbH, Nuremberg, Germany
  ****************************************************************************/
@@ -98,10 +101,10 @@ static void usage(void)
 int main(int argc, char *argv[])
 {
 	char	*device, *str, *errstr, buf[40], *sensStr;
-	u_int32	p, mask, n;
+	u_int32	p, mask;
 	int32	isens, deb, debts, get, loopt, abort, old, sens, sens1, sens2;
 	int32	dir, loop, loopcnt;
-	int		ret;
+	int		ret, n;
 	u_int32	timeLast=0, timeCurrent, timeDiff;
 	u_int32	icntLast=0, icntCurrent, icntDiff;
 	M_SG_BLOCK blk;

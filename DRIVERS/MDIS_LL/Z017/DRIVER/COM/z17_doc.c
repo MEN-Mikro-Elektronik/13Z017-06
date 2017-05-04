@@ -3,8 +3,8 @@
  *        \file  z17_doc.c
  *
  *      \author  ulrich.bogensperger@men.de
- *        $Date: 2014/11/28 14:17:39 $
- *    $Revision: 1.4 $
+ *        $Date: 2017/05/03 16:52:08 $
+ *    $Revision: 1.7 $
  *
  *      \brief   User documentation for MDIS5 Z17 driver
  *
@@ -15,6 +15,10 @@
  /*-------------------------------[ History ]--------------------------------
  *
  * $Log: z17_doc.c,v $
+ * Revision 1.7  2017/05/03 16:52:08  DPfeuffer
+ * R: new tools z127_in, z127_out
+ * M: tools added
+ *
  * Revision 1.4  2014/11/28 14:17:39  MRoth
  * R: cosmetics
  * M: revised code completely

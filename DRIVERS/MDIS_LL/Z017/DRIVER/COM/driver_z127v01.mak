@@ -1,14 +1,17 @@
 #***************************  M a k e f i l e  *******************************
 #
 #         Author: dieter.pfeuffer@men.de
-#          $Date: $
-#      $Revision: $
+#          $Date: 2017/05/03 16:53:38 $
+#      $Revision: 1.1 $
 #
 #    Description: Makefile definitions for the Z17_Z127-01 driver variant
 #
 #---------------------------------[ History ]---------------------------------
 #
-#   $Log: driver_z127-01.mak,v $
+#   $Log: driver_z127v01.mak,v $
+#   Revision 1.1  2017/05/03 16:53:38  DPfeuffer
+#   Initial Revision
+#
 #-----------------------------------------------------------------------------
 #   (c) Copyright 2016 by MEN Mikro Elektronik GmbH, Nuremberg, Germany
 #*****************************************************************************
