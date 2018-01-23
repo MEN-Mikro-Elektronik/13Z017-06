@@ -109,7 +109,7 @@ int main(int argc, char *argv[])
 	int32     inp, inp1, inp2;
 	int32     lastRequest;
 	int32     irqCount;
-	u_int32   out;
+	unsigned int   out;
 	MDIS_PATH path;
 
 	if (argc < 2 || strcmp(argv[1], "-?") == 0) {
@@ -155,11 +155,11 @@ int main(int argc, char *argv[])
 
 		M_write(path, out);
 		UOS_Delay(10);
-		M_read(path, &inp);
+		M_read(path, (int32*)&inp);
 
 		printf("%2d    |   Out: %s     In: %s (0x%x) IRQs: %d\n",
 					out, bitString(buf1, out, 5), bitString(buf2, inp, 8),
-					inp, G_sigCount);
+					(unsigned int)inp, (int)G_sigCount);
 
 		UOS_Delay(100);
 	}
@@ -189,15 +189,15 @@ int main(int argc, char *argv[])
 	M_setstat(path, Z17_SET_PORTS, 0xff);
 	UOS_Delay(10);
 	M_read(path, &inp1);
-	printf("    Out: %02x\n", inp1);
+	printf("    Out: %02x\n", (unsigned int)inp1);
 	M_setstat(path, Z17_DIRECTION, 0x00);
 	UOS_Delay(1000);	/* drift to low with pull downs */
 	M_read(path, &inp2);
-	printf("     In: %02x\n", inp2);
+	printf("     In: %02x\n", (unsigned int)inp2);
 	M_getstat(path, M_LL_IRQ_COUNT, &irqCount);
-	printf("   IRQs: %d  total %d  %s\n", G_sigCount, irqCount, G_sigCount ? "--> fired" : "");
+	printf("   IRQs: %d  total %d  %s\n", (int)G_sigCount, (int)irqCount, G_sigCount ? "--> fired" : "");
 	M_getstat(path, Z17_IRQ_LAST_REQUEST, &lastRequest); /* get lastRequest */
-	printf("   IREQ: %02x\n", lastRequest);
+	printf("   IREQ: %02x\n", (unsigned int)lastRequest);
 
 	/* 1. */
 	printf("\n set to low, switch to input and try to drift to high\n");
@@ -206,15 +206,15 @@ int main(int argc, char *argv[])
 	M_setstat(path, Z17_CLR_PORTS, 0xAA);
 	UOS_Delay(10);
 	M_read(path, &inp1);
-	printf("    Out: %02x\n", inp1);
+	printf("    Out: %02x\n", (unsigned int)inp1);
 	M_setstat(path, Z17_DIRECTION, 0x00);
 	UOS_Delay(1000);	/* drift to low with pull downs */
 	M_read(path, &inp2);
-	printf("     In: %02x\n", inp2);
+	printf("     In: %02x\n", (unsigned int)inp2);
 	M_getstat(path, M_LL_IRQ_COUNT, &irqCount);
-	printf("   IRQs: %d  total %d  %s\n", G_sigCount, irqCount, G_sigCount ? "--> fired" : "");
+	printf("   IRQs: %d  total %d  %s\n", (int)G_sigCount, (int)irqCount, G_sigCount ? "--> fired" : "");
 	M_getstat(path, Z17_IRQ_LAST_REQUEST, &lastRequest);	/* get lastRequest */
-	printf("   IREQ: %02x\n", lastRequest);
+	printf("   IREQ: %02x\n", (unsigned int)lastRequest);
 
 	/* 2. */
 	printf("\n set to high, switch to input and try to drift to low\n");
@@ -223,15 +223,15 @@ int main(int argc, char *argv[])
 	M_setstat(path, Z17_SET_PORTS, 0xff);
 	UOS_Delay(10);
 	M_read(path, &inp1);
-	printf("    Out: %02x\n", inp1);
+	printf("    Out: %02x\n", (unsigned int)inp1);
 	M_setstat(path, Z17_DIRECTION, 0x00);
 	UOS_Delay(1000);	/* drift to low with pull downs */
 	M_read(path, &inp2);
-	printf("     In: %02x\n", inp2);
+	printf("     In: %02x\n", (unsigned int)inp2);
 	M_getstat(path, M_LL_IRQ_COUNT, &irqCount);
-	printf("   IRQs: %d  total %d  %s\n", G_sigCount, irqCount, G_sigCount ? "--> fired" : "");
+	printf("   IRQs: %d  total %d  %s\n", (int)G_sigCount, (int)irqCount, G_sigCount ? "--> fired" : "");
 	M_getstat(path, Z17_IRQ_LAST_REQUEST, &lastRequest);	/* get lastRequest */
-	printf("   IREQ: %02x\n", lastRequest);
+	printf("   IREQ: %02x\n", (unsigned int)lastRequest);
 
 	/* 1. */
 	printf("\n set to low, switch to input and try to drift to high\n");
@@ -240,15 +240,15 @@ int main(int argc, char *argv[])
 	M_setstat(path, Z17_CLR_PORTS, 0x55);
 	UOS_Delay(10);
 	M_read(path, &inp1);
-	printf("    Out: %02x\n", inp1);
+	printf("    Out: %02x\n", (unsigned int)inp1);
 	M_setstat(path, Z17_DIRECTION, 0x00);
 	UOS_Delay(1000);	/* drift to low with pull downs */
 	M_read(path, &inp2);
-	printf("     In: %02x\n", inp2);
+	printf("     In: %02x\n", (unsigned int)inp2);
 	M_getstat(path, M_LL_IRQ_COUNT, &irqCount);
-	printf("   IRQs: %d  total %d  %s\n", G_sigCount, irqCount, G_sigCount ? "--> fired" : "");
+	printf("   IRQs: %d  total %d  %s\n", (int)G_sigCount, (int)irqCount, G_sigCount ? "--> fired" : "");
 	M_getstat(path, Z17_IRQ_LAST_REQUEST, &lastRequest);	/* get lastRequest */
-	printf("   IREQ: %02x\n", lastRequest);
+	printf("   IREQ: %02x\n", (unsigned int)lastRequest);
 
 	/*--------------------+
 	|  cleanup            |
