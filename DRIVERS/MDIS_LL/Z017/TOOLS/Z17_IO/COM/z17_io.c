@@ -207,11 +207,11 @@ int main(int argc, char *argv[])
 				printf("port : 7  6  5  4  3  2  1  0\n");
 				printf("state: ");
 				for (n=7; n>=0; n--)
-					printf("%d  ", (val >> n) & 1);
+					printf("%ld  ", (val >> n) & 1);
 				printf("\n\n");
 			} else {
 				printf("input state port #%d: %d (read-value=0x%x)\n",
-							port, (val & portBit) ? 1 : 0, val);
+							(int)port, (val & portBit) ? 1 : 0, (unsigned int)val);
 			}
 			if (getLoop)
 				UOS_Delay(2000);
@@ -222,7 +222,7 @@ int main(int argc, char *argv[])
 	|  set output           |
 	+----------------------*/
 	if (set != (-1)) {
-		printf("set output state port #%s: %d\n", portStr, set);
+		printf("set output state port #%s: %d\n", portStr, (int)set);
 		if ((M_setstat(path, set ? Z17_SET_PORTS : Z17_CLR_PORTS, portBit)) < 0) {
 			PrintError("setstat Z17_SET_PORTS/Z17_CLR_PORTS");
 			goto abort;
@@ -262,7 +262,7 @@ int main(int argc, char *argv[])
 		if (port == (-1))
 			printf("toggle output state ports %s\n", portStr);
 		else
-			printf("toggle output state port #%d\n", portBit);
+			printf("toggle output state port #%d\n", (int)portBit);
 
 		if ((M_setstat(path, Z17_TOG_PORTS, portBit)) < 0) {
 			PrintError("setstat Z17_TOG_PORTS");
