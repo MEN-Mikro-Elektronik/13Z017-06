@@ -489,8 +489,10 @@ static int32 Z17_SetStat(
 )
 {
 	int32 value = (int32)value32_or_64;		/* 32bit value */
+#if defined(Z127_INFO_PTR) || !defined(Z127_NOIRQ)
 	INT32_OR_64 valueP = value32_or_64;		/* stores 32/64bit pointer */
 	M_SG_BLOCK *blk = (M_SG_BLOCK*)valueP;	/* stores block struct pointer */
+#endif
 
 	MACCESS ma = llHdl->ma;
 	int32 error = ERR_SUCCESS;
@@ -780,7 +782,9 @@ static int32 Z17_GetStat(
 	INT32_OR_64 *value64P = value32_or_64P;		/* stores 32/64bit pointer */
 	MACCESS ma = llHdl->ma;
 	int32 error = ERR_SUCCESS;
+#if defined(Z127_INFO_PTR) || !defined(Z127_NOIRQ)
 	M_SG_BLOCK *blk = (M_SG_BLOCK*)value32_or_64P;	/* stores block struct pointer; not needed here */
+#endif
 #ifndef Z127_NOIRQ
 	OSS_IRQ_STATE irqState;
 #endif	/* Z127_NOIRQ */
