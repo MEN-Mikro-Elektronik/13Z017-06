@@ -20,38 +20,25 @@
  *     Required: libraries: mdis_api, usr_oss
  *    \switches  (none)
  */
- /*-------------------------------[ History ]--------------------------------
- *
- * $Log: z17_simp.c,v $
- * Revision 1.9  2017/05/03 16:53:41  DPfeuffer
- * new checkin
- *
- * Revision 1.6  2014/11/28 14:17:45  MRoth
- * R: cosmetics
- * M: revised code completely
- *
- * Revision 1.5  2009/07/10 13:40:12  CRuff
- * R: VxWorks compiler warnings
- * M: changed type of local variables to avoid implicit type conversions
- *
- * Revision 1.4  2009/04/17 10:23:40  MRoth
- * R: stack overflow at signalHandler call for Windows
- * M: Fixed calling convention for UOS_SigInit
- *
- * Revision 1.3  2006/12/20 11:30:39  ufranke
- * added
- *  + getstat code Z17_IRQ_LAST_REQUEST
- *  + program try to fire interrupts without external loopback
- *
- * Revision 1.2  2005/04/27 14:10:12  kp
- * bug fix: enable global device interrupt
- *
- * Revision 1.1  2004/06/18 14:30:01  ub
- * Initial Revision
- *
+ /*
  *---------------------------------------------------------------------------
  * (c) Copyright 2003 by MEN mikro elektronik GmbH, Nuernberg, Germany
  ****************************************************************************/
+ /*
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 static const char RCSid[]="$Id: z17_simp.c,v 1.9 2017/05/03 16:53:41 DPfeuffer Exp $";
 
 /*--------------------------------------+

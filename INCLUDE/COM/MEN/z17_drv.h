@@ -13,37 +13,24 @@
  *    \switches  _ONE_NAMESPACE_PER_DRIVER_
  *               _LL_DRV_
  */
- /*-------------------------------[ History ]--------------------------------
- *
- * $Log: z17_drv.h,v $
- * Revision 2.6  2014/11/28 14:17:53  MRoth
- * R: cosmetics
- * M: revised code completely
- *
- * Revision 2.5  2011/07/08 13:20:17  dpfeuffer
- * R: IRQ latency test required for 16G215-01 design test
- * M: IRQ latency test implemented
- *
- * Revision 2.4  2009/08/03 16:43:29  MRoth
- * R: no support for 32bit Z127_GPIO
- * M: a) added define Z17_IRQ_SENSE_16TO31
- *    b) fixed doxygen comment of define Z17_IRQ_SENSE
- *
- * Revision 2.3  2009/07/10 10:18:06  CRuff
- * R: need backward compatibility to MDIS4 (Linux)
- * M: added defines for data types INT32_OR_64 and MDIS_PATH
- *
- * Revision 2.2  2006/12/20 11:19:13  ufranke
- * added
- *  + getstat code Z17_IRQ_LAST_REQUEST
- *  + set/getstat value documentation
- *
- * Revision 2.1  2004/06/18 14:30:03  ub
- * Initial Revision
- *
+ /*
  *---------------------------------------------------------------------------
  * (c) Copyright 2004 by MEN mikro elektronik GmbH, Nuernberg, Germany
  ****************************************************************************/
+/*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 2 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 #ifndef _Z17_DRV_H
 #define _Z17_DRV_H

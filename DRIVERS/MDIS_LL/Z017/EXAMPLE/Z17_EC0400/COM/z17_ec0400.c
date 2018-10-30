@@ -14,23 +14,24 @@
  *     Required: libraries: mdis_api, usr_oss
  *     \switches (none)
  */
- /*-------------------------------[ History ]--------------------------------
- *
- * $Log: z17_ec0400.c,v $
- * Revision 1.5  2017/05/03 16:53:43  DPfeuffer
- * new checkin
- *
- * Revision 1.2  2009/07/10 13:38:54  CRuff
- * R: Porting to MDIS5
- * M: 1. changed type of M_open Path to MDIS_PATH
- *    2. added __MAPILIB macro to Signal Handler signature
- *
- * Revision 1.1  2005/04/27 14:10:14  kp
- * Initial Revision
- *
+ /*
  *---------------------------------------------------------------------------
  * (c) Copyright 2005 by MEN mikro elektronik GmbH, Nuernberg, Germany
  ****************************************************************************/
+ /*
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 static const char RCSid[]="$Id: z17_ec0400.c,v 1.5 2017/05/03 16:53:43 DPfeuffer Exp $";
 

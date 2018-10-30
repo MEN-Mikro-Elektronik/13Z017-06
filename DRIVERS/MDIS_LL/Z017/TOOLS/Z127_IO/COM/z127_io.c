@@ -14,40 +14,25 @@
  *     Required: libraries: mdis_api, usr_oss, usr_utl
  *    \switches  (none)
  */
- /*-------------------------------[ History ]--------------------------------
- *
- * $Log: z127_io.c,v $
- * Revision 1.9  2017/05/03 16:53:47  DPfeuffer
- * new checkin
- *
- * Revision 1.6  2014/11/28 15:20:07  MRoth
- * R: modifications of revision 1.4 were lost during merge
- * M: re-added modifications of revision 1.4
- *
- * Revision 1.5  2014/11/28 14:17:50  MRoth
- * R: 1.) driver supports toggle function
- *    2.) cosmetics
- * M: 1.) changed toggle mode from loop to setstats
- *    2.) revised code completely
- *
- * Revision 1.4  2011/11/30 16:34:27  dpfeuffer
- * R: last modification was wrong
- * M: last modification fixed
- *
- * Revision 1.3  2011/11/28 12:01:57  dpfeuffer
- * R: too much CPU load with option -h
- * M: delay added
- *
- * Revision 1.2  2011/03/28 11:08:57  dpfeuffer
- * R: error in usage information
- * M: description fixed
- *
- * Revision 1.1  2010/04/09 10:36:52  MRoth
- * Initial Revision
- *
+ /*
  *---------------------------------------------------------------------------
  * (c) Copyright 2010 by MEN Mikro Elektronik GmbH, Nuremberg, Germany
  ****************************************************************************/
+ /*
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 static const char RCSid[]="$Id: z127_io.c,v 1.9 2017/05/03 16:53:47 DPfeuffer Exp $";
 
 /*--------------------------------------+

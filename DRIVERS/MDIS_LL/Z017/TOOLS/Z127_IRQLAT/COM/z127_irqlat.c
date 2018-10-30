@@ -14,19 +14,24 @@
  *     Required: libraries: mdis_api, usr_oss, usr_utl
  *     \switches (none)
  */
- /*-------------------------------[ History ]--------------------------------
- *
- * $Log: z127_irqlat.c,v $
- * Revision 1.2  2011/07/27 15:17:52  dpfeuffer
- * R: return value dosn't reflect error case
- * M: return value now 1 for error case
- *
- * Revision 1.1  2011/07/08 13:20:14  dpfeuffer
- * Initial Revision
- *
+ /*
  *---------------------------------------------------------------------------
  * (c) Copyright 2011 by MEN Mikro Elektronik GmbH, Nuremberg, Germany
  ****************************************************************************/
+ /*
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include <stdio.h>
 #include <string.h>

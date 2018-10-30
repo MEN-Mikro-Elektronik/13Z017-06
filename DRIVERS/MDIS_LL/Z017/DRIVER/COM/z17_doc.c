@@ -12,30 +12,25 @@
  *
  *     \switches -
  */
- /*-------------------------------[ History ]--------------------------------
- *
- * $Log: z17_doc.c,v $
- * Revision 1.7  2017/05/03 16:52:08  DPfeuffer
- * R: new tools z127_in, z127_out
- * M: tools added
- *
- * Revision 1.4  2014/11/28 14:17:39  MRoth
- * R: cosmetics
- * M: revised code completely
- *
- * Revision 1.3  2009/07/10 13:37:24  CRuff
- * R: Porting to MDIS5
- * M: Changed description to MDIS5; added compatibility hint
- *
- * Revision 1.2  2006/08/02 08:31:50  DPfeuffer
- * z17_io tool added, cosmetics
- *
- * Revision 1.1  2004/06/18 14:29:51  ub
- * Initial Revision
- *
+ /*
  *---------------------------------------------------------------------------
  * (c) Copyright 2004 by MEN Mikro Elektronik GmbH, Nuernberg, Germany
  ****************************************************************************/
+/*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 2 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 /*! \mainpage
 	This is the documentation of the MDIS low-level driver for the 
 	16Z034, 16Z037 and 16Z127 GPIO controller.

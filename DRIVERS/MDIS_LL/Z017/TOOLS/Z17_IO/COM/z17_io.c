@@ -14,51 +14,25 @@
  *     Required: libraries: mdis_api, usr_oss, usr_utl
  *    \switches  (none)
  */
- /*-------------------------------[ History ]--------------------------------
- *
- * $Log: z17_io.c,v $
- * Revision 1.12  2017/05/03 16:53:45  DPfeuffer
- * new checkin
- *
- * Revision 1.9  2014/11/28 15:20:05  MRoth
- * R: modifications of revision 1.7 were lost during merge
- * M: re-added modifications of revision 1.7
- *
- * Revision 1.8  2014/11/28 14:17:47  MRoth
- * R: 1.) driver supports toggle function
- *    2.) cosmetics
- * M: 1.) changed toggle mode from loop to setstats
- *    2.) revised code completely
- *
- * Revision 1.7  2011/11/30 16:34:33  dpfeuffer
- * R: last modification was wrong
- * M: last modification fixed
- *
- * Revision 1.6  2011/11/28 12:02:02  dpfeuffer
- * R: too much CPU load with option -h
- * M: delay added
- *
- * Revision 1.5  2011/03/28 11:08:55  dpfeuffer
- * R: error in usage information
- * M: description fixed
- *
- * Revision 1.4  2009/07/10 13:40:54  CRuff
- * R: Porting to MDIS5
- * M: changed type of M_open Path variable to MDIS_PATH
- *
- * Revision 1.3  2008/05/07 11:17:49  ts
- * included <stdlib.h> to remove warning about implicitely defined func. atoi()
- *
- * Revision 1.2  2006/12/20 11:30:59  ufranke
- * removed
- *  - unused variable warning
- *
- * Revision 1.1  2006/08/02 08:31:52  DPfeuffer
- * Initial Revision
- *
+ /*
  *---------------------------------------------------------------------------
  * (c) Copyright 2006 by MEN mikro elektronik GmbH, Nuernberg, Germany
  ****************************************************************************/
+ /*
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 static const char RCSid[]="$Id: z17_io.c,v 1.12 2017/05/03 16:53:45 DPfeuffer Exp $";
 
 /*--------------------------------------+

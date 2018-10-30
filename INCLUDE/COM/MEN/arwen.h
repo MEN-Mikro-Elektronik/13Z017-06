@@ -10,28 +10,23 @@
  *
  *     Switches: -
  *
- *-------------------------------[ History ]---------------------------------
- *
- * $Log: arwen.h,v $
- * Revision 2.5  2009/08/03 16:43:31  MRoth
- * R: no support for 32bit Z127_GPIO
- * M: fixed doxygen comment of define ARWEN_02_IER1 and ARWEN_02_IER2
- *
- * Revision 2.4  2005/06/23 16:11:12  kp
- * Copyright line changed (sbo)
- *
- * Revision 2.3  2004/03/03 13:53:05  kp
- * added new Arwen 02 regs
- *
- * Revision 2.2  2004/02/16 13:56:31  kp
- * fixed bad offset defs
- *
- * Revision 2.1  2004/02/06 08:41:52  kp
- * Initial Revision
- *
  *---------------------------------------------------------------------------
  * (c) Copyright 2004 by MEN Mikro Elektronik GmbH, Nuremberg, Germany
  ****************************************************************************/
+/*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 2 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 #ifndef _ARWEN_H
 #define _ARWEN_H

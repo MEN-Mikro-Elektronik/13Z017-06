@@ -15,74 +15,24 @@
  *               Z17_MODEL_Z127
  *               Z127_NOIRQ
  */
- /*-------------------------------[ History ]--------------------------------
- *
- * $Log: z17_drv.c,v $
- * Revision 1.15  2017/05/03 16:52:05  DPfeuffer
- * new checkin
- *
- * Revision 1.12  2016/07/13 10:09:33  ts
- * R: m_open failed on EM10A00 GPIOs with 0x20 address space size.
- * M: previous default ADDRSPACE_SIZE of 0x100 failed to match, corrected back to 0x20.
- *    (corrected in next commit)    
- *
- * Revision 1.11  2014/11/28 14:17:37  MRoth
- * R: 1.) no toggle function for GPIOs
- *    2.) Z127 variant always requested an IRQ even if it had none in Hardware
- *    3.) no support for MSI(x) - no IRQ should happen during ISR
- *    4.) GPIO reset at driver exit (m_close) not always wanted
- *    5.) cosmetics
- * M: 1.a) added setstats Z17_TOG_PORTS, Z17_TOG_HIGH, Z17_TOG_LOW
- *      b) added AlarmHandler() for timer
- *    2.) introduced Z127_NOIRQ variant to inhibit IRQs.
- *    3.) disable IRQs at the beginning and re-enable at the end of the ISR
- *    4.) added RESET_OFF descriptor key to init function
- *    5.) revised code completely
- *
- * Revision 1.10  2011/11/16 15:24:31  GLeonhardt
- * R: 1.) Interrupts for GPIO 4-7 did not work with Z34/Z37 core
- *        A preprocessor string comparison did not work.
- *        Driver always compiled as Z127 model with 32 bit registers.
- * M: 1.) Replace string comparison with driver switch from Makefile.
- *
- * Revision 1.9  2011/09/12 13:51:23  GLeonhardt
- * R: Compiler error, if MWRITE_D32 macro is a compound statement
- * M: Embed macro in braces
- *
- * Revision 1.8  2011/07/27 15:17:49  dpfeuffer
- * R: IRQ latency test initialization problem
- * M: IRQ latency test initialization revised
- *
- * Revision 1.7  2011/07/08 13:20:09  dpfeuffer
- * R: IRQ latency test required for 16G215-01 design test
- * M: IRQ latency test implemented
- *
- * Revision 1.6  2009/08/03 16:43:18  MRoth
- * R: no support for 32 bit Z127_GPIO IP core
- * M: a) added define Z17_MODEL_Z127
- *    b) added Z17_MODEL_Z127 section to setstat/getstat functions
- *
- * Revision 1.5  2009/07/10 10:15:49  CRuff
- * R: compiler warnings because of unused variables
- * M: commented out the unused variables
- *
- * Revision 1.4  2009/04/17 10:23:38  MRoth
- * R: no 64 Bit support
- * M: changed set/getstat to support 64 Bit
- *
- * Revision 1.3  2006/12/20 11:23:21  ufranke
- * added
- *  + getstat code Z17_IRQ_LAST_REQUEST
- *
- * Revision 1.2  2006/06/01 17:03:12  cs
- * changed ADDRSPACE_SIZE to 32 (real size is reported by Chameleon BBIS)
- *
- * Revision 1.1  2004/06/18 14:29:50  ub
- * Initial Revision
- *
+ /*
  *---------------------------------------------------------------------------
  * (c) Copyright 2004 by MEN Mikro Elektronik GmbH, Nuernberg, Germany
  ****************************************************************************/
+ /*
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define _NO_LL_HANDLE        /* ll_defs.h: don't define LL_HANDLE struct */
 
