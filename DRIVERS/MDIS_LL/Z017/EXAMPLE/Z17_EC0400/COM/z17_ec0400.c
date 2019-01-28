@@ -33,8 +33,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-static const char RCSid[]="$Id: z17_ec0400.c,v 1.5 2017/05/03 16:53:43 DPfeuffer Exp $";
-
 #include <stdio.h>
 #include <string.h>
 #include <MEN/men_typs.h>
