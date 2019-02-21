@@ -6,14 +6,8 @@
 #
 #    Description: Makefile definitions for the Z17_Z127-01 driver variant
 #
-#---------------------------------[ History ]---------------------------------
-#
-#   $Log: driver_z127v01_sw.mak,v $
-#   Revision 1.1  2017/05/03 16:53:40  DPfeuffer
-#   Initial Revision
-#
 #-----------------------------------------------------------------------------
-#   (c) Copyright 2016 by MEN Mikro Elektronik GmbH, Nuremberg, Germany
+#   Copyright (c) 2016-2019, MEN Mikro Elektronik GmbH
 #*****************************************************************************
 
 MAK_NAME=z17_z127v01_sw

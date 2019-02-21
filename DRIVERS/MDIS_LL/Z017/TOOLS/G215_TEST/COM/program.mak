@@ -6,14 +6,8 @@
 #
 #    Description: Makefile definitions for the G215 tool
 #
-#---------------------------------[ History ]---------------------------------
-#
-#   $Log: program.mak,v $
-#   Revision 1.1  2011/03/28 11:09:01  dpfeuffer
-#   Initial Revision
-#
 #-----------------------------------------------------------------------------
-#   (c) Copyright 2011 by MEN mikro elektronik GmbH, Nuernberg, Germany
+#   Copyright (c) 2011-2019, MEN Mikro Elektronik GmbH
 #*****************************************************************************
 
 MAK_NAME=g215_test

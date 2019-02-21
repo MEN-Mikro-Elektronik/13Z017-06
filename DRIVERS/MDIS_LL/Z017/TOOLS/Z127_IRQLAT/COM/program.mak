@@ -6,14 +6,8 @@
 #
 #    Description: Makefile definitions for the Z127_IRQLAT tool
 #
-#---------------------------------[ History ]---------------------------------
-#
-#   $Log: program.mak,v $
-#   Revision 1.1  2011/07/08 13:20:16  dpfeuffer
-#   Initial Revision
-#
 #-----------------------------------------------------------------------------
-#   (c) Copyright 2011 by MEN mikro elektronik GmbH, Nuernberg, Germany
+#   Copyright (c) 2011-2019, MEN Mikro Elektronik GmbH
 #*****************************************************************************
 
 MAK_NAME=z127_irqlat

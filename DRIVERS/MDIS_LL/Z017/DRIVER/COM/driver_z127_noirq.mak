@@ -6,17 +6,8 @@
 #
 #    Description: Makefile definitions for the Z17_Z127_NOIRQ driver variant
 #
-#---------------------------------[ History ]---------------------------------
-#
-#   $Log: driver_z127_noirq.mak,v $
-#   Revision 1.2  2017/05/03 16:53:34  DPfeuffer
-#   set Z17_VARIANT=Z17_Z127_NOIRQ
-#
-#   Revision 1.1  2014/11/28 14:17:42  MRoth
-#   Initial Revision
-##
 #-----------------------------------------------------------------------------
-#   (c) Copyright 2014 by MEN Mikro Elektronik GmbH, Nuremberg, Germany
+#   Copyright (c) 2014-2019, MEN Mikro Elektronik GmbH
 #*****************************************************************************
 
 MAK_NAME=z17_z127_noirq

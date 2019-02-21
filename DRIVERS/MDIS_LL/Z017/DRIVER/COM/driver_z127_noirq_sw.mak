@@ -6,27 +6,8 @@
 #
 #    Description: Makefile definitions for the Z17_Z127 driver variant
 #
-#---------------------------------[ History ]---------------------------------
-#
-#   $Log: driver_z127_noirq_sw.mak,v $
-#   Revision 1.2  2017/05/03 16:53:36  DPfeuffer
-#   set Z17_VARIANT=Z17_Z127_NOIRQ_SW
-#
-#   Revision 1.1  2014/11/28 14:17:43  MRoth
-#   Initial Revision
-#
-#   Revision 1.2  2011/11/16 15:24:36  GLeonhardt
-#   R: 1.) Interrupts for GPIO 4-7 did not work with Z34/Z37 core
-#          A preprocessor string comparison did not work.
-#          Driver always compiled as Z127 model with 32 bit registers.
-#   M: 1.) Replace string comparison with driver switch from Makefile.
-#          Add switch Z17_MODEL_Z127.
-#
-#   Revision 1.1  2009/08/03 16:43:21  MRoth
-#   Initial Revision
-#
 #-----------------------------------------------------------------------------
-#   (c) Copyright 2009 by MEN Mikro Elektronik GmbH, Nuremberg, Germany
+#   Copyright (c) 2009-2019, MEN Mikro Elektronik GmbH
 #*****************************************************************************
 
 MAK_NAME=z17_z127_noirq_sw

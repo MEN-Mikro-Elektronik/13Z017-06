@@ -6,14 +6,8 @@
 #
 #    Description: Makefile definitions for the Z17 example program
 #
-#---------------------------------[ History ]---------------------------------
-#
-#   $Log: program.mak,v $
-#   Revision 1.1  2005/04/27 14:10:15  kp
-#   Initial Revision
-#
 #-----------------------------------------------------------------------------
-#   (c) Copyright 2005 by MEN mikro elektronik GmbH, Nuernberg, Germany
+#   Copyright (c) 2005-2019, MEN Mikro Elektronik GmbH
 #*****************************************************************************
 
 MAK_NAME=z17_ec0400

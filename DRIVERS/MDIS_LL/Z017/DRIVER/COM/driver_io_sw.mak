@@ -6,17 +6,8 @@
 #
 #    Description: Makefile definitions for the Z17 driver (IO mapped, swapped)
 #
-#---------------------------------[ History ]---------------------------------
-#
-#   $Log: driver_io_sw.mak,v $
-#   Revision 1.1  2011/03/28 11:08:54  dpfeuffer
-#   Initial Revision
-#
-#   Revision 1.1  2004/06/18 14:29:54  ub
-#   Initial Revision
-#
 #-----------------------------------------------------------------------------
-#   (c) Copyright 2000 by MEN mikro elektronik GmbH, Nuernberg, Germany
+#   Copyright (c) 2000-2019, MEN Mikro Elektronik GmbH
 #*****************************************************************************
 
 MAK_NAME=z17_io_sw

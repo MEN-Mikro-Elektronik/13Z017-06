@@ -6,14 +6,8 @@
 #
 #    Description: Makefile definitions for the Z127_OUT tool
 #
-#---------------------------------[ History ]---------------------------------
-#
-#   $Log: program.mak,v $
-#   Revision 1.1  2017/05/03 16:53:53  DPfeuffer
-#   Initial Revision
-#
 #-----------------------------------------------------------------------------
-#   (c) Copyright 2016 by MEN mikro elektronik GmbH, Nuernberg, Germany
+#   Copyright (c) 2016-2019, MEN Mikro Elektronik GmbH
 #*****************************************************************************
 
 MAK_NAME=z127_out

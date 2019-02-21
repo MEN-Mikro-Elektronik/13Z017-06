@@ -7,15 +7,8 @@
 #    Description: Makefile definitions for the Z17 driver in IO mapped (x86)
 #                 FPGAs, e.g. F11S
 #
-#---------------------------------[ History ]---------------------------------
-#
-#   $Log: driver_io.mak,v $
-#   Revision 1.1  2010/05/21 11:41:38  ts
-#   Initial Revision
-#
-#
 #-----------------------------------------------------------------------------
-#   (c) Copyright 2000 by MEN mikro elektronik GmbH, Nuernberg, Germany
+#   Copyright (c) 2000-2019, MEN Mikro Elektronik GmbH
 #*****************************************************************************
 
 MAK_NAME=z17_io
