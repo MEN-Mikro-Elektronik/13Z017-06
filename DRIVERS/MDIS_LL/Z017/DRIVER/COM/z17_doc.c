@@ -248,6 +248,6 @@ Tool to control the 16Z127 (32-bit) inputs
 Tool to control the 16Z127 (32-bit) outputs
 */
 
-/*! \page dummy
+/*! \page z17dummy MEN logo
   \menimages
 */
