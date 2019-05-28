@@ -11,7 +11,7 @@
 
 <div class="left_to_right" style="padding-top: 6px; background-color: #F0F0F0; height: 110px; border-bottom: 2px solid #D1D1D2;">
 	<!-- Titel -->
-	<img src="menlogo.gif" alt="MEN" style="float: left; height: 103px; width: 155px; margin: 0px;"></a>
+	<img src="menlogo.gif" alt="MEN" style="float: left; height: 103px; width: 155px; margin: 0px;">
 	<h1 style="margin: 0px; padding-top: 35px; padding-bottom: 0px;">Z17 MDIS Driver &nbsp; </h1>
 	<h3>Example Documentation</h3>
 </div>
@@ -28,42 +28,26 @@
 <span class="comment"> ************                   Z17_SIMP                         ************</span>
 <span class="comment"> ************                                                    ************</span>
 <span class="comment"> ****************************************************************************/</span>
- <span class="comment">/*-------------------------------[ History ]--------------------------------</span>
-<span class="comment"> *</span>
-<span class="comment"> * $Log: z17__simp_8c-example.html,v $
-<span class="comment"> * Revision 1.30  2017/05/03 16:58:39  DPfeuffer
-<span class="comment"> * (AUTOCI) Checkin due to new revision Release-1.27 of fileset ART/13Z017-06/13Z017-06
-<span class="comment"> *</span>
-<span class="comment"> * Revision 1.9  2017/05/03 16:53:41  DPfeuffer</span>
-<span class="comment"> * new checkin</span>
-<span class="comment"> *</span>
-<span class="comment"> * Revision 1.6  2014/11/28 14:17:45  MRoth</span>
-<span class="comment"> * R: cosmetics</span>
-<span class="comment"> * M: revised code completely</span>
-<span class="comment"> *</span>
-<span class="comment"> * Revision 1.5  2009/07/10 13:40:12  CRuff</span>
-<span class="comment"> * R: VxWorks compiler warnings</span>
-<span class="comment"> * M: changed type of local variables to avoid implicit type conversions</span>
-<span class="comment"> *</span>
-<span class="comment"> * Revision 1.4  2009/04/17 10:23:40  MRoth</span>
-<span class="comment"> * R: stack overflow at signalHandler call for Windows</span>
-<span class="comment"> * M: Fixed calling convention for UOS_SigInit</span>
-<span class="comment"> *</span>
-<span class="comment"> * Revision 1.3  2006/12/20 11:30:39  ufranke</span>
-<span class="comment"> * added</span>
-<span class="comment"> *  + getstat code Z17_IRQ_LAST_REQUEST</span>
-<span class="comment"> *  + program try to fire interrupts without external loopback</span>
-<span class="comment"> *</span>
-<span class="comment"> * Revision 1.2  2005/04/27 14:10:12  kp</span>
-<span class="comment"> * bug fix: enable global device interrupt</span>
-<span class="comment"> *</span>
-<span class="comment"> * Revision 1.1  2004/06/18 14:30:01  ub</span>
-<span class="comment"> * Initial Revision</span>
-<span class="comment"> *</span>
+ <span class="comment">/*</span>
 <span class="comment"> *---------------------------------------------------------------------------</span>
-<span class="comment"> * (c) Copyright 2003 by MEN mikro elektronik GmbH, Nuernberg, Germany</span>
+<span class="comment"> * Copyright (c) 2003-2019, MEN Mikro Elektronik GmbH</span>
 <span class="comment"> ****************************************************************************/</span>
-<span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> RCSid[]=<span class="stringliteral">"$Id: z17__simp_8c-example.html,v 1.30 2017/05/03 16:58:39 DPfeuffer Exp $"</span>;
+ <span class="comment">/*</span>
+<span class="comment"> * This program is free software: you can redistribute it and/or modify</span>
+<span class="comment"> * it under the terms of the GNU General Public License as published by</span>
+<span class="comment"> * the Free Software Foundation, either version 2 of the License, or</span>
+<span class="comment"> * (at your option) any later version.</span>
+<span class="comment"> *</span>
+<span class="comment"> * This program is distributed in the hope that it will be useful,</span>
+<span class="comment"> * but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="comment"> * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="comment"> * GNU General Public License for more details.</span>
+<span class="comment"> *</span>
+<span class="comment"> * You should have received a copy of the GNU General Public License</span>
+<span class="comment"> * along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<span class="comment"> */</span>
+
+<span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> RCSid[]=<span class="stringliteral">"$Id: z17_simp.c,v 1.9 2017/05/03 16:53:41 DPfeuffer Exp $"</span>;
 
 <span class="comment">/*--------------------------------------+</span>
 <span class="comment">|  INCLUDES                             |</span>
@@ -111,7 +95,7 @@
     int32     inp, inp1, inp2;
     int32     lastRequest;
     int32     irqCount;
-    u_int32   out;
+    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>   out;
     <a class="code" href="z17__drv_8h.html#a22">MDIS_PATH</a> path;
 
     <span class="keywordflow">if</span> (argc &lt; 2 || strcmp(argv[1], <span class="stringliteral">"-?"</span>) == 0) {
@@ -124,7 +108,7 @@
     <span class="comment">/*--------------------+</span>
 <span class="comment">    |  open path          |</span>
 <span class="comment">    +--------------------*/</span>
-    <span class="keywordflow">if</span> ((path = M_open(device)) &lt; 0) {
+    <span class="keywordflow">if</span> ((path = <a name="a30"></a><a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a4">M_open</a>(device)) &lt; 0) {
         PrintError(<span class="stringliteral">"open"</span>);
         <span class="keywordflow">return</span> (1);
     }
@@ -135,17 +119,17 @@
     <span class="comment">/* install signal which will be received at change of input ports */</span>
     UOS_SigInit(SignalHandler);
     UOS_SigInstall(UOS_SIG_USR1);
-    M_setstat(path, Z17_SET_SIGNAL, UOS_SIG_USR1);
+    <a name="a31"></a><a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a13">M_setstat</a>(path, Z17_SET_SIGNAL, UOS_SIG_USR1);
 
     <span class="comment">/* program lower five ports as outputs, others as inputs */</span>
-    M_write(path, 0x00);
-    M_setstat(path, Z17_DIRECTION, 0x1f);
+    <a name="a32"></a><a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a11">M_write</a>(path, 0x00);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a13">M_setstat</a>(path, Z17_DIRECTION, 0x1f);
 
     <span class="comment">/* generate interrupts on rising edge of inputs */</span>
-    M_setstat(path, Z17_IRQ_SENSE, 0x5400);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a13">M_setstat</a>(path, Z17_IRQ_SENSE, 0x5400);
 
     <span class="comment">/* enable global device interrupt */</span>
-    M_setstat(path, M_MK_IRQ_ENABLE, TRUE);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a13">M_setstat</a>(path, M_MK_IRQ_ENABLE, TRUE);
 
     <span class="comment">/*--------------------+</span>
 <span class="comment">    |  output values      |</span>
@@ -155,26 +139,26 @@
     <span class="keywordflow">for</span> (out = 0; out &lt; 32; ++out) {
         <span class="keywordtype">char</span> buf1[40], buf2[40];
 
-        M_write(path, out);
+        <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a11">M_write</a>(path, out);
         UOS_Delay(10);
-        M_read(path, &amp;inp);
+        <a name="a33"></a><a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a10">M_read</a>(path, (int32*)&amp;inp);
 
         printf(<span class="stringliteral">"%2d    |   Out: %s     In: %s (0x%x) IRQs: %d\n"</span>,
                     out, bitString(buf1, out, 5), bitString(buf2, inp, 8),
-                    inp, G_sigCount);
+                    (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)inp, (<span class="keywordtype">int</span>)G_sigCount);
 
         UOS_Delay(100);
     }
 
     <span class="comment">/* clear ports 0 and 1 */</span>
-    M_setstat(path, Z17_CLR_PORTS, 0x03);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a13">M_setstat</a>(path, Z17_CLR_PORTS, 0x03);
     UOS_Delay(10);
-    M_read(path, &amp;inp);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a10">M_read</a>(path, &amp;inp);
 
     <span class="comment">/* set port 0 */</span>
-    M_setstat(path, Z17_SET_PORTS, 0x01);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a13">M_setstat</a>(path, Z17_SET_PORTS, 0x01);
     UOS_Delay(10);
-    M_read(path, &amp;inp);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a10">M_read</a>(path, &amp;inp);
 
     <span class="comment">/*------------------------------------------------+</span>
 <span class="comment">    |  try to generate interrupts by                  |</span>
@@ -182,84 +166,84 @@
 <span class="comment">    |   2. setting high and switch to input and wait  |</span>
 <span class="comment">    +------------------------------------------------*/</span>
     printf(<span class="stringliteral">"\n\ntry to generate interrupts without external loopback\n"</span>);
-    M_setstat(path, Z17_IRQ_SENSE, 0xFFFF); <span class="comment">/* generate interrupts for all channels on rising and falling edge */</span>
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a13">M_setstat</a>(path, Z17_IRQ_SENSE, 0xFFFF); <span class="comment">/* generate interrupts for all channels on rising and falling edge */</span>
 
     <span class="comment">/* 2. */</span>
     printf(<span class="stringliteral">"\n set to high, switch to input and try to drift to low\n"</span>);
     G_sigCount = 0;
-    M_setstat(path, Z17_DIRECTION, 0xff);
-    M_setstat(path, Z17_SET_PORTS, 0xff);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a13">M_setstat</a>(path, Z17_DIRECTION, 0xff);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a13">M_setstat</a>(path, Z17_SET_PORTS, 0xff);
     UOS_Delay(10);
-    M_read(path, &amp;inp1);
-    printf(<span class="stringliteral">"    Out: %02x\n"</span>, inp1);
-    M_setstat(path, Z17_DIRECTION, 0x00);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a10">M_read</a>(path, &amp;inp1);
+    printf(<span class="stringliteral">"    Out: %02x\n"</span>, (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)inp1);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a13">M_setstat</a>(path, Z17_DIRECTION, 0x00);
     UOS_Delay(1000);    <span class="comment">/* drift to low with pull downs */</span>
-    M_read(path, &amp;inp2);
-    printf(<span class="stringliteral">"     In: %02x\n"</span>, inp2);
-    M_getstat(path, M_LL_IRQ_COUNT, &amp;irqCount);
-    printf(<span class="stringliteral">"   IRQs: %d  total %d  %s\n"</span>, G_sigCount, irqCount, G_sigCount ? <span class="stringliteral">"--&gt; fired"</span> : <span class="stringliteral">""</span>);
-    M_getstat(path, Z17_IRQ_LAST_REQUEST, &amp;lastRequest); <span class="comment">/* get lastRequest */</span>
-    printf(<span class="stringliteral">"   IREQ: %02x\n"</span>, lastRequest);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a10">M_read</a>(path, &amp;inp2);
+    printf(<span class="stringliteral">"     In: %02x\n"</span>, (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)inp2);
+    <a name="a34"></a><a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(path, M_LL_IRQ_COUNT, &amp;irqCount);
+    printf(<span class="stringliteral">"   IRQs: %d  total %d  %s\n"</span>, (<span class="keywordtype">int</span>)G_sigCount, (<span class="keywordtype">int</span>)irqCount, G_sigCount ? <span class="stringliteral">"--&gt; fired"</span> : <span class="stringliteral">""</span>);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(path, Z17_IRQ_LAST_REQUEST, &amp;lastRequest); <span class="comment">/* get lastRequest */</span>
+    printf(<span class="stringliteral">"   IREQ: %02x\n"</span>, (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)lastRequest);
 
     <span class="comment">/* 1. */</span>
     printf(<span class="stringliteral">"\n set to low, switch to input and try to drift to high\n"</span>);
     G_sigCount = 0;
-    M_setstat(path, Z17_DIRECTION, 0xff);
-    M_setstat(path, Z17_CLR_PORTS, 0xAA);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a13">M_setstat</a>(path, Z17_DIRECTION, 0xff);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a13">M_setstat</a>(path, Z17_CLR_PORTS, 0xAA);
     UOS_Delay(10);
-    M_read(path, &amp;inp1);
-    printf(<span class="stringliteral">"    Out: %02x\n"</span>, inp1);
-    M_setstat(path, Z17_DIRECTION, 0x00);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a10">M_read</a>(path, &amp;inp1);
+    printf(<span class="stringliteral">"    Out: %02x\n"</span>, (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)inp1);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a13">M_setstat</a>(path, Z17_DIRECTION, 0x00);
     UOS_Delay(1000);    <span class="comment">/* drift to low with pull downs */</span>
-    M_read(path, &amp;inp2);
-    printf(<span class="stringliteral">"     In: %02x\n"</span>, inp2);
-    M_getstat(path, M_LL_IRQ_COUNT, &amp;irqCount);
-    printf(<span class="stringliteral">"   IRQs: %d  total %d  %s\n"</span>, G_sigCount, irqCount, G_sigCount ? <span class="stringliteral">"--&gt; fired"</span> : <span class="stringliteral">""</span>);
-    M_getstat(path, Z17_IRQ_LAST_REQUEST, &amp;lastRequest);    <span class="comment">/* get lastRequest */</span>
-    printf(<span class="stringliteral">"   IREQ: %02x\n"</span>, lastRequest);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a10">M_read</a>(path, &amp;inp2);
+    printf(<span class="stringliteral">"     In: %02x\n"</span>, (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)inp2);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(path, M_LL_IRQ_COUNT, &amp;irqCount);
+    printf(<span class="stringliteral">"   IRQs: %d  total %d  %s\n"</span>, (<span class="keywordtype">int</span>)G_sigCount, (<span class="keywordtype">int</span>)irqCount, G_sigCount ? <span class="stringliteral">"--&gt; fired"</span> : <span class="stringliteral">""</span>);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(path, Z17_IRQ_LAST_REQUEST, &amp;lastRequest);    <span class="comment">/* get lastRequest */</span>
+    printf(<span class="stringliteral">"   IREQ: %02x\n"</span>, (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)lastRequest);
 
     <span class="comment">/* 2. */</span>
     printf(<span class="stringliteral">"\n set to high, switch to input and try to drift to low\n"</span>);
     G_sigCount = 0;
-    M_setstat(path, Z17_DIRECTION, 0xff);
-    M_setstat(path, Z17_SET_PORTS, 0xff);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a13">M_setstat</a>(path, Z17_DIRECTION, 0xff);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a13">M_setstat</a>(path, Z17_SET_PORTS, 0xff);
     UOS_Delay(10);
-    M_read(path, &amp;inp1);
-    printf(<span class="stringliteral">"    Out: %02x\n"</span>, inp1);
-    M_setstat(path, Z17_DIRECTION, 0x00);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a10">M_read</a>(path, &amp;inp1);
+    printf(<span class="stringliteral">"    Out: %02x\n"</span>, (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)inp1);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a13">M_setstat</a>(path, Z17_DIRECTION, 0x00);
     UOS_Delay(1000);    <span class="comment">/* drift to low with pull downs */</span>
-    M_read(path, &amp;inp2);
-    printf(<span class="stringliteral">"     In: %02x\n"</span>, inp2);
-    M_getstat(path, M_LL_IRQ_COUNT, &amp;irqCount);
-    printf(<span class="stringliteral">"   IRQs: %d  total %d  %s\n"</span>, G_sigCount, irqCount, G_sigCount ? <span class="stringliteral">"--&gt; fired"</span> : <span class="stringliteral">""</span>);
-    M_getstat(path, Z17_IRQ_LAST_REQUEST, &amp;lastRequest);    <span class="comment">/* get lastRequest */</span>
-    printf(<span class="stringliteral">"   IREQ: %02x\n"</span>, lastRequest);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a10">M_read</a>(path, &amp;inp2);
+    printf(<span class="stringliteral">"     In: %02x\n"</span>, (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)inp2);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(path, M_LL_IRQ_COUNT, &amp;irqCount);
+    printf(<span class="stringliteral">"   IRQs: %d  total %d  %s\n"</span>, (<span class="keywordtype">int</span>)G_sigCount, (<span class="keywordtype">int</span>)irqCount, G_sigCount ? <span class="stringliteral">"--&gt; fired"</span> : <span class="stringliteral">""</span>);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(path, Z17_IRQ_LAST_REQUEST, &amp;lastRequest);    <span class="comment">/* get lastRequest */</span>
+    printf(<span class="stringliteral">"   IREQ: %02x\n"</span>, (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)lastRequest);
 
     <span class="comment">/* 1. */</span>
     printf(<span class="stringliteral">"\n set to low, switch to input and try to drift to high\n"</span>);
     G_sigCount = 0;
-    M_setstat(path, Z17_DIRECTION, 0xff);
-    M_setstat(path, Z17_CLR_PORTS, 0x55);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a13">M_setstat</a>(path, Z17_DIRECTION, 0xff);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a13">M_setstat</a>(path, Z17_CLR_PORTS, 0x55);
     UOS_Delay(10);
-    M_read(path, &amp;inp1);
-    printf(<span class="stringliteral">"    Out: %02x\n"</span>, inp1);
-    M_setstat(path, Z17_DIRECTION, 0x00);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a10">M_read</a>(path, &amp;inp1);
+    printf(<span class="stringliteral">"    Out: %02x\n"</span>, (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)inp1);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a13">M_setstat</a>(path, Z17_DIRECTION, 0x00);
     UOS_Delay(1000);    <span class="comment">/* drift to low with pull downs */</span>
-    M_read(path, &amp;inp2);
-    printf(<span class="stringliteral">"     In: %02x\n"</span>, inp2);
-    M_getstat(path, M_LL_IRQ_COUNT, &amp;irqCount);
-    printf(<span class="stringliteral">"   IRQs: %d  total %d  %s\n"</span>, G_sigCount, irqCount, G_sigCount ? <span class="stringliteral">"--&gt; fired"</span> : <span class="stringliteral">""</span>);
-    M_getstat(path, Z17_IRQ_LAST_REQUEST, &amp;lastRequest);    <span class="comment">/* get lastRequest */</span>
-    printf(<span class="stringliteral">"   IREQ: %02x\n"</span>, lastRequest);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a10">M_read</a>(path, &amp;inp2);
+    printf(<span class="stringliteral">"     In: %02x\n"</span>, (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)inp2);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(path, M_LL_IRQ_COUNT, &amp;irqCount);
+    printf(<span class="stringliteral">"   IRQs: %d  total %d  %s\n"</span>, (<span class="keywordtype">int</span>)G_sigCount, (<span class="keywordtype">int</span>)irqCount, G_sigCount ? <span class="stringliteral">"--&gt; fired"</span> : <span class="stringliteral">""</span>);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(path, Z17_IRQ_LAST_REQUEST, &amp;lastRequest);    <span class="comment">/* get lastRequest */</span>
+    printf(<span class="stringliteral">"   IREQ: %02x\n"</span>, (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)lastRequest);
 
     <span class="comment">/*--------------------+</span>
 <span class="comment">    |  cleanup            |</span>
 <span class="comment">    +--------------------*/</span>
-    M_setstat(path, Z17_CLR_SIGNAL, 0);
+    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a13">M_setstat</a>(path, Z17_CLR_SIGNAL, 0);
     UOS_SigRemove(UOS_SIG_USR1);
     UOS_SigExit();
 
-    <span class="keywordflow">if</span> (M_close(path) &lt; 0)
+    <span class="keywordflow">if</span> (<a name="a35"></a><a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a9">M_close</a>(path) &lt; 0)
         PrintError(<span class="stringliteral">"close"</span>);
 
     <span class="keywordflow">return</span> (0);
@@ -268,7 +252,7 @@
 <span class="comment">/********************************* PrintError ******************************/</span>
 <span class="keyword">static</span> <span class="keywordtype">void</span> PrintError(<span class="keywordtype">char</span> *info)
 {
-    printf(<span class="stringliteral">"*** can't %s: %s\n"</span>, info, M_errstring(UOS_ErrnoGet()));
+    printf(<span class="stringliteral">"*** can't %s: %s\n"</span>, info, <a name="a36"></a><a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/m__errstr_8c.html#a0">M_errstring</a>(UOS_ErrnoGet()));
 }
 
 <span class="comment">/**********************************************************************/</span>
@@ -306,7 +290,7 @@
 <!-- Footer -->
 	<p class="footer">
 	Generated for Z17 MDIS Driver using <a href="http://www.doxygen.org">doxygen</a>.<br>
-	Copyright &copy; 2017 <a href="http://www.men.de">MEN Mikro Elektronik GmbH</a>. All Rights Reserved.
+	Copyright &copy; 2019 <a href="http://www.men.de">MEN Mikro Elektronik GmbH</a>. All Rights Reserved.
 	</p>
 </div>
 

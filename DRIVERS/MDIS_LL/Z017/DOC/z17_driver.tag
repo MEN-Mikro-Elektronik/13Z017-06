@@ -27,12 +27,12 @@
   </compound>
   <compound kind="file">
     <name>z17_doc.c</name>
-    <path>d:/work/LINUX/DRIVERS/MDIS_LL/Z017/DRIVER/COM/</path>
+    <path>/opt/menlinux/DRIVERS/MDIS_LL/Z017/DRIVER/COM/</path>
     <filename>z17__doc_8c</filename>
   </compound>
   <compound kind="file">
     <name>z17_drv.c</name>
-    <path>d:/work/LINUX/DRIVERS/MDIS_LL/Z017/DRIVER/COM/</path>
+    <path>/opt/menlinux/DRIVERS/MDIS_LL/Z017/DRIVER/COM/</path>
     <filename>z17__drv_8c</filename>
     <class kind="struct">LL_HANDLE</class>
     <member kind="define">
@@ -212,7 +212,7 @@
   </compound>
   <compound kind="file">
     <name>z17_drv.h</name>
-    <path>d:/work/LINUX/INCLUDE/COM/MEN/</path>
+    <path>/opt/menlinux/INCLUDE/COM/MEN/</path>
     <filename>z17__drv_8h</filename>
     <class kind="struct">Z17_BLK_DEBTIME</class>
     <class kind="struct">Z17_BLK_IRQLAT</class>
@@ -572,8 +572,8 @@
     </member>
   </compound>
   <compound kind="page">
-    <name>dummy</name>
-    <title></title>
-    <filename>dummy</filename>
+    <name>z17dummy</name>
+    <title>MEN logo</title>
+    <filename>z17dummy</filename>
   </compound>
 </tagfile>
