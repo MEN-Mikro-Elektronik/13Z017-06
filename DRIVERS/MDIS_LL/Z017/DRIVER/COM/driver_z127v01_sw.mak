@@ -1,8 +1,6 @@
 #***************************  M a k e f i l e  *******************************
 #
 #         Author: dieter.pfeuffer@men.de
-#          $Date: 2017/05/03 16:53:40 $
-#      $Revision: 1.1 $
 #
 #    Description: Makefile definitions for the Z17_Z127-01 driver variant
 #
@@ -23,8 +21,13 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 MAK_NAME=z17_z127v01_sw
+# the next line is updated during the MDIS installation
+STAMPED_REVISION="13Z017-06_01_30-5-g0d277bf-dirty_2019-05-28"
+
+DEF_REVISION=MAK_REVISION=$(STAMPED_REVISION)
 
 MAK_SWITCH=$(SW_PREFIX)MAC_MEM_MAPPED \
+		$(SW_PREFIX)$(DEF_REVISION) \
             $(SW_PREFIX)MAC_BYTESWAP \
 			$(SW_PREFIX)Z17_VARIANT=Z17_Z127V01_SW \
             $(SW_PREFIX)Z17_MODEL_Z127 \

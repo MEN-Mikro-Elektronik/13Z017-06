@@ -3,8 +3,6 @@
  *        \file  z17_doc.c
  *
  *      \author  ulrich.bogensperger@men.de
- *        $Date: 2017/05/03 16:52:08 $
- *    $Revision: 1.7 $
  *
  *      \brief   User documentation for MDIS5 Z17 driver
  *

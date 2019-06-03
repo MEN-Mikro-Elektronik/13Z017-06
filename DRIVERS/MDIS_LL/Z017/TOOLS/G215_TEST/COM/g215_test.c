@@ -40,6 +40,8 @@
 #include <MEN/usr_utl.h>
 #include <MEN/z17_drv.h>
 
+static const char IdentString[]=MENT_XSTR(MAK_REVISION);
+
 /*--------------------------------------+
 |   PROTOTYPES                          |
 +--------------------------------------*/
@@ -61,7 +63,7 @@ static void usage(void)
 	printf("    -i=<nbr>       instance number in message [none]\n");
 	printf("    -d=<ms>        delay [ms] for loop        [500]\n");
 	printf("\n");
-	printf("(c) 2011 by MEN mikro elektronik GmbH\n\n");
+	printf("Copyright (c) 2011-2019, MEN Mikro Elektronik GmbH\n%s\n", IdentString);
 }
 
 /***************************************************************************/

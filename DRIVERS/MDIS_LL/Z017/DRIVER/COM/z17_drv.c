@@ -3,8 +3,6 @@
  *        \file  z17_drv.c
  *
  *      \author  ulrich.bogensperger@men.de 
- *        $Date: 2017/05/03 16:52:05 $
- *    $Revision: 1.15 $
  *
  *       \brief  Low-level driver for the 16Z034, 16Z037 and 16Z127
  *               GPIO controller
@@ -137,6 +135,8 @@ typedef struct {
 /* include files which need LL_HANDLE */
 #include <MEN/ll_entry.h>       /* low-level driver jump table */
 #include <MEN/z17_drv.h>        /* Z17 driver header file      */
+
+static const char IdentString[]=MENT_XSTR(MAK_REVISION);
 
 /*-----------------------------------------+
 |  PROTOTYPES                              |

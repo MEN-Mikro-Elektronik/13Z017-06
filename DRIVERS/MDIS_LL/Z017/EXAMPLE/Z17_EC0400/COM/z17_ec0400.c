@@ -6,8 +6,6 @@
 /*!
  *         \file z17ec0400.c
  *       \author klaus.popp@men.de
- *        $Date: 2017/05/03 16:53:43 $
- *    $Revision: 1.5 $
  *
  *       \brief  Simple demo for buttons on EC04-00
  *

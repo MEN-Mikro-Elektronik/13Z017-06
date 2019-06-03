@@ -6,8 +6,6 @@
 /*!
  *        \file  z17_simp.c
  *      \author  ulrich.bogensperger@men.de
- *        $Date: 2017/05/03 16:53:41 $
- *    $Revision: 1.9 $
  *
  *      \brief   Simple example program for the Z17 driver
  *
@@ -39,7 +37,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-static const char RCSid[]="$Id: z17_simp.c,v 1.9 2017/05/03 16:53:41 DPfeuffer Exp $";
 
 /*--------------------------------------+
 |  INCLUDES                             |
@@ -50,6 +47,8 @@ static const char RCSid[]="$Id: z17_simp.c,v 1.9 2017/05/03 16:53:41 DPfeuffer E
 #include <MEN/mdis_api.h>
 #include <MEN/usr_oss.h>
 #include <MEN/z17_drv.h>
+
+static const char IdentString[]=MENT_XSTR(MAK_REVISION);
 
 /*--------------------------------------+
 |  GLOBALS                              |
@@ -79,7 +78,7 @@ static void usage(void)
 	printf("Options:\n");
 	printf("    device       device name (e.g. z17_1)\n");
 	printf("\n");
-	printf("(c)Copyright 2004 by MEN Mikro Elektronik GmbH\n%s\n", RCSid);
+	printf("Copyright (c) 2003-2019, MEN Mikro Elektronik GmbH\n%s\n", IdentString);
 }
 
 /***************************************************************************/

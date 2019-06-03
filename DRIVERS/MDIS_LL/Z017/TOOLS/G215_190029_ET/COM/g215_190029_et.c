@@ -44,6 +44,8 @@
 #include <MEN/usr_utl.h>
 #include <MEN/z17_drv.h>
 
+static const char IdentString[]=MENT_XSTR(MAK_REVISION);
+
 /*--------------------------------------+
 |  DEFINES                              |
 +--------------------------------------*/
@@ -209,7 +211,7 @@ static void usage(void)
 	printf("LED#3 : Test live indicator (toggling)\n");
 	printf("LED#4 : Test running\n");
 
-	printf("(c) 2011 by MEN mikro elektronik GmbH\n\n");
+	printf("Copyright (c) 2011-2019, MEN Mikro Elektronik GmbH\n%s\n", IdentString);
 }
 
 /***************************************************************************/

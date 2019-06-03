@@ -1,8 +1,6 @@
 #***************************  M a k e f i l e  *******************************
 #
 #         Author: axel.morbach@men.de
-#          $Date: 2011/03/28 11:09:01 $
-#      $Revision: 1.1 $
 #
 #    Description: Makefile definitions for the G215 tool
 #
@@ -23,6 +21,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 MAK_NAME=g215_test
+# the next line is updated during the MDIS installation
+STAMPED_REVISION="13Z017-06_01_30-5-g0d277bf-dirty_2019-05-28"
+
+DEF_REVISION=MAK_REVISION=$(STAMPED_REVISION)
+MAK_SWITCH=$(SW_PREFIX)$(DEF_REVISION)
 
 MAK_LIBS=$(LIB_PREFIX)$(MEN_LIB_DIR)/mdis_api$(LIB_SUFFIX)	\
 		 $(LIB_PREFIX)$(MEN_LIB_DIR)/usr_oss$(LIB_SUFFIX)	\

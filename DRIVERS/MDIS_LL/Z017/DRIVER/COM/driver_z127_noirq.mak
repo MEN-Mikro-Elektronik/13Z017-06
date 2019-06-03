@@ -1,8 +1,6 @@
 #***************************  M a k e f i l e  *******************************
 #
 #         Author: michael.roth@men.de
-#          $Date: 2017/05/03 16:53:34 $
-#      $Revision: 1.2 $
 #
 #    Description: Makefile definitions for the Z17_Z127_NOIRQ driver variant
 #
@@ -23,8 +21,13 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 MAK_NAME=z17_z127_noirq
+# the next line is updated during the MDIS installation
+STAMPED_REVISION="13Z017-06_01_30-5-g0d277bf-dirty_2019-05-28"
+
+DEF_REVISION=MAK_REVISION=$(STAMPED_REVISION)
 
 MAK_SWITCH=$(SW_PREFIX)MAC_MEM_MAPPED \
+		$(SW_PREFIX)$(DEF_REVISION) \
             $(SW_PREFIX)Z17_VARIANT=Z17_Z127_NOIRQ \
 			$(SW_PREFIX)Z17_MODEL_Z127 \
 			$(SW_PREFIX)Z127_NOIRQ \

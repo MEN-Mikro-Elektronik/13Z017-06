@@ -1,8 +1,6 @@
 #***************************  M a k e f i l e  *******************************
 #
 #         Author: dieter.pfeuffer@men.de
-#          $Date: 2011/03/28 11:08:54 $
-#      $Revision: 1.1 $
 #
 #    Description: Makefile definitions for the Z17 driver (IO mapped, swapped)
 #
@@ -23,8 +21,13 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 MAK_NAME=z17_io_sw
+# the next line is updated during the MDIS installation
+STAMPED_REVISION="13Z017-06_01_30-5-g0d277bf-dirty_2019-05-28"
+
+DEF_REVISION=MAK_REVISION=$(STAMPED_REVISION)
 
 MAK_SWITCH=$(SW_PREFIX)MAC_IO_MAPPED \
+		$(SW_PREFIX)$(DEF_REVISION) \
 			$(SW_PREFIX)MAC_BYTESWAP  \
 			$(SW_PREFIX)Z17_VARIANT=Z17_SW \
 

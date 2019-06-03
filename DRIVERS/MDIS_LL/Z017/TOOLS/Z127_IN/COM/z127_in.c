@@ -6,8 +6,6 @@
 /*!
  *        \file  z127_in.c
  *      \author  dieter.pfeuffer@men.de
- *        $Date: 2017/05/03 16:53:50 $
- *    $Revision: 1.1 $
  *
  *       \brief  Tool to control the 16Z127 (32-bit) inputs
  *
@@ -44,6 +42,8 @@
 #include <MEN/usr_oss.h>
 #include <MEN/usr_utl.h>
 #include <MEN/z17_drv.h>
+
+static const char IdentString[]=MENT_XSTR(MAK_REVISION);
 
 /*--------------------------------------+
 |   DEFINES                             |
@@ -96,7 +96,7 @@ static void usage(void)
 	printf("\n");
 	printf("(*1) requires 16Z127-01 (or compatible) IP core\n");
 	printf("\n");
-	printf("(c)Copyright 2016 by MEN Mikro Elektronik GmbH (%s)\n", __DATE__);
+	printf("Copyright (c) 2016-2019, MEN Mikro Elektronik GmbH\n%s\n", IdentString);
 }
 
 /***************************************************************************/

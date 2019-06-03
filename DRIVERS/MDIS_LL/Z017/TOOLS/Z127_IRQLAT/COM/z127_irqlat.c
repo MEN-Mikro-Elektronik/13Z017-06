@@ -6,8 +6,6 @@
 /*!
  *         \file z127_irqlat.c
  *       \author dieter.pfeuffer@men.de
- *        $Date: 2011/07/27 15:17:52 $
- *    $Revision: 1.2 $
  *
  *       \brief  Tool to test IRQ latency with 16Z127 (32-bit) I/Os
  *
@@ -43,6 +41,8 @@
 #include <MEN/usr_utl.h>
 #include <MEN/z17_drv.h>
 
+static const char IdentString[]=MENT_XSTR(MAK_REVISION);
+
 /*--------------------------------------+
 |   PROTOTYPES                          |
 +--------------------------------------*/
@@ -63,7 +63,7 @@ static void usage(void)
 	printf("    -n=<nbr>  number of IRQs to fire        [1000]\n");
 	printf("    -H        hold path open until keypress       \n");
 	printf("    -L        loop until keypress                 \n");
-	printf("(c) 2011 by MEN Mikro Elektronik GmbH\n\n");
+	printf("Copyright (c) 2010-2019, MEN Mikro Elektronik GmbH\n%s\n", IdentString);
 }
 
 /***************************************************************************/

@@ -3,8 +3,6 @@
  *         Name: arwen.h
  *
  *       Author: kp
- *        $Date: 2009/08/03 16:43:31 $
- *    $Revision: 2.5 $
  *
  *  Description: Header file for arwen GPIO in Chameleon FPGA
  *

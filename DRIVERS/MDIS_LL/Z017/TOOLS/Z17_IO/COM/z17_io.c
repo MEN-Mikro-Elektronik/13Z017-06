@@ -6,8 +6,6 @@
 /*!
  *        \file  z17_io.c
  *      \author  dieter.pfeuffer@men.de
- *        $Date: 2017/05/03 16:53:45 $
- *    $Revision: 1.12 $
  *
  *       \brief  Tool to access the 16Z034/16Z037 (8-bit) I/Os
  *
@@ -33,7 +31,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-static const char RCSid[]="$Id: z17_io.c,v 1.12 2017/05/03 16:53:45 DPfeuffer Exp $";
 
 /*--------------------------------------+
 |  INCLUDES                             |
@@ -46,6 +43,8 @@ static const char RCSid[]="$Id: z17_io.c,v 1.12 2017/05/03 16:53:45 DPfeuffer Ex
 #include <MEN/usr_oss.h>
 #include <MEN/usr_utl.h>
 #include <MEN/z17_drv.h>
+
+static const char IdentString[]=MENT_XSTR(MAK_REVISION);
 
 /*--------------------------------------+
 |  PROTOTYPES                           |
@@ -72,7 +71,7 @@ static void usage (void)
 	printf("        -l=<time>     toggle low (in ms)...............[1000]\n");
 	printf("    -h            hold path open until keypress              \n");
 	printf("\n");
-	printf("(c)Copyright 2006 by MEN Mikro Elektronik GmbH\n%s\n", RCSid);
+	printf("Copyright (c) 2006-2019, MEN Mikro Elektronik GmbH\n%s\n", IdentString);
 }
 
 /***************************************************************************/

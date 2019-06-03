@@ -3,8 +3,6 @@
  *        \file  z17_drv.h
  *
  *      \author  ulrich.bogensperger@men.de
- *        $Date: 2014/11/28 14:17:53 $
- *    $Revision: 2.6 $
  *
  *       \brief  Header file for Z17 driver containing
  *               Z17 specific status codes and
