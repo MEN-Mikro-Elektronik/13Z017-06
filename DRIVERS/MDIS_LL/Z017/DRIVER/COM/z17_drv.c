@@ -136,7 +136,19 @@ typedef struct {
 #include <MEN/ll_entry.h>       /* low-level driver jump table */
 #include <MEN/z17_drv.h>        /* Z17 driver header file      */
 
-static const char IdentString[]=MENT_XSTR(MAK_REVISION);
+#ifdef Z17_MODEL_Z127
+    #ifdef Z127_NOIRQ
+        static const char IdentString[]=MENT_XSTR_SFX(MAK_REVISION,Z127 model no IRQs);
+    #else
+        static const char IdentString[]=MENT_XSTR_SFX(MAK_REVISION,Z127 model);
+    #endif
+#else
+    #ifdef Z127_NOIRQ
+        static const char IdentString[]=MENT_XSTR_SFX(MAK_REVISION,Z34/Z37 model no IRQs);
+    #else
+        static const char IdentString[]=MENT_XSTR_SFX(MAK_REVISION,Z34/Z37 model);
+    #endif
+#endif
 
 /*-----------------------------------------+
 |  PROTOTYPES                              |
@@ -1206,16 +1218,7 @@ static int32 Z17_Info(
  */
 static char* Ident(void)
 {
-	return ("Z17 - Z17 low level driver: $Id: z17_drv.c,v 1.15 2017/05/03 16:52:05 DPfeuffer Exp $"
-			#ifdef Z17_MODEL_Z127
-				" Z127 model"
-			#else
-				" Z34/Z37 model"
-			#endif
-			#ifdef Z127_NOIRQ
-				" - no IRQs"
-			#endif
-			);
+	return( (char*) IdentString );
 }
 
 /********************************* Cleanup *********************************/
