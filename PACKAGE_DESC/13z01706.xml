@@ -13,8 +13,14 @@
 			<type>U_INT32</type>
 			<defaultvalue>0</defaultvalue>
 			<choises>
-				<choise><value>0</value><description>reset enabled</description></choise>
-				<choise><value>1</value><description>reset disabled</description></choise>
+				<choise>
+					<value>0</value>
+					<description>reset enabled</description>
+				</choise>
+				<choise>
+					<value>1</value>
+					<description>reset disabled</description>
+				</choise>
 			</choises>
 		</setting>
 	</settinglist>
