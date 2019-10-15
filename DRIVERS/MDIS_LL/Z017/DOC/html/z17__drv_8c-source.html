@@ -23,1147 +23,1152 @@
 <center>
 <a class="qindex" href="index.html">Main Page</a> &nbsp; <a class="qindex" href="annotated.html">Data Structures</a> &nbsp; <a class="qindex" href="files.html">File List</a> &nbsp; <a class="qindex" href="functions.html">Data Fields</a> &nbsp; <a class="qindex" href="globals.html">Globals</a> &nbsp; <a class="qindex" href="pages.html">Related Pages</a> &nbsp; <a class="qindex" href="examples.html">Examples</a> &nbsp; </center>
 <hr><h1>z17_drv.c</h1><a href="z17__drv_8c.html">Go to the documentation of this file.</a><div class="fragment"><pre>00001 <span class="comment">/*********************  P r o g r a m  -  M o d u l e ***********************/</span>
-00018  <span class="comment">/*</span>
-00019 <span class="comment"> *---------------------------------------------------------------------------</span>
-00020 <span class="comment"> * Copyright (c) 2004-2019, MEN Mikro Elektronik GmbH</span>
-00021 <span class="comment"> ****************************************************************************/</span>
-00022  <span class="comment">/*</span>
-00023 <span class="comment"> * This program is free software: you can redistribute it and/or modify</span>
-00024 <span class="comment"> * it under the terms of the GNU General Public License as published by</span>
-00025 <span class="comment"> * the Free Software Foundation, either version 2 of the License, or</span>
-00026 <span class="comment"> * (at your option) any later version.</span>
-00027 <span class="comment"> *</span>
-00028 <span class="comment"> * This program is distributed in the hope that it will be useful,</span>
-00029 <span class="comment"> * but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
-00030 <span class="comment"> * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
-00031 <span class="comment"> * GNU General Public License for more details.</span>
-00032 <span class="comment"> *</span>
-00033 <span class="comment"> * You should have received a copy of the GNU General Public License</span>
-00034 <span class="comment"> * along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
-00035 <span class="comment"> */</span>
+00016  <span class="comment">/*</span>
+00017 <span class="comment"> *---------------------------------------------------------------------------</span>
+00018 <span class="comment"> * Copyright (c) 2004-2019, MEN Mikro Elektronik GmbH</span>
+00019 <span class="comment"> ****************************************************************************/</span>
+00020  <span class="comment">/*</span>
+00021 <span class="comment"> * This program is free software: you can redistribute it and/or modify</span>
+00022 <span class="comment"> * it under the terms of the GNU General Public License as published by</span>
+00023 <span class="comment"> * the Free Software Foundation, either version 2 of the License, or</span>
+00024 <span class="comment"> * (at your option) any later version.</span>
+00025 <span class="comment"> *</span>
+00026 <span class="comment"> * This program is distributed in the hope that it will be useful,</span>
+00027 <span class="comment"> * but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+00028 <span class="comment"> * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+00029 <span class="comment"> * GNU General Public License for more details.</span>
+00030 <span class="comment"> *</span>
+00031 <span class="comment"> * You should have received a copy of the GNU General Public License</span>
+00032 <span class="comment"> * along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+00033 <span class="comment"> */</span>
+00034 
+<a name="l00035"></a><a class="code" href="z17__drv_8c.html#a0">00035</a> <span class="preprocessor">#define _NO_LL_HANDLE        </span><span class="comment">/* ll_defs.h: don't define LL_HANDLE struct */</span>
 00036 
-<a name="l00037"></a><a class="code" href="z17__drv_8c.html#a0">00037</a> <span class="preprocessor">#define _NO_LL_HANDLE        </span><span class="comment">/* ll_defs.h: don't define LL_HANDLE struct */</span>
-00038 
-00039 <span class="comment">/*-----------------------------------------+</span>
-00040 <span class="comment">|  INCLUDES                                |</span>
-00041 <span class="comment">+-----------------------------------------*/</span>
-00042 <span class="preprocessor">#include &lt;MEN/men_typs.h&gt;</span>    <span class="comment">/* system dependent definitions   */</span>
-00043 <span class="preprocessor">#include &lt;MEN/maccess.h&gt;</span>     <span class="comment">/* hw access macros and types     */</span>
-00044 <span class="preprocessor">#include &lt;MEN/dbg.h&gt;</span>         <span class="comment">/* debug functions                */</span>
-00045 <span class="preprocessor">#include &lt;MEN/oss.h&gt;</span>         <span class="comment">/* oss functions                  */</span>
-00046 <span class="preprocessor">#include &lt;MEN/desc.h&gt;</span>        <span class="comment">/* descriptor functions           */</span>
-00047 <span class="preprocessor">#include &lt;MEN/modcom.h&gt;</span>      <span class="comment">/* ID PROM functions              */</span>
-00048 <span class="preprocessor">#include &lt;MEN/mdis_api.h&gt;</span>    <span class="comment">/* MDIS global defs               */</span>
-00049 <span class="preprocessor">#include &lt;MEN/mdis_com.h&gt;</span>    <span class="comment">/* MDIS common defs               */</span>
-00050 <span class="preprocessor">#include &lt;MEN/mdis_err.h&gt;</span>    <span class="comment">/* MDIS error codes               */</span>
-00051 <span class="preprocessor">#include &lt;MEN/ll_defs.h&gt;</span>     <span class="comment">/* low-level driver definitions   */</span>
-00052 <span class="preprocessor">#include &lt;MEN/arwen.h&gt;</span>       <span class="comment">/* definitions for Arwen GPIO     */</span>
-00053 <span class="preprocessor">#include &lt;MEN/chameleon.h&gt;</span>   <span class="comment">/* chameleon header               */</span>
-00054 
-00055 <span class="comment">/*-----------------------------------------+</span>
-00056 <span class="comment">|  DEFINES                                 |</span>
-00057 <span class="comment">+-----------------------------------------*/</span>
-00058 <span class="preprocessor">#if (defined(Z127V01) &amp;&amp; defined(MDIS_MA_BB_INFO_PTR))</span>
-00059 <span class="preprocessor"></span><span class="preprocessor">    #define Z127_INFO_PTR 1</span>
-00060 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-00061 <span class="preprocessor"></span>
-00062 <span class="comment">/* general defines */</span>
-<a name="l00063"></a><a class="code" href="z17__drv_8c.html#a1">00063</a> <span class="preprocessor">#define CH_NUMBER          1          </span>
-00064 <span class="preprocessor">#ifdef Z127_NOIRQ</span>
-00065 <span class="preprocessor"></span><span class="preprocessor">  #define USE_IRQ            FALSE      </span>
-00066 <span class="preprocessor">#else</span>
-<a name="l00067"></a><a class="code" href="z17__drv_8c.html#a2">00067</a> <span class="preprocessor"></span><span class="preprocessor">  #define USE_IRQ            TRUE       </span>
-00068 <span class="preprocessor">#endif  </span><span class="comment">/* Z127_NOIRQ */</span>
-00069 
-00070 <span class="preprocessor">#ifdef Z127_INFO_PTR</span>
-00071 <span class="preprocessor"></span><span class="preprocessor">    #define ADDRSPACE_COUNT    2          </span>
-00072 <span class="preprocessor">    #define ADDRSPACE_SIZE     0x100      </span>
-00073 <span class="preprocessor">#else</span>
-<a name="l00074"></a><a class="code" href="z17__drv_8c.html#a3">00074</a> <span class="preprocessor"></span><span class="preprocessor">    #define ADDRSPACE_COUNT    1          </span>
-<a name="l00075"></a><a class="code" href="z17__drv_8c.html#a4">00075</a> <span class="preprocessor">    #define ADDRSPACE_SIZE     0x20       </span>
-00076 <span class="preprocessor">#endif</span>
-00077 <span class="preprocessor"></span>
-00078 <span class="comment">/* debug defines */</span>
-<a name="l00079"></a><a class="code" href="z17__drv_8c.html#a5">00079</a> <span class="preprocessor">#define DBG_MYLEVEL        llHdl-&gt;dbgLevel    </span>
-<a name="l00080"></a><a class="code" href="z17__drv_8c.html#a6">00080</a> <span class="preprocessor">#define DBH                llHdl-&gt;dbgHdl      </span>
-<a name="l00081"></a><a class="code" href="z17__drv_8c.html#a7">00081</a> <span class="preprocessor">#define OSH                llHdl-&gt;osHdl       </span>
-00083 <span class="preprocessor"></span><span class="comment">/* toggle mode defines */</span>
-<a name="l00084"></a><a class="code" href="z17__drv_8c.html#a8">00084</a> <span class="preprocessor">#define TOG_TIME_DEFAULT   1000       </span>
-<a name="l00085"></a><a class="code" href="z17__drv_8c.html#a9">00085</a> <span class="preprocessor">#define TOG_TIME_MIN       100        </span>
-<a name="l00086"></a><a class="code" href="z17__drv_8c.html#a10">00086</a> <span class="preprocessor">#define TOG_TIME_MAX       60000      </span>
-<a name="l00087"></a><a class="code" href="z17__drv_8c.html#a11">00087</a> <span class="preprocessor">#define TOG_CYCLIC         1          </span>
-00089 <span class="preprocessor"></span><span class="comment">/* descriptor key defines*/</span>
-<a name="l00090"></a><a class="code" href="z17__drv_8c.html#a12">00090</a> <span class="preprocessor">#define RESET_DEFAULT      0          </span>
-<a name="l00091"></a><a class="code" href="z17__drv_8c.html#a13">00091</a> <span class="preprocessor">#define RESET_OFF          1          </span>
-00093 <span class="preprocessor"></span><span class="comment">/*-----------------------------------------+</span>
-00094 <span class="comment">|  TYPEDEFS                                |</span>
-00095 <span class="comment">+-----------------------------------------*/</span>
-00096 
-<a name="l00097"></a><a class="code" href="structLL__HANDLE.html">00097</a> <span class="keyword">typedef</span> <span class="keyword">struct </span>{
-00098     <span class="comment">/* general */</span>
-<a name="l00099"></a><a class="code" href="structLL__HANDLE.html#m0">00099</a>     int32                   memAlloc;       
-<a name="l00100"></a><a class="code" href="structLL__HANDLE.html#m1">00100</a>     OSS_HANDLE              *osHdl;         
-<a name="l00101"></a><a class="code" href="structLL__HANDLE.html#m2">00101</a>     OSS_IRQ_HANDLE          *irqHdl;        
-<a name="l00102"></a><a class="code" href="structLL__HANDLE.html#m3">00102</a>     DESC_HANDLE             *descHdl;       
-<a name="l00103"></a><a class="code" href="structLL__HANDLE.html#m4">00103</a>     MACCESS                 ma;             
-00104 <span class="preprocessor">#ifdef Z127_INFO_PTR</span>
-00105 <span class="preprocessor"></span>    CHAMELEONV2_UNIT        *chamu;         
-00106     u_int32                 vdt;            
-00107 <span class="preprocessor">#endif</span>
-<a name="l00108"></a><a class="code" href="structLL__HANDLE.html#m5">00108</a> <span class="preprocessor"></span>    MDIS_IDENT_FUNCT_TBL    idFuncTbl;      
-00109     <span class="comment">/* debug */</span>
-<a name="l00110"></a><a class="code" href="structLL__HANDLE.html#m6">00110</a>     u_int32                 dbgLevel;       
-<a name="l00111"></a><a class="code" href="structLL__HANDLE.html#m7">00111</a>     DBG_HANDLE              *dbgHdl;        
-00112 <span class="preprocessor">#ifndef Z127_NOIRQ</span>
-00113 <span class="preprocessor"></span>    <span class="comment">/* misc */</span>
-<a name="l00114"></a><a class="code" href="structLL__HANDLE.html#m8">00114</a>     OSS_SIG_HANDLE          *portChangeSig; 
-<a name="l00115"></a><a class="code" href="structLL__HANDLE.html#m9">00115</a>     u_int32                 irqCount;       
-<a name="l00116"></a><a class="code" href="structLL__HANDLE.html#m10">00116</a>     u_int32                 lastReq;        
-00117     <span class="comment">/* IRQ latency test */</span>
-<a name="l00118"></a><a class="code" href="structLL__HANDLE.html#m11">00118</a>     u_int32                 irqTest;        <span class="comment">/* test running flag (1=on) */</span>
-<a name="l00119"></a><a class="code" href="structLL__HANDLE.html#m12">00119</a>     int32                   outBit;         <span class="comment">/* output bit 0..31       */</span>
-<a name="l00120"></a><a class="code" href="structLL__HANDLE.html#m13">00120</a>     u_int32                 outLast;        <span class="comment">/* last set output value (1 or 0) */</span>
-<a name="l00121"></a><a class="code" href="structLL__HANDLE.html#m14">00121</a>     u_int32                 irqs2fire;      <span class="comment">/* number of IRQs to fire */</span>
-<a name="l00122"></a><a class="code" href="structLL__HANDLE.html#m15">00122</a>     u_int32                 startTick;      <span class="comment">/* start tick count       */</span>
-<a name="l00123"></a><a class="code" href="structLL__HANDLE.html#m16">00123</a>     u_int32                 stopTick;       <span class="comment">/* stop tick count        */</span>
-00124 <span class="preprocessor">#endif  </span><span class="comment">/* Z127_NOIRQ */</span>
-00125     <span class="comment">/* toggle mode */</span>
-<a name="l00126"></a><a class="code" href="structLL__HANDLE.html#m17">00126</a>     OSS_ALARM_HANDLE        *alarmHdl;      
-<a name="l00127"></a><a class="code" href="structLL__HANDLE.html#m18">00127</a>     OSS_SEM_HANDLE          *devSemHdl;     
-<a name="l00128"></a><a class="code" href="structLL__HANDLE.html#m19">00128</a>     u_int32                 togHigh;        
-<a name="l00129"></a><a class="code" href="structLL__HANDLE.html#m20">00129</a>     u_int32                 togtimeHigh;    
-<a name="l00130"></a><a class="code" href="structLL__HANDLE.html#m21">00130</a>     u_int32                 togtimeLow;     
-<a name="l00131"></a><a class="code" href="structLL__HANDLE.html#m22">00131</a>     u_int32                 togBitMask;     
-<a name="l00132"></a><a class="code" href="structLL__HANDLE.html#m23">00132</a>     u_int32                 togCount;       
-00133     <span class="comment">/* arwen no reset */</span>
-<a name="l00134"></a><a class="code" href="structLL__HANDLE.html#m24">00134</a>     u_int32                 arwenResetOff;  
-00135 } <a class="code" href="structLL__HANDLE.html">LL_HANDLE</a>;
-00136 
-00137 <span class="comment">/* include files which need LL_HANDLE */</span>
-00138 <span class="preprocessor">#include &lt;MEN/ll_entry.h&gt;</span>       <span class="comment">/* low-level driver jump table */</span>
-00139 <span class="preprocessor">#include &lt;<a class="code" href="z17__drv_8h.html">MEN/z17_drv.h</a>&gt;</span>        <span class="comment">/* Z17 driver header file      */</span>
-00140 
-00141 <span class="comment">/*-----------------------------------------+</span>
-00142 <span class="comment">|  PROTOTYPES                              |</span>
-00143 <span class="comment">+-----------------------------------------*/</span>
-00144 <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a14">Z17_Init</a>(DESC_SPEC *descSpec, OSS_HANDLE *osHdl,
-00145                         MACCESS *ma, OSS_SEM_HANDLE *devSemHdl,
-00146                         OSS_IRQ_HANDLE *irqHdl, <a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> **llHdlP);
-00147 <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a15">Z17_Exit</a>(<a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> **llHdlP);
-00148 <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a16">Z17_Read</a>(<a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl, int32 ch, int32 *value);
-00149 <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a17">Z17_Write</a>(<a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl, int32 ch, int32 value);
-00150 <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a18">Z17_SetStat</a>(<a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl,int32 ch, int32 code,
-00151                             INT32_OR_64 value32_or_64);
-00152 <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a19">Z17_GetStat</a>(<a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl, int32 ch, int32 code,
-00153                             INT32_OR_64 *value32_or64P);
-00154 <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a20">Z17_BlockRead</a>(<a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl, int32 ch, <span class="keywordtype">void</span> *buf, int32 size,
-00155                             int32 *nbrRdBytesP);
-00156 <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a21">Z17_BlockWrite</a>(<a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl, int32 ch, <span class="keywordtype">void</span> *buf, int32 size,
-00157                                 int32 *nbrWrBytesP);
-00158 <span class="preprocessor">#ifndef Z127_NOIRQ</span>
-00159 <span class="preprocessor"></span>    <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a22">Z17_Irq</a>(<a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl);
-00160 <span class="preprocessor">#endif  </span><span class="comment">/* Z127_NOIRQ */</span>
-00161 <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a23">Z17_Info</a>(int32 infoType, ...);
-00162 <span class="keyword">static</span> <span class="keywordtype">char</span>* <a class="code" href="z17__drv_8c.html#a24">Ident</a>(<span class="keywordtype">void</span>);
-00163 <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a25">Cleanup</a>(<a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl, int32 retCode);
-00164 <span class="keyword">static</span> <span class="keywordtype">void</span>  <a class="code" href="z17__drv_8c.html#a26">arwenReset</a>(<a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl);
-00165 
-00166 <span class="keyword">static</span> <span class="keywordtype">void</span>  <a class="code" href="z17__drv_8c.html#a27">AlarmHandler</a>(<span class="keywordtype">void</span> *arg);
-00167 
-00168 <span class="comment">/****************************** Z17_GetEntry ********************************/</span>
-00173 <span class="preprocessor">#ifdef _ONE_NAMESPACE_PER_DRIVER_</span>
-00174 <span class="preprocessor"></span>    <span class="keyword">extern</span> <span class="keywordtype">void</span> LL_GetEntry(
-00175         LL_ENTRY* drvP
-00176     )
-00177 #<span class="keywordflow">else</span>
-<a name="l00178"></a><a class="code" href="z17__drv_8c.html#a28">00178</a>     <span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="z17__drv_8h.html#a19">__Z17_GetEntry</a>(
-00179         LL_ENTRY* drvP
-00180     )
-00181 #endif
-00182 {
-00183     drvP-&gt;init        = <a class="code" href="z17__drv_8c.html#a14">Z17_Init</a>;
-00184     drvP-&gt;exit        = <a class="code" href="z17__drv_8c.html#a15">Z17_Exit</a>;
-00185     drvP-&gt;read        = <a class="code" href="z17__drv_8c.html#a16">Z17_Read</a>;
-00186     drvP-&gt;write       = <a class="code" href="z17__drv_8c.html#a17">Z17_Write</a>;
-00187     drvP-&gt;blockRead   = <a class="code" href="z17__drv_8c.html#a20">Z17_BlockRead</a>;
-00188     drvP-&gt;blockWrite  = <a class="code" href="z17__drv_8c.html#a21">Z17_BlockWrite</a>;
-00189     drvP-&gt;setStat     = <a class="code" href="z17__drv_8c.html#a18">Z17_SetStat</a>;
-00190     drvP-&gt;getStat     = <a class="code" href="z17__drv_8c.html#a19">Z17_GetStat</a>;
-00191 <span class="preprocessor">#ifndef Z127_NOIRQ</span>
-00192 <span class="preprocessor"></span>    drvP-&gt;irq         = <a class="code" href="z17__drv_8c.html#a22">Z17_Irq</a>;
-00193 <span class="preprocessor">#endif  </span><span class="comment">/* Z127_NOIRQ */</span>
-00194     drvP-&gt;info        = <a class="code" href="z17__drv_8c.html#a23">Z17_Info</a>;
-00195 }
-00196 
-00197 <span class="comment">/******************************** Z17_Init **********************************/</span>
-<a name="l00222"></a><a class="code" href="z17__drv_8c.html#a14">00222</a> <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a14">Z17_Init</a>(
-00223     DESC_SPEC       *descP,
-00224     OSS_HANDLE      *osHdl,
-00225     MACCESS         *ma,
-00226     OSS_SEM_HANDLE  *devSemHdl,
-00227     OSS_IRQ_HANDLE  *irqHdl,
-00228     <a class="code" href="structLL__HANDLE.html">LL_HANDLE</a>       **llHdlP
-00229 )
-00230 {
-00231     <a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl = NULL;
-00232     u_int32 gotsize;
-00233     int32 error;
-00234     u_int32 value;
-00235 
-00236     <span class="comment">/*------------------------------+</span>
-00237 <span class="comment">    |  prepare the handle           |</span>
-00238 <span class="comment">    +------------------------------*/</span>
-00239     *llHdlP = NULL;     <span class="comment">/* set low-level driver handle to NULL */</span>
-00240 
-00241     <span class="comment">/* alloc */</span>
-00242     <span class="keywordflow">if</span> ((llHdl = (<a class="code" href="structLL__HANDLE.html">LL_HANDLE</a>*)OSS_MemGet(
-00243                     osHdl, <span class="keyword">sizeof</span>(<a class="code" href="structLL__HANDLE.html">LL_HANDLE</a>), &amp;gotsize)) == NULL)
-00244         <span class="keywordflow">return</span> (ERR_OSS_MEM_ALLOC);
-00245 
-00246     <span class="comment">/* clear */</span>
-00247     OSS_MemFill(osHdl, gotsize, (<span class="keywordtype">char</span>*)llHdl, 0x00);
-00248 
-00249     <span class="comment">/* init */</span>
-00250     llHdl-&gt;memAlloc    = gotsize;
-00251     llHdl-&gt;osHdl       = osHdl;
-00252 <span class="preprocessor">#ifndef Z127_NOIRQ</span>
-00253 <span class="preprocessor"></span>    llHdl-&gt;irqHdl      = irqHdl;
-00254 <span class="preprocessor">#endif  </span><span class="comment">/* Z127_NOIRQ */</span>
-00255     llHdl-&gt;ma          = *ma;
-00256     llHdl-&gt;devSemHdl   = devSemHdl;
-00257     llHdl-&gt;togtimeHigh = <a class="code" href="z17__drv_8c.html#a8">TOG_TIME_DEFAULT</a>;
-00258     llHdl-&gt;togtimeLow  = <a class="code" href="z17__drv_8c.html#a8">TOG_TIME_DEFAULT</a>;
-00259     llHdl-&gt;togBitMask  = 0;
-00260     llHdl-&gt;togCount    = 0;
-00261     llHdl-&gt;togHigh     = 0;
-00262 
-00263 <span class="preprocessor">#ifdef Z127_INFO_PTR</span>
-00264 <span class="preprocessor"></span>    llHdl-&gt;chamu       = (CHAMELEONV2_UNIT*)ma[1];
-00265 <span class="preprocessor">#endif </span>
-00266 <span class="preprocessor"></span>
-00267     <span class="comment">/*------------------------------+</span>
-00268 <span class="comment">    |  init id function table       |</span>
-00269 <span class="comment">    +------------------------------*/</span>
-00270     <span class="comment">/* driver's ident function */</span>
-00271     llHdl-&gt;idFuncTbl.idCall[0].identCall = <a class="code" href="z17__drv_8c.html#a24">Ident</a>;
-00272     <span class="comment">/* library's ident functions */</span>
-00273     llHdl-&gt;idFuncTbl.idCall[1].identCall = DESC_Ident;
-00274     llHdl-&gt;idFuncTbl.idCall[2].identCall = OSS_Ident;
-00275     <span class="comment">/* terminator */</span>
-00276     llHdl-&gt;idFuncTbl.idCall[3].identCall = NULL;
-00277 
-00278     <span class="comment">/*------------------------------+</span>
-00279 <span class="comment">    |  prepare debugging            |</span>
-00280 <span class="comment">    +------------------------------*/</span>
-00281     <a class="code" href="z17__drv_8c.html#a5">DBG_MYLEVEL</a> = OSS_DBG_DEFAULT;      <span class="comment">/* set OS specific debug level */</span>
-00282     DBGINIT((NULL,&amp;<a class="code" href="z17__drv_8c.html#a6">DBH</a>));
-00283 
-00284     <span class="comment">/*------------------------------+</span>
-00285 <span class="comment">    |  scan descriptor              |</span>
-00286 <span class="comment">    +------------------------------*/</span>
-00287     <span class="comment">/* prepare access */</span>
-00288     <span class="keywordflow">if</span> ((error = DESC_Init(descP, osHdl, &amp;llHdl-&gt;descHdl)))
-00289         <span class="keywordflow">return</span> (<a class="code" href="z17__drv_8c.html#a25">Cleanup</a>(llHdl, error));
-00290 
-00291     <span class="comment">/* DEBUG_LEVEL_DESC */</span>
-00292     <span class="keywordflow">if</span> ((error = DESC_GetUInt32(llHdl-&gt;descHdl, OSS_DBG_DEFAULT,
-00293                                 &amp;value, <span class="stringliteral">"DEBUG_LEVEL_DESC"</span>)) &amp;&amp;
-00294         error != ERR_DESC_KEY_NOTFOUND)
-00295         <span class="keywordflow">return</span> (<a class="code" href="z17__drv_8c.html#a25">Cleanup</a>(llHdl, error));
-00296 
-00297     DESC_DbgLevelSet(llHdl-&gt;descHdl, value);    <span class="comment">/* set level */</span>
-00298 
-00299     <span class="comment">/* DEBUG_LEVEL */</span>
-00300     <span class="keywordflow">if</span> ((error = DESC_GetUInt32(llHdl-&gt;descHdl, OSS_DBG_DEFAULT,
-00301                                 &amp;llHdl-&gt;dbgLevel, <span class="stringliteral">"DEBUG_LEVEL"</span>)) &amp;&amp;
-00302         error != ERR_DESC_KEY_NOTFOUND)
-00303         <span class="keywordflow">return</span> (<a class="code" href="z17__drv_8c.html#a25">Cleanup</a>(llHdl, error));
-00304 
-00305     DBGWRT_1((<a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"LL - Z17_Init: base address = %08p\n"</span>, (<span class="keywordtype">void</span>*)llHdl-&gt;ma));
-00306 
-00307 <span class="preprocessor">#ifdef Z127_INFO_PTR</span>
-00308 <span class="preprocessor"></span>    <span class="comment">/* print chameleon info */</span>
-00309     DBGWRT_1(( <a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"   device ID:\t0x%02x \n"</span>,llHdl-&gt;chamu-&gt;devId));
-00310     DBGWRT_1(( <a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"   variant:  \t0x%02x \n"</span>,llHdl-&gt;chamu-&gt;variant));
-00311     DBGWRT_1(( <a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"   revision: \t0x%02x \n\n"</span>,llHdl-&gt;chamu-&gt;revision));
-00312     
-00313     <span class="keywordflow">if</span>( llHdl-&gt;chamu-&gt;variant &gt; 0 )
-00314         llHdl-&gt;vdt = 1;
-00315 <span class="preprocessor">#endif</span>
-00316 <span class="preprocessor"></span>
-00317     <span class="comment">/* RESET_OFF */</span>
-00318     <span class="keywordflow">if</span> ((error = DESC_GetUInt32(llHdl-&gt;descHdl, <a class="code" href="z17__drv_8c.html#a12">RESET_DEFAULT</a>,
-00319                                 &amp;llHdl-&gt;arwenResetOff, <span class="stringliteral">"RESET_OFF"</span>)) &amp;&amp;
-00320         error != ERR_DESC_KEY_NOTFOUND)
-00321         <span class="keywordflow">return</span> (<a class="code" href="z17__drv_8c.html#a25">Cleanup</a>(llHdl, error));
-00322 
-00323     <span class="comment">/*------------------------------+</span>
-00324 <span class="comment">    |  init alarm                   |</span>
-00325 <span class="comment">    +------------------------------*/</span>
-00326     <span class="keywordflow">if</span> ((error = OSS_AlarmCreate(llHdl-&gt;osHdl, <a class="code" href="z17__drv_8c.html#a27">AlarmHandler</a>, llHdl,
-00327                                     &amp;llHdl-&gt;alarmHdl)))
-00328         <span class="keywordflow">return</span> (<a class="code" href="z17__drv_8c.html#a25">Cleanup</a>(llHdl, error));
-00329 
-00330     <span class="comment">/*------------------------------+</span>
-00331 <span class="comment">    |  init hardware                |</span>
-00332 <span class="comment">    +------------------------------*/</span>
-00333     <a class="code" href="z17__drv_8c.html#a26">arwenReset</a>(llHdl);
-00334     *llHdlP = llHdl;        <span class="comment">/* set low-level driver handle */</span>
-00335 
-00336     <span class="keywordflow">return</span> (ERR_SUCCESS);
-00337 }
-00338 
-00339 <span class="comment">/****************************** Z17_Exit ************************************/</span>
-<a name="l00349"></a><a class="code" href="z17__drv_8c.html#a15">00349</a> <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a15">Z17_Exit</a>(
-00350     <a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> **llHdlP
-00351 )
-00352 {
-00353     <a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl = *llHdlP;
-00354     int32 error = 0;
-00355 
-00356     DBGWRT_1((<a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"LL - Z17_Exit\n"</span>));
-00357 
-00358     <span class="comment">/*------------------------------+</span>
-00359 <span class="comment">    |  de-init hardware             |</span>
-00360 <span class="comment">    +------------------------------*/</span>
-00361     <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m24">arwenResetOff</a> == 0)
-00362         <a class="code" href="z17__drv_8c.html#a26">arwenReset</a>(llHdl);
-00363     <span class="comment">/*------------------------------+</span>
-00364 <span class="comment">    |  clean up memory              |</span>
-00365 <span class="comment">    +------------------------------*/</span>
-00366     *llHdlP = NULL;     <span class="comment">/* set low-level driver handle to NULL */</span>
-00367     error = <a class="code" href="z17__drv_8c.html#a25">Cleanup</a>(llHdl, error);
-00368 
-00369     <span class="keywordflow">return</span> (error);
-00370 }
-00371 
-00372 <span class="comment">/****************************** Z17_Read ************************************/</span>
-<a name="l00383"></a><a class="code" href="z17__drv_8c.html#a16">00383</a> <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a16">Z17_Read</a>(
-00384     <a class="code" href="structLL__HANDLE.html">LL_HANDLE</a>  *llHdl,
-00385     int32      ch,
-00386     int32      *valueP
-00387 )
-00388 {
-00389     DBGWRT_1((<a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"LL - Z17_Read: ch=%d\n"</span>, ch));
-00390 
-00391     *valueP = MREAD_D32(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m4">ma</a>, ARWEN_02_PSR);
-00392 
-00393     <span class="keywordflow">return</span> (ERR_SUCCESS);
-00394 }
-00395 
-00396 <span class="comment">/****************************** Z17_Write ***********************************/</span>
-<a name="l00407"></a><a class="code" href="z17__drv_8c.html#a17">00407</a> <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a17">Z17_Write</a>(
-00408     <a class="code" href="structLL__HANDLE.html">LL_HANDLE</a>  *llHdl,
-00409     int32      ch,
-00410     int32      value
-00411 )
-00412 {
-00413     DBGWRT_1((<a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"LL - Z17_Write: ch=%d  val=0x%x\n"</span>, ch, value));
-00414 
-00415     MWRITE_D32(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m4">ma</a>, ARWEN_GPIO, value);
-00416 
-00417     <span class="keywordflow">return</span> (ERR_SUCCESS);
-00418 }
-00419 
-00420 <span class="comment">/****************************** Z17_SetStat *********************************/</span>
-<a name="l00434"></a><a class="code" href="z17__drv_8c.html#a18">00434</a> <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a18">Z17_SetStat</a>(
-00435     <a class="code" href="structLL__HANDLE.html">LL_HANDLE</a>   *llHdl,
-00436     int32       code,
-00437     int32       ch,
-00438     INT32_OR_64 value32_or_64
-00439 )
-00440 {
-00441     int32 value = (int32)value32_or_64;     <span class="comment">/* 32bit value */</span>
-00442 <span class="preprocessor">#if defined(Z127_INFO_PTR) || !defined(Z127_NOIRQ)</span>
-00443 <span class="preprocessor"></span>    <a class="code" href="z17__drv_8h.html#a20">INT32_OR_64</a> valueP = value32_or_64;     <span class="comment">/* stores 32/64bit pointer */</span>
-00444     <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/structM__SG__BLOCK.html">M_SG_BLOCK</a> *blk = (<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/structM__SG__BLOCK.html">M_SG_BLOCK</a>*)valueP;  <span class="comment">/* stores block struct pointer */</span>
-00445 <span class="preprocessor">#endif</span>
-00446 <span class="preprocessor"></span>
-00447     MACCESS ma = llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m4">ma</a>;
-00448     int32 error = ERR_SUCCESS;
-00449 
-00450     DBGWRT_1((<a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"LL - Z17_SetStat: ch=%d code=0x%04x value=0x%x\n"</span>,
-00451                 ch, code, value));
-00452 
-00453     <span class="keywordflow">switch</span> (code) {
-00454         <span class="comment">/*--------------------------+</span>
-00455 <span class="comment">        |  debug level              |</span>
-00456 <span class="comment">        +--------------------------*/</span>
-00457         <span class="keywordflow">case</span> M_LL_DEBUG_LEVEL:
-00458             llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m6">dbgLevel</a> = value;
-00459             <span class="keywordflow">break</span>;
-00460         <span class="comment">/*--------------------------+</span>
-00461 <span class="comment">        |  enable interrupts        |</span>
-00462 <span class="comment">        +--------------------------*/</span>
-00463         <span class="keywordflow">case</span> M_MK_IRQ_ENABLE:
-00464             <span class="keywordflow">break</span>;
-00465         <span class="comment">/*--------------------------+</span>
-00466 <span class="comment">        |  set irq counter          |</span>
-00467 <span class="comment">        +--------------------------*/</span>
-00468         <span class="keywordflow">case</span> M_LL_IRQ_COUNT:
-00469 <span class="preprocessor">#ifndef Z127_NOIRQ</span>
-00470 <span class="preprocessor"></span>            llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m9">irqCount</a> = value;
-00471 <span class="preprocessor">#endif</span>
-00472 <span class="preprocessor"></span>            <span class="keywordflow">break</span>;
-00473         <span class="comment">/*--------------------------+</span>
-00474 <span class="comment">        |  channel direction        |</span>
-00475 <span class="comment">        +--------------------------*/</span>
-00476         <span class="keywordflow">case</span> M_LL_CH_DIR:
-00477             <span class="keywordflow">if</span> (value != M_CH_INOUT) {
-00478                 error = ERR_LL_ILL_DIR;
-00479             }
-00480             <span class="keywordflow">break</span>;
-00481         <span class="comment">/*--------------------------+</span>
-00482 <span class="comment">        |  set IO ports             |</span>
-00483 <span class="comment">        +--------------------------*/</span>
-00484         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a0">Z17_SET_PORTS</a>:
-00485             MWRITE_D32(ma, ARWEN_GPIO, MREAD_D32(ma, ARWEN_GPIO) | value);
-00486             <span class="comment">/* remove bit from toggle mode */</span>
-00487             <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m22">togBitMask</a>) {
-00488                 llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m22">togBitMask</a> &amp;= ~value;
-00489                 <span class="comment">/* stop alarm if last bit is set */</span>
-00490                 <span class="keywordflow">if</span> (!llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m22">togBitMask</a>)
-00491                     error = OSS_AlarmClear(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m1">osHdl</a>, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m17">alarmHdl</a>);
-00492             }
-00493             <span class="keywordflow">break</span>;
-00494         <span class="comment">/*--------------------------+</span>
-00495 <span class="comment">        |  clear IO ports           |</span>
-00496 <span class="comment">        +--------------------------*/</span>
-00497         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a1">Z17_CLR_PORTS</a>:
-00498             MWRITE_D32(ma, ARWEN_GPIO, MREAD_D32(ma, ARWEN_GPIO) &amp; ~value);
-00499             <span class="comment">/* remove bit from toggle mode */</span>
-00500             <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m22">togBitMask</a>) {
-00501                 llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m22">togBitMask</a> &amp;= ~value;
-00502                 <span class="comment">/* stop alarm if last bit is cleared */</span>
-00503                 <span class="keywordflow">if</span> (!llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m22">togBitMask</a>)
-00504                     error = OSS_AlarmClear(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m1">osHdl</a>, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m17">alarmHdl</a>);
-00505             }
-00506             <span class="keywordflow">break</span>;
-00507         <span class="comment">/*--------------------------+</span>
-00508 <span class="comment">        |  port direction           |</span>
-00509 <span class="comment">        +--------------------------*/</span>
-00510         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a2">Z17_DIRECTION</a>:
-00511             MWRITE_D32(ma, ARWEN_DDR, value);
-00512             <span class="keywordflow">break</span>;
-00513 <span class="preprocessor">#ifndef Z127_NOIRQ</span>
-00514 <span class="preprocessor"></span>        <span class="comment">/*--------------------------+</span>
-00515 <span class="comment">        |  edge for interrupt       |</span>
-00516 <span class="comment">        +--------------------------*/</span>
-00517         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a3">Z17_IRQ_SENSE</a>:
-00518 <span class="preprocessor">#ifndef Z17_MODEL_Z127</span>
-00519 <span class="preprocessor"></span>        <span class="comment">/* Z34/Z37 - 8 GPIOs */</span>
-00520             MWRITE_D32(ma, ARWEN_02_IER1, value &amp; 0xff);
-00521             MWRITE_D32(ma, ARWEN_02_IER2, (value &gt;&gt; 8) &amp; 0xff);
-00522             <span class="keywordflow">break</span>;
-00523 <span class="preprocessor">#else</span>
-00524 <span class="preprocessor"></span>        <span class="comment">/* Z127: GPIOs 0..15 - two bits per GPIO */</span>
-00525             MWRITE_D32(ma, ARWEN_02_IER1, value);
-00526             <span class="keywordflow">break</span>;
-00527         <span class="comment">/* Z127: GPIOs 16..31 - two bits per GPIO */</span>
-00528         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a9">Z17_IRQ_SENSE_16TO31</a>:
-00529             MWRITE_D32(ma, ARWEN_02_IER2, value);
-00530             <span class="keywordflow">break</span>;
-00531 <span class="preprocessor">#endif  </span><span class="comment">/* Z17_MODEL_Z127 */</span>
-00532 <span class="preprocessor">#endif  </span><span class="comment">/* Z127_NOIRQ */</span>
-00533         <span class="comment">/*--------------------------+</span>
-00534 <span class="comment">        |  open drain               |</span>
-00535 <span class="comment">        +--------------------------*/</span>
-00536         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a4">Z17_OPEN_DRAIN</a>:
-00537             MWRITE_D32(ma, ARWEN_02_ODER, value);
+00037 <span class="comment">/*-----------------------------------------+</span>
+00038 <span class="comment">|  INCLUDES                                |</span>
+00039 <span class="comment">+-----------------------------------------*/</span>
+00040 <span class="preprocessor">#include &lt;MEN/men_typs.h&gt;</span>    <span class="comment">/* system dependent definitions   */</span>
+00041 <span class="preprocessor">#include &lt;MEN/maccess.h&gt;</span>     <span class="comment">/* hw access macros and types     */</span>
+00042 <span class="preprocessor">#include &lt;MEN/dbg.h&gt;</span>         <span class="comment">/* debug functions                */</span>
+00043 <span class="preprocessor">#include &lt;MEN/oss.h&gt;</span>         <span class="comment">/* oss functions                  */</span>
+00044 <span class="preprocessor">#include &lt;MEN/desc.h&gt;</span>        <span class="comment">/* descriptor functions           */</span>
+00045 <span class="preprocessor">#include &lt;MEN/modcom.h&gt;</span>      <span class="comment">/* ID PROM functions              */</span>
+00046 <span class="preprocessor">#include &lt;MEN/mdis_api.h&gt;</span>    <span class="comment">/* MDIS global defs               */</span>
+00047 <span class="preprocessor">#include &lt;MEN/mdis_com.h&gt;</span>    <span class="comment">/* MDIS common defs               */</span>
+00048 <span class="preprocessor">#include &lt;MEN/mdis_err.h&gt;</span>    <span class="comment">/* MDIS error codes               */</span>
+00049 <span class="preprocessor">#include &lt;MEN/ll_defs.h&gt;</span>     <span class="comment">/* low-level driver definitions   */</span>
+00050 <span class="preprocessor">#include &lt;MEN/arwen.h&gt;</span>       <span class="comment">/* definitions for Arwen GPIO     */</span>
+00051 <span class="preprocessor">#include &lt;MEN/chameleon.h&gt;</span>   <span class="comment">/* chameleon header               */</span>
+00052 
+00053 <span class="comment">/*-----------------------------------------+</span>
+00054 <span class="comment">|  DEFINES                                 |</span>
+00055 <span class="comment">+-----------------------------------------*/</span>
+00056 <span class="preprocessor">#if (defined(Z127V01) &amp;&amp; defined(MDIS_MA_BB_INFO_PTR))</span>
+00057 <span class="preprocessor"></span><span class="preprocessor">    #define Z127_INFO_PTR 1</span>
+00058 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+00059 <span class="preprocessor"></span>
+00060 <span class="comment">/* general defines */</span>
+<a name="l00061"></a><a class="code" href="z17__drv_8c.html#a1">00061</a> <span class="preprocessor">#define CH_NUMBER          1          </span>
+00062 <span class="preprocessor">#ifdef Z127_NOIRQ</span>
+00063 <span class="preprocessor"></span><span class="preprocessor">  #define USE_IRQ            FALSE      </span>
+00064 <span class="preprocessor">#else</span>
+<a name="l00065"></a><a class="code" href="z17__drv_8c.html#a2">00065</a> <span class="preprocessor"></span><span class="preprocessor">  #define USE_IRQ            TRUE       </span>
+00066 <span class="preprocessor">#endif  </span><span class="comment">/* Z127_NOIRQ */</span>
+00067 
+00068 <span class="preprocessor">#ifdef Z127_INFO_PTR</span>
+00069 <span class="preprocessor"></span><span class="preprocessor">    #define ADDRSPACE_COUNT    2          </span>
+00070 <span class="preprocessor">    #define ADDRSPACE_SIZE     0x100      </span>
+00071 <span class="preprocessor">#else</span>
+<a name="l00072"></a><a class="code" href="z17__drv_8c.html#a3">00072</a> <span class="preprocessor"></span><span class="preprocessor">    #define ADDRSPACE_COUNT    1          </span>
+<a name="l00073"></a><a class="code" href="z17__drv_8c.html#a4">00073</a> <span class="preprocessor">    #define ADDRSPACE_SIZE     0x20       </span>
+00074 <span class="preprocessor">#endif</span>
+00075 <span class="preprocessor"></span>
+00076 <span class="comment">/* debug defines */</span>
+<a name="l00077"></a><a class="code" href="z17__drv_8c.html#a5">00077</a> <span class="preprocessor">#define DBG_MYLEVEL        llHdl-&gt;dbgLevel    </span>
+<a name="l00078"></a><a class="code" href="z17__drv_8c.html#a6">00078</a> <span class="preprocessor">#define DBH                llHdl-&gt;dbgHdl      </span>
+<a name="l00079"></a><a class="code" href="z17__drv_8c.html#a7">00079</a> <span class="preprocessor">#define OSH                llHdl-&gt;osHdl       </span>
+00081 <span class="preprocessor"></span><span class="comment">/* toggle mode defines */</span>
+<a name="l00082"></a><a class="code" href="z17__drv_8c.html#a8">00082</a> <span class="preprocessor">#define TOG_TIME_DEFAULT   1000       </span>
+<a name="l00083"></a><a class="code" href="z17__drv_8c.html#a9">00083</a> <span class="preprocessor">#define TOG_TIME_MIN       100        </span>
+<a name="l00084"></a><a class="code" href="z17__drv_8c.html#a10">00084</a> <span class="preprocessor">#define TOG_TIME_MAX       60000      </span>
+<a name="l00085"></a><a class="code" href="z17__drv_8c.html#a11">00085</a> <span class="preprocessor">#define TOG_CYCLIC         1          </span>
+00087 <span class="preprocessor"></span><span class="comment">/* descriptor key defines*/</span>
+<a name="l00088"></a><a class="code" href="z17__drv_8c.html#a12">00088</a> <span class="preprocessor">#define RESET_DEFAULT      0          </span>
+<a name="l00089"></a><a class="code" href="z17__drv_8c.html#a13">00089</a> <span class="preprocessor">#define RESET_OFF          1          </span>
+00091 <span class="preprocessor"></span><span class="comment">/*-----------------------------------------+</span>
+00092 <span class="comment">|  TYPEDEFS                                |</span>
+00093 <span class="comment">+-----------------------------------------*/</span>
+00094 
+<a name="l00095"></a><a class="code" href="structLL__HANDLE.html">00095</a> <span class="keyword">typedef</span> <span class="keyword">struct </span>{
+00096     <span class="comment">/* general */</span>
+<a name="l00097"></a><a class="code" href="structLL__HANDLE.html#m0">00097</a>     int32                   memAlloc;       
+<a name="l00098"></a><a class="code" href="structLL__HANDLE.html#m1">00098</a>     OSS_HANDLE              *osHdl;         
+<a name="l00099"></a><a class="code" href="structLL__HANDLE.html#m2">00099</a>     OSS_IRQ_HANDLE          *irqHdl;        
+<a name="l00100"></a><a class="code" href="structLL__HANDLE.html#m3">00100</a>     DESC_HANDLE             *descHdl;       
+<a name="l00101"></a><a class="code" href="structLL__HANDLE.html#m4">00101</a>     MACCESS                 ma;             
+00102 <span class="preprocessor">#ifdef Z127_INFO_PTR</span>
+00103 <span class="preprocessor"></span>    CHAMELEONV2_UNIT        *chamu;         
+00104     u_int32                 vdt;            
+00105 <span class="preprocessor">#endif</span>
+<a name="l00106"></a><a class="code" href="structLL__HANDLE.html#m5">00106</a> <span class="preprocessor"></span>    MDIS_IDENT_FUNCT_TBL    idFuncTbl;      
+00107     <span class="comment">/* debug */</span>
+<a name="l00108"></a><a class="code" href="structLL__HANDLE.html#m6">00108</a>     u_int32                 dbgLevel;       
+<a name="l00109"></a><a class="code" href="structLL__HANDLE.html#m7">00109</a>     DBG_HANDLE              *dbgHdl;        
+00110 <span class="preprocessor">#ifndef Z127_NOIRQ</span>
+00111 <span class="preprocessor"></span>    <span class="comment">/* misc */</span>
+<a name="l00112"></a><a class="code" href="structLL__HANDLE.html#m8">00112</a>     OSS_SIG_HANDLE          *portChangeSig; 
+<a name="l00113"></a><a class="code" href="structLL__HANDLE.html#m9">00113</a>     u_int32                 irqCount;       
+<a name="l00114"></a><a class="code" href="structLL__HANDLE.html#m10">00114</a>     u_int32                 lastReq;        
+00115     <span class="comment">/* IRQ latency test */</span>
+<a name="l00116"></a><a class="code" href="structLL__HANDLE.html#m11">00116</a>     u_int32                 irqTest;        <span class="comment">/* test running flag (1=on) */</span>
+<a name="l00117"></a><a class="code" href="structLL__HANDLE.html#m12">00117</a>     int32                   outBit;         <span class="comment">/* output bit 0..31       */</span>
+<a name="l00118"></a><a class="code" href="structLL__HANDLE.html#m13">00118</a>     u_int32                 outLast;        <span class="comment">/* last set output value (1 or 0) */</span>
+<a name="l00119"></a><a class="code" href="structLL__HANDLE.html#m14">00119</a>     u_int32                 irqs2fire;      <span class="comment">/* number of IRQs to fire */</span>
+<a name="l00120"></a><a class="code" href="structLL__HANDLE.html#m15">00120</a>     u_int32                 startTick;      <span class="comment">/* start tick count       */</span>
+<a name="l00121"></a><a class="code" href="structLL__HANDLE.html#m16">00121</a>     u_int32                 stopTick;       <span class="comment">/* stop tick count        */</span>
+00122 <span class="preprocessor">#endif  </span><span class="comment">/* Z127_NOIRQ */</span>
+00123     <span class="comment">/* toggle mode */</span>
+<a name="l00124"></a><a class="code" href="structLL__HANDLE.html#m17">00124</a>     OSS_ALARM_HANDLE        *alarmHdl;      
+<a name="l00125"></a><a class="code" href="structLL__HANDLE.html#m18">00125</a>     OSS_SEM_HANDLE          *devSemHdl;     
+<a name="l00126"></a><a class="code" href="structLL__HANDLE.html#m19">00126</a>     u_int32                 togHigh;        
+<a name="l00127"></a><a class="code" href="structLL__HANDLE.html#m20">00127</a>     u_int32                 togtimeHigh;    
+<a name="l00128"></a><a class="code" href="structLL__HANDLE.html#m21">00128</a>     u_int32                 togtimeLow;     
+<a name="l00129"></a><a class="code" href="structLL__HANDLE.html#m22">00129</a>     u_int32                 togBitMask;     
+<a name="l00130"></a><a class="code" href="structLL__HANDLE.html#m23">00130</a>     u_int32                 togCount;       
+00131     <span class="comment">/* arwen no reset */</span>
+<a name="l00132"></a><a class="code" href="structLL__HANDLE.html#m24">00132</a>     u_int32                 arwenResetOff;  
+00133 } <a class="code" href="structLL__HANDLE.html">LL_HANDLE</a>;
+00134 
+00135 <span class="comment">/* include files which need LL_HANDLE */</span>
+00136 <span class="preprocessor">#include &lt;MEN/ll_entry.h&gt;</span>       <span class="comment">/* low-level driver jump table */</span>
+00137 <span class="preprocessor">#include &lt;<a class="code" href="z17__drv_8h.html">MEN/z17_drv.h</a>&gt;</span>        <span class="comment">/* Z17 driver header file      */</span>
+00138 
+00139 <span class="preprocessor">#ifdef Z17_MODEL_Z127</span>
+00140 <span class="preprocessor"></span><span class="preprocessor">    #ifdef Z127_NOIRQ</span>
+00141 <span class="preprocessor"></span>        <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> <a class="code" href="z17__drv_8c.html#a14">IdentString</a>[]=MENT_XSTR_SFX(MAK_REVISION,Z127 model no IRQs);
+00142 <span class="preprocessor">    #else</span>
+00143 <span class="preprocessor"></span>        <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> <a class="code" href="z17__drv_8c.html#a14">IdentString</a>[]=MENT_XSTR_SFX(MAK_REVISION,Z127 model);
+00144 <span class="preprocessor">    #endif</span>
+00145 <span class="preprocessor"></span><span class="preprocessor">#else</span>
+00146 <span class="preprocessor"></span><span class="preprocessor">    #ifdef Z127_NOIRQ</span>
+00147 <span class="preprocessor"></span>        <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> <a class="code" href="z17__drv_8c.html#a14">IdentString</a>[]=MENT_XSTR_SFX(MAK_REVISION,Z34/Z37 model no IRQs);
+00148 <span class="preprocessor">    #else</span>
+<a name="l00149"></a><a class="code" href="z17__drv_8c.html#a14">00149</a> <span class="preprocessor"></span>        <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> <a class="code" href="z17__drv_8c.html#a14">IdentString</a>[]=MENT_XSTR_SFX(MAK_REVISION,Z34/Z37 model);
+00150 <span class="preprocessor">    #endif</span>
+00151 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+00152 <span class="preprocessor"></span>
+00153 <span class="comment">/*-----------------------------------------+</span>
+00154 <span class="comment">|  PROTOTYPES                              |</span>
+00155 <span class="comment">+-----------------------------------------*/</span>
+00156 <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a15">Z17_Init</a>(DESC_SPEC *descSpec, OSS_HANDLE *osHdl,
+00157                         MACCESS *ma, OSS_SEM_HANDLE *devSemHdl,
+00158                         OSS_IRQ_HANDLE *irqHdl, <a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> **llHdlP);
+00159 <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a16">Z17_Exit</a>(<a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> **llHdlP);
+00160 <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a17">Z17_Read</a>(<a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl, int32 ch, int32 *value);
+00161 <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a18">Z17_Write</a>(<a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl, int32 ch, int32 value);
+00162 <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a19">Z17_SetStat</a>(<a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl,int32 ch, int32 code,
+00163                             INT32_OR_64 value32_or_64);
+00164 <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a20">Z17_GetStat</a>(<a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl, int32 ch, int32 code,
+00165                             INT32_OR_64 *value32_or64P);
+00166 <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a21">Z17_BlockRead</a>(<a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl, int32 ch, <span class="keywordtype">void</span> *buf, int32 size,
+00167                             int32 *nbrRdBytesP);
+00168 <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a22">Z17_BlockWrite</a>(<a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl, int32 ch, <span class="keywordtype">void</span> *buf, int32 size,
+00169                                 int32 *nbrWrBytesP);
+00170 <span class="preprocessor">#ifndef Z127_NOIRQ</span>
+00171 <span class="preprocessor"></span>    <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a23">Z17_Irq</a>(<a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl);
+00172 <span class="preprocessor">#endif  </span><span class="comment">/* Z127_NOIRQ */</span>
+00173 <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a24">Z17_Info</a>(int32 infoType, ...);
+00174 <span class="keyword">static</span> <span class="keywordtype">char</span>* <a class="code" href="z17__drv_8c.html#a25">Ident</a>(<span class="keywordtype">void</span>);
+00175 <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a26">Cleanup</a>(<a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl, int32 retCode);
+00176 <span class="keyword">static</span> <span class="keywordtype">void</span>  <a class="code" href="z17__drv_8c.html#a27">arwenReset</a>(<a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl);
+00177 
+00178 <span class="keyword">static</span> <span class="keywordtype">void</span>  <a class="code" href="z17__drv_8c.html#a28">AlarmHandler</a>(<span class="keywordtype">void</span> *arg);
+00179 
+00180 <span class="comment">/****************************** Z17_GetEntry ********************************/</span>
+00185 <span class="preprocessor">#ifdef _ONE_NAMESPACE_PER_DRIVER_</span>
+00186 <span class="preprocessor"></span>    <span class="keyword">extern</span> <span class="keywordtype">void</span> LL_GetEntry(
+00187         LL_ENTRY* drvP
+00188     )
+00189 #<span class="keywordflow">else</span>
+<a name="l00190"></a><a class="code" href="z17__drv_8c.html#a29">00190</a>     <span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="z17__drv_8h.html#a19">__Z17_GetEntry</a>(
+00191         LL_ENTRY* drvP
+00192     )
+00193 #endif
+00194 {
+00195     drvP-&gt;init        = <a class="code" href="z17__drv_8c.html#a15">Z17_Init</a>;
+00196     drvP-&gt;exit        = <a class="code" href="z17__drv_8c.html#a16">Z17_Exit</a>;
+00197     drvP-&gt;read        = <a class="code" href="z17__drv_8c.html#a17">Z17_Read</a>;
+00198     drvP-&gt;write       = <a class="code" href="z17__drv_8c.html#a18">Z17_Write</a>;
+00199     drvP-&gt;blockRead   = <a class="code" href="z17__drv_8c.html#a21">Z17_BlockRead</a>;
+00200     drvP-&gt;blockWrite  = <a class="code" href="z17__drv_8c.html#a22">Z17_BlockWrite</a>;
+00201     drvP-&gt;setStat     = <a class="code" href="z17__drv_8c.html#a19">Z17_SetStat</a>;
+00202     drvP-&gt;getStat     = <a class="code" href="z17__drv_8c.html#a20">Z17_GetStat</a>;
+00203 <span class="preprocessor">#ifndef Z127_NOIRQ</span>
+00204 <span class="preprocessor"></span>    drvP-&gt;irq         = <a class="code" href="z17__drv_8c.html#a23">Z17_Irq</a>;
+00205 <span class="preprocessor">#endif  </span><span class="comment">/* Z127_NOIRQ */</span>
+00206     drvP-&gt;info        = <a class="code" href="z17__drv_8c.html#a24">Z17_Info</a>;
+00207 }
+00208 
+00209 <span class="comment">/******************************** Z17_Init **********************************/</span>
+<a name="l00234"></a><a class="code" href="z17__drv_8c.html#a15">00234</a> <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a15">Z17_Init</a>(
+00235     DESC_SPEC       *descP,
+00236     OSS_HANDLE      *osHdl,
+00237     MACCESS         *ma,
+00238     OSS_SEM_HANDLE  *devSemHdl,
+00239     OSS_IRQ_HANDLE  *irqHdl,
+00240     <a class="code" href="structLL__HANDLE.html">LL_HANDLE</a>       **llHdlP
+00241 )
+00242 {
+00243     <a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl = NULL;
+00244     u_int32 gotsize;
+00245     int32 error;
+00246     u_int32 value;
+00247 
+00248     <span class="comment">/*------------------------------+</span>
+00249 <span class="comment">    |  prepare the handle           |</span>
+00250 <span class="comment">    +------------------------------*/</span>
+00251     *llHdlP = NULL;     <span class="comment">/* set low-level driver handle to NULL */</span>
+00252 
+00253     <span class="comment">/* alloc */</span>
+00254     <span class="keywordflow">if</span> ((llHdl = (<a class="code" href="structLL__HANDLE.html">LL_HANDLE</a>*)OSS_MemGet(
+00255                     osHdl, <span class="keyword">sizeof</span>(<a class="code" href="structLL__HANDLE.html">LL_HANDLE</a>), &amp;gotsize)) == NULL)
+00256         <span class="keywordflow">return</span> (ERR_OSS_MEM_ALLOC);
+00257 
+00258     <span class="comment">/* clear */</span>
+00259     OSS_MemFill(osHdl, gotsize, (<span class="keywordtype">char</span>*)llHdl, 0x00);
+00260 
+00261     <span class="comment">/* init */</span>
+00262     llHdl-&gt;memAlloc    = gotsize;
+00263     llHdl-&gt;osHdl       = osHdl;
+00264 <span class="preprocessor">#ifndef Z127_NOIRQ</span>
+00265 <span class="preprocessor"></span>    llHdl-&gt;irqHdl      = irqHdl;
+00266 <span class="preprocessor">#endif  </span><span class="comment">/* Z127_NOIRQ */</span>
+00267     llHdl-&gt;ma          = *ma;
+00268     llHdl-&gt;devSemHdl   = devSemHdl;
+00269     llHdl-&gt;togtimeHigh = <a class="code" href="z17__drv_8c.html#a8">TOG_TIME_DEFAULT</a>;
+00270     llHdl-&gt;togtimeLow  = <a class="code" href="z17__drv_8c.html#a8">TOG_TIME_DEFAULT</a>;
+00271     llHdl-&gt;togBitMask  = 0;
+00272     llHdl-&gt;togCount    = 0;
+00273     llHdl-&gt;togHigh     = 0;
+00274 
+00275 <span class="preprocessor">#ifdef Z127_INFO_PTR</span>
+00276 <span class="preprocessor"></span>    llHdl-&gt;chamu       = (CHAMELEONV2_UNIT*)ma[1];
+00277 <span class="preprocessor">#endif </span>
+00278 <span class="preprocessor"></span>
+00279     <span class="comment">/*------------------------------+</span>
+00280 <span class="comment">    |  init id function table       |</span>
+00281 <span class="comment">    +------------------------------*/</span>
+00282     <span class="comment">/* driver's ident function */</span>
+00283     llHdl-&gt;idFuncTbl.idCall[0].identCall = <a class="code" href="z17__drv_8c.html#a25">Ident</a>;
+00284     <span class="comment">/* library's ident functions */</span>
+00285     llHdl-&gt;idFuncTbl.idCall[1].identCall = DESC_Ident;
+00286     llHdl-&gt;idFuncTbl.idCall[2].identCall = OSS_Ident;
+00287     <span class="comment">/* terminator */</span>
+00288     llHdl-&gt;idFuncTbl.idCall[3].identCall = NULL;
+00289 
+00290     <span class="comment">/*------------------------------+</span>
+00291 <span class="comment">    |  prepare debugging            |</span>
+00292 <span class="comment">    +------------------------------*/</span>
+00293     <a class="code" href="z17__drv_8c.html#a5">DBG_MYLEVEL</a> = OSS_DBG_DEFAULT;      <span class="comment">/* set OS specific debug level */</span>
+00294     DBGINIT((NULL,&amp;<a class="code" href="z17__drv_8c.html#a6">DBH</a>));
+00295 
+00296     <span class="comment">/*------------------------------+</span>
+00297 <span class="comment">    |  scan descriptor              |</span>
+00298 <span class="comment">    +------------------------------*/</span>
+00299     <span class="comment">/* prepare access */</span>
+00300     <span class="keywordflow">if</span> ((error = DESC_Init(descP, osHdl, &amp;llHdl-&gt;descHdl)))
+00301         <span class="keywordflow">return</span> (<a class="code" href="z17__drv_8c.html#a26">Cleanup</a>(llHdl, error));
+00302 
+00303     <span class="comment">/* DEBUG_LEVEL_DESC */</span>
+00304     <span class="keywordflow">if</span> ((error = DESC_GetUInt32(llHdl-&gt;descHdl, OSS_DBG_DEFAULT,
+00305                                 &amp;value, <span class="stringliteral">"DEBUG_LEVEL_DESC"</span>)) &amp;&amp;
+00306         error != ERR_DESC_KEY_NOTFOUND)
+00307         <span class="keywordflow">return</span> (<a class="code" href="z17__drv_8c.html#a26">Cleanup</a>(llHdl, error));
+00308 
+00309     DESC_DbgLevelSet(llHdl-&gt;descHdl, value);    <span class="comment">/* set level */</span>
+00310 
+00311     <span class="comment">/* DEBUG_LEVEL */</span>
+00312     <span class="keywordflow">if</span> ((error = DESC_GetUInt32(llHdl-&gt;descHdl, OSS_DBG_DEFAULT,
+00313                                 &amp;llHdl-&gt;dbgLevel, <span class="stringliteral">"DEBUG_LEVEL"</span>)) &amp;&amp;
+00314         error != ERR_DESC_KEY_NOTFOUND)
+00315         <span class="keywordflow">return</span> (<a class="code" href="z17__drv_8c.html#a26">Cleanup</a>(llHdl, error));
+00316 
+00317     DBGWRT_1((<a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"LL - Z17_Init: base address = %08p\n"</span>, (<span class="keywordtype">void</span>*)llHdl-&gt;ma));
+00318 
+00319 <span class="preprocessor">#ifdef Z127_INFO_PTR</span>
+00320 <span class="preprocessor"></span>    <span class="comment">/* print chameleon info */</span>
+00321     DBGWRT_1(( <a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"   device ID:\t0x%02x \n"</span>,llHdl-&gt;chamu-&gt;devId));
+00322     DBGWRT_1(( <a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"   variant:  \t0x%02x \n"</span>,llHdl-&gt;chamu-&gt;variant));
+00323     DBGWRT_1(( <a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"   revision: \t0x%02x \n\n"</span>,llHdl-&gt;chamu-&gt;revision));
+00324     
+00325     <span class="keywordflow">if</span>( llHdl-&gt;chamu-&gt;variant &gt; 0 )
+00326         llHdl-&gt;vdt = 1;
+00327 <span class="preprocessor">#endif</span>
+00328 <span class="preprocessor"></span>
+00329     <span class="comment">/* RESET_OFF */</span>
+00330     <span class="keywordflow">if</span> ((error = DESC_GetUInt32(llHdl-&gt;descHdl, <a class="code" href="z17__drv_8c.html#a12">RESET_DEFAULT</a>,
+00331                                 &amp;llHdl-&gt;arwenResetOff, <span class="stringliteral">"RESET_OFF"</span>)) &amp;&amp;
+00332         error != ERR_DESC_KEY_NOTFOUND)
+00333         <span class="keywordflow">return</span> (<a class="code" href="z17__drv_8c.html#a26">Cleanup</a>(llHdl, error));
+00334 
+00335     <span class="comment">/*------------------------------+</span>
+00336 <span class="comment">    |  init alarm                   |</span>
+00337 <span class="comment">    +------------------------------*/</span>
+00338     <span class="keywordflow">if</span> ((error = OSS_AlarmCreate(llHdl-&gt;osHdl, <a class="code" href="z17__drv_8c.html#a28">AlarmHandler</a>, llHdl,
+00339                                     &amp;llHdl-&gt;alarmHdl)))
+00340         <span class="keywordflow">return</span> (<a class="code" href="z17__drv_8c.html#a26">Cleanup</a>(llHdl, error));
+00341 
+00342     <span class="comment">/*------------------------------+</span>
+00343 <span class="comment">    |  init hardware                |</span>
+00344 <span class="comment">    +------------------------------*/</span>
+00345     <a class="code" href="z17__drv_8c.html#a27">arwenReset</a>(llHdl);
+00346     *llHdlP = llHdl;        <span class="comment">/* set low-level driver handle */</span>
+00347 
+00348     <span class="keywordflow">return</span> (ERR_SUCCESS);
+00349 }
+00350 
+00351 <span class="comment">/****************************** Z17_Exit ************************************/</span>
+<a name="l00361"></a><a class="code" href="z17__drv_8c.html#a16">00361</a> <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a16">Z17_Exit</a>(
+00362     <a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> **llHdlP
+00363 )
+00364 {
+00365     <a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl = *llHdlP;
+00366     int32 error = 0;
+00367 
+00368     DBGWRT_1((<a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"LL - Z17_Exit\n"</span>));
+00369 
+00370     <span class="comment">/*------------------------------+</span>
+00371 <span class="comment">    |  de-init hardware             |</span>
+00372 <span class="comment">    +------------------------------*/</span>
+00373     <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m24">arwenResetOff</a> == 0)
+00374         <a class="code" href="z17__drv_8c.html#a27">arwenReset</a>(llHdl);
+00375     <span class="comment">/*------------------------------+</span>
+00376 <span class="comment">    |  clean up memory              |</span>
+00377 <span class="comment">    +------------------------------*/</span>
+00378     *llHdlP = NULL;     <span class="comment">/* set low-level driver handle to NULL */</span>
+00379     error = <a class="code" href="z17__drv_8c.html#a26">Cleanup</a>(llHdl, error);
+00380 
+00381     <span class="keywordflow">return</span> (error);
+00382 }
+00383 
+00384 <span class="comment">/****************************** Z17_Read ************************************/</span>
+<a name="l00395"></a><a class="code" href="z17__drv_8c.html#a17">00395</a> <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a17">Z17_Read</a>(
+00396     <a class="code" href="structLL__HANDLE.html">LL_HANDLE</a>  *llHdl,
+00397     int32      ch,
+00398     int32      *valueP
+00399 )
+00400 {
+00401     DBGWRT_1((<a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"LL - Z17_Read: ch=%d\n"</span>, ch));
+00402 
+00403     *valueP = MREAD_D32(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m4">ma</a>, ARWEN_02_PSR);
+00404 
+00405     <span class="keywordflow">return</span> (ERR_SUCCESS);
+00406 }
+00407 
+00408 <span class="comment">/****************************** Z17_Write ***********************************/</span>
+<a name="l00419"></a><a class="code" href="z17__drv_8c.html#a18">00419</a> <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a18">Z17_Write</a>(
+00420     <a class="code" href="structLL__HANDLE.html">LL_HANDLE</a>  *llHdl,
+00421     int32      ch,
+00422     int32      value
+00423 )
+00424 {
+00425     DBGWRT_1((<a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"LL - Z17_Write: ch=%d  val=0x%x\n"</span>, ch, value));
+00426 
+00427     MWRITE_D32(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m4">ma</a>, ARWEN_GPIO, value);
+00428 
+00429     <span class="keywordflow">return</span> (ERR_SUCCESS);
+00430 }
+00431 
+00432 <span class="comment">/****************************** Z17_SetStat *********************************/</span>
+<a name="l00446"></a><a class="code" href="z17__drv_8c.html#a19">00446</a> <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a19">Z17_SetStat</a>(
+00447     <a class="code" href="structLL__HANDLE.html">LL_HANDLE</a>   *llHdl,
+00448     int32       code,
+00449     int32       ch,
+00450     INT32_OR_64 value32_or_64
+00451 )
+00452 {
+00453     int32 value = (int32)value32_or_64;     <span class="comment">/* 32bit value */</span>
+00454 <span class="preprocessor">#if defined(Z127_INFO_PTR) || !defined(Z127_NOIRQ)</span>
+00455 <span class="preprocessor"></span>    <a class="code" href="z17__drv_8h.html#a20">INT32_OR_64</a> valueP = value32_or_64;     <span class="comment">/* stores 32/64bit pointer */</span>
+00456     <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/structM__SG__BLOCK.html">M_SG_BLOCK</a> *blk = (<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/structM__SG__BLOCK.html">M_SG_BLOCK</a>*)valueP;  <span class="comment">/* stores block struct pointer */</span>
+00457 <span class="preprocessor">#endif</span>
+00458 <span class="preprocessor"></span>
+00459     MACCESS ma = llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m4">ma</a>;
+00460     int32 error = ERR_SUCCESS;
+00461 
+00462     DBGWRT_1((<a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"LL - Z17_SetStat: ch=%d code=0x%04x value=0x%x\n"</span>,
+00463                 ch, code, value));
+00464 
+00465     <span class="keywordflow">switch</span> (code) {
+00466         <span class="comment">/*--------------------------+</span>
+00467 <span class="comment">        |  debug level              |</span>
+00468 <span class="comment">        +--------------------------*/</span>
+00469         <span class="keywordflow">case</span> M_LL_DEBUG_LEVEL:
+00470             llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m6">dbgLevel</a> = value;
+00471             <span class="keywordflow">break</span>;
+00472         <span class="comment">/*--------------------------+</span>
+00473 <span class="comment">        |  enable interrupts        |</span>
+00474 <span class="comment">        +--------------------------*/</span>
+00475         <span class="keywordflow">case</span> M_MK_IRQ_ENABLE:
+00476             <span class="keywordflow">break</span>;
+00477         <span class="comment">/*--------------------------+</span>
+00478 <span class="comment">        |  set irq counter          |</span>
+00479 <span class="comment">        +--------------------------*/</span>
+00480         <span class="keywordflow">case</span> M_LL_IRQ_COUNT:
+00481 <span class="preprocessor">#ifndef Z127_NOIRQ</span>
+00482 <span class="preprocessor"></span>            llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m9">irqCount</a> = value;
+00483 <span class="preprocessor">#endif</span>
+00484 <span class="preprocessor"></span>            <span class="keywordflow">break</span>;
+00485         <span class="comment">/*--------------------------+</span>
+00486 <span class="comment">        |  channel direction        |</span>
+00487 <span class="comment">        +--------------------------*/</span>
+00488         <span class="keywordflow">case</span> M_LL_CH_DIR:
+00489             <span class="keywordflow">if</span> (value != M_CH_INOUT) {
+00490                 error = ERR_LL_ILL_DIR;
+00491             }
+00492             <span class="keywordflow">break</span>;
+00493         <span class="comment">/*--------------------------+</span>
+00494 <span class="comment">        |  set IO ports             |</span>
+00495 <span class="comment">        +--------------------------*/</span>
+00496         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a0">Z17_SET_PORTS</a>:
+00497             MWRITE_D32(ma, ARWEN_GPIO, MREAD_D32(ma, ARWEN_GPIO) | value);
+00498             <span class="comment">/* remove bit from toggle mode */</span>
+00499             <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m22">togBitMask</a>) {
+00500                 llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m22">togBitMask</a> &amp;= ~value;
+00501                 <span class="comment">/* stop alarm if last bit is set */</span>
+00502                 <span class="keywordflow">if</span> (!llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m22">togBitMask</a>)
+00503                     error = OSS_AlarmClear(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m1">osHdl</a>, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m17">alarmHdl</a>);
+00504             }
+00505             <span class="keywordflow">break</span>;
+00506         <span class="comment">/*--------------------------+</span>
+00507 <span class="comment">        |  clear IO ports           |</span>
+00508 <span class="comment">        +--------------------------*/</span>
+00509         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a1">Z17_CLR_PORTS</a>:
+00510             MWRITE_D32(ma, ARWEN_GPIO, MREAD_D32(ma, ARWEN_GPIO) &amp; ~value);
+00511             <span class="comment">/* remove bit from toggle mode */</span>
+00512             <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m22">togBitMask</a>) {
+00513                 llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m22">togBitMask</a> &amp;= ~value;
+00514                 <span class="comment">/* stop alarm if last bit is cleared */</span>
+00515                 <span class="keywordflow">if</span> (!llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m22">togBitMask</a>)
+00516                     error = OSS_AlarmClear(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m1">osHdl</a>, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m17">alarmHdl</a>);
+00517             }
+00518             <span class="keywordflow">break</span>;
+00519         <span class="comment">/*--------------------------+</span>
+00520 <span class="comment">        |  port direction           |</span>
+00521 <span class="comment">        +--------------------------*/</span>
+00522         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a2">Z17_DIRECTION</a>:
+00523             MWRITE_D32(ma, ARWEN_DDR, value);
+00524             <span class="keywordflow">break</span>;
+00525 <span class="preprocessor">#ifndef Z127_NOIRQ</span>
+00526 <span class="preprocessor"></span>        <span class="comment">/*--------------------------+</span>
+00527 <span class="comment">        |  edge for interrupt       |</span>
+00528 <span class="comment">        +--------------------------*/</span>
+00529         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a3">Z17_IRQ_SENSE</a>:
+00530 <span class="preprocessor">#ifndef Z17_MODEL_Z127</span>
+00531 <span class="preprocessor"></span>        <span class="comment">/* Z34/Z37 - 8 GPIOs */</span>
+00532             MWRITE_D32(ma, ARWEN_02_IER1, value &amp; 0xff);
+00533             MWRITE_D32(ma, ARWEN_02_IER2, (value &gt;&gt; 8) &amp; 0xff);
+00534             <span class="keywordflow">break</span>;
+00535 <span class="preprocessor">#else</span>
+00536 <span class="preprocessor"></span>        <span class="comment">/* Z127: GPIOs 0..15 - two bits per GPIO */</span>
+00537             MWRITE_D32(ma, ARWEN_02_IER1, value);
 00538             <span class="keywordflow">break</span>;
-00539         <span class="comment">/*--------------------------+</span>
-00540 <span class="comment">        |  debouncer                |</span>
-00541 <span class="comment">        +--------------------------*/</span>
-00542         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a5">Z17_DEBOUNCE</a>:
-00543             MWRITE_D32(ma, ARWEN_02_DBER, value);
-00544             <span class="keywordflow">break</span>;
-00545             
-00546 <span class="preprocessor">#ifdef Z127_INFO_PTR            </span>
-00547 <span class="preprocessor"></span>        <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a15">Z17_BLK_DEBOUNCE_TIME</a>:
-00548         {
-00549             int8 port;
-00550             <a class="code" href="structZ17__BLK__DEBTIME.html">Z17_BLK_DEBTIME</a> *dbt = (<a class="code" href="structZ17__BLK__DEBTIME.html">Z17_BLK_DEBTIME</a>*)blk-&gt;<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/structM__SG__BLOCK.html#o1">data</a>;         
-00551         
-00552             <span class="comment">/* prevent access to not implemented DBCR registers */</span>      
-00553             <span class="keywordflow">if</span>( llHdl-&gt;vdt == 0 ){
-00554                 DBGWRT_ERR((<a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"*** LL - Z17_SetStat(Z17_BLK_DEBOUNCE_TIME): "</span>
-00555                     <span class="stringliteral">" requires at least 16Z127 variant 1 IP core\n"</span>));
-00556                 <span class="keywordflow">return</span> ERR_LL_ILL_FUNC;
-00557             }
-00558                     
-00559             <span class="keywordflow">for</span>( port=0; port&lt;32; port++ ){
-00560                 <span class="keywordflow">if</span>( (dbt-&gt;<a class="code" href="structZ17__BLK__DEBTIME.html#m0">portMask</a> &amp; (1&lt;&lt;port)) ){
-00561                     MWRITE_D32(ma, ARWEN_Z127V01_DBCR(port), dbt-&gt;<a class="code" href="structZ17__BLK__DEBTIME.html#m1">timeUs</a>/50);
-00562                 }
-00563             }       
-00564 
-00565             <span class="keywordflow">break</span>;
-00566         }
-00567 <span class="preprocessor">#endif</span>
-00568 <span class="preprocessor"></span>                    
-00569 <span class="preprocessor">#ifndef Z127_NOIRQ</span>
-00570 <span class="preprocessor"></span>        <span class="comment">/*--------------------------+</span>
-00571 <span class="comment">        |  register signal          |</span>
-00572 <span class="comment">        +--------------------------*/</span>
-00573         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a6">Z17_SET_SIGNAL</a>:
-00574             <span class="comment">/* signal already installed ? */</span>
-00575             <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m8">portChangeSig</a>) {
-00576                 error = ERR_OSS_SIG_SET;
-00577                 <span class="keywordflow">break</span>;
-00578             }
-00579             error = OSS_SigCreate(<a class="code" href="z17__drv_8c.html#a7">OSH</a>, value, &amp;llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m8">portChangeSig</a>);
-00580             <span class="keywordflow">break</span>;
-00581         <span class="comment">/*--------------------------+</span>
-00582 <span class="comment">        |  unregister signal        |</span>
-00583 <span class="comment">        +--------------------------*/</span>
-00584         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a7">Z17_CLR_SIGNAL</a>:
-00585             <span class="comment">/* signal already installed ? */</span>
-00586             <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m8">portChangeSig</a> == NULL) {
-00587                 error = ERR_OSS_SIG_CLR;
-00588                 <span class="keywordflow">break</span>;
-00589             }
-00590             error = OSS_SigRemove(<a class="code" href="z17__drv_8c.html#a7">OSH</a>, &amp;llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m8">portChangeSig</a>);
-00591             <span class="keywordflow">break</span>;
-00592         <span class="comment">/*--------------------------+</span>
-00593 <span class="comment">        |  init IRQ latency test    |</span>
-00594 <span class="comment">        +--------------------------*/</span>
-00595         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a13">Z17_BLK_IRQLAT_START</a>:
-00596         {
-00597             int32 value;
-00598             <a class="code" href="structZ17__BLK__IRQLAT.html">Z17_BLK_IRQLAT</a> *irqlat = (<a class="code" href="structZ17__BLK__IRQLAT.html">Z17_BLK_IRQLAT</a>*)blk-&gt;<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/structM__SG__BLOCK.html#o1">data</a>;
-00599 
-00600             <span class="comment">/* clear out values */</span>
-00601             irqlat-&gt;<a class="code" href="structZ17__BLK__IRQLAT.html#m4">startTick</a> = 0;
-00602             irqlat-&gt;<a class="code" href="structZ17__BLK__IRQLAT.html#m5">stopTick</a> = 0;
-00603             irqlat-&gt;<a class="code" href="structZ17__BLK__IRQLAT.html#m6">irqsRcved</a> = 0;
-00604 
-00605             <span class="comment">/* init */</span>
-00606             llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m11">irqTest</a> = 1;
-00607             llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m14">irqs2fire</a> = irqlat-&gt;<a class="code" href="structZ17__BLK__IRQLAT.html#m2">irqs2fire</a>-1;
-00608             llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m9">irqCount</a> = 0;
-00609             llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m16">stopTick</a> = 0;
-00610 
-00611             <span class="comment">/* compute and save output bit */</span>
-00612             llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m12">outBit</a> = 1 &lt;&lt; irqlat-&gt;<a class="code" href="structZ17__BLK__IRQLAT.html#m0">outPort</a>;
-00613 
-00614             <span class="comment">/* disable all interrupts */</span>
-00615             MWRITE_D32(ma, ARWEN_02_IER1, 0);
-00616             MWRITE_D32(ma, ARWEN_02_IER2, 0);
-00617 
-00618             <span class="comment">/* program all ports as inputs */</span>
-00619             MWRITE_D32(ma, ARWEN_DDR, 0);
-00620 
-00621             <span class="comment">/* determine actual state of output port */</span>
-00622             value = MREAD_D32(ma, ARWEN_02_PSR);
-00623             llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m13">outLast</a> = (value &amp; llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m12">outBit</a>) ? 1 : 0;
-00624 
-00625             <span class="comment">/* preset output port value */</span>
-00626             MWRITE_D32(ma, ARWEN_GPIO, value);
-00627 
-00628             <span class="comment">/* enable IRQ for rising+falling edge of input port */</span>
-00629 <span class="comment">/* Z34/Z37 - 8 GPIOs */</span>
-00630 <span class="preprocessor">#ifndef Z17_MODEL_Z127</span>
-00631 <span class="preprocessor"></span>            <span class="keywordflow">if</span> (irqlat-&gt;<a class="code" href="structZ17__BLK__IRQLAT.html#m1">inPort</a> &lt; 4) <span class="comment">/* port 3..0 */</span>
-00632                 MWRITE_D32(ma, ARWEN_02_IER1, 3 &lt;&lt; (irqlat-&gt;<a class="code" href="structZ17__BLK__IRQLAT.html#m1">inPort</a> * 2));
-00633             <span class="keywordflow">else</span>    <span class="comment">/* port 8..4 */</span>
-00634                 MWRITE_D32(ma, ARWEN_02_IER2, 3 &lt;&lt; ((irqlat-&gt;<a class="code" href="structZ17__BLK__IRQLAT.html#m1">inPort</a>-4) * 2));
-00635 <span class="comment">/* Z127 - 32 GPIOs */</span>
-00636 <span class="preprocessor">#else</span>
-00637 <span class="preprocessor"></span>            <span class="keywordflow">if</span> (irqlat-&gt;<a class="code" href="structZ17__BLK__IRQLAT.html#m1">inPort</a> &lt; 16)    <span class="comment">/* port 15..0 */</span>
-00638                 MWRITE_D32(ma, ARWEN_02_IER1, 3 &lt;&lt; (irqlat-&gt;<a class="code" href="structZ17__BLK__IRQLAT.html#m1">inPort</a> * 2));
-00639             <span class="keywordflow">else</span>    <span class="comment">/* port 32..16 */</span>
-00640                 MWRITE_D32(ma, ARWEN_02_IER2, 3 &lt;&lt; ((irqlat-&gt;<a class="code" href="structZ17__BLK__IRQLAT.html#m1">inPort</a>-16) * 2));
-00641 <span class="preprocessor">#endif  </span><span class="comment">/* Z17_MODEL_Z127 */</span>
-00642             <span class="comment">/* config port as output (default is input) */</span>
-00643             MWRITE_D32(ma, ARWEN_DDR, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m12">outBit</a>);
-00644 
-00645             <span class="comment">/* set output (this fires the first IRQ) */</span>
-00646             llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m13">outLast</a> = !llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m13">outLast</a>;
-00647             DBGWRT_3((<a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"set output=0x%x, irqs2fire=%d\n"</span>,
-00648                         llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m13">outLast</a>, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m14">irqs2fire</a>));
-00649             llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m15">startTick</a> = OSS_TickGet(<a class="code" href="z17__drv_8c.html#a7">OSH</a>);
-00650             MWRITE_D32(ma, ARWEN_GPIO, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m13">outLast</a> ? llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m12">outBit</a> : 0);
-00651             <span class="keywordflow">break</span>;
-00652         }
-00653 <span class="preprocessor">#endif  </span><span class="comment">/* Z127_NOIRQ */</span>
-00654         <span class="comment">/*--------------------------+</span>
-00655 <span class="comment">        |  Toggle mode              |</span>
-00656 <span class="comment">        +--------------------------*/</span>
-00657         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a10">Z17_TOG_PORTS</a>:
-00658         {
-00659             u_int32 realMsec;
-00660 
-00661             <span class="comment">/* start timer initially */</span>
-00662             <span class="keywordflow">if</span> (!llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m22">togBitMask</a>) {
-00663                 llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m22">togBitMask</a> = value;
-00664                 error = OSS_AlarmSet(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m1">osHdl</a>, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m17">alarmHdl</a>,
-00665                                         <a class="code" href="z17__drv_8c.html#a9">TOG_TIME_MIN</a>, <a class="code" href="z17__drv_8c.html#a11">TOG_CYCLIC</a>, &amp;realMsec);
-00666             } <span class="keywordflow">else</span> {
-00667                 llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m22">togBitMask</a> |= value;
-00668                 <span class="comment">/* reset timer */</span>
-00669                 error = OSS_AlarmClear(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m1">osHdl</a>, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m17">alarmHdl</a>);
-00670                 error = OSS_AlarmSet(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m1">osHdl</a>, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m17">alarmHdl</a>,
-00671                                         <a class="code" href="z17__drv_8c.html#a9">TOG_TIME_MIN</a>, <a class="code" href="z17__drv_8c.html#a11">TOG_CYCLIC</a>, &amp;realMsec);
-00672             }
-00673             <span class="keywordflow">break</span>;
-00674         }
-00675         <span class="comment">/*--------------------------+</span>
-00676 <span class="comment">        |  Toggle mode - high       |</span>
-00677 <span class="comment">        +--------------------------*/</span>
-00678         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a11">Z17_TOG_HIGH</a>:
-00679             <span class="comment">/* adjust time value (100ms resolution) */</span>
-00680             llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m20">togtimeHigh</a> = (value / <a class="code" href="z17__drv_8c.html#a9">TOG_TIME_MIN</a>) * <a class="code" href="z17__drv_8c.html#a9">TOG_TIME_MIN</a>;
-00681             <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m20">togtimeHigh</a> &gt; <a class="code" href="z17__drv_8c.html#a10">TOG_TIME_MAX</a>)
-00682                 llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m20">togtimeHigh</a> = <a class="code" href="z17__drv_8c.html#a10">TOG_TIME_MAX</a>;
-00683             <span class="keywordflow">else</span> <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m20">togtimeHigh</a> &lt; <a class="code" href="z17__drv_8c.html#a9">TOG_TIME_MIN</a>)
-00684                 llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m20">togtimeHigh</a> = <a class="code" href="z17__drv_8c.html#a9">TOG_TIME_MIN</a>;
+00539         <span class="comment">/* Z127: GPIOs 16..31 - two bits per GPIO */</span>
+00540         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a9">Z17_IRQ_SENSE_16TO31</a>:
+00541             MWRITE_D32(ma, ARWEN_02_IER2, value);
+00542             <span class="keywordflow">break</span>;
+00543 <span class="preprocessor">#endif  </span><span class="comment">/* Z17_MODEL_Z127 */</span>
+00544 <span class="preprocessor">#endif  </span><span class="comment">/* Z127_NOIRQ */</span>
+00545         <span class="comment">/*--------------------------+</span>
+00546 <span class="comment">        |  open drain               |</span>
+00547 <span class="comment">        +--------------------------*/</span>
+00548         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a4">Z17_OPEN_DRAIN</a>:
+00549             MWRITE_D32(ma, ARWEN_02_ODER, value);
+00550             <span class="keywordflow">break</span>;
+00551         <span class="comment">/*--------------------------+</span>
+00552 <span class="comment">        |  debouncer                |</span>
+00553 <span class="comment">        +--------------------------*/</span>
+00554         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a5">Z17_DEBOUNCE</a>:
+00555             MWRITE_D32(ma, ARWEN_02_DBER, value);
+00556             <span class="keywordflow">break</span>;
+00557             
+00558 <span class="preprocessor">#ifdef Z127_INFO_PTR            </span>
+00559 <span class="preprocessor"></span>        <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a15">Z17_BLK_DEBOUNCE_TIME</a>:
+00560         {
+00561             int8 port;
+00562             <a class="code" href="structZ17__BLK__DEBTIME.html">Z17_BLK_DEBTIME</a> *dbt = (<a class="code" href="structZ17__BLK__DEBTIME.html">Z17_BLK_DEBTIME</a>*)blk-&gt;<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/structM__SG__BLOCK.html#o1">data</a>;         
+00563         
+00564             <span class="comment">/* prevent access to not implemented DBCR registers */</span>      
+00565             <span class="keywordflow">if</span>( llHdl-&gt;vdt == 0 ){
+00566                 DBGWRT_ERR((<a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"*** LL - Z17_SetStat(Z17_BLK_DEBOUNCE_TIME): "</span>
+00567                     <span class="stringliteral">" requires at least 16Z127 variant 1 IP core\n"</span>));
+00568                 <span class="keywordflow">return</span> ERR_LL_ILL_FUNC;
+00569             }
+00570                     
+00571             <span class="keywordflow">for</span>( port=0; port&lt;32; port++ ){
+00572                 <span class="keywordflow">if</span>( (dbt-&gt;<a class="code" href="structZ17__BLK__DEBTIME.html#m0">portMask</a> &amp; (1&lt;&lt;port)) ){
+00573                     MWRITE_D32(ma, ARWEN_Z127V01_DBCR(port), dbt-&gt;<a class="code" href="structZ17__BLK__DEBTIME.html#m1">timeUs</a>/50);
+00574                 }
+00575             }       
+00576 
+00577             <span class="keywordflow">break</span>;
+00578         }
+00579 <span class="preprocessor">#endif</span>
+00580 <span class="preprocessor"></span>                    
+00581 <span class="preprocessor">#ifndef Z127_NOIRQ</span>
+00582 <span class="preprocessor"></span>        <span class="comment">/*--------------------------+</span>
+00583 <span class="comment">        |  register signal          |</span>
+00584 <span class="comment">        +--------------------------*/</span>
+00585         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a6">Z17_SET_SIGNAL</a>:
+00586             <span class="comment">/* signal already installed ? */</span>
+00587             <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m8">portChangeSig</a>) {
+00588                 error = ERR_OSS_SIG_SET;
+00589                 <span class="keywordflow">break</span>;
+00590             }
+00591             error = OSS_SigCreate(<a class="code" href="z17__drv_8c.html#a7">OSH</a>, value, &amp;llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m8">portChangeSig</a>);
+00592             <span class="keywordflow">break</span>;
+00593         <span class="comment">/*--------------------------+</span>
+00594 <span class="comment">        |  unregister signal        |</span>
+00595 <span class="comment">        +--------------------------*/</span>
+00596         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a7">Z17_CLR_SIGNAL</a>:
+00597             <span class="comment">/* signal already installed ? */</span>
+00598             <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m8">portChangeSig</a> == NULL) {
+00599                 error = ERR_OSS_SIG_CLR;
+00600                 <span class="keywordflow">break</span>;
+00601             }
+00602             error = OSS_SigRemove(<a class="code" href="z17__drv_8c.html#a7">OSH</a>, &amp;llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m8">portChangeSig</a>);
+00603             <span class="keywordflow">break</span>;
+00604         <span class="comment">/*--------------------------+</span>
+00605 <span class="comment">        |  init IRQ latency test    |</span>
+00606 <span class="comment">        +--------------------------*/</span>
+00607         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a13">Z17_BLK_IRQLAT_START</a>:
+00608         {
+00609             int32 value;
+00610             <a class="code" href="structZ17__BLK__IRQLAT.html">Z17_BLK_IRQLAT</a> *irqlat = (<a class="code" href="structZ17__BLK__IRQLAT.html">Z17_BLK_IRQLAT</a>*)blk-&gt;<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/structM__SG__BLOCK.html#o1">data</a>;
+00611 
+00612             <span class="comment">/* clear out values */</span>
+00613             irqlat-&gt;<a class="code" href="structZ17__BLK__IRQLAT.html#m4">startTick</a> = 0;
+00614             irqlat-&gt;<a class="code" href="structZ17__BLK__IRQLAT.html#m5">stopTick</a> = 0;
+00615             irqlat-&gt;<a class="code" href="structZ17__BLK__IRQLAT.html#m6">irqsRcved</a> = 0;
+00616 
+00617             <span class="comment">/* init */</span>
+00618             llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m11">irqTest</a> = 1;
+00619             llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m14">irqs2fire</a> = irqlat-&gt;<a class="code" href="structZ17__BLK__IRQLAT.html#m2">irqs2fire</a>-1;
+00620             llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m9">irqCount</a> = 0;
+00621             llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m16">stopTick</a> = 0;
+00622 
+00623             <span class="comment">/* compute and save output bit */</span>
+00624             llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m12">outBit</a> = 1 &lt;&lt; irqlat-&gt;<a class="code" href="structZ17__BLK__IRQLAT.html#m0">outPort</a>;
+00625 
+00626             <span class="comment">/* disable all interrupts */</span>
+00627             MWRITE_D32(ma, ARWEN_02_IER1, 0);
+00628             MWRITE_D32(ma, ARWEN_02_IER2, 0);
+00629 
+00630             <span class="comment">/* program all ports as inputs */</span>
+00631             MWRITE_D32(ma, ARWEN_DDR, 0);
+00632 
+00633             <span class="comment">/* determine actual state of output port */</span>
+00634             value = MREAD_D32(ma, ARWEN_02_PSR);
+00635             llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m13">outLast</a> = (value &amp; llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m12">outBit</a>) ? 1 : 0;
+00636 
+00637             <span class="comment">/* preset output port value */</span>
+00638             MWRITE_D32(ma, ARWEN_GPIO, value);
+00639 
+00640             <span class="comment">/* enable IRQ for rising+falling edge of input port */</span>
+00641 <span class="comment">/* Z34/Z37 - 8 GPIOs */</span>
+00642 <span class="preprocessor">#ifndef Z17_MODEL_Z127</span>
+00643 <span class="preprocessor"></span>            <span class="keywordflow">if</span> (irqlat-&gt;<a class="code" href="structZ17__BLK__IRQLAT.html#m1">inPort</a> &lt; 4) <span class="comment">/* port 3..0 */</span>
+00644                 MWRITE_D32(ma, ARWEN_02_IER1, 3 &lt;&lt; (irqlat-&gt;<a class="code" href="structZ17__BLK__IRQLAT.html#m1">inPort</a> * 2));
+00645             <span class="keywordflow">else</span>    <span class="comment">/* port 8..4 */</span>
+00646                 MWRITE_D32(ma, ARWEN_02_IER2, 3 &lt;&lt; ((irqlat-&gt;<a class="code" href="structZ17__BLK__IRQLAT.html#m1">inPort</a>-4) * 2));
+00647 <span class="comment">/* Z127 - 32 GPIOs */</span>
+00648 <span class="preprocessor">#else</span>
+00649 <span class="preprocessor"></span>            <span class="keywordflow">if</span> (irqlat-&gt;<a class="code" href="structZ17__BLK__IRQLAT.html#m1">inPort</a> &lt; 16)    <span class="comment">/* port 15..0 */</span>
+00650                 MWRITE_D32(ma, ARWEN_02_IER1, 3 &lt;&lt; (irqlat-&gt;<a class="code" href="structZ17__BLK__IRQLAT.html#m1">inPort</a> * 2));
+00651             <span class="keywordflow">else</span>    <span class="comment">/* port 32..16 */</span>
+00652                 MWRITE_D32(ma, ARWEN_02_IER2, 3 &lt;&lt; ((irqlat-&gt;<a class="code" href="structZ17__BLK__IRQLAT.html#m1">inPort</a>-16) * 2));
+00653 <span class="preprocessor">#endif  </span><span class="comment">/* Z17_MODEL_Z127 */</span>
+00654             <span class="comment">/* config port as output (default is input) */</span>
+00655             MWRITE_D32(ma, ARWEN_DDR, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m12">outBit</a>);
+00656 
+00657             <span class="comment">/* set output (this fires the first IRQ) */</span>
+00658             llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m13">outLast</a> = !llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m13">outLast</a>;
+00659             DBGWRT_3((<a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"set output=0x%x, irqs2fire=%d\n"</span>,
+00660                         llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m13">outLast</a>, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m14">irqs2fire</a>));
+00661             llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m15">startTick</a> = OSS_TickGet(<a class="code" href="z17__drv_8c.html#a7">OSH</a>);
+00662             MWRITE_D32(ma, ARWEN_GPIO, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m13">outLast</a> ? llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m12">outBit</a> : 0);
+00663             <span class="keywordflow">break</span>;
+00664         }
+00665 <span class="preprocessor">#endif  </span><span class="comment">/* Z127_NOIRQ */</span>
+00666         <span class="comment">/*--------------------------+</span>
+00667 <span class="comment">        |  Toggle mode              |</span>
+00668 <span class="comment">        +--------------------------*/</span>
+00669         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a10">Z17_TOG_PORTS</a>:
+00670         {
+00671             u_int32 realMsec;
+00672 
+00673             <span class="comment">/* start timer initially */</span>
+00674             <span class="keywordflow">if</span> (!llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m22">togBitMask</a>) {
+00675                 llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m22">togBitMask</a> = value;
+00676                 error = OSS_AlarmSet(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m1">osHdl</a>, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m17">alarmHdl</a>,
+00677                                         <a class="code" href="z17__drv_8c.html#a9">TOG_TIME_MIN</a>, <a class="code" href="z17__drv_8c.html#a11">TOG_CYCLIC</a>, &amp;realMsec);
+00678             } <span class="keywordflow">else</span> {
+00679                 llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m22">togBitMask</a> |= value;
+00680                 <span class="comment">/* reset timer */</span>
+00681                 error = OSS_AlarmClear(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m1">osHdl</a>, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m17">alarmHdl</a>);
+00682                 error = OSS_AlarmSet(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m1">osHdl</a>, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m17">alarmHdl</a>,
+00683                                         <a class="code" href="z17__drv_8c.html#a9">TOG_TIME_MIN</a>, <a class="code" href="z17__drv_8c.html#a11">TOG_CYCLIC</a>, &amp;realMsec);
+00684             }
 00685             <span class="keywordflow">break</span>;
-00686         <span class="comment">/*--------------------------+</span>
-00687 <span class="comment">        |  Toggle mode - low        |</span>
-00688 <span class="comment">        +--------------------------*/</span>
-00689         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a12">Z17_TOG_LOW</a>:
-00690             <span class="comment">/* adjust time value (100ms resolution) */</span>
-00691             llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m21">togtimeLow</a> = (value / <a class="code" href="z17__drv_8c.html#a9">TOG_TIME_MIN</a>) * <a class="code" href="z17__drv_8c.html#a9">TOG_TIME_MIN</a>;
-00692             <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m21">togtimeLow</a> &gt; <a class="code" href="z17__drv_8c.html#a10">TOG_TIME_MAX</a>)
-00693                 llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m21">togtimeLow</a> = <a class="code" href="z17__drv_8c.html#a10">TOG_TIME_MAX</a>;
-00694             <span class="keywordflow">else</span> <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m21">togtimeLow</a> &lt; <a class="code" href="z17__drv_8c.html#a9">TOG_TIME_MIN</a>)
-00695                 llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m21">togtimeLow</a> = <a class="code" href="z17__drv_8c.html#a9">TOG_TIME_MIN</a>;
-00696             <span class="keywordflow">break</span>;
-00697         <span class="comment">/*--------------------------+</span>
-00698 <span class="comment">        |  (unknown)                |</span>
-00699 <span class="comment">        +--------------------------*/</span>
-00700         <span class="keywordflow">default</span>:
-00701             error = ERR_LL_UNK_CODE;
-00702     }
-00703 
-00704     <span class="keywordflow">return</span> (error);
-00705 }
-00706 
-00707 <span class="comment">/****************************** Z17_GetStat *********************************/</span>
-<a name="l00724"></a><a class="code" href="z17__drv_8c.html#a19">00724</a> <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a19">Z17_GetStat</a>(
-00725     <a class="code" href="structLL__HANDLE.html">LL_HANDLE</a>   *llHdl,
-00726     int32       code,
-00727     int32       ch,
-00728     INT32_OR_64 *value32_or_64P
-00729 )
-00730 {
-00731     int32 *valueP = (int32*)value32_or_64P;     <span class="comment">/* pointer to 32bit value */</span>
-00732     <a class="code" href="z17__drv_8h.html#a20">INT32_OR_64</a> *value64P = value32_or_64P;     <span class="comment">/* stores 32/64bit pointer */</span>
-00733     MACCESS ma = llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m4">ma</a>;
-00734     int32 error = ERR_SUCCESS;
-00735 <span class="preprocessor">#if defined(Z127_INFO_PTR) || !defined(Z127_NOIRQ)</span>
-00736 <span class="preprocessor"></span>    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/structM__SG__BLOCK.html">M_SG_BLOCK</a> *blk = (<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/structM__SG__BLOCK.html">M_SG_BLOCK</a>*)value32_or_64P;  <span class="comment">/* stores block struct pointer; not needed here */</span>
-00737 <span class="preprocessor">#endif</span>
-00738 <span class="preprocessor"></span><span class="preprocessor">#ifndef Z127_NOIRQ</span>
-00739 <span class="preprocessor"></span>    OSS_IRQ_STATE irqState;
-00740 <span class="preprocessor">#endif  </span><span class="comment">/* Z127_NOIRQ */</span>
-00741 
-00742     DBGWRT_1((<a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"LL - Z17_GetStat: ch=%d code=0x%04x\n"</span>, ch, code));
-00743 
-00744     <span class="keywordflow">switch</span> (code) {
-00745         <span class="comment">/*--------------------------+</span>
-00746 <span class="comment">        |  debug level              |</span>
-00747 <span class="comment">        +--------------------------*/</span>
-00748         <span class="keywordflow">case</span> M_LL_DEBUG_LEVEL:
-00749             *valueP = llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m6">dbgLevel</a>;
-00750             <span class="keywordflow">break</span>;
-00751         <span class="comment">/*--------------------------+</span>
-00752 <span class="comment">        |  number of channels       |</span>
-00753 <span class="comment">        +--------------------------*/</span>
-00754         <span class="keywordflow">case</span> M_LL_CH_NUMBER:
-00755             *valueP = <a class="code" href="z17__drv_8c.html#a1">CH_NUMBER</a>;
-00756             <span class="keywordflow">break</span>;
+00686         }
+00687         <span class="comment">/*--------------------------+</span>
+00688 <span class="comment">        |  Toggle mode - high       |</span>
+00689 <span class="comment">        +--------------------------*/</span>
+00690         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a11">Z17_TOG_HIGH</a>:
+00691             <span class="comment">/* adjust time value (100ms resolution) */</span>
+00692             llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m20">togtimeHigh</a> = (value / <a class="code" href="z17__drv_8c.html#a9">TOG_TIME_MIN</a>) * <a class="code" href="z17__drv_8c.html#a9">TOG_TIME_MIN</a>;
+00693             <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m20">togtimeHigh</a> &gt; <a class="code" href="z17__drv_8c.html#a10">TOG_TIME_MAX</a>)
+00694                 llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m20">togtimeHigh</a> = <a class="code" href="z17__drv_8c.html#a10">TOG_TIME_MAX</a>;
+00695             <span class="keywordflow">else</span> <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m20">togtimeHigh</a> &lt; <a class="code" href="z17__drv_8c.html#a9">TOG_TIME_MIN</a>)
+00696                 llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m20">togtimeHigh</a> = <a class="code" href="z17__drv_8c.html#a9">TOG_TIME_MIN</a>;
+00697             <span class="keywordflow">break</span>;
+00698         <span class="comment">/*--------------------------+</span>
+00699 <span class="comment">        |  Toggle mode - low        |</span>
+00700 <span class="comment">        +--------------------------*/</span>
+00701         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a12">Z17_TOG_LOW</a>:
+00702             <span class="comment">/* adjust time value (100ms resolution) */</span>
+00703             llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m21">togtimeLow</a> = (value / <a class="code" href="z17__drv_8c.html#a9">TOG_TIME_MIN</a>) * <a class="code" href="z17__drv_8c.html#a9">TOG_TIME_MIN</a>;
+00704             <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m21">togtimeLow</a> &gt; <a class="code" href="z17__drv_8c.html#a10">TOG_TIME_MAX</a>)
+00705                 llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m21">togtimeLow</a> = <a class="code" href="z17__drv_8c.html#a10">TOG_TIME_MAX</a>;
+00706             <span class="keywordflow">else</span> <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m21">togtimeLow</a> &lt; <a class="code" href="z17__drv_8c.html#a9">TOG_TIME_MIN</a>)
+00707                 llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m21">togtimeLow</a> = <a class="code" href="z17__drv_8c.html#a9">TOG_TIME_MIN</a>;
+00708             <span class="keywordflow">break</span>;
+00709         <span class="comment">/*--------------------------+</span>
+00710 <span class="comment">        |  (unknown)                |</span>
+00711 <span class="comment">        +--------------------------*/</span>
+00712         <span class="keywordflow">default</span>:
+00713             error = ERR_LL_UNK_CODE;
+00714     }
+00715 
+00716     <span class="keywordflow">return</span> (error);
+00717 }
+00718 
+00719 <span class="comment">/****************************** Z17_GetStat *********************************/</span>
+<a name="l00736"></a><a class="code" href="z17__drv_8c.html#a20">00736</a> <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a20">Z17_GetStat</a>(
+00737     <a class="code" href="structLL__HANDLE.html">LL_HANDLE</a>   *llHdl,
+00738     int32       code,
+00739     int32       ch,
+00740     INT32_OR_64 *value32_or_64P
+00741 )
+00742 {
+00743     int32 *valueP = (int32*)value32_or_64P;     <span class="comment">/* pointer to 32bit value */</span>
+00744     <a class="code" href="z17__drv_8h.html#a20">INT32_OR_64</a> *value64P = value32_or_64P;     <span class="comment">/* stores 32/64bit pointer */</span>
+00745     MACCESS ma = llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m4">ma</a>;
+00746     int32 error = ERR_SUCCESS;
+00747 <span class="preprocessor">#if defined(Z127_INFO_PTR) || !defined(Z127_NOIRQ)</span>
+00748 <span class="preprocessor"></span>    <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/structM__SG__BLOCK.html">M_SG_BLOCK</a> *blk = (<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/structM__SG__BLOCK.html">M_SG_BLOCK</a>*)value32_or_64P;  <span class="comment">/* stores block struct pointer; not needed here */</span>
+00749 <span class="preprocessor">#endif</span>
+00750 <span class="preprocessor"></span><span class="preprocessor">#ifndef Z127_NOIRQ</span>
+00751 <span class="preprocessor"></span>    OSS_IRQ_STATE irqState;
+00752 <span class="preprocessor">#endif  </span><span class="comment">/* Z127_NOIRQ */</span>
+00753 
+00754     DBGWRT_1((<a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"LL - Z17_GetStat: ch=%d code=0x%04x\n"</span>, ch, code));
+00755 
+00756     <span class="keywordflow">switch</span> (code) {
 00757         <span class="comment">/*--------------------------+</span>
-00758 <span class="comment">        |  channel direction        |</span>
+00758 <span class="comment">        |  debug level              |</span>
 00759 <span class="comment">        +--------------------------*/</span>
-00760         <span class="keywordflow">case</span> M_LL_CH_DIR:
-00761             *valueP = M_CH_INOUT;
+00760         <span class="keywordflow">case</span> M_LL_DEBUG_LEVEL:
+00761             *valueP = llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m6">dbgLevel</a>;
 00762             <span class="keywordflow">break</span>;
 00763         <span class="comment">/*--------------------------+</span>
-00764 <span class="comment">        |  channel length [bits]    |</span>
+00764 <span class="comment">        |  number of channels       |</span>
 00765 <span class="comment">        +--------------------------*/</span>
-00766         <span class="keywordflow">case</span> M_LL_CH_LEN:
-00767 <span class="preprocessor">#ifndef Z17_MODEL_Z127</span>
-00768 <span class="preprocessor"></span>            <span class="comment">/* Z34 / Z37 */</span>
-00769             *valueP = 8;
-00770             <span class="keywordflow">break</span>;
-00771 <span class="preprocessor">#else</span>
-00772 <span class="preprocessor"></span>            <span class="comment">/* Z127 */</span>
-00773             *valueP = 32;
+00766         <span class="keywordflow">case</span> M_LL_CH_NUMBER:
+00767             *valueP = <a class="code" href="z17__drv_8c.html#a1">CH_NUMBER</a>;
+00768             <span class="keywordflow">break</span>;
+00769         <span class="comment">/*--------------------------+</span>
+00770 <span class="comment">        |  channel direction        |</span>
+00771 <span class="comment">        +--------------------------*/</span>
+00772         <span class="keywordflow">case</span> M_LL_CH_DIR:
+00773             *valueP = M_CH_INOUT;
 00774             <span class="keywordflow">break</span>;
-00775 <span class="preprocessor">#endif  </span><span class="comment">/* Z17_MODEL_Z127 */</span>
-00776         <span class="comment">/*--------------------------+</span>
-00777 <span class="comment">        |  channel type info        |</span>
-00778 <span class="comment">        +--------------------------*/</span>
-00779         <span class="keywordflow">case</span> M_LL_CH_TYP:
-00780             *valueP = M_CH_BINARY;
-00781             <span class="keywordflow">break</span>;
-00782         <span class="comment">/*--------------------------+</span>
-00783 <span class="comment">        |  irq counter              |</span>
-00784 <span class="comment">        +--------------------------*/</span>
-00785         <span class="keywordflow">case</span> M_LL_IRQ_COUNT:
-00786 <span class="preprocessor">#ifndef Z127_NOIRQ</span>
-00787 <span class="preprocessor"></span>            *valueP = llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m9">irqCount</a>;
-00788 <span class="preprocessor">#endif</span>
-00789 <span class="preprocessor"></span>            <span class="keywordflow">break</span>;
-00790         <span class="comment">/*--------------------------+</span>
-00791 <span class="comment">        |  ID PROM check enabled    |</span>
-00792 <span class="comment">        +--------------------------*/</span>
-00793         <span class="keywordflow">case</span> M_LL_ID_CHECK:
-00794             *valueP = 0;
-00795             <span class="keywordflow">break</span>;
-00796         <span class="comment">/*--------------------------+</span>
-00797 <span class="comment">        |  ident table pointer      |</span>
-00798 <span class="comment">        |  (treat as non-block!)    |</span>
-00799 <span class="comment">        +--------------------------*/</span>
-00800         <span class="keywordflow">case</span> M_MK_BLK_REV_ID:
-00801             *value64P = (INT32_OR_64)&amp;llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m5">idFuncTbl</a>;
-00802             <span class="keywordflow">break</span>;
-00803         <span class="comment">/*--------------------------+</span>
-00804 <span class="comment">        |  port direction           |</span>
-00805 <span class="comment">        +--------------------------*/</span>
-00806         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a2">Z17_DIRECTION</a>:
-00807             *valueP = MREAD_D32(ma, ARWEN_DDR);
-00808             <span class="keywordflow">break</span>;
-00809 <span class="preprocessor">#ifndef Z127_NOIRQ</span>
-00810 <span class="preprocessor"></span>        <span class="comment">/*--------------------------+</span>
-00811 <span class="comment">        |  edge for interrupt       |</span>
-00812 <span class="comment">        +--------------------------*/</span>
-00813         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a3">Z17_IRQ_SENSE</a>:
-00814 <span class="preprocessor">#ifndef Z17_MODEL_Z127</span>
-00815 <span class="preprocessor"></span>            <span class="comment">/* Z34/Z37 */</span>
-00816             *valueP = MREAD_D32(ma, ARWEN_02_IER1) |
-00817                         MREAD_D32(ma, ARWEN_02_IER2) &lt;&lt; 8;
-00818             <span class="keywordflow">break</span>;
-00819 <span class="preprocessor">#else</span>
-00820 <span class="preprocessor"></span>            <span class="comment">/* Z127: GPIOs 0..15 - two bits per GPIO */</span>
-00821             *valueP = MREAD_D32(ma, ARWEN_02_IER1);
-00822             <span class="keywordflow">break</span>;
-00823         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a9">Z17_IRQ_SENSE_16TO31</a>:
-00824             <span class="comment">/* Z127: GPIOs 16..31 - two bits per GPIO */</span>
-00825             *valueP = MREAD_D32(ma, ARWEN_02_IER2);
-00826             <span class="keywordflow">break</span>;
-00827 <span class="preprocessor">#endif  </span><span class="comment">/* Z17_MODEL_Z127 */</span>
-00828 <span class="preprocessor">#endif  </span><span class="comment">/* Z127_NOIRQ */</span>
-00829         <span class="comment">/*--------------------------+</span>
-00830 <span class="comment">        |  open drain               |</span>
-00831 <span class="comment">        +--------------------------*/</span>
-00832         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a4">Z17_OPEN_DRAIN</a>:
-00833             *valueP = MREAD_D32(ma, ARWEN_02_ODER);
+00775         <span class="comment">/*--------------------------+</span>
+00776 <span class="comment">        |  channel length [bits]    |</span>
+00777 <span class="comment">        +--------------------------*/</span>
+00778         <span class="keywordflow">case</span> M_LL_CH_LEN:
+00779 <span class="preprocessor">#ifndef Z17_MODEL_Z127</span>
+00780 <span class="preprocessor"></span>            <span class="comment">/* Z34 / Z37 */</span>
+00781             *valueP = 8;
+00782             <span class="keywordflow">break</span>;
+00783 <span class="preprocessor">#else</span>
+00784 <span class="preprocessor"></span>            <span class="comment">/* Z127 */</span>
+00785             *valueP = 32;
+00786             <span class="keywordflow">break</span>;
+00787 <span class="preprocessor">#endif  </span><span class="comment">/* Z17_MODEL_Z127 */</span>
+00788         <span class="comment">/*--------------------------+</span>
+00789 <span class="comment">        |  channel type info        |</span>
+00790 <span class="comment">        +--------------------------*/</span>
+00791         <span class="keywordflow">case</span> M_LL_CH_TYP:
+00792             *valueP = M_CH_BINARY;
+00793             <span class="keywordflow">break</span>;
+00794         <span class="comment">/*--------------------------+</span>
+00795 <span class="comment">        |  irq counter              |</span>
+00796 <span class="comment">        +--------------------------*/</span>
+00797         <span class="keywordflow">case</span> M_LL_IRQ_COUNT:
+00798 <span class="preprocessor">#ifndef Z127_NOIRQ</span>
+00799 <span class="preprocessor"></span>            *valueP = llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m9">irqCount</a>;
+00800 <span class="preprocessor">#endif</span>
+00801 <span class="preprocessor"></span>            <span class="keywordflow">break</span>;
+00802         <span class="comment">/*--------------------------+</span>
+00803 <span class="comment">        |  ID PROM check enabled    |</span>
+00804 <span class="comment">        +--------------------------*/</span>
+00805         <span class="keywordflow">case</span> M_LL_ID_CHECK:
+00806             *valueP = 0;
+00807             <span class="keywordflow">break</span>;
+00808         <span class="comment">/*--------------------------+</span>
+00809 <span class="comment">        |  ident table pointer      |</span>
+00810 <span class="comment">        |  (treat as non-block!)    |</span>
+00811 <span class="comment">        +--------------------------*/</span>
+00812         <span class="keywordflow">case</span> M_MK_BLK_REV_ID:
+00813             *value64P = (INT32_OR_64)&amp;llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m5">idFuncTbl</a>;
+00814             <span class="keywordflow">break</span>;
+00815         <span class="comment">/*--------------------------+</span>
+00816 <span class="comment">        |  port direction           |</span>
+00817 <span class="comment">        +--------------------------*/</span>
+00818         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a2">Z17_DIRECTION</a>:
+00819             *valueP = MREAD_D32(ma, ARWEN_DDR);
+00820             <span class="keywordflow">break</span>;
+00821 <span class="preprocessor">#ifndef Z127_NOIRQ</span>
+00822 <span class="preprocessor"></span>        <span class="comment">/*--------------------------+</span>
+00823 <span class="comment">        |  edge for interrupt       |</span>
+00824 <span class="comment">        +--------------------------*/</span>
+00825         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a3">Z17_IRQ_SENSE</a>:
+00826 <span class="preprocessor">#ifndef Z17_MODEL_Z127</span>
+00827 <span class="preprocessor"></span>            <span class="comment">/* Z34/Z37 */</span>
+00828             *valueP = MREAD_D32(ma, ARWEN_02_IER1) |
+00829                         MREAD_D32(ma, ARWEN_02_IER2) &lt;&lt; 8;
+00830             <span class="keywordflow">break</span>;
+00831 <span class="preprocessor">#else</span>
+00832 <span class="preprocessor"></span>            <span class="comment">/* Z127: GPIOs 0..15 - two bits per GPIO */</span>
+00833             *valueP = MREAD_D32(ma, ARWEN_02_IER1);
 00834             <span class="keywordflow">break</span>;
-00835         <span class="comment">/*--------------------------+</span>
-00836 <span class="comment">        |  debouncer                |</span>
-00837 <span class="comment">        +--------------------------*/</span>
-00838         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a5">Z17_DEBOUNCE</a>:
-00839             *valueP = MREAD_D32(ma, ARWEN_02_DBER);
-00840             <span class="keywordflow">break</span>;
-00841 
-00842 <span class="preprocessor">#ifdef Z127_INFO_PTR            </span>
-00843 <span class="preprocessor"></span>        <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a15">Z17_BLK_DEBOUNCE_TIME</a>:
-00844         {
-00845             int8    port, first=0;
-00846             u_int32 timeUs=0;
-00847             <a class="code" href="structZ17__BLK__DEBTIME.html">Z17_BLK_DEBTIME</a> *dbt = (<a class="code" href="structZ17__BLK__DEBTIME.html">Z17_BLK_DEBTIME</a>*)blk-&gt;<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/structM__SG__BLOCK.html#o1">data</a>;         
-00848             
-00849             <span class="comment">/* prevent access to not implemented DBCR registers */</span>      
-00850             <span class="keywordflow">if</span>( llHdl-&gt;vdt == 0 ){
-00851                 DBGWRT_ERR((<a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"*** LL - Z17_GetStat(Z17_BLK_DEBOUNCE_TIME): "</span>
-00852                     <span class="stringliteral">" requires at least 16Z127 variant 1 IP core\n"</span>));
-00853                 <span class="keywordflow">return</span> ERR_LL_ILL_FUNC;
-00854             }
-00855 
-00856             <span class="keywordflow">if</span>( dbt-&gt;<a class="code" href="structZ17__BLK__DEBTIME.html#m0">portMask</a> == 0 ){
-00857                 DBGWRT_ERR((<a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"*** LL - Z17_GetStat(Z17_BLK_DEBOUNCE_TIME): "</span>
-00858                     <span class="stringliteral">"no port specified\n"</span>));
-00859                 <span class="keywordflow">return</span> ERR_LL_ILL_PARAM;
-00860             }
-00861         
-00862             <span class="keywordflow">for</span>( port=0; port&lt;32; port++ ){
-00863                 <span class="keywordflow">if</span>( (dbt-&gt;<a class="code" href="structZ17__BLK__DEBTIME.html#m0">portMask</a> &amp; (1&lt;&lt;port)) ){
-00864                     <span class="keywordflow">if</span>( first&gt;0 ){
-00865                         DBGWRT_ERR((<a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"*** LL - Z17_GetStat(Z17_BLK_DEBOUNCE_TIME): "</span>
-00866                             <span class="stringliteral">"more than one port specified\n"</span>));
-00867                         <span class="keywordflow">return</span> ERR_LL_ILL_PARAM;
-00868                     }
-00869                     timeUs = 50 * MREAD_D32(ma, ARWEN_Z127V01_DBCR(port));
-00870                     first++;
-00871                 }
+00835         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a9">Z17_IRQ_SENSE_16TO31</a>:
+00836             <span class="comment">/* Z127: GPIOs 16..31 - two bits per GPIO */</span>
+00837             *valueP = MREAD_D32(ma, ARWEN_02_IER2);
+00838             <span class="keywordflow">break</span>;
+00839 <span class="preprocessor">#endif  </span><span class="comment">/* Z17_MODEL_Z127 */</span>
+00840 <span class="preprocessor">#endif  </span><span class="comment">/* Z127_NOIRQ */</span>
+00841         <span class="comment">/*--------------------------+</span>
+00842 <span class="comment">        |  open drain               |</span>
+00843 <span class="comment">        +--------------------------*/</span>
+00844         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a4">Z17_OPEN_DRAIN</a>:
+00845             *valueP = MREAD_D32(ma, ARWEN_02_ODER);
+00846             <span class="keywordflow">break</span>;
+00847         <span class="comment">/*--------------------------+</span>
+00848 <span class="comment">        |  debouncer                |</span>
+00849 <span class="comment">        +--------------------------*/</span>
+00850         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a5">Z17_DEBOUNCE</a>:
+00851             *valueP = MREAD_D32(ma, ARWEN_02_DBER);
+00852             <span class="keywordflow">break</span>;
+00853 
+00854 <span class="preprocessor">#ifdef Z127_INFO_PTR            </span>
+00855 <span class="preprocessor"></span>        <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a15">Z17_BLK_DEBOUNCE_TIME</a>:
+00856         {
+00857             int8    port, first=0;
+00858             u_int32 timeUs=0;
+00859             <a class="code" href="structZ17__BLK__DEBTIME.html">Z17_BLK_DEBTIME</a> *dbt = (<a class="code" href="structZ17__BLK__DEBTIME.html">Z17_BLK_DEBTIME</a>*)blk-&gt;<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/structM__SG__BLOCK.html#o1">data</a>;         
+00860             
+00861             <span class="comment">/* prevent access to not implemented DBCR registers */</span>      
+00862             <span class="keywordflow">if</span>( llHdl-&gt;vdt == 0 ){
+00863                 DBGWRT_ERR((<a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"*** LL - Z17_GetStat(Z17_BLK_DEBOUNCE_TIME): "</span>
+00864                     <span class="stringliteral">" requires at least 16Z127 variant 1 IP core\n"</span>));
+00865                 <span class="keywordflow">return</span> ERR_LL_ILL_FUNC;
+00866             }
+00867 
+00868             <span class="keywordflow">if</span>( dbt-&gt;<a class="code" href="structZ17__BLK__DEBTIME.html#m0">portMask</a> == 0 ){
+00869                 DBGWRT_ERR((<a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"*** LL - Z17_GetStat(Z17_BLK_DEBOUNCE_TIME): "</span>
+00870                     <span class="stringliteral">"no port specified\n"</span>));
+00871                 <span class="keywordflow">return</span> ERR_LL_ILL_PARAM;
 00872             }
-00873             
-00874             dbt-&gt;<a class="code" href="structZ17__BLK__DEBTIME.html#m1">timeUs</a> = timeUs;       
-00875             <span class="keywordflow">break</span>;
-00876         }
-00877 <span class="preprocessor">#endif                  </span>
-00878 <span class="preprocessor"></span>            
-00879 <span class="preprocessor">#ifndef Z127_NOIRQ</span>
-00880 <span class="preprocessor"></span>        <span class="comment">/*--------------------------+</span>
-00881 <span class="comment">        |  last IRQ request         |</span>
-00882 <span class="comment">        +--------------------------*/</span>
-00883         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a8">Z17_IRQ_LAST_REQUEST</a>:
-00884             irqState = OSS_IrqMaskR(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m1">osHdl</a>, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m2">irqHdl</a>);
-00885             *valueP = llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m10">lastReq</a>;
-00886             llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m10">lastReq</a> = 0;
-00887             OSS_IrqRestore(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m1">osHdl</a>, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m2">irqHdl</a>, irqState);
-00888             <span class="keywordflow">break</span>;
-00889         <span class="comment">/*--------------------------+</span>
-00890 <span class="comment">        |  IRQ latency test result  |</span>
-00891 <span class="comment">        +--------------------------*/</span>
-00892         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a14">Z17_BLK_IRQLAT_RESULT</a>:
-00893         {
-00894             <a class="code" href="structZ17__BLK__IRQLAT.html">Z17_BLK_IRQLAT</a> *irqlat = (<a class="code" href="structZ17__BLK__IRQLAT.html">Z17_BLK_IRQLAT</a>*)blk-&gt;<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/structM__SG__BLOCK.html#o1">data</a>;
-00895 
-00896             <span class="comment">/* IRQ latency test not started? */</span>
-00897             <span class="keywordflow">if</span> (!llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m11">irqTest</a>) {
-00898                 error = ERR_LL_DEV_NOTRDY;
-00899                 <span class="keywordflow">break</span>;
-00900             }
-00901             <span class="comment">/* IRQ latency test not yet finished? */</span>
-00902             <span class="keywordflow">if</span> (!llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m16">stopTick</a>) {
-00903                 error = ERR_LL_DEV_BUSY;
-00904                 <span class="keywordflow">break</span>;
-00905             }
-00906             llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m11">irqTest</a> = 0;
+00873         
+00874             <span class="keywordflow">for</span>( port=0; port&lt;32; port++ ){
+00875                 <span class="keywordflow">if</span>( (dbt-&gt;<a class="code" href="structZ17__BLK__DEBTIME.html#m0">portMask</a> &amp; (1&lt;&lt;port)) ){
+00876                     <span class="keywordflow">if</span>( first&gt;0 ){
+00877                         DBGWRT_ERR((<a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"*** LL - Z17_GetStat(Z17_BLK_DEBOUNCE_TIME): "</span>
+00878                             <span class="stringliteral">"more than one port specified\n"</span>));
+00879                         <span class="keywordflow">return</span> ERR_LL_ILL_PARAM;
+00880                     }
+00881                     timeUs = 50 * MREAD_D32(ma, ARWEN_Z127V01_DBCR(port));
+00882                     first++;
+00883                 }
+00884             }
+00885             
+00886             dbt-&gt;<a class="code" href="structZ17__BLK__DEBTIME.html#m1">timeUs</a> = timeUs;       
+00887             <span class="keywordflow">break</span>;
+00888         }
+00889 <span class="preprocessor">#endif                  </span>
+00890 <span class="preprocessor"></span>            
+00891 <span class="preprocessor">#ifndef Z127_NOIRQ</span>
+00892 <span class="preprocessor"></span>        <span class="comment">/*--------------------------+</span>
+00893 <span class="comment">        |  last IRQ request         |</span>
+00894 <span class="comment">        +--------------------------*/</span>
+00895         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a8">Z17_IRQ_LAST_REQUEST</a>:
+00896             irqState = OSS_IrqMaskR(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m1">osHdl</a>, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m2">irqHdl</a>);
+00897             *valueP = llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m10">lastReq</a>;
+00898             llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m10">lastReq</a> = 0;
+00899             OSS_IrqRestore(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m1">osHdl</a>, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m2">irqHdl</a>, irqState);
+00900             <span class="keywordflow">break</span>;
+00901         <span class="comment">/*--------------------------+</span>
+00902 <span class="comment">        |  IRQ latency test result  |</span>
+00903 <span class="comment">        +--------------------------*/</span>
+00904         <span class="keywordflow">case</span> <a class="code" href="z17__drv_8h.html#a14">Z17_BLK_IRQLAT_RESULT</a>:
+00905         {
+00906             <a class="code" href="structZ17__BLK__IRQLAT.html">Z17_BLK_IRQLAT</a> *irqlat = (<a class="code" href="structZ17__BLK__IRQLAT.html">Z17_BLK_IRQLAT</a>*)blk-&gt;<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/structM__SG__BLOCK.html#o1">data</a>;
 00907 
-00908             <span class="comment">/* disable all IRQs */</span>
-00909             MWRITE_D32(ma, ARWEN_02_IER1, 0);
-00910             MWRITE_D32(ma, ARWEN_02_IER2, 0);
-00911 
-00912             <span class="comment">/* reset all outputs */</span>
-00913             MWRITE_D32(ma, ARWEN_GPIO, 0);
-00914 
-00915             <span class="comment">/* program all ports as inputs */</span>
-00916             MWRITE_D32(ma, ARWEN_DDR, 0);
-00917 
-00918             irqlat-&gt;<a class="code" href="structZ17__BLK__IRQLAT.html#m3">tickRate</a> = OSS_TickRateGet(<a class="code" href="z17__drv_8c.html#a7">OSH</a>);
-00919             irqlat-&gt;<a class="code" href="structZ17__BLK__IRQLAT.html#m4">startTick</a> = llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m15">startTick</a>;
-00920             irqlat-&gt;<a class="code" href="structZ17__BLK__IRQLAT.html#m5">stopTick</a> = llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m16">stopTick</a>;
-00921             irqlat-&gt;<a class="code" href="structZ17__BLK__IRQLAT.html#m6">irqsRcved</a> = llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m9">irqCount</a>;
-00922             <span class="keywordflow">break</span>;
-00923         }
-00924 <span class="preprocessor">#endif  </span><span class="comment">/* Z127_NOIRQ */</span>
-00925         <span class="comment">/*--------------------------+</span>
-00926 <span class="comment">        |  (unknown)                |</span>
-00927 <span class="comment">        +--------------------------*/</span>
-00928         <span class="keywordflow">default</span>:
-00929             error = ERR_LL_UNK_CODE;
-00930     }
-00931 
-00932     <span class="keywordflow">return</span> (error);
-00933 }
-00934 
-00935 <span class="comment">/******************************* Z17_BlockRead ******************************/</span>
-<a name="l00946"></a><a class="code" href="z17__drv_8c.html#a20">00946</a> <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a20">Z17_BlockRead</a>(
-00947     <a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl,
-00948     int32     ch,
-00949     <span class="keywordtype">void</span>      *buf,
-00950     int32     size,
-00951     int32     *nbrRdBytesP
-00952 )
-00953 {
-00954     DBGWRT_1((<a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"LL - Z17_BlockRead: ch=%d, size=%d\n"</span>, ch, size));
-00955 
-00956     <span class="comment">/* return number of read bytes */</span>
-00957     *nbrRdBytesP = 0;
-00958 
-00959     <span class="keywordflow">return</span> (ERR_LL_ILL_FUNC);
-00960 }
-00961 
-00962 <span class="comment">/****************************** Z17_BlockWrite *****************************/</span>
-<a name="l00973"></a><a class="code" href="z17__drv_8c.html#a21">00973</a> <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a21">Z17_BlockWrite</a>(
-00974     <a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl,
-00975     int32     ch,
-00976     <span class="keywordtype">void</span>      *buf,
-00977     int32     size,
-00978     int32     *nbrWrBytesP
-00979 )
-00980 {
-00981     DBGWRT_1((<a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"LL - Z17_BlockWrite: ch=%d, size=%d\n"</span>, ch, size));
-00982 
-00983     <span class="comment">/* return number of written bytes */</span>
-00984     *nbrWrBytesP = 0;
-00985 
-00986     <span class="keywordflow">return</span> (ERR_LL_ILL_FUNC);
-00987 }
-00988 
-00989 <span class="preprocessor">#ifndef Z127_NOIRQ</span>
-00990 <span class="preprocessor"></span><span class="comment">/****************************** Z17_Irq ************************************/</span>
-<a name="l01009"></a><a class="code" href="z17__drv_8c.html#a22">01009</a> <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a22">Z17_Irq</a>(
-01010     <a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl
-01011 )
-01012 {
-01013     u_int32 irqReq;
-01014     u_int32 ier1, ier2;
-01015 
-01016     <span class="comment">/* interrupt caused by Arwen ? */</span>
-01017     irqReq = MREAD_D32(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m4">ma</a>, ARWEN_IRR);
-01018 
-01019     IDBGWRT_1((<a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"&gt;&gt;&gt; LL - Z17_Irq: request %08x\n"</span>, irqReq));
-01020     
-01021     <span class="keywordflow">if</span> (irqReq) {
-01022 
-01023         <span class="comment">/* save IERs */</span>
-01024         ier1 = MREAD_D32(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m4">ma</a>, ARWEN_02_IER1);
-01025         ier2 = MREAD_D32(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m4">ma</a>, ARWEN_02_IER2);
-01026         <span class="comment">/* disable all IRQs (for MSI(x)) */</span>
-01027         MWRITE_D32(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m4">ma</a>, ARWEN_02_IER1, 0);
-01028         MWRITE_D32(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m4">ma</a>, ARWEN_02_IER2, 0);
-01029 
-01030         <span class="comment">/* clear interrupt */</span>
-01031         MWRITE_D32(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m4">ma</a>, ARWEN_IRR, irqReq);
-01032         
-01033         <span class="comment">/* if requested send signal to application */</span>
-01034         <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m8">portChangeSig</a>)
-01035             OSS_SigSend(<a class="code" href="z17__drv_8c.html#a7">OSH</a>, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m8">portChangeSig</a>);
-01036         
-01037         llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m9">irqCount</a>++;
-01038         llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m10">lastReq</a> = irqReq;
-01039         
-01040         <span class="comment">/* IRQ latency test */</span>
-01041         <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m11">irqTest</a>) {
-01042             <span class="comment">/* pending IRQs to fire? */</span>
-01043             IDBGWRT_3((<a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"&gt;&gt;&gt; Z17_Irq: irqs2fire=%d\n"</span>, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m14">irqs2fire</a>));
-01044             <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m14">irqs2fire</a>) {
-01045                 <span class="comment">/* set output (this fires the next IRQ) */</span>
-01046                 llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m13">outLast</a> = !llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m13">outLast</a>;
-01047                 llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m14">irqs2fire</a>--;
-01048                 IDBGWRT_3((<a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"&gt;&gt;&gt; Z17_Irq: set output 0x%x\n"</span>, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m13">outLast</a>));
-01049                 MWRITE_D32(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m4">ma</a>, ARWEN_GPIO, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m13">outLast</a> ? llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m12">outBit</a> : 0);
-01050             } <span class="keywordflow">else</span> {
-01051                 <span class="comment">/* this was the last IRQ */</span>
-01052                 llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m16">stopTick</a> = OSS_TickGet(<a class="code" href="z17__drv_8c.html#a7">OSH</a>);
-01053             }
-01054         }<span class="comment">/* IRQ latency test */</span>
-01055         
-01056         <span class="comment">/* enable all IRQs (for MSI(x)) */</span>
-01057         MWRITE_D32(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m4">ma</a>, ARWEN_02_IER1, ier1);
-01058         MWRITE_D32(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m4">ma</a>, ARWEN_02_IER2, ier2);
-01059 
-01060         <span class="keywordflow">return</span> (LL_IRQ_DEVICE);
-01061     }
-01062 
-01063     <span class="keywordflow">return</span> (LL_IRQ_DEV_NOT);
-01064 }
-01065 <span class="preprocessor">#endif  </span><span class="comment">/* Z127_NOIRQ */</span>
-01066 
-01067 <span class="comment">/****************************** Z17_Info ***********************************/</span>
-<a name="l01105"></a><a class="code" href="z17__drv_8c.html#a23">01105</a> <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a23">Z17_Info</a>(
-01106     int32 infoType,
-01107     ...
-01108 )
-01109 {
-01110     int32   error = ERR_SUCCESS;
-01111     va_list argptr;
-01112 
-01113     va_start(argptr, infoType);
-01114 
-01115     <span class="keywordflow">switch</span> (infoType) {
-01116         <span class="comment">/*-------------------------------+</span>
-01117 <span class="comment">        |  hardware characteristics      |</span>
-01118 <span class="comment">        |  (all addr/data modes ORed)    |</span>
-01119 <span class="comment">        +-------------------------------*/</span>
-01120         <span class="keywordflow">case</span> LL_INFO_HW_CHARACTER:
-01121         {
-01122             u_int32 *addrModeP = va_arg(argptr, u_int32*);
-01123             u_int32 *dataModeP = va_arg(argptr, u_int32*);
-01124         
-01125             *addrModeP = MDIS_MA08;
-01126             *dataModeP = MDIS_MD08 | MDIS_MD16;
-01127             <span class="keywordflow">break</span>;
-01128         }
-01129         <span class="comment">/*-------------------------------+</span>
-01130 <span class="comment">        |  nr of required address spaces |</span>
-01131 <span class="comment">        |  (total spaces used)           |</span>
-01132 <span class="comment">        +-------------------------------*/</span>
-01133         <span class="keywordflow">case</span> LL_INFO_ADDRSPACE_COUNT:
-01134         {
-01135             u_int32 *nbrOfAddrSpaceP = va_arg(argptr, u_int32*);
+00908             <span class="comment">/* IRQ latency test not started? */</span>
+00909             <span class="keywordflow">if</span> (!llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m11">irqTest</a>) {
+00910                 error = ERR_LL_DEV_NOTRDY;
+00911                 <span class="keywordflow">break</span>;
+00912             }
+00913             <span class="comment">/* IRQ latency test not yet finished? */</span>
+00914             <span class="keywordflow">if</span> (!llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m16">stopTick</a>) {
+00915                 error = ERR_LL_DEV_BUSY;
+00916                 <span class="keywordflow">break</span>;
+00917             }
+00918             llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m11">irqTest</a> = 0;
+00919 
+00920             <span class="comment">/* disable all IRQs */</span>
+00921             MWRITE_D32(ma, ARWEN_02_IER1, 0);
+00922             MWRITE_D32(ma, ARWEN_02_IER2, 0);
+00923 
+00924             <span class="comment">/* reset all outputs */</span>
+00925             MWRITE_D32(ma, ARWEN_GPIO, 0);
+00926 
+00927             <span class="comment">/* program all ports as inputs */</span>
+00928             MWRITE_D32(ma, ARWEN_DDR, 0);
+00929 
+00930             irqlat-&gt;<a class="code" href="structZ17__BLK__IRQLAT.html#m3">tickRate</a> = OSS_TickRateGet(<a class="code" href="z17__drv_8c.html#a7">OSH</a>);
+00931             irqlat-&gt;<a class="code" href="structZ17__BLK__IRQLAT.html#m4">startTick</a> = llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m15">startTick</a>;
+00932             irqlat-&gt;<a class="code" href="structZ17__BLK__IRQLAT.html#m5">stopTick</a> = llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m16">stopTick</a>;
+00933             irqlat-&gt;<a class="code" href="structZ17__BLK__IRQLAT.html#m6">irqsRcved</a> = llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m9">irqCount</a>;
+00934             <span class="keywordflow">break</span>;
+00935         }
+00936 <span class="preprocessor">#endif  </span><span class="comment">/* Z127_NOIRQ */</span>
+00937         <span class="comment">/*--------------------------+</span>
+00938 <span class="comment">        |  (unknown)                |</span>
+00939 <span class="comment">        +--------------------------*/</span>
+00940         <span class="keywordflow">default</span>:
+00941             error = ERR_LL_UNK_CODE;
+00942     }
+00943 
+00944     <span class="keywordflow">return</span> (error);
+00945 }
+00946 
+00947 <span class="comment">/******************************* Z17_BlockRead ******************************/</span>
+<a name="l00958"></a><a class="code" href="z17__drv_8c.html#a21">00958</a> <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a21">Z17_BlockRead</a>(
+00959     <a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl,
+00960     int32     ch,
+00961     <span class="keywordtype">void</span>      *buf,
+00962     int32     size,
+00963     int32     *nbrRdBytesP
+00964 )
+00965 {
+00966     DBGWRT_1((<a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"LL - Z17_BlockRead: ch=%d, size=%d\n"</span>, ch, size));
+00967 
+00968     <span class="comment">/* return number of read bytes */</span>
+00969     *nbrRdBytesP = 0;
+00970 
+00971     <span class="keywordflow">return</span> (ERR_LL_ILL_FUNC);
+00972 }
+00973 
+00974 <span class="comment">/****************************** Z17_BlockWrite *****************************/</span>
+<a name="l00985"></a><a class="code" href="z17__drv_8c.html#a22">00985</a> <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a22">Z17_BlockWrite</a>(
+00986     <a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl,
+00987     int32     ch,
+00988     <span class="keywordtype">void</span>      *buf,
+00989     int32     size,
+00990     int32     *nbrWrBytesP
+00991 )
+00992 {
+00993     DBGWRT_1((<a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"LL - Z17_BlockWrite: ch=%d, size=%d\n"</span>, ch, size));
+00994 
+00995     <span class="comment">/* return number of written bytes */</span>
+00996     *nbrWrBytesP = 0;
+00997 
+00998     <span class="keywordflow">return</span> (ERR_LL_ILL_FUNC);
+00999 }
+01000 
+01001 <span class="preprocessor">#ifndef Z127_NOIRQ</span>
+01002 <span class="preprocessor"></span><span class="comment">/****************************** Z17_Irq ************************************/</span>
+<a name="l01021"></a><a class="code" href="z17__drv_8c.html#a23">01021</a> <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a23">Z17_Irq</a>(
+01022     <a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl
+01023 )
+01024 {
+01025     u_int32 irqReq;
+01026     u_int32 ier1, ier2;
+01027 
+01028     <span class="comment">/* interrupt caused by Arwen ? */</span>
+01029     irqReq = MREAD_D32(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m4">ma</a>, ARWEN_IRR);
+01030 
+01031     IDBGWRT_1((<a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"&gt;&gt;&gt; LL - Z17_Irq: request %08x\n"</span>, irqReq));
+01032     
+01033     <span class="keywordflow">if</span> (irqReq) {
+01034 
+01035         <span class="comment">/* save IERs */</span>
+01036         ier1 = MREAD_D32(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m4">ma</a>, ARWEN_02_IER1);
+01037         ier2 = MREAD_D32(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m4">ma</a>, ARWEN_02_IER2);
+01038         <span class="comment">/* disable all IRQs (for MSI(x)) */</span>
+01039         MWRITE_D32(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m4">ma</a>, ARWEN_02_IER1, 0);
+01040         MWRITE_D32(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m4">ma</a>, ARWEN_02_IER2, 0);
+01041 
+01042         <span class="comment">/* clear interrupt */</span>
+01043         MWRITE_D32(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m4">ma</a>, ARWEN_IRR, irqReq);
+01044         
+01045         <span class="comment">/* if requested send signal to application */</span>
+01046         <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m8">portChangeSig</a>)
+01047             OSS_SigSend(<a class="code" href="z17__drv_8c.html#a7">OSH</a>, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m8">portChangeSig</a>);
+01048         
+01049         llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m9">irqCount</a>++;
+01050         llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m10">lastReq</a> = irqReq;
+01051         
+01052         <span class="comment">/* IRQ latency test */</span>
+01053         <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m11">irqTest</a>) {
+01054             <span class="comment">/* pending IRQs to fire? */</span>
+01055             IDBGWRT_3((<a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"&gt;&gt;&gt; Z17_Irq: irqs2fire=%d\n"</span>, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m14">irqs2fire</a>));
+01056             <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m14">irqs2fire</a>) {
+01057                 <span class="comment">/* set output (this fires the next IRQ) */</span>
+01058                 llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m13">outLast</a> = !llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m13">outLast</a>;
+01059                 llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m14">irqs2fire</a>--;
+01060                 IDBGWRT_3((<a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"&gt;&gt;&gt; Z17_Irq: set output 0x%x\n"</span>, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m13">outLast</a>));
+01061                 MWRITE_D32(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m4">ma</a>, ARWEN_GPIO, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m13">outLast</a> ? llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m12">outBit</a> : 0);
+01062             } <span class="keywordflow">else</span> {
+01063                 <span class="comment">/* this was the last IRQ */</span>
+01064                 llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m16">stopTick</a> = OSS_TickGet(<a class="code" href="z17__drv_8c.html#a7">OSH</a>);
+01065             }
+01066         }<span class="comment">/* IRQ latency test */</span>
+01067         
+01068         <span class="comment">/* enable all IRQs (for MSI(x)) */</span>
+01069         MWRITE_D32(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m4">ma</a>, ARWEN_02_IER1, ier1);
+01070         MWRITE_D32(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m4">ma</a>, ARWEN_02_IER2, ier2);
+01071 
+01072         <span class="keywordflow">return</span> (LL_IRQ_DEVICE);
+01073     }
+01074 
+01075     <span class="keywordflow">return</span> (LL_IRQ_DEV_NOT);
+01076 }
+01077 <span class="preprocessor">#endif  </span><span class="comment">/* Z127_NOIRQ */</span>
+01078 
+01079 <span class="comment">/****************************** Z17_Info ***********************************/</span>
+<a name="l01117"></a><a class="code" href="z17__drv_8c.html#a24">01117</a> <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a24">Z17_Info</a>(
+01118     int32 infoType,
+01119     ...
+01120 )
+01121 {
+01122     int32   error = ERR_SUCCESS;
+01123     va_list argptr;
+01124 
+01125     va_start(argptr, infoType);
+01126 
+01127     <span class="keywordflow">switch</span> (infoType) {
+01128         <span class="comment">/*-------------------------------+</span>
+01129 <span class="comment">        |  hardware characteristics      |</span>
+01130 <span class="comment">        |  (all addr/data modes ORed)    |</span>
+01131 <span class="comment">        +-------------------------------*/</span>
+01132         <span class="keywordflow">case</span> LL_INFO_HW_CHARACTER:
+01133         {
+01134             u_int32 *addrModeP = va_arg(argptr, u_int32*);
+01135             u_int32 *dataModeP = va_arg(argptr, u_int32*);
 01136         
-01137             *nbrOfAddrSpaceP = <a class="code" href="z17__drv_8c.html#a3">ADDRSPACE_COUNT</a>;
-01138             <span class="keywordflow">break</span>;
-01139         }
-01140         <span class="comment">/*-------------------------------+</span>
-01141 <span class="comment">        |  address space type            |</span>
-01142 <span class="comment">        |  (widest used data mode)       |</span>
-01143 <span class="comment">        +-------------------------------*/</span>
-01144         <span class="keywordflow">case</span> LL_INFO_ADDRSPACE:
-01145         {
-01146             u_int32 addrSpaceIndex = va_arg(argptr, u_int32);
-01147             u_int32 *addrModeP = va_arg(argptr, u_int32*);
-01148             u_int32 *dataModeP = va_arg(argptr, u_int32*);
-01149             u_int32 *addrSizeP = va_arg(argptr, u_int32*);
-01150         
-01151             <span class="keywordflow">switch</span>( addrSpaceIndex ){
-01152                 <span class="keywordflow">case</span> 0:
-01153                     *addrModeP = MDIS_MA08;
-01154                     *dataModeP = MDIS_MD16;
-01155                     *addrSizeP = <a class="code" href="z17__drv_8c.html#a4">ADDRSPACE_SIZE</a>;
-01156                     <span class="keywordflow">break</span>;
-01157 <span class="preprocessor">#ifdef Z127_INFO_PTR</span>
-01158 <span class="preprocessor"></span>                <span class="keywordflow">case</span> 1:
-01159                     *addrModeP = MDIS_MA_BB_INFO_PTR;
-01160                     *dataModeP = MDIS_MD_CHAM_0;
-01161                     *addrSizeP = <span class="keyword">sizeof</span>(CHAMELEONV2_UNIT);
-01162                     <span class="keywordflow">break</span>;
-01163 <span class="preprocessor">#endif</span>
-01164 <span class="preprocessor"></span>
-01165                 <span class="keywordflow">default</span>:
-01166                     error = ERR_LL_ILL_PARAM;
-01167             }
-01168             <span class="keywordflow">break</span>;
-01169         }
-01170         <span class="comment">/*-------------------------------+</span>
-01171 <span class="comment">        |  interrupt required            |</span>
-01172 <span class="comment">        +-------------------------------*/</span>
-01173         <span class="keywordflow">case</span> LL_INFO_IRQ:
-01174         {
-01175             u_int32 *useIrqP = va_arg(argptr, u_int32*);
-01176 
-01177             *useIrqP = <a class="code" href="z17__drv_8c.html#a2">USE_IRQ</a>;
-01178             <span class="keywordflow">break</span>;
-01179         }
-01180         <span class="comment">/*-------------------------------+</span>
-01181 <span class="comment">        |  process lock mode             |</span>
-01182 <span class="comment">        +-------------------------------*/</span>
-01183         <span class="keywordflow">case</span> LL_INFO_LOCKMODE:
-01184         {
-01185             u_int32 *lockModeP = va_arg(argptr, u_int32*);
-01186 
-01187             *lockModeP = LL_LOCK_CALL;
-01188             <span class="keywordflow">break</span>;
-01189         }
-01190         <span class="comment">/*-------------------------------+</span>
-01191 <span class="comment">        |  (unknown)                     |</span>
-01192 <span class="comment">        +-------------------------------*/</span>
-01193         <span class="keywordflow">default</span>:
-01194             error = ERR_LL_ILL_PARAM;
-01195     }
-01196 
-01197     va_end(argptr);
+01137             *addrModeP = MDIS_MA08;
+01138             *dataModeP = MDIS_MD08 | MDIS_MD16;
+01139             <span class="keywordflow">break</span>;
+01140         }
+01141         <span class="comment">/*-------------------------------+</span>
+01142 <span class="comment">        |  nr of required address spaces |</span>
+01143 <span class="comment">        |  (total spaces used)           |</span>
+01144 <span class="comment">        +-------------------------------*/</span>
+01145         <span class="keywordflow">case</span> LL_INFO_ADDRSPACE_COUNT:
+01146         {
+01147             u_int32 *nbrOfAddrSpaceP = va_arg(argptr, u_int32*);
+01148         
+01149             *nbrOfAddrSpaceP = <a class="code" href="z17__drv_8c.html#a3">ADDRSPACE_COUNT</a>;
+01150             <span class="keywordflow">break</span>;
+01151         }
+01152         <span class="comment">/*-------------------------------+</span>
+01153 <span class="comment">        |  address space type            |</span>
+01154 <span class="comment">        |  (widest used data mode)       |</span>
+01155 <span class="comment">        +-------------------------------*/</span>
+01156         <span class="keywordflow">case</span> LL_INFO_ADDRSPACE:
+01157         {
+01158             u_int32 addrSpaceIndex = va_arg(argptr, u_int32);
+01159             u_int32 *addrModeP = va_arg(argptr, u_int32*);
+01160             u_int32 *dataModeP = va_arg(argptr, u_int32*);
+01161             u_int32 *addrSizeP = va_arg(argptr, u_int32*);
+01162         
+01163             <span class="keywordflow">switch</span>( addrSpaceIndex ){
+01164                 <span class="keywordflow">case</span> 0:
+01165                     *addrModeP = MDIS_MA08;
+01166                     *dataModeP = MDIS_MD16;
+01167                     *addrSizeP = <a class="code" href="z17__drv_8c.html#a4">ADDRSPACE_SIZE</a>;
+01168                     <span class="keywordflow">break</span>;
+01169 <span class="preprocessor">#ifdef Z127_INFO_PTR</span>
+01170 <span class="preprocessor"></span>                <span class="keywordflow">case</span> 1:
+01171                     *addrModeP = MDIS_MA_BB_INFO_PTR;
+01172                     *dataModeP = MDIS_MD_CHAM_0;
+01173                     *addrSizeP = <span class="keyword">sizeof</span>(CHAMELEONV2_UNIT);
+01174                     <span class="keywordflow">break</span>;
+01175 <span class="preprocessor">#endif</span>
+01176 <span class="preprocessor"></span>
+01177                 <span class="keywordflow">default</span>:
+01178                     error = ERR_LL_ILL_PARAM;
+01179             }
+01180             <span class="keywordflow">break</span>;
+01181         }
+01182         <span class="comment">/*-------------------------------+</span>
+01183 <span class="comment">        |  interrupt required            |</span>
+01184 <span class="comment">        +-------------------------------*/</span>
+01185         <span class="keywordflow">case</span> LL_INFO_IRQ:
+01186         {
+01187             u_int32 *useIrqP = va_arg(argptr, u_int32*);
+01188 
+01189             *useIrqP = <a class="code" href="z17__drv_8c.html#a2">USE_IRQ</a>;
+01190             <span class="keywordflow">break</span>;
+01191         }
+01192         <span class="comment">/*-------------------------------+</span>
+01193 <span class="comment">        |  process lock mode             |</span>
+01194 <span class="comment">        +-------------------------------*/</span>
+01195         <span class="keywordflow">case</span> LL_INFO_LOCKMODE:
+01196         {
+01197             u_int32 *lockModeP = va_arg(argptr, u_int32*);
 01198 
-01199     <span class="keywordflow">return</span> (error);
-01200 }
-01201 
-01202 <span class="comment">/******************************** Ident ************************************/</span>
-<a name="l01207"></a><a class="code" href="z17__drv_8c.html#a24">01207</a> <span class="keyword">static</span> <span class="keywordtype">char</span>* <a class="code" href="z17__drv_8c.html#a24">Ident</a>(<span class="keywordtype">void</span>)
-01208 {
-01209     <span class="keywordflow">return</span> (<span class="stringliteral">"Z17 - Z17 low level driver: $Id: z17_drv.c,v 1.15 2017/05/03 16:52:05 DPfeuffer Exp $"</span>
-01210 <span class="preprocessor">            #ifdef Z17_MODEL_Z127</span>
-01211 <span class="preprocessor"></span>                <span class="stringliteral">" Z127 model"</span>
-01212 <span class="preprocessor">            #else</span>
-01213 <span class="preprocessor"></span>                <span class="stringliteral">" Z34/Z37 model"</span>
-01214 <span class="preprocessor">            #endif</span>
-01215 <span class="preprocessor"></span><span class="preprocessor">            #ifdef Z127_NOIRQ</span>
-01216 <span class="preprocessor"></span>                <span class="stringliteral">" - no IRQs"</span>
-01217 <span class="preprocessor">            #endif</span>
-01218 <span class="preprocessor"></span>            );
-01219 }
-01220 
-01221 <span class="comment">/********************************* Cleanup *********************************/</span>
-<a name="l01231"></a><a class="code" href="z17__drv_8c.html#a25">01231</a> <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a25">Cleanup</a>(
-01232     <a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl,
-01233     int32     retCode
-01234 )
-01235 {
-01236     <span class="comment">/*------------------------------+</span>
-01237 <span class="comment">    |  close handles                |</span>
-01238 <span class="comment">    +------------------------------*/</span>
-01239     <span class="comment">/* clean up desc */</span>
-01240     <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m3">descHdl</a>)
-01241         DESC_Exit(&amp;llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m3">descHdl</a>);
-01242 
-01243     <span class="comment">/* clean up alarm */</span>
-01244     <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m17">alarmHdl</a>)
-01245         OSS_AlarmRemove(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m1">osHdl</a>, &amp;llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m17">alarmHdl</a>);
-01246 
-01247     <span class="comment">/* clean up debug */</span>
-01248     DBGEXIT((&amp;<a class="code" href="z17__drv_8c.html#a6">DBH</a>));
+01199             *lockModeP = LL_LOCK_CALL;
+01200             <span class="keywordflow">break</span>;
+01201         }
+01202         <span class="comment">/*-------------------------------+</span>
+01203 <span class="comment">        |  (unknown)                     |</span>
+01204 <span class="comment">        +-------------------------------*/</span>
+01205         <span class="keywordflow">default</span>:
+01206             error = ERR_LL_ILL_PARAM;
+01207     }
+01208 
+01209     va_end(argptr);
+01210 
+01211     <span class="keywordflow">return</span> (error);
+01212 }
+01213 
+01214 <span class="comment">/******************************** Ident ************************************/</span>
+<a name="l01219"></a><a class="code" href="z17__drv_8c.html#a25">01219</a> <span class="keyword">static</span> <span class="keywordtype">char</span>* <a class="code" href="z17__drv_8c.html#a25">Ident</a>(<span class="keywordtype">void</span>)
+01220 {
+01221     <span class="keywordflow">return</span>( (<span class="keywordtype">char</span>*) <a class="code" href="z17__drv_8c.html#a14">IdentString</a> );
+01222 }
+01223 
+01224 <span class="comment">/********************************* Cleanup *********************************/</span>
+<a name="l01234"></a><a class="code" href="z17__drv_8c.html#a26">01234</a> <span class="keyword">static</span> int32 <a class="code" href="z17__drv_8c.html#a26">Cleanup</a>(
+01235     <a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl,
+01236     int32     retCode
+01237 )
+01238 {
+01239     <span class="comment">/*------------------------------+</span>
+01240 <span class="comment">    |  close handles                |</span>
+01241 <span class="comment">    +------------------------------*/</span>
+01242     <span class="comment">/* clean up desc */</span>
+01243     <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m3">descHdl</a>)
+01244         DESC_Exit(&amp;llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m3">descHdl</a>);
+01245 
+01246     <span class="comment">/* clean up alarm */</span>
+01247     <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m17">alarmHdl</a>)
+01248         OSS_AlarmRemove(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m1">osHdl</a>, &amp;llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m17">alarmHdl</a>);
 01249 
-01250     <span class="comment">/*------------------------------+</span>
-01251 <span class="comment">    |  free memory                  |</span>
-01252 <span class="comment">    +------------------------------*/</span>
-01253     <span class="comment">/* free my handle */</span>
-01254     OSS_MemFree(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m1">osHdl</a>, (int8*)llHdl, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m0">memAlloc</a>);
-01255 
-01256     <span class="comment">/*return error code */</span>
-01257     <span class="keywordflow">return</span> (retCode);
-01258 }
-01259 
-01260 <span class="comment">/******************************* arwenReset ********************************/</span>
-<a name="l01270"></a><a class="code" href="z17__drv_8c.html#a26">01270</a> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="z17__drv_8c.html#a26">arwenReset</a>(
-01271     <a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl
-01272 )
-01273 {
-01274     MACCESS ma = llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m4">ma</a>;
-01275 
-01276     <span class="comment">/* disable all interrupts */</span>
-01277     MWRITE_D32(ma, ARWEN_02_IER1, 0);
-01278     MWRITE_D32(ma, ARWEN_02_IER2, 0);
-01279 
-01280     <span class="comment">/* program all ports as inputs */</span>
-01281     MWRITE_D32(ma, ARWEN_DDR, 0);
+01250     <span class="comment">/* clean up debug */</span>
+01251     DBGEXIT((&amp;<a class="code" href="z17__drv_8c.html#a6">DBH</a>));
+01252 
+01253     <span class="comment">/*------------------------------+</span>
+01254 <span class="comment">    |  free memory                  |</span>
+01255 <span class="comment">    +------------------------------*/</span>
+01256     <span class="comment">/* free my handle */</span>
+01257     OSS_MemFree(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m1">osHdl</a>, (int8*)llHdl, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m0">memAlloc</a>);
+01258 
+01259     <span class="comment">/*return error code */</span>
+01260     <span class="keywordflow">return</span> (retCode);
+01261 }
+01262 
+01263 <span class="comment">/******************************* arwenReset ********************************/</span>
+<a name="l01273"></a><a class="code" href="z17__drv_8c.html#a27">01273</a> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="z17__drv_8c.html#a27">arwenReset</a>(
+01274     <a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl
+01275 )
+01276 {
+01277     MACCESS ma = llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m4">ma</a>;
+01278 
+01279     <span class="comment">/* disable all interrupts */</span>
+01280     MWRITE_D32(ma, ARWEN_02_IER1, 0);
+01281     MWRITE_D32(ma, ARWEN_02_IER2, 0);
 01282 
-01283     <span class="comment">/* disable open drain and debouncer */</span>
-01284     MWRITE_D32(ma, ARWEN_02_ODER, 0);
-01285     MWRITE_D32(ma, ARWEN_02_DBER, 0);
-01286 }
-01287 
-01288 <span class="comment">/******************************* AlarmHandler ******************************/</span>
-<a name="l01295"></a><a class="code" href="z17__drv_8c.html#a27">01295</a> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="z17__drv_8c.html#a27">AlarmHandler</a>(
-01296     <span class="keywordtype">void</span> *arg
-01297 )
-01298 {
-01299     <a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl = (<a class="code" href="structLL__HANDLE.html">LL_HANDLE</a>*)arg;
-01300     MACCESS ma = llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m4">ma</a>;
-01301 
-01302     DBGWRT_3((<a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"&gt;&gt;&gt; LL - Z17_Z127 AlarmHandler:\n"</span>));
-01303 
-01304     llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m23">togCount</a> += <a class="code" href="z17__drv_8c.html#a9">TOG_TIME_MIN</a>;
-01305 
-01306     <span class="comment">/* reset counter */</span>
-01307     <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m23">togCount</a> &gt; ((llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m20">togtimeHigh</a> + llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m21">togtimeLow</a>)))
-01308         llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m23">togCount</a> = 0;
-01309 
-01310     <span class="comment">/* toggle high */</span>
-01311     <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m19">togHigh</a> &amp;&amp; (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m23">togCount</a> &lt;= (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m20">togtimeHigh</a>))) {
+01283     <span class="comment">/* program all ports as inputs */</span>
+01284     MWRITE_D32(ma, ARWEN_DDR, 0);
+01285 
+01286     <span class="comment">/* disable open drain and debouncer */</span>
+01287     MWRITE_D32(ma, ARWEN_02_ODER, 0);
+01288     MWRITE_D32(ma, ARWEN_02_DBER, 0);
+01289 }
+01290 
+01291 <span class="comment">/******************************* AlarmHandler ******************************/</span>
+<a name="l01298"></a><a class="code" href="z17__drv_8c.html#a28">01298</a> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="z17__drv_8c.html#a28">AlarmHandler</a>(
+01299     <span class="keywordtype">void</span> *arg
+01300 )
+01301 {
+01302     <a class="code" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl = (<a class="code" href="structLL__HANDLE.html">LL_HANDLE</a>*)arg;
+01303     MACCESS ma = llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m4">ma</a>;
+01304 
+01305     DBGWRT_3((<a class="code" href="z17__drv_8c.html#a6">DBH</a>, <span class="stringliteral">"&gt;&gt;&gt; LL - Z17_Z127 AlarmHandler:\n"</span>));
+01306 
+01307     llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m23">togCount</a> += <a class="code" href="z17__drv_8c.html#a9">TOG_TIME_MIN</a>;
+01308 
+01309     <span class="comment">/* reset counter */</span>
+01310     <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m23">togCount</a> &gt; ((llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m20">togtimeHigh</a> + llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m21">togtimeLow</a>)))
+01311         llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m23">togCount</a> = 0;
 01312 
-01313         <span class="comment">/* lock device */</span>
-01314         <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m18">devSemHdl</a>)
-01315             OSS_SemWait(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m1">osHdl</a>, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m18">devSemHdl</a>, OSS_SEM_WAITFOREVER);
-01316 
-01317         MWRITE_D32(ma, ARWEN_GPIO, MREAD_D32(ma, ARWEN_GPIO)
-01318                                     | llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m22">togBitMask</a>);
+01313     <span class="comment">/* toggle high */</span>
+01314     <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m19">togHigh</a> &amp;&amp; (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m23">togCount</a> &lt;= (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m20">togtimeHigh</a>))) {
+01315 
+01316         <span class="comment">/* lock device */</span>
+01317         <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m18">devSemHdl</a>)
+01318             OSS_SemWait(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m1">osHdl</a>, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m18">devSemHdl</a>, OSS_SEM_WAITFOREVER);
 01319 
-01320         <span class="comment">/* release device (for other processes) */</span>
-01321         <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m18">devSemHdl</a>)
-01322             OSS_SemSignal(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m1">osHdl</a>, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m18">devSemHdl</a>);
-01323 
-01324         <span class="comment">/* reset flag */</span>
-01325         llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m19">togHigh</a> = 0;
-01326     }
-01327 
-01328     <span class="comment">/* toggle low */</span>
-01329     <span class="keywordflow">if</span> ((!llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m19">togHigh</a>) &amp;&amp; (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m23">togCount</a> &gt; (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m20">togtimeHigh</a>))) {
+01320         MWRITE_D32(ma, ARWEN_GPIO, MREAD_D32(ma, ARWEN_GPIO)
+01321                                     | llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m22">togBitMask</a>);
+01322 
+01323         <span class="comment">/* release device (for other processes) */</span>
+01324         <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m18">devSemHdl</a>)
+01325             OSS_SemSignal(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m1">osHdl</a>, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m18">devSemHdl</a>);
+01326 
+01327         <span class="comment">/* reset flag */</span>
+01328         llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m19">togHigh</a> = 0;
+01329     }
 01330 
-01331         <span class="comment">/* lock device */</span>
-01332         <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m18">devSemHdl</a>)
-01333             OSS_SemWait(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m1">osHdl</a>, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m18">devSemHdl</a>, OSS_SEM_WAITFOREVER);
-01334 
-01335         MWRITE_D32(ma, ARWEN_GPIO, MREAD_D32(ma, ARWEN_GPIO)
-01336                                     &amp; ~(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m22">togBitMask</a>));
+01331     <span class="comment">/* toggle low */</span>
+01332     <span class="keywordflow">if</span> ((!llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m19">togHigh</a>) &amp;&amp; (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m23">togCount</a> &gt; (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m20">togtimeHigh</a>))) {
+01333 
+01334         <span class="comment">/* lock device */</span>
+01335         <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m18">devSemHdl</a>)
+01336             OSS_SemWait(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m1">osHdl</a>, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m18">devSemHdl</a>, OSS_SEM_WAITFOREVER);
 01337 
-01338         <span class="comment">/* release device (for other processes) */</span>
-01339         <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m18">devSemHdl</a>)
-01340             OSS_SemSignal(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m1">osHdl</a>, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m18">devSemHdl</a>);
-01341 
-01342         <span class="comment">/* reset flag */</span>
-01343         llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m19">togHigh</a> = 1;
-01344     }
-01345 }
-01346  
-01347  
-01348  
+01338         MWRITE_D32(ma, ARWEN_GPIO, MREAD_D32(ma, ARWEN_GPIO)
+01339                                     &amp; ~(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m22">togBitMask</a>));
+01340 
+01341         <span class="comment">/* release device (for other processes) */</span>
+01342         <span class="keywordflow">if</span> (llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m18">devSemHdl</a>)
+01343             OSS_SemSignal(llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m1">osHdl</a>, llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m18">devSemHdl</a>);
+01344 
+01345         <span class="comment">/* reset flag */</span>
+01346         llHdl-&gt;<a class="code" href="structLL__HANDLE.html#m19">togHigh</a> = 1;
+01347     }
+01348 }
 01349  
 01350  
+01351  
+01352  
+01353  
 </pre></div>
 	</div>
 </div>
@@ -1171,8 +1176,7 @@
 <div class="footer">
 <!-- Footer -->
 	<p class="footer">
-	Generated for Z17 MDIS Driver using <a href="http://www.doxygen.org">doxygen</a>.<br>
-	Copyright &copy; 2019 <a href="http://www.men.de">MEN Mikro Elektronik GmbH</a>. All Rights Reserved.
+	Generated for Z17 MDIS Driver using <a href="http://www.doxygen.org">doxygen</a>. All Rights Reserved.
 	</p>
 </div>
 

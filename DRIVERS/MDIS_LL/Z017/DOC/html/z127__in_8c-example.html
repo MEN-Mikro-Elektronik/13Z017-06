@@ -59,6 +59,8 @@
 <span class="preprocessor">#include &lt;MEN/usr_utl.h&gt;</span>
 <span class="preprocessor">#include &lt;<a class="code" href="z17__drv_8h.html">MEN/z17_drv.h</a>&gt;</span>
 
+<span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> IdentString[]=MENT_XSTR(MAK_REVISION);
+
 <span class="comment">/*--------------------------------------+</span>
 <span class="comment">|   DEFINES                             |</span>
 <span class="comment">+--------------------------------------*/</span>
@@ -108,7 +110,7 @@
     printf(<span class="stringliteral">"\n"</span>);
     printf(<span class="stringliteral">"(*1) requires 16Z127-01 (or compatible) IP core\n"</span>);
     printf(<span class="stringliteral">"\n"</span>);
-    printf(<span class="stringliteral">"(c)Copyright 2016 by MEN Mikro Elektronik GmbH (%s)\n"</span>, __DATE__);
+    printf(<span class="stringliteral">"Copyright (c) 2016-2019, MEN Mikro Elektronik GmbH\n%s\n"</span>, IdentString);
 }
 
 <span class="comment">/***************************************************************************/</span>
@@ -572,8 +574,7 @@ ABORT:
 <div class="footer">
 <!-- Footer -->
 	<p class="footer">
-	Generated for Z17 MDIS Driver using <a href="http://www.doxygen.org">doxygen</a>.<br>
-	Copyright &copy; 2019 <a href="http://www.men.de">MEN Mikro Elektronik GmbH</a>. All Rights Reserved.
+	Generated for Z17 MDIS Driver using <a href="http://www.doxygen.org">doxygen</a>. All Rights Reserved.
 	</p>
 </div>
 

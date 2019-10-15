@@ -47,7 +47,6 @@
 <span class="comment"> * along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 <span class="comment"> */</span>
 
-<span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> RCSid[]=<span class="stringliteral">"$Id: z127_io.c,v 1.9 2017/05/03 16:53:47 DPfeuffer Exp $"</span>;
 
 <span class="comment">/*--------------------------------------+</span>
 <span class="comment">|  INCLUDES                             |</span>
@@ -60,6 +59,8 @@
 <span class="preprocessor">#include &lt;MEN/usr_oss.h&gt;</span>
 <span class="preprocessor">#include &lt;MEN/usr_utl.h&gt;</span>
 <span class="preprocessor">#include &lt;<a class="code" href="z17__drv_8h.html">MEN/z17_drv.h</a>&gt;</span>
+
+<span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> IdentString[]=MENT_XSTR(MAK_REVISION);
 
 <span class="comment">/*--------------------------------------+</span>
 <span class="comment">|  PROTOTYPES                           |</span>
@@ -84,7 +85,7 @@
     printf(<span class="stringliteral">"        -l=&lt;time&gt;     toggle low (in ms)...............[1000]\n"</span>);
     printf(<span class="stringliteral">"    -h            hold path open until keypress              \n"</span>);
     printf(<span class="stringliteral">"\n"</span>);
-    printf(<span class="stringliteral">"(c)Copyright 2010 by MEN Mikro Elektronik GmbH\n%s\n"</span>, RCSid);
+    printf(<span class="stringliteral">"Copyright (c) 2010-2019, MEN Mikro Elektronik GmbH\n%s\n"</span>, IdentString);
 }
 
 <span class="comment">/***************************************************************************/</span>
@@ -292,8 +293,7 @@
 <div class="footer">
 <!-- Footer -->
 	<p class="footer">
-	Generated for Z17 MDIS Driver using <a href="http://www.doxygen.org">doxygen</a>.<br>
-	Copyright &copy; 2019 <a href="http://www.men.de">MEN Mikro Elektronik GmbH</a>. All Rights Reserved.
+	Generated for Z17 MDIS Driver using <a href="http://www.doxygen.org">doxygen</a>. All Rights Reserved.
 	</p>
 </div>
 

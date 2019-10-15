@@ -122,92 +122,98 @@
     <member kind="function" static="yes">
       <type>int32</type>
       <name>Z17_Init</name>
-      <anchor>a14</anchor>
+      <anchor>a15</anchor>
       <arglist>(DESC_SPEC *descSpec, OSS_HANDLE *osHdl, MACCESS *ma, OSS_SEM_HANDLE *devSemHdl, OSS_IRQ_HANDLE *irqHdl, LL_HANDLE **llHdlP)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>int32</type>
       <name>Z17_Exit</name>
-      <anchor>a15</anchor>
+      <anchor>a16</anchor>
       <arglist>(LL_HANDLE **llHdlP)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>int32</type>
       <name>Z17_Read</name>
-      <anchor>a16</anchor>
+      <anchor>a17</anchor>
       <arglist>(LL_HANDLE *llHdl, int32 ch, int32 *value)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>int32</type>
       <name>Z17_Write</name>
-      <anchor>a17</anchor>
+      <anchor>a18</anchor>
       <arglist>(LL_HANDLE *llHdl, int32 ch, int32 value)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>int32</type>
       <name>Z17_SetStat</name>
-      <anchor>a18</anchor>
+      <anchor>a19</anchor>
       <arglist>(LL_HANDLE *llHdl, int32 ch, int32 code, INT32_OR_64 value32_or_64)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>int32</type>
       <name>Z17_GetStat</name>
-      <anchor>a19</anchor>
+      <anchor>a20</anchor>
       <arglist>(LL_HANDLE *llHdl, int32 ch, int32 code, INT32_OR_64 *value32_or64P)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>int32</type>
       <name>Z17_BlockRead</name>
-      <anchor>a20</anchor>
+      <anchor>a21</anchor>
       <arglist>(LL_HANDLE *llHdl, int32 ch, void *buf, int32 size, int32 *nbrRdBytesP)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>int32</type>
       <name>Z17_BlockWrite</name>
-      <anchor>a21</anchor>
+      <anchor>a22</anchor>
       <arglist>(LL_HANDLE *llHdl, int32 ch, void *buf, int32 size, int32 *nbrWrBytesP)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>int32</type>
       <name>Z17_Irq</name>
-      <anchor>a22</anchor>
+      <anchor>a23</anchor>
       <arglist>(LL_HANDLE *llHdl)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>int32</type>
       <name>Z17_Info</name>
-      <anchor>a23</anchor>
+      <anchor>a24</anchor>
       <arglist>(int32 infoType,...)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>char *</type>
       <name>Ident</name>
-      <anchor>a24</anchor>
+      <anchor>a25</anchor>
       <arglist>(void)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>int32</type>
       <name>Cleanup</name>
-      <anchor>a25</anchor>
+      <anchor>a26</anchor>
       <arglist>(LL_HANDLE *llHdl, int32 retCode)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>void</type>
       <name>arwenReset</name>
-      <anchor>a26</anchor>
+      <anchor>a27</anchor>
       <arglist>(LL_HANDLE *llHdl)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>void</type>
       <name>AlarmHandler</name>
-      <anchor>a27</anchor>
+      <anchor>a28</anchor>
       <arglist>(void *arg)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>__Z17_GetEntry</name>
-      <anchor>a28</anchor>
+      <anchor>a29</anchor>
       <arglist>(LL_ENTRY *drvP)</arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>const char</type>
+      <name>IdentString</name>
+      <anchor>a14</anchor>
+      <arglist>[]</arglist>
     </member>
   </compound>
   <compound kind="file">

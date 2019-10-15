@@ -61,43 +61,43 @@
 <tr><td nowrap align=right valign=top>#define&nbsp;</td><td valign=bottom><a class="el" href="z17__drv_8c.html#a13">RESET_OFF</a>&nbsp;&nbsp;&nbsp;1</td></tr>
 <tr><td>&nbsp;</td><td><em class="mdesc">disables the arwen reset function</em> <a href="#a13"></a><em></em><br><br></td></tr>
 <tr><td colspan=2><br><h2>Functions</h2></td></tr>
-<tr><td nowrap align=right valign=top>int32&nbsp;</td><td valign=bottom><a class="el" href="z17__drv_8c.html#a14">Z17_Init</a> (DESC_SPEC *descSpec, OSS_HANDLE *osHdl, MACCESS *ma, OSS_SEM_HANDLE *devSemHdl, OSS_IRQ_HANDLE *irqHdl, <a class="el" href="structLL__HANDLE.html">LL_HANDLE</a> **llHdlP)</td></tr>
-<tr><td>&nbsp;</td><td><em class="mdesc">Allocate and return low-level handle, initialize hardware.</em> <a href="#a14"></a><em></em><br><br></td></tr>
-<tr><td nowrap align=right valign=top>int32&nbsp;</td><td valign=bottom><a class="el" href="z17__drv_8c.html#a15">Z17_Exit</a> (<a class="el" href="structLL__HANDLE.html">LL_HANDLE</a> **llHdlP)</td></tr>
-<tr><td>&nbsp;</td><td><em class="mdesc">De-initialize hardware and clean up memory.</em> <a href="#a15"></a><em></em><br><br></td></tr>
-<tr><td nowrap align=right valign=top>int32&nbsp;</td><td valign=bottom><a class="el" href="z17__drv_8c.html#a16">Z17_Read</a> (<a class="el" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl, int32 ch, int32 *value)</td></tr>
-<tr><td>&nbsp;</td><td><em class="mdesc">Read a value from the device.</em> <a href="#a16"></a><em></em><br><br></td></tr>
-<tr><td nowrap align=right valign=top>int32&nbsp;</td><td valign=bottom><a class="el" href="z17__drv_8c.html#a17">Z17_Write</a> (<a class="el" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl, int32 ch, int32 value)</td></tr>
-<tr><td>&nbsp;</td><td><em class="mdesc">Description: Write a value to the device.</em> <a href="#a17"></a><em></em><br><br></td></tr>
-<tr><td nowrap align=right valign=top>int32&nbsp;</td><td valign=bottom><a class="el" href="z17__drv_8c.html#a18">Z17_SetStat</a> (<a class="el" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl, int32 ch, int32 code, INT32_OR_64 value32_or_64)</td></tr>
-<tr><td>&nbsp;</td><td><em class="mdesc">Set the driver status.</em> <a href="#a18"></a><em></em><br><br></td></tr>
-<tr><td nowrap align=right valign=top>int32&nbsp;</td><td valign=bottom><a class="el" href="z17__drv_8c.html#a19">Z17_GetStat</a> (<a class="el" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl, int32 ch, int32 code, INT32_OR_64 *value32_or64P)</td></tr>
-<tr><td>&nbsp;</td><td><em class="mdesc">Get the driver status.</em> <a href="#a19"></a><em></em><br><br></td></tr>
-<tr><td nowrap align=right valign=top>int32&nbsp;</td><td valign=bottom><a class="el" href="z17__drv_8c.html#a20">Z17_BlockRead</a> (<a class="el" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl, int32 ch, void *buf, int32 size, int32 *nbrRdBytesP)</td></tr>
-<tr><td>&nbsp;</td><td><em class="mdesc">Read a data block from the device.</em> <a href="#a20"></a><em></em><br><br></td></tr>
-<tr><td nowrap align=right valign=top>int32&nbsp;</td><td valign=bottom><a class="el" href="z17__drv_8c.html#a21">Z17_BlockWrite</a> (<a class="el" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl, int32 ch, void *buf, int32 size, int32 *nbrWrBytesP)</td></tr>
-<tr><td>&nbsp;</td><td><em class="mdesc">Write a data block from the device.</em> <a href="#a21"></a><em></em><br><br></td></tr>
-<tr><td nowrap align=right valign=top>int32&nbsp;</td><td valign=bottom><a class="el" href="z17__drv_8c.html#a22">Z17_Irq</a> (<a class="el" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl)</td></tr>
-<tr><td>&nbsp;</td><td><em class="mdesc">Interrupt service routine.</em> <a href="#a22"></a><em></em><br><br></td></tr>
-<tr><td nowrap align=right valign=top>int32&nbsp;</td><td valign=bottom><a class="el" href="z17__drv_8c.html#a23">Z17_Info</a> (int32 infoType,...)</td></tr>
-<tr><td>&nbsp;</td><td><em class="mdesc">Get information about hardware and driver requirements.</em> <a href="#a23"></a><em></em><br><br></td></tr>
-<tr><td nowrap align=right valign=top>char *&nbsp;</td><td valign=bottom><a class="el" href="z17__drv_8c.html#a24">Ident</a> (void)</td></tr>
-<tr><td>&nbsp;</td><td><em class="mdesc">Return ident string.</em> <a href="#a24"></a><em></em><br><br></td></tr>
-<tr><td nowrap align=right valign=top>int32&nbsp;</td><td valign=bottom><a class="el" href="z17__drv_8c.html#a25">Cleanup</a> (<a class="el" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl, int32 retCode)</td></tr>
-<tr><td>&nbsp;</td><td><em class="mdesc">Close all handles, free memory and return error code.</em> <a href="#a25"></a><em></em><br><br></td></tr>
-<tr><td nowrap align=right valign=top>void&nbsp;</td><td valign=bottom><a class="el" href="z17__drv_8c.html#a26">arwenReset</a> (<a class="el" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl)</td></tr>
-<tr><td>&nbsp;</td><td><em class="mdesc">Reset GPIO controller.</em> <a href="#a26"></a><em></em><br><br></td></tr>
-<tr><td nowrap align=right valign=top>void&nbsp;</td><td valign=bottom><a class="el" href="z17__drv_8c.html#a27">AlarmHandler</a> (void *arg)</td></tr>
-<tr><td>&nbsp;</td><td><em class="mdesc">Alarm handler.</em> <a href="#a27"></a><em></em><br><br></td></tr>
-<tr><td nowrap align=right valign=top>void&nbsp;</td><td valign=bottom><a class="el" href="z17__drv_8c.html#a28">__Z17_GetEntry</a> (LL_ENTRY *drvP)</td></tr>
-<tr><td>&nbsp;</td><td><em class="mdesc">Initialize driver's jump table.</em> <a href="#a28"></a><em></em><br><br></td></tr>
+<tr><td nowrap align=right valign=top>int32&nbsp;</td><td valign=bottom><a class="el" href="z17__drv_8c.html#a15">Z17_Init</a> (DESC_SPEC *descSpec, OSS_HANDLE *osHdl, MACCESS *ma, OSS_SEM_HANDLE *devSemHdl, OSS_IRQ_HANDLE *irqHdl, <a class="el" href="structLL__HANDLE.html">LL_HANDLE</a> **llHdlP)</td></tr>
+<tr><td>&nbsp;</td><td><em class="mdesc">Allocate and return low-level handle, initialize hardware.</em> <a href="#a15"></a><em></em><br><br></td></tr>
+<tr><td nowrap align=right valign=top>int32&nbsp;</td><td valign=bottom><a class="el" href="z17__drv_8c.html#a16">Z17_Exit</a> (<a class="el" href="structLL__HANDLE.html">LL_HANDLE</a> **llHdlP)</td></tr>
+<tr><td>&nbsp;</td><td><em class="mdesc">De-initialize hardware and clean up memory.</em> <a href="#a16"></a><em></em><br><br></td></tr>
+<tr><td nowrap align=right valign=top>int32&nbsp;</td><td valign=bottom><a class="el" href="z17__drv_8c.html#a17">Z17_Read</a> (<a class="el" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl, int32 ch, int32 *value)</td></tr>
+<tr><td>&nbsp;</td><td><em class="mdesc">Read a value from the device.</em> <a href="#a17"></a><em></em><br><br></td></tr>
+<tr><td nowrap align=right valign=top>int32&nbsp;</td><td valign=bottom><a class="el" href="z17__drv_8c.html#a18">Z17_Write</a> (<a class="el" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl, int32 ch, int32 value)</td></tr>
+<tr><td>&nbsp;</td><td><em class="mdesc">Description: Write a value to the device.</em> <a href="#a18"></a><em></em><br><br></td></tr>
+<tr><td nowrap align=right valign=top>int32&nbsp;</td><td valign=bottom><a class="el" href="z17__drv_8c.html#a19">Z17_SetStat</a> (<a class="el" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl, int32 ch, int32 code, INT32_OR_64 value32_or_64)</td></tr>
+<tr><td>&nbsp;</td><td><em class="mdesc">Set the driver status.</em> <a href="#a19"></a><em></em><br><br></td></tr>
+<tr><td nowrap align=right valign=top>int32&nbsp;</td><td valign=bottom><a class="el" href="z17__drv_8c.html#a20">Z17_GetStat</a> (<a class="el" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl, int32 ch, int32 code, INT32_OR_64 *value32_or64P)</td></tr>
+<tr><td>&nbsp;</td><td><em class="mdesc">Get the driver status.</em> <a href="#a20"></a><em></em><br><br></td></tr>
+<tr><td nowrap align=right valign=top>int32&nbsp;</td><td valign=bottom><a class="el" href="z17__drv_8c.html#a21">Z17_BlockRead</a> (<a class="el" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl, int32 ch, void *buf, int32 size, int32 *nbrRdBytesP)</td></tr>
+<tr><td>&nbsp;</td><td><em class="mdesc">Read a data block from the device.</em> <a href="#a21"></a><em></em><br><br></td></tr>
+<tr><td nowrap align=right valign=top>int32&nbsp;</td><td valign=bottom><a class="el" href="z17__drv_8c.html#a22">Z17_BlockWrite</a> (<a class="el" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl, int32 ch, void *buf, int32 size, int32 *nbrWrBytesP)</td></tr>
+<tr><td>&nbsp;</td><td><em class="mdesc">Write a data block from the device.</em> <a href="#a22"></a><em></em><br><br></td></tr>
+<tr><td nowrap align=right valign=top>int32&nbsp;</td><td valign=bottom><a class="el" href="z17__drv_8c.html#a23">Z17_Irq</a> (<a class="el" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl)</td></tr>
+<tr><td>&nbsp;</td><td><em class="mdesc">Interrupt service routine.</em> <a href="#a23"></a><em></em><br><br></td></tr>
+<tr><td nowrap align=right valign=top>int32&nbsp;</td><td valign=bottom><a class="el" href="z17__drv_8c.html#a24">Z17_Info</a> (int32 infoType,...)</td></tr>
+<tr><td>&nbsp;</td><td><em class="mdesc">Get information about hardware and driver requirements.</em> <a href="#a24"></a><em></em><br><br></td></tr>
+<tr><td nowrap align=right valign=top>char *&nbsp;</td><td valign=bottom><a class="el" href="z17__drv_8c.html#a25">Ident</a> (void)</td></tr>
+<tr><td>&nbsp;</td><td><em class="mdesc">Return ident string.</em> <a href="#a25"></a><em></em><br><br></td></tr>
+<tr><td nowrap align=right valign=top>int32&nbsp;</td><td valign=bottom><a class="el" href="z17__drv_8c.html#a26">Cleanup</a> (<a class="el" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl, int32 retCode)</td></tr>
+<tr><td>&nbsp;</td><td><em class="mdesc">Close all handles, free memory and return error code.</em> <a href="#a26"></a><em></em><br><br></td></tr>
+<tr><td nowrap align=right valign=top>void&nbsp;</td><td valign=bottom><a class="el" href="z17__drv_8c.html#a27">arwenReset</a> (<a class="el" href="structLL__HANDLE.html">LL_HANDLE</a> *llHdl)</td></tr>
+<tr><td>&nbsp;</td><td><em class="mdesc">Reset GPIO controller.</em> <a href="#a27"></a><em></em><br><br></td></tr>
+<tr><td nowrap align=right valign=top>void&nbsp;</td><td valign=bottom><a class="el" href="z17__drv_8c.html#a28">AlarmHandler</a> (void *arg)</td></tr>
+<tr><td>&nbsp;</td><td><em class="mdesc">Alarm handler.</em> <a href="#a28"></a><em></em><br><br></td></tr>
+<tr><td nowrap align=right valign=top>void&nbsp;</td><td valign=bottom><a class="el" href="z17__drv_8c.html#a29">__Z17_GetEntry</a> (LL_ENTRY *drvP)</td></tr>
+<tr><td>&nbsp;</td><td><em class="mdesc">Initialize driver's jump table.</em> <a href="#a29"></a><em></em><br><br></td></tr>
+<tr><td colspan=2><br><h2>Variables</h2></td></tr>
+<tr><td nowrap align=right valign=top>const char&nbsp;</td><td valign=bottom><a class="el" href="z17__drv_8c.html#a14">IdentString</a> [] = MENT_XSTR_SFX(MAK_REVISION,Z34/Z37 model)</td></tr>
 </table>
 <hr><a name="_details"></a><h2>Detailed Description</h2>
 Low-level driver for the 16Z034, 16Z037 and 16Z127 GPIO controller.
 <p>
-<dl compact><dt><b>Author:</b></dt><dd><a href="mailto:ulrich.bogensperger@men.de">ulrich.bogensperger@men.de</a> <dl compact><dt><b>Date</b></dt><dd>2017/05/03 16:52:05 </dd></dl>
-<dl compact><dt><b>Revision</b></dt><dd>1.15 </dd></dl>
-</dd></dl>
+<dl compact><dt><b>Author:</b></dt><dd><a href="mailto:ulrich.bogensperger@men.de">ulrich.bogensperger@men.de</a></dd></dl>
 <p>
 Required: OSS, DESC, DBG libraries<p>
 <dl compact><dt><b>Preprocessor Switches:</b></dt><dd>_ONE_NAMESPACE_PER_DRIVER_ Z17_MODEL_Z127 Z127_NOIRQ</dd></dl>
@@ -125,7 +125,7 @@ Definition in file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.<h
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8c-source.html#l00037">37</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.    </td>
+Definition at line <a class="el" href="z17__drv_8c-source.html#l00035">35</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.    </td>
   </tr>
 </table>
 <a name="a3" doxytag="z17_drv.c::ADDRSPACE_COUNT"></a><p>
@@ -151,9 +151,9 @@ nbr of required address spaces
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8c-source.html#l00074">74</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
+Definition at line <a class="el" href="z17__drv_8c-source.html#l00072">72</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l01105">Z17_Info()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l01117">Z17_Info()</a>.    </td>
   </tr>
 </table>
 <a name="a4" doxytag="z17_drv.c::ADDRSPACE_SIZE"></a><p>
@@ -179,9 +179,9 @@ size of address space for all other GPIOs
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8c-source.html#l00075">75</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
+Definition at line <a class="el" href="z17__drv_8c-source.html#l00073">73</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l01105">Z17_Info()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l01117">Z17_Info()</a>.    </td>
   </tr>
 </table>
 <a name="a1" doxytag="z17_drv.c::CH_NUMBER"></a><p>
@@ -207,9 +207,9 @@ number of device channels
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8c-source.html#l00063">63</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
+Definition at line <a class="el" href="z17__drv_8c-source.html#l00061">61</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00724">Z17_GetStat()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00736">Z17_GetStat()</a>.    </td>
   </tr>
 </table>
 <a name="a5" doxytag="z17_drv.c::DBG_MYLEVEL"></a><p>
@@ -235,9 +235,9 @@ debug level
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8c-source.html#l00079">79</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
+Definition at line <a class="el" href="z17__drv_8c-source.html#l00077">77</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00222">Z17_Init()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00234">Z17_Init()</a>.    </td>
   </tr>
 </table>
 <a name="a6" doxytag="z17_drv.c::DBH"></a><p>
@@ -263,9 +263,9 @@ debug handle
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8c-source.html#l00080">80</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
+Definition at line <a class="el" href="z17__drv_8c-source.html#l00078">78</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l01295">AlarmHandler()</a>, <a class="el" href="z17__drv_8c-source.html#l01231">Cleanup()</a>, <a class="el" href="z17__drv_8c-source.html#l00946">Z17_BlockRead()</a>, <a class="el" href="z17__drv_8c-source.html#l00973">Z17_BlockWrite()</a>, <a class="el" href="z17__drv_8c-source.html#l00349">Z17_Exit()</a>, <a class="el" href="z17__drv_8c-source.html#l00724">Z17_GetStat()</a>, <a class="el" href="z17__drv_8c-source.html#l00222">Z17_Init()</a>, <a class="el" href="z17__drv_8c-source.html#l01009">Z17_Irq()</a>, <a class="el" href="z17__drv_8c-source.html#l00383">Z17_Read()</a>, <a class="el" href="z17__drv_8c-source.html#l00434">Z17_SetStat()</a>, and <a class="el" href="z17__drv_8c-source.html#l00407">Z17_Write()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l01298">AlarmHandler()</a>, <a class="el" href="z17__drv_8c-source.html#l01234">Cleanup()</a>, <a class="el" href="z17__drv_8c-source.html#l00958">Z17_BlockRead()</a>, <a class="el" href="z17__drv_8c-source.html#l00985">Z17_BlockWrite()</a>, <a class="el" href="z17__drv_8c-source.html#l00361">Z17_Exit()</a>, <a class="el" href="z17__drv_8c-source.html#l00736">Z17_GetStat()</a>, <a class="el" href="z17__drv_8c-source.html#l00234">Z17_Init()</a>, <a class="el" href="z17__drv_8c-source.html#l01021">Z17_Irq()</a>, <a class="el" href="z17__drv_8c-source.html#l00395">Z17_Read()</a>, <a class="el" href="z17__drv_8c-source.html#l00446">Z17_SetStat()</a>, and <a class="el" href="z17__drv_8c-source.html#l00419">Z17_Write()</a>.    </td>
   </tr>
 </table>
 <a name="a7" doxytag="z17_drv.c::OSH"></a><p>
@@ -291,9 +291,9 @@ OS handle.
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8c-source.html#l00081">81</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
+Definition at line <a class="el" href="z17__drv_8c-source.html#l00079">79</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00724">Z17_GetStat()</a>, <a class="el" href="z17__drv_8c-source.html#l01009">Z17_Irq()</a>, and <a class="el" href="z17__drv_8c-source.html#l00434">Z17_SetStat()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00736">Z17_GetStat()</a>, <a class="el" href="z17__drv_8c-source.html#l01021">Z17_Irq()</a>, and <a class="el" href="z17__drv_8c-source.html#l00446">Z17_SetStat()</a>.    </td>
   </tr>
 </table>
 <a name="a12" doxytag="z17_drv.c::RESET_DEFAULT"></a><p>
@@ -319,9 +319,9 @@ default arwen reset (enabled)
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8c-source.html#l00090">90</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
+Definition at line <a class="el" href="z17__drv_8c-source.html#l00088">88</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00222">Z17_Init()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00234">Z17_Init()</a>.    </td>
   </tr>
 </table>
 <a name="a13" doxytag="z17_drv.c::RESET_OFF"></a><p>
@@ -347,7 +347,7 @@ disables the arwen reset function
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8c-source.html#l00091">91</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.    </td>
+Definition at line <a class="el" href="z17__drv_8c-source.html#l00089">89</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.    </td>
   </tr>
 </table>
 <a name="a11" doxytag="z17_drv.c::TOG_CYCLIC"></a><p>
@@ -373,9 +373,9 @@ endless timer flag
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8c-source.html#l00087">87</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
+Definition at line <a class="el" href="z17__drv_8c-source.html#l00085">85</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00434">Z17_SetStat()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00446">Z17_SetStat()</a>.    </td>
   </tr>
 </table>
 <a name="a8" doxytag="z17_drv.c::TOG_TIME_DEFAULT"></a><p>
@@ -401,9 +401,9 @@ default toggle time [ms]
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8c-source.html#l00084">84</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
+Definition at line <a class="el" href="z17__drv_8c-source.html#l00082">82</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00222">Z17_Init()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00234">Z17_Init()</a>.    </td>
   </tr>
 </table>
 <a name="a10" doxytag="z17_drv.c::TOG_TIME_MAX"></a><p>
@@ -429,9 +429,9 @@ max toggle time (1min)
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8c-source.html#l00086">86</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
+Definition at line <a class="el" href="z17__drv_8c-source.html#l00084">84</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00434">Z17_SetStat()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00446">Z17_SetStat()</a>.    </td>
   </tr>
 </table>
 <a name="a9" doxytag="z17_drv.c::TOG_TIME_MIN"></a><p>
@@ -457,9 +457,9 @@ min toggle time (100ms)
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8c-source.html#l00085">85</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
+Definition at line <a class="el" href="z17__drv_8c-source.html#l00083">83</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l01295">AlarmHandler()</a>, and <a class="el" href="z17__drv_8c-source.html#l00434">Z17_SetStat()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l01298">AlarmHandler()</a>, and <a class="el" href="z17__drv_8c-source.html#l00446">Z17_SetStat()</a>.    </td>
   </tr>
 </table>
 <a name="a2" doxytag="z17_drv.c::USE_IRQ"></a><p>
@@ -485,13 +485,13 @@ interrupt required
 <p>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8c-source.html#l00067">67</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
+Definition at line <a class="el" href="z17__drv_8c-source.html#l00065">65</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l01105">Z17_Info()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l01117">Z17_Info()</a>.    </td>
   </tr>
 </table>
 <hr><h2>Function Documentation</h2>
-<a name="a28" doxytag="z17_drv.c::__Z17_GetEntry"></a><p>
+<a name="a29" doxytag="z17_drv.c::__Z17_GetEntry"></a><p>
 <table width="100%" cellpadding="2" cellspacing="0" border="0">
   <tr>
     <td class="md">
@@ -526,12 +526,12 @@ Initialize driver's jump table.
 </dl>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8c-source.html#l00178">178</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
+Definition at line <a class="el" href="z17__drv_8c-source.html#l00190">190</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
 <p>
-References <a class="el" href="z17__drv_8c-source.html#l00946">Z17_BlockRead()</a>, <a class="el" href="z17__drv_8c-source.html#l00973">Z17_BlockWrite()</a>, <a class="el" href="z17__drv_8c-source.html#l00349">Z17_Exit()</a>, <a class="el" href="z17__drv_8c-source.html#l00724">Z17_GetStat()</a>, <a class="el" href="z17__drv_8c-source.html#l01105">Z17_Info()</a>, <a class="el" href="z17__drv_8c-source.html#l00222">Z17_Init()</a>, <a class="el" href="z17__drv_8c-source.html#l01009">Z17_Irq()</a>, <a class="el" href="z17__drv_8c-source.html#l00383">Z17_Read()</a>, <a class="el" href="z17__drv_8c-source.html#l00434">Z17_SetStat()</a>, and <a class="el" href="z17__drv_8c-source.html#l00407">Z17_Write()</a>.    </td>
+References <a class="el" href="z17__drv_8c-source.html#l00958">Z17_BlockRead()</a>, <a class="el" href="z17__drv_8c-source.html#l00985">Z17_BlockWrite()</a>, <a class="el" href="z17__drv_8c-source.html#l00361">Z17_Exit()</a>, <a class="el" href="z17__drv_8c-source.html#l00736">Z17_GetStat()</a>, <a class="el" href="z17__drv_8c-source.html#l01117">Z17_Info()</a>, <a class="el" href="z17__drv_8c-source.html#l00234">Z17_Init()</a>, <a class="el" href="z17__drv_8c-source.html#l01021">Z17_Irq()</a>, <a class="el" href="z17__drv_8c-source.html#l00395">Z17_Read()</a>, <a class="el" href="z17__drv_8c-source.html#l00446">Z17_SetStat()</a>, and <a class="el" href="z17__drv_8c-source.html#l00419">Z17_Write()</a>.    </td>
   </tr>
 </table>
-<a name="a27" doxytag="z17_drv.c::AlarmHandler"></a><p>
+<a name="a28" doxytag="z17_drv.c::AlarmHandler"></a><p>
 <table width="100%" cellpadding="2" cellspacing="0" border="0">
   <tr>
     <td class="md">
@@ -567,14 +567,14 @@ Callback function for toggle mode<p>
 </dl>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8c-source.html#l01295">1295</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
+Definition at line <a class="el" href="z17__drv_8c-source.html#l01298">1298</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
 <p>
-References <a class="el" href="z17__drv_8c-source.html#l00080">DBH</a>, <a class="el" href="z17__drv_8c-source.html#l00127">LL_HANDLE::devSemHdl</a>, <a class="el" href="z17__drv_8c-source.html#l00103">LL_HANDLE::ma</a>, <a class="el" href="z17__drv_8c-source.html#l00100">LL_HANDLE::osHdl</a>, <a class="el" href="z17__drv_8c-source.html#l00085">TOG_TIME_MIN</a>, <a class="el" href="z17__drv_8c-source.html#l00131">LL_HANDLE::togBitMask</a>, <a class="el" href="z17__drv_8c-source.html#l00132">LL_HANDLE::togCount</a>, <a class="el" href="z17__drv_8c-source.html#l00128">LL_HANDLE::togHigh</a>, <a class="el" href="z17__drv_8c-source.html#l00129">LL_HANDLE::togtimeHigh</a>, and <a class="el" href="z17__drv_8c-source.html#l00130">LL_HANDLE::togtimeLow</a>.
+References <a class="el" href="z17__drv_8c-source.html#l00078">DBH</a>, <a class="el" href="z17__drv_8c-source.html#l00125">LL_HANDLE::devSemHdl</a>, <a class="el" href="z17__drv_8c-source.html#l00101">LL_HANDLE::ma</a>, <a class="el" href="z17__drv_8c-source.html#l00098">LL_HANDLE::osHdl</a>, <a class="el" href="z17__drv_8c-source.html#l00083">TOG_TIME_MIN</a>, <a class="el" href="z17__drv_8c-source.html#l00129">LL_HANDLE::togBitMask</a>, <a class="el" href="z17__drv_8c-source.html#l00130">LL_HANDLE::togCount</a>, <a class="el" href="z17__drv_8c-source.html#l00126">LL_HANDLE::togHigh</a>, <a class="el" href="z17__drv_8c-source.html#l00127">LL_HANDLE::togtimeHigh</a>, and <a class="el" href="z17__drv_8c-source.html#l00128">LL_HANDLE::togtimeLow</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00222">Z17_Init()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00234">Z17_Init()</a>.    </td>
   </tr>
 </table>
-<a name="a26" doxytag="z17_drv.c::arwenReset"></a><p>
+<a name="a27" doxytag="z17_drv.c::arwenReset"></a><p>
 <table width="100%" cellpadding="2" cellspacing="0" border="0">
   <tr>
     <td class="md">
@@ -612,14 +612,14 @@ Sets the controller registers to default values:<ul>
 </dl>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8c-source.html#l01270">1270</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
+Definition at line <a class="el" href="z17__drv_8c-source.html#l01273">1273</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
 <p>
-References <a class="el" href="z17__drv_8c-source.html#l00103">LL_HANDLE::ma</a>.
+References <a class="el" href="z17__drv_8c-source.html#l00101">LL_HANDLE::ma</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00349">Z17_Exit()</a>, and <a class="el" href="z17__drv_8c-source.html#l00222">Z17_Init()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00361">Z17_Exit()</a>, and <a class="el" href="z17__drv_8c-source.html#l00234">Z17_Init()</a>.    </td>
   </tr>
 </table>
-<a name="a25" doxytag="z17_drv.c::Cleanup"></a><p>
+<a name="a26" doxytag="z17_drv.c::Cleanup"></a><p>
 <table width="100%" cellpadding="2" cellspacing="0" border="0">
   <tr>
     <td class="md">
@@ -666,14 +666,14 @@ Close all handles, free memory and return error code.
 <dl compact><dt><b>Returns:</b></dt><dd><b>IN</b> retCode </dd></dl>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8c-source.html#l01231">1231</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
+Definition at line <a class="el" href="z17__drv_8c-source.html#l01234">1234</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
 <p>
-References <a class="el" href="z17__drv_8c-source.html#l00126">LL_HANDLE::alarmHdl</a>, <a class="el" href="z17__drv_8c-source.html#l00080">DBH</a>, <a class="el" href="z17__drv_8c-source.html#l00102">LL_HANDLE::descHdl</a>, <a class="el" href="z17__drv_8c-source.html#l00099">LL_HANDLE::memAlloc</a>, and <a class="el" href="z17__drv_8c-source.html#l00100">LL_HANDLE::osHdl</a>.
+References <a class="el" href="z17__drv_8c-source.html#l00124">LL_HANDLE::alarmHdl</a>, <a class="el" href="z17__drv_8c-source.html#l00078">DBH</a>, <a class="el" href="z17__drv_8c-source.html#l00100">LL_HANDLE::descHdl</a>, <a class="el" href="z17__drv_8c-source.html#l00097">LL_HANDLE::memAlloc</a>, and <a class="el" href="z17__drv_8c-source.html#l00098">LL_HANDLE::osHdl</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00349">Z17_Exit()</a>, and <a class="el" href="z17__drv_8c-source.html#l00222">Z17_Init()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00361">Z17_Exit()</a>, and <a class="el" href="z17__drv_8c-source.html#l00234">Z17_Init()</a>.    </td>
   </tr>
 </table>
-<a name="a24" doxytag="z17_drv.c::Ident"></a><p>
+<a name="a25" doxytag="z17_drv.c::Ident"></a><p>
 <table width="100%" cellpadding="2" cellspacing="0" border="0">
   <tr>
     <td class="md">
@@ -704,12 +704,14 @@ Return ident string.
 <dl compact><dt><b>Returns:</b></dt><dd>pointer to ident string </dd></dl>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8c-source.html#l01207">1207</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
+Definition at line <a class="el" href="z17__drv_8c-source.html#l01219">1219</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00222">Z17_Init()</a>.    </td>
+References <a class="el" href="z17__drv_8c-source.html#l00149">IdentString</a>.
+<p>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00234">Z17_Init()</a>.    </td>
   </tr>
 </table>
-<a name="a20" doxytag="z17_drv.c::Z17_BlockRead"></a><p>
+<a name="a21" doxytag="z17_drv.c::Z17_BlockRead"></a><p>
 <table width="100%" cellpadding="2" cellspacing="0" border="0">
   <tr>
     <td class="md">
@@ -776,14 +778,14 @@ Read a data block from the device.
 <dl compact><dt><b>Returns:</b></dt><dd><code>0</code> on success or error code </dd></dl>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8c-source.html#l00946">946</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
+Definition at line <a class="el" href="z17__drv_8c-source.html#l00958">958</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
 <p>
-References <a class="el" href="z17__drv_8c-source.html#l00080">DBH</a>.
+References <a class="el" href="z17__drv_8c-source.html#l00078">DBH</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00178">__Z17_GetEntry()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00190">__Z17_GetEntry()</a>.    </td>
   </tr>
 </table>
-<a name="a21" doxytag="z17_drv.c::Z17_BlockWrite"></a><p>
+<a name="a22" doxytag="z17_drv.c::Z17_BlockWrite"></a><p>
 <table width="100%" cellpadding="2" cellspacing="0" border="0">
   <tr>
     <td class="md">
@@ -850,14 +852,14 @@ Write a data block from the device.
 <dl compact><dt><b>Returns:</b></dt><dd><code>0</code> on success or error code </dd></dl>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8c-source.html#l00973">973</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
+Definition at line <a class="el" href="z17__drv_8c-source.html#l00985">985</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
 <p>
-References <a class="el" href="z17__drv_8c-source.html#l00080">DBH</a>.
+References <a class="el" href="z17__drv_8c-source.html#l00078">DBH</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00178">__Z17_GetEntry()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00190">__Z17_GetEntry()</a>.    </td>
   </tr>
 </table>
-<a name="a15" doxytag="z17_drv.c::Z17_Exit"></a><p>
+<a name="a16" doxytag="z17_drv.c::Z17_Exit"></a><p>
 <table width="100%" cellpadding="2" cellspacing="0" border="0">
   <tr>
     <td class="md">
@@ -894,14 +896,14 @@ The function deinitializes all channels by setting them as inputs. The interrupt
 <dl compact><dt><b>Returns:</b></dt><dd><code>0</code> on success or error code </dd></dl>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8c-source.html#l00349">349</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
+Definition at line <a class="el" href="z17__drv_8c-source.html#l00361">361</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
 <p>
-References <a class="el" href="z17__drv_8c-source.html#l01270">arwenReset()</a>, <a class="el" href="z17__drv_8c-source.html#l00134">LL_HANDLE::arwenResetOff</a>, <a class="el" href="z17__drv_8c-source.html#l01231">Cleanup()</a>, and <a class="el" href="z17__drv_8c-source.html#l00080">DBH</a>.
+References <a class="el" href="z17__drv_8c-source.html#l01273">arwenReset()</a>, <a class="el" href="z17__drv_8c-source.html#l00132">LL_HANDLE::arwenResetOff</a>, <a class="el" href="z17__drv_8c-source.html#l01234">Cleanup()</a>, and <a class="el" href="z17__drv_8c-source.html#l00078">DBH</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00178">__Z17_GetEntry()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00190">__Z17_GetEntry()</a>.    </td>
   </tr>
 </table>
-<a name="a19" doxytag="z17_drv.c::Z17_GetStat"></a><p>
+<a name="a20" doxytag="z17_drv.c::Z17_GetStat"></a><p>
 <table width="100%" cellpadding="2" cellspacing="0" border="0">
   <tr>
     <td class="md">
@@ -962,14 +964,14 @@ The driver supports <a class="el" href="z17__drv_8h.html#getstat_setstat_codes">
 <dl compact><dt><b>Returns:</b></dt><dd><code>0</code> on success or error code </dd></dl>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8c-source.html#l00724">724</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
+Definition at line <a class="el" href="z17__drv_8c-source.html#l00736">736</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
 <p>
-References <a class="el" href="z17__drv_8c-source.html#l00063">CH_NUMBER</a>, <a class="elRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/structM__SG__BLOCK.html#o1">M_SG_BLOCK::data</a>, <a class="el" href="z17__drv_8c-source.html#l00110">LL_HANDLE::dbgLevel</a>, <a class="el" href="z17__drv_8c-source.html#l00080">DBH</a>, <a class="el" href="z17__drv_8c-source.html#l00108">LL_HANDLE::idFuncTbl</a>, <a class="el" href="z17__drv_8h-source.html#l00124">INT32_OR_64</a>, <a class="el" href="z17__drv_8c-source.html#l00115">LL_HANDLE::irqCount</a>, <a class="el" href="z17__drv_8c-source.html#l00101">LL_HANDLE::irqHdl</a>, <a class="el" href="z17__drv_8h-source.html#l00055">Z17_BLK_IRQLAT::irqsRcved</a>, <a class="el" href="z17__drv_8c-source.html#l00118">LL_HANDLE::irqTest</a>, <a class="el" href="z17__drv_8c-source.html#l00116">LL_HANDLE::lastReq</a>, <a class="el" href="z17__drv_8c-source.html#l00103">LL_HANDLE::ma</a>, <a class="el" href="z17__drv_8c-source.html#l00081">OSH</a>, <a class="el" href="z17__drv_8c-source.html#l00100">LL_HANDLE::osHdl</a>, <a class="el" href="z17__drv_8h-source.html#l00061">Z17_BLK_DEBTIME::portMask</a>, <a class="el" href="z17__drv_8c-source.html#l00122">LL_HANDLE::startTick</a>, <a class="el" href="z17__drv_8h-source.html#l00053">Z17_BLK_IRQLAT::startTick</a>, <a class="el" href="z17__drv_8h-source.html#l00054">Z17_BLK_IRQLAT::stopTick</a>, <a class="el" href="z17__drv_8c-source.html#l00123">LL_HANDLE::stopTick</a>, <a class="el" href="z17__drv_8h-source.html#l00052">Z17_BLK_IRQLAT::tickRate</a>, <a class="el" href="z17__drv_8h-source.html#l00063">Z17_BLK_DEBTIME::timeUs</a>, <a class="el" href="z17__drv_8h-source.html#l00090">Z17_BLK_DEBOUNCE_TIME</a>, <a class="el" href="z17__drv_8h-source.html#l00089">Z17_BLK_IRQLAT_RESULT</a>, <a class="el" href="z17__drv_8h-source.html#l00078">Z17_DEBOUNCE</a>, <a class="el" href="z17__drv_8h-source.html#l00075">Z17_DIRECTION</a>, <a class="el" href="z17__drv_8h-source.html#l00081">Z17_IRQ_LAST_REQUEST</a>, <a class="el" href="z17__drv_8h-source.html#l00076">Z17_IRQ_SENSE</a>, <a class="el" href="z17__drv_8h-source.html#l00082">Z17_IRQ_SENSE_16TO31</a>, and <a class="el" href="z17__drv_8h-source.html#l00077">Z17_OPEN_DRAIN</a>.
+References <a class="el" href="z17__drv_8c-source.html#l00061">CH_NUMBER</a>, <a class="elRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/structM__SG__BLOCK.html#o1">M_SG_BLOCK::data</a>, <a class="el" href="z17__drv_8c-source.html#l00108">LL_HANDLE::dbgLevel</a>, <a class="el" href="z17__drv_8c-source.html#l00078">DBH</a>, <a class="el" href="z17__drv_8c-source.html#l00106">LL_HANDLE::idFuncTbl</a>, <a class="el" href="z17__drv_8h-source.html#l00122">INT32_OR_64</a>, <a class="el" href="z17__drv_8c-source.html#l00113">LL_HANDLE::irqCount</a>, <a class="el" href="z17__drv_8c-source.html#l00099">LL_HANDLE::irqHdl</a>, <a class="el" href="z17__drv_8h-source.html#l00053">Z17_BLK_IRQLAT::irqsRcved</a>, <a class="el" href="z17__drv_8c-source.html#l00116">LL_HANDLE::irqTest</a>, <a class="el" href="z17__drv_8c-source.html#l00114">LL_HANDLE::lastReq</a>, <a class="el" href="z17__drv_8c-source.html#l00101">LL_HANDLE::ma</a>, <a class="el" href="z17__drv_8c-source.html#l00079">OSH</a>, <a class="el" href="z17__drv_8c-source.html#l00098">LL_HANDLE::osHdl</a>, <a class="el" href="z17__drv_8h-source.html#l00059">Z17_BLK_DEBTIME::portMask</a>, <a class="el" href="z17__drv_8c-source.html#l00120">LL_HANDLE::startTick</a>, <a class="el" href="z17__drv_8h-source.html#l00051">Z17_BLK_IRQLAT::startTick</a>, <a class="el" href="z17__drv_8h-source.html#l00052">Z17_BLK_IRQLAT::stopTick</a>, <a class="el" href="z17__drv_8c-source.html#l00121">LL_HANDLE::stopTick</a>, <a class="el" href="z17__drv_8h-source.html#l00050">Z17_BLK_IRQLAT::tickRate</a>, <a class="el" href="z17__drv_8h-source.html#l00061">Z17_BLK_DEBTIME::timeUs</a>, <a class="el" href="z17__drv_8h-source.html#l00088">Z17_BLK_DEBOUNCE_TIME</a>, <a class="el" href="z17__drv_8h-source.html#l00087">Z17_BLK_IRQLAT_RESULT</a>, <a class="el" href="z17__drv_8h-source.html#l00076">Z17_DEBOUNCE</a>, <a class="el" href="z17__drv_8h-source.html#l00073">Z17_DIRECTION</a>, <a class="el" href="z17__drv_8h-source.html#l00079">Z17_IRQ_LAST_REQUEST</a>, <a class="el" href="z17__drv_8h-source.html#l00074">Z17_IRQ_SENSE</a>, <a class="el" href="z17__drv_8h-source.html#l00080">Z17_IRQ_SENSE_16TO31</a>, and <a class="el" href="z17__drv_8h-source.html#l00075">Z17_OPEN_DRAIN</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00178">__Z17_GetEntry()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00190">__Z17_GetEntry()</a>.    </td>
   </tr>
 </table>
-<a name="a23" doxytag="z17_drv.c::Z17_Info"></a><p>
+<a name="a24" doxytag="z17_drv.c::Z17_Info"></a><p>
 <table width="100%" cellpadding="2" cellspacing="0" border="0">
   <tr>
     <td class="md">
@@ -1029,14 +1031,14 @@ The LL_INFO_LOCKMODE code returns which process locking mode the driver needs (L
 <dl compact><dt><b>Returns:</b></dt><dd><code>0</code> on success or error code </dd></dl>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8c-source.html#l01105">1105</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
+Definition at line <a class="el" href="z17__drv_8c-source.html#l01117">1117</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
 <p>
-References <a class="el" href="z17__drv_8c-source.html#l00074">ADDRSPACE_COUNT</a>, <a class="el" href="z17__drv_8c-source.html#l00075">ADDRSPACE_SIZE</a>, and <a class="el" href="z17__drv_8c-source.html#l00067">USE_IRQ</a>.
+References <a class="el" href="z17__drv_8c-source.html#l00072">ADDRSPACE_COUNT</a>, <a class="el" href="z17__drv_8c-source.html#l00073">ADDRSPACE_SIZE</a>, and <a class="el" href="z17__drv_8c-source.html#l00065">USE_IRQ</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00178">__Z17_GetEntry()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00190">__Z17_GetEntry()</a>.    </td>
   </tr>
 </table>
-<a name="a14" doxytag="z17_drv.c::Z17_Init"></a><p>
+<a name="a15" doxytag="z17_drv.c::Z17_Init"></a><p>
 <table width="100%" cellpadding="2" cellspacing="0" border="0">
   <tr>
     <td class="md">
@@ -1118,14 +1120,14 @@ The following descriptor keys are used:<p>
 <dl compact><dt><b>Returns:</b></dt><dd><code>0</code> on success or error code </dd></dl>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8c-source.html#l00222">222</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
+Definition at line <a class="el" href="z17__drv_8c-source.html#l00234">234</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
 <p>
-References <a class="el" href="z17__drv_8c-source.html#l01295">AlarmHandler()</a>, <a class="el" href="z17__drv_8c-source.html#l01270">arwenReset()</a>, <a class="el" href="z17__drv_8c-source.html#l01231">Cleanup()</a>, <a class="el" href="z17__drv_8c-source.html#l00079">DBG_MYLEVEL</a>, <a class="el" href="z17__drv_8c-source.html#l00080">DBH</a>, <a class="el" href="z17__drv_8c-source.html#l01207">Ident()</a>, <a class="el" href="z17__drv_8c-source.html#l00090">RESET_DEFAULT</a>, and <a class="el" href="z17__drv_8c-source.html#l00084">TOG_TIME_DEFAULT</a>.
+References <a class="el" href="z17__drv_8c-source.html#l01298">AlarmHandler()</a>, <a class="el" href="z17__drv_8c-source.html#l01273">arwenReset()</a>, <a class="el" href="z17__drv_8c-source.html#l01234">Cleanup()</a>, <a class="el" href="z17__drv_8c-source.html#l00077">DBG_MYLEVEL</a>, <a class="el" href="z17__drv_8c-source.html#l00078">DBH</a>, <a class="el" href="z17__drv_8c-source.html#l01219">Ident()</a>, <a class="el" href="z17__drv_8c-source.html#l00088">RESET_DEFAULT</a>, and <a class="el" href="z17__drv_8c-source.html#l00082">TOG_TIME_DEFAULT</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00178">__Z17_GetEntry()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00190">__Z17_GetEntry()</a>.    </td>
   </tr>
 </table>
-<a name="a22" doxytag="z17_drv.c::Z17_Irq"></a><p>
+<a name="a23" doxytag="z17_drv.c::Z17_Irq"></a><p>
 <table width="100%" cellpadding="2" cellspacing="0" border="0">
   <tr>
     <td class="md">
@@ -1164,14 +1166,14 @@ For MSI(x) it is necessary to disable all IRQs and enable them again at the end 
 <dl compact><dt><b>Returns:</b></dt><dd>LL_IRQ_DEVICE irq caused by device LL_IRQ_DEV_NOT irq not caused by device LL_IRQ_UNKNOWN unknown </dd></dl>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8c-source.html#l01009">1009</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
+Definition at line <a class="el" href="z17__drv_8c-source.html#l01021">1021</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
 <p>
-References <a class="el" href="z17__drv_8c-source.html#l00080">DBH</a>, <a class="el" href="z17__drv_8c-source.html#l00115">LL_HANDLE::irqCount</a>, <a class="el" href="z17__drv_8c-source.html#l00121">LL_HANDLE::irqs2fire</a>, <a class="el" href="z17__drv_8c-source.html#l00118">LL_HANDLE::irqTest</a>, <a class="el" href="z17__drv_8c-source.html#l00116">LL_HANDLE::lastReq</a>, <a class="el" href="z17__drv_8c-source.html#l00103">LL_HANDLE::ma</a>, <a class="el" href="z17__drv_8c-source.html#l00081">OSH</a>, <a class="el" href="z17__drv_8c-source.html#l00119">LL_HANDLE::outBit</a>, <a class="el" href="z17__drv_8c-source.html#l00120">LL_HANDLE::outLast</a>, <a class="el" href="z17__drv_8c-source.html#l00114">LL_HANDLE::portChangeSig</a>, and <a class="el" href="z17__drv_8c-source.html#l00123">LL_HANDLE::stopTick</a>.
+References <a class="el" href="z17__drv_8c-source.html#l00078">DBH</a>, <a class="el" href="z17__drv_8c-source.html#l00113">LL_HANDLE::irqCount</a>, <a class="el" href="z17__drv_8c-source.html#l00119">LL_HANDLE::irqs2fire</a>, <a class="el" href="z17__drv_8c-source.html#l00116">LL_HANDLE::irqTest</a>, <a class="el" href="z17__drv_8c-source.html#l00114">LL_HANDLE::lastReq</a>, <a class="el" href="z17__drv_8c-source.html#l00101">LL_HANDLE::ma</a>, <a class="el" href="z17__drv_8c-source.html#l00079">OSH</a>, <a class="el" href="z17__drv_8c-source.html#l00117">LL_HANDLE::outBit</a>, <a class="el" href="z17__drv_8c-source.html#l00118">LL_HANDLE::outLast</a>, <a class="el" href="z17__drv_8c-source.html#l00112">LL_HANDLE::portChangeSig</a>, and <a class="el" href="z17__drv_8c-source.html#l00121">LL_HANDLE::stopTick</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00178">__Z17_GetEntry()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00190">__Z17_GetEntry()</a>.    </td>
   </tr>
 </table>
-<a name="a16" doxytag="z17_drv.c::Z17_Read"></a><p>
+<a name="a17" doxytag="z17_drv.c::Z17_Read"></a><p>
 <table width="100%" cellpadding="2" cellspacing="0" border="0">
   <tr>
     <td class="md">
@@ -1225,14 +1227,14 @@ The function reads the current state of all port pins.<p>
 <dl compact><dt><b>Returns:</b></dt><dd><code>0</code> on success or error code </dd></dl>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8c-source.html#l00383">383</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
+Definition at line <a class="el" href="z17__drv_8c-source.html#l00395">395</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
 <p>
-References <a class="el" href="z17__drv_8c-source.html#l00080">DBH</a>, and <a class="el" href="z17__drv_8c-source.html#l00103">LL_HANDLE::ma</a>.
+References <a class="el" href="z17__drv_8c-source.html#l00078">DBH</a>, and <a class="el" href="z17__drv_8c-source.html#l00101">LL_HANDLE::ma</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00178">__Z17_GetEntry()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00190">__Z17_GetEntry()</a>.    </td>
   </tr>
 </table>
-<a name="a18" doxytag="z17_drv.c::Z17_SetStat"></a><p>
+<a name="a19" doxytag="z17_drv.c::Z17_SetStat"></a><p>
 <table width="100%" cellpadding="2" cellspacing="0" border="0">
   <tr>
     <td class="md">
@@ -1293,14 +1295,14 @@ The driver supports <a class="el" href="z17__drv_8h.html#getstat_setstat_codes">
 <dl compact><dt><b>Returns:</b></dt><dd><code>0</code> on success or error code </dd></dl>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8c-source.html#l00434">434</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
+Definition at line <a class="el" href="z17__drv_8c-source.html#l00446">446</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
 <p>
-References <a class="el" href="z17__drv_8c-source.html#l00126">LL_HANDLE::alarmHdl</a>, <a class="elRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/structM__SG__BLOCK.html#o1">M_SG_BLOCK::data</a>, <a class="el" href="z17__drv_8c-source.html#l00110">LL_HANDLE::dbgLevel</a>, <a class="el" href="z17__drv_8c-source.html#l00080">DBH</a>, <a class="el" href="z17__drv_8h-source.html#l00049">Z17_BLK_IRQLAT::inPort</a>, <a class="el" href="z17__drv_8h-source.html#l00124">INT32_OR_64</a>, <a class="el" href="z17__drv_8c-source.html#l00115">LL_HANDLE::irqCount</a>, <a class="el" href="z17__drv_8h-source.html#l00050">Z17_BLK_IRQLAT::irqs2fire</a>, <a class="el" href="z17__drv_8c-source.html#l00121">LL_HANDLE::irqs2fire</a>, <a class="el" href="z17__drv_8h-source.html#l00055">Z17_BLK_IRQLAT::irqsRcved</a>, <a class="el" href="z17__drv_8c-source.html#l00118">LL_HANDLE::irqTest</a>, <a class="el" href="z17__drv_8c-source.html#l00103">LL_HANDLE::ma</a>, <a class="el" href="z17__drv_8c-source.html#l00081">OSH</a>, <a class="el" href="z17__drv_8c-source.html#l00100">LL_HANDLE::osHdl</a>, <a class="el" href="z17__drv_8c-source.html#l00119">LL_HANDLE::outBit</a>, <a class="el" href="z17__drv_8c-source.html#l00120">LL_HANDLE::outLast</a>, <a class="el" href="z17__drv_8h-source.html#l00048">Z17_BLK_IRQLAT::outPort</a>, <a class="el" href="z17__drv_8c-source.html#l00114">LL_HANDLE::portChangeSig</a>, <a class="el" href="z17__drv_8h-source.html#l00061">Z17_BLK_DEBTIME::portMask</a>, <a class="el" href="z17__drv_8c-source.html#l00122">LL_HANDLE::startTick</a>, <a class="el" href="z17__drv_8h-source.html#l00053">Z17_BLK_IRQLAT::startTick</a>, <a class="el" href="z17__drv_8c-source.html#l00123">LL_HANDLE::stopTick</a>, <a class="el" href="z17__drv_8h-source.html#l00054">Z17_BLK_IRQLAT::stopTick</a>, <a class="el" href="z17__drv_8h-source.html#l00063">Z17_BLK_DEBTIME::timeUs</a>, <a class="el" href="z17__drv_8c-source.html#l00087">TOG_CYCLIC</a>, <a class="el" href="z17__drv_8c-source.html#l00086">TOG_TIME_MAX</a>, <a class="el" href="z17__drv_8c-source.html#l00085">TOG_TIME_MIN</a>, <a class="el" href="z17__drv_8c-source.html#l00131">LL_HANDLE::togBitMask</a>, <a class="el" href="z17__drv_8c-source.html#l00129">LL_HANDLE::togtimeHigh</a>, <a class="el" href="z17__drv_8c-source.html#l00130">LL_HANDLE::togtimeLow</a>, <a class="el" href="z17__drv_8h-source.html#l00090">Z17_BLK_DEBOUNCE_TIME</a>, <a class="el" href="z17__drv_8h-source.html#l00088">Z17_BLK_IRQLAT_START</a>, <a class="el" href="z17__drv_8h-source.html#l00074">Z17_CLR_PORTS</a>, <a class="el" href="z17__drv_8h-source.html#l00080">Z17_CLR_SIGNAL</a>, <a class="el" href="z17__drv_8h-source.html#l00078">Z17_DEBOUNCE</a>, <a class="el" href="z17__drv_8h-source.html#l00075">Z17_DIRECTION</a>, <a class="el" href="z17__drv_8h-source.html#l00076">Z17_IRQ_SENSE</a>, <a class="el" href="z17__drv_8h-source.html#l00082">Z17_IRQ_SENSE_16TO31</a>, <a class="el" href="z17__drv_8h-source.html#l00077">Z17_OPEN_DRAIN</a>, <a class="el" href="z17__drv_8h-source.html#l00073">Z17_SET_PORTS</a>, <a class="el" href="z17__drv_8h-source.html#l00079">Z17_SET_SIGNAL</a>, <a class="el" href="z17__drv_8h-source.html#l00084">Z17_TOG_HIGH</a>, <a class="el" href="z17__drv_8h-source.html#l00085">Z17_TOG_LOW</a>, and <a class="el" href="z17__drv_8h-source.html#l00083">Z17_TOG_PORTS</a>.
+References <a class="el" href="z17__drv_8c-source.html#l00124">LL_HANDLE::alarmHdl</a>, <a class="elRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/structM__SG__BLOCK.html#o1">M_SG_BLOCK::data</a>, <a class="el" href="z17__drv_8c-source.html#l00108">LL_HANDLE::dbgLevel</a>, <a class="el" href="z17__drv_8c-source.html#l00078">DBH</a>, <a class="el" href="z17__drv_8h-source.html#l00047">Z17_BLK_IRQLAT::inPort</a>, <a class="el" href="z17__drv_8h-source.html#l00122">INT32_OR_64</a>, <a class="el" href="z17__drv_8c-source.html#l00113">LL_HANDLE::irqCount</a>, <a class="el" href="z17__drv_8h-source.html#l00048">Z17_BLK_IRQLAT::irqs2fire</a>, <a class="el" href="z17__drv_8c-source.html#l00119">LL_HANDLE::irqs2fire</a>, <a class="el" href="z17__drv_8h-source.html#l00053">Z17_BLK_IRQLAT::irqsRcved</a>, <a class="el" href="z17__drv_8c-source.html#l00116">LL_HANDLE::irqTest</a>, <a class="el" href="z17__drv_8c-source.html#l00101">LL_HANDLE::ma</a>, <a class="el" href="z17__drv_8c-source.html#l00079">OSH</a>, <a class="el" href="z17__drv_8c-source.html#l00098">LL_HANDLE::osHdl</a>, <a class="el" href="z17__drv_8c-source.html#l00117">LL_HANDLE::outBit</a>, <a class="el" href="z17__drv_8c-source.html#l00118">LL_HANDLE::outLast</a>, <a class="el" href="z17__drv_8h-source.html#l00046">Z17_BLK_IRQLAT::outPort</a>, <a class="el" href="z17__drv_8c-source.html#l00112">LL_HANDLE::portChangeSig</a>, <a class="el" href="z17__drv_8h-source.html#l00059">Z17_BLK_DEBTIME::portMask</a>, <a class="el" href="z17__drv_8c-source.html#l00120">LL_HANDLE::startTick</a>, <a class="el" href="z17__drv_8h-source.html#l00051">Z17_BLK_IRQLAT::startTick</a>, <a class="el" href="z17__drv_8c-source.html#l00121">LL_HANDLE::stopTick</a>, <a class="el" href="z17__drv_8h-source.html#l00052">Z17_BLK_IRQLAT::stopTick</a>, <a class="el" href="z17__drv_8h-source.html#l00061">Z17_BLK_DEBTIME::timeUs</a>, <a class="el" href="z17__drv_8c-source.html#l00085">TOG_CYCLIC</a>, <a class="el" href="z17__drv_8c-source.html#l00084">TOG_TIME_MAX</a>, <a class="el" href="z17__drv_8c-source.html#l00083">TOG_TIME_MIN</a>, <a class="el" href="z17__drv_8c-source.html#l00129">LL_HANDLE::togBitMask</a>, <a class="el" href="z17__drv_8c-source.html#l00127">LL_HANDLE::togtimeHigh</a>, <a class="el" href="z17__drv_8c-source.html#l00128">LL_HANDLE::togtimeLow</a>, <a class="el" href="z17__drv_8h-source.html#l00088">Z17_BLK_DEBOUNCE_TIME</a>, <a class="el" href="z17__drv_8h-source.html#l00086">Z17_BLK_IRQLAT_START</a>, <a class="el" href="z17__drv_8h-source.html#l00072">Z17_CLR_PORTS</a>, <a class="el" href="z17__drv_8h-source.html#l00078">Z17_CLR_SIGNAL</a>, <a class="el" href="z17__drv_8h-source.html#l00076">Z17_DEBOUNCE</a>, <a class="el" href="z17__drv_8h-source.html#l00073">Z17_DIRECTION</a>, <a class="el" href="z17__drv_8h-source.html#l00074">Z17_IRQ_SENSE</a>, <a class="el" href="z17__drv_8h-source.html#l00080">Z17_IRQ_SENSE_16TO31</a>, <a class="el" href="z17__drv_8h-source.html#l00075">Z17_OPEN_DRAIN</a>, <a class="el" href="z17__drv_8h-source.html#l00071">Z17_SET_PORTS</a>, <a class="el" href="z17__drv_8h-source.html#l00077">Z17_SET_SIGNAL</a>, <a class="el" href="z17__drv_8h-source.html#l00082">Z17_TOG_HIGH</a>, <a class="el" href="z17__drv_8h-source.html#l00083">Z17_TOG_LOW</a>, and <a class="el" href="z17__drv_8h-source.html#l00081">Z17_TOG_PORTS</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00178">__Z17_GetEntry()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00190">__Z17_GetEntry()</a>.    </td>
   </tr>
 </table>
-<a name="a17" doxytag="z17_drv.c::Z17_Write"></a><p>
+<a name="a18" doxytag="z17_drv.c::Z17_Write"></a><p>
 <table width="100%" cellpadding="2" cellspacing="0" border="0">
   <tr>
     <td class="md">
@@ -1354,11 +1356,38 @@ The function writes a value to the ports which are programmed as outputs.<p>
 <dl compact><dt><b>Returns:</b></dt><dd><code>0</code> on success or error code </dd></dl>
 
 <p>
-Definition at line <a class="el" href="z17__drv_8c-source.html#l00407">407</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
+Definition at line <a class="el" href="z17__drv_8c-source.html#l00419">419</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
 <p>
-References <a class="el" href="z17__drv_8c-source.html#l00080">DBH</a>, and <a class="el" href="z17__drv_8c-source.html#l00103">LL_HANDLE::ma</a>.
+References <a class="el" href="z17__drv_8c-source.html#l00078">DBH</a>, and <a class="el" href="z17__drv_8c-source.html#l00101">LL_HANDLE::ma</a>.
 <p>
-Referenced by <a class="el" href="z17__drv_8c-source.html#l00178">__Z17_GetEntry()</a>.    </td>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l00190">__Z17_GetEntry()</a>.    </td>
+  </tr>
+</table>
+<hr><h2>Variable Documentation</h2>
+<a name="a14" doxytag="z17_drv.c::IdentString"></a><p>
+<table width="100%" cellpadding="2" cellspacing="0" border="0">
+  <tr>
+    <td class="md">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td class="md" nowrap valign="top"> const char IdentString[] = MENT_XSTR_SFX(MAK_REVISION,Z34/Z37 model)<code> [static]</code>
+      </table>
+    </td>
+  </tr>
+</table>
+<table cellspacing=5 cellpadding=0 border=0>
+  <tr>
+    <td>
+      &nbsp;
+    </td>
+    <td>
+
+<p>
+
+<p>
+Definition at line <a class="el" href="z17__drv_8c-source.html#l00149">149</a> of file <a class="el" href="z17__drv_8c-source.html">z17_drv.c</a>.
+<p>
+Referenced by <a class="el" href="z17__drv_8c-source.html#l01219">Ident()</a>.    </td>
   </tr>
 </table>
 
@@ -1368,8 +1397,7 @@ Referenced by <a class="el" href="z17__drv_8c-source.html#l00178">__Z17_GetEntry
 <div class="footer">
 <!-- Footer -->
 	<p class="footer">
-	Generated for Z17 MDIS Driver using <a href="http://www.doxygen.org">doxygen</a>.<br>
-	Copyright &copy; 2019 <a href="http://www.men.de">MEN Mikro Elektronik GmbH</a>. All Rights Reserved.
+	Generated for Z17 MDIS Driver using <a href="http://www.doxygen.org">doxygen</a>. All Rights Reserved.
 	</p>
 </div>
 
