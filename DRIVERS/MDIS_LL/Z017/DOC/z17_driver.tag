@@ -12,12 +12,10 @@
     <docanchor>Documents</docanchor>
     <docanchor>readwrite</docanchor>
     <docanchor>z17_io</docanchor>
-    <docanchor>z17_min</docanchor>
     <docanchor>interrupts</docanchor>
     <docanchor>z127_out</docanchor>
     <docanchor>opendrain</docanchor>
     <docanchor>General</docanchor>
-    <docanchor>z17_max</docanchor>
     <docanchor>z127_in</docanchor>
     <docanchor>api_functions</docanchor>
     <docanchor>FuncDesc</docanchor>
