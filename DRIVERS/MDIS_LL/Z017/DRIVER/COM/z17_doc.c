@@ -216,14 +216,6 @@
 
 	\subsection z127_out  Tool to control the 16Z127 (32-bit) outputs
 	z127_out.c (see example section)
-
-	\subsection z17_min   Minimum descriptor
-	z17_min.dsc
-	demonstrates the minimum set of options necessary for using the drver.
-
-	\subsection z17_max   Maximum descriptor
-	z17_max.dsc
-	shows all possible configuration options for this driver.
 */
 
 /** \example z17_simp.c
