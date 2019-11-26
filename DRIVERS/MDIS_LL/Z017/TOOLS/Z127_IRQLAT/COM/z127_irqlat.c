@@ -14,7 +14,7 @@
  */
  /*
  *---------------------------------------------------------------------------
- * Copyright (c) 2011-2019, MEN Mikro Elektronik GmbH
+ * Copyright 2011-2019, MEN Mikro Elektronik GmbH
  ****************************************************************************/
  /*
  * This program is free software: you can redistribute it and/or modify
@@ -63,7 +63,7 @@ static void usage(void)
 	printf("    -n=<nbr>  number of IRQs to fire        [1000]\n");
 	printf("    -H        hold path open until keypress       \n");
 	printf("    -L        loop until keypress                 \n");
-	printf("Copyright (c) 2010-2019, MEN Mikro Elektronik GmbH\n%s\n", IdentString);
+	printf("Copyright 2011-2019, MEN Mikro Elektronik GmbH\n%s\n", IdentString);
 }
 
 /***************************************************************************/

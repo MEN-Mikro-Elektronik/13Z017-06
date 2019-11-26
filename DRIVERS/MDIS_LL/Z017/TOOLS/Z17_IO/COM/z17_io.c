@@ -14,7 +14,7 @@
  */
  /*
  *---------------------------------------------------------------------------
- * Copyright (c) 2006-2019, MEN Mikro Elektronik GmbH
+ * Copyright 2006-2019, MEN Mikro Elektronik GmbH
  ****************************************************************************/
  /*
  * This program is free software: you can redistribute it and/or modify
@@ -71,7 +71,7 @@ static void usage (void)
 	printf("        -l=<time>     toggle low (in ms)...............[1000]\n");
 	printf("    -h            hold path open until keypress              \n");
 	printf("\n");
-	printf("Copyright (c) 2006-2019, MEN Mikro Elektronik GmbH\n%s\n", IdentString);
+	printf("Copyright 2006-2019, MEN Mikro Elektronik GmbH\n%s\n", IdentString);
 }
 
 /***************************************************************************/

@@ -14,7 +14,7 @@
  */
  /*
  *---------------------------------------------------------------------------
- * Copyright (c) 2016-2019, MEN Mikro Elektronik GmbH
+ * Copyright 2016-2019, MEN Mikro Elektronik GmbH
  ****************************************************************************/
  /*
  * This program is free software: you can redistribute it and/or modify
@@ -96,7 +96,7 @@ static void usage(void)
 	printf("\n");
 	printf("(*1) requires 16Z127-01 (or compatible) IP core\n");
 	printf("\n");
-	printf("Copyright (c) 2016-2019, MEN Mikro Elektronik GmbH\n%s\n", IdentString);
+	printf("Copyright 2016-2019, MEN Mikro Elektronik GmbH\n%s\n", IdentString);
 }
 
 /***************************************************************************/

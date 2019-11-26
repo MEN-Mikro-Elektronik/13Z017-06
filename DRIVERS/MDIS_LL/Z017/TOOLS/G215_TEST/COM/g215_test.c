@@ -14,7 +14,7 @@
  */
  /*
  *---------------------------------------------------------------------------
- * Copyright (c) 2011-2019, MEN Mikro Elektronik GmbH
+ * Copyright 2011-2019, MEN Mikro Elektronik GmbH
  ****************************************************************************/
  /*
  * This program is free software: you can redistribute it and/or modify
@@ -63,7 +63,7 @@ static void usage(void)
 	printf("    -i=<nbr>       instance number in message [none]\n");
 	printf("    -d=<ms>        delay [ms] for loop        [500]\n");
 	printf("\n");
-	printf("Copyright (c) 2011-2019, MEN Mikro Elektronik GmbH\n%s\n", IdentString);
+	printf("Copyright 2011-2019, MEN Mikro Elektronik GmbH\n%s\n", IdentString);
 }
 
 /***************************************************************************/
